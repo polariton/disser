@@ -2,15 +2,25 @@ syntax: glob
 # manual backups
 backup
 old
+*.orig
 *.diff
 *.old
 
 # (pdf)LaTeX output files
+*.out
+*.glo
+*.cls
+*.rtx
 *.aux
 *.dvi
 *.log
 *.toc
 *.pdf
+
+# makeindex
+*.ind
+*.ilg
+*.idx
 
 # BibTeX output files
 *.bbl
