@@ -1,0 +1,192 @@
+% \iffalse meta-comment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% gost732 -- GOST 7.32-2001 implementation.
+%%
+%% Copyright (c) 2004-2007 Stanislav Kruchinin
+%%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<*driver>
+\ProvidesFile{gost732.drv}[2007/11/29 1.0.1 GOST 7.32-2001 implementation.]
+
+\documentclass{ltxdoc}
+\usepackage[a4paper,includehead,includefoot,mag=1000,
+            left=4cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{ifpdf,indentfirst}
+
+\ifpdf
+  \usepackage[unicode,
+    pdftitle = {Documented source code of the gost732 package},
+    pdfauthor = {Stanislav Kruchinin},
+    pdfsubject = {gost732},
+    pdfstartview = {FitH},
+    pdfborder = {0 0 0},
+    bookmarksopen = true,
+    bookmarksnumbered = true,
+    bookmarksopenlevel = 2]{hyperref}
+  \usepackage{cmap}
+\else
+  \usepackage[hypertex]{hyperref}
+\fi
+
+\let\package\textsf
+\IfFileExists{pscyr.sty}{%
+  \usepackage{pscyr}
+  \renewcommand\ttdefault{cmtt}
+  \renewcommand\rmdefault{ftm}
+}{}
+\IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = black, citecolor=blue,
+  filecolor  = blue, menucolor=blue,
+  pagecolor  = blue, urlcolor=blue
+}
+
+%\OnlyDescription                  % uncomment to suppress code line listing
+\RecordChanges                    % uncomment for a change history
+%\EnableCrossrefs    % uncomment for command index
+
+\MakeShortVerb{\|}
+
+\GetFileInfo{gost732.drv}
+\begin{document}
+  \sloppy
+  \PrintChanges
+  \DocInput{gost732.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \title{Подкласс для оформления документов в соответствии с ГОСТ 7.32-2001}
+% \date{Версия \fileversion\\[6pt]\filedate}
+% \author{Станислав Кручинин\\[6pt]
+% \normalsize E-mail:
+% \href{mailto:stanislav.kruchinin@gmail.com}
+% {\texttt{stanislav.kruchinin@gmail.com}}}
+%
+% \maketitle
+%
+% \tableofcontents
+%
+% \section{Введение}
+%
+% Насколько известно автору, на данный момент отсутствуют какие-либо ГОСТы,
+% регламентирующие структуру и правила оформления диссертаций. Наиболее
+% подходящим среди существующих стандартов следует считать ГОСТ 7.32-2001
+% <<Отчет о научно-исследовательской работе>>, реализованный в настоящем
+% классе. С другой стороны, количество кода, использованное для создания
+% этого подкласса является демонстрацией эффективности высокоуровневых
+% макросов класса |disser|.
+%
+%  \section{Исходный текст}\parindent=0pt
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{gost732}[2007/11/29 1.0.1 GOST 7.32-2001 implementation]
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{disser}}
+\ProcessOptions\relax
+\LoadClass[a4paper,14pt]{disser}
+
+%    \end{macrocode}
+%
+% \subsection{Формат заголовков}
+%
+%    \begin{macrocode}
+\renewcommand\tocprethechapter{}
+\renewcommand\tocpostthechapter{\@postskip}
+\renewcommand\tocposttheappendix{\@postskip}
+
+\renewcommand\chapteralign{\raggedright}
+\renewcommand\thechapterfont{\Large\bfseries}
+\renewcommand\prethechapter{\newpage}
+\renewcommand\postthechapter{\@postskip}
+\renewcommand\postchapter{\vskip 16\p@}
+
+\renewcommand\postthesection{\@postskip}
+\renewcommand\tocpostthesection{\@postskip}
+
+\renewcommand\postthesubsection{\@postskip}
+\renewcommand\tocpostthesubsection{\@postskip}
+
+\renewcommand\postthesubsubsection{\@postskip}
+\renewcommand\tocpostthesubsubsection{\@postskip}
+
+\renewcommand\posttheparagraph{\@postskip}
+\renewcommand\tocposttheparagraph{\@postskip}
+
+\renewcommand\postthesubparagraph{\@postskip}
+\renewcommand\tocpostthesubparagraph{\@postskip}
+
+\AtBeginDocument{%
+\addto\captionsrussian{%
+\def\bibname{%
+\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
+\cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyro\cyrv\cyra\cyrn\cyrn\cyrery\cyrh\ %
+\cyri\cyrs\cyrt\cyro\cyrch\cyrn\cyri\cyrk\cyro\cyrv}
+}}
+
+\renewcommand\bibsection{%
+  \nchapter{\bibname}
+}
+%    \end{macrocode}
+% \subsection{Списки}
+% \subsubsection{Нумерованный список}
+%
+% Формат счетчиков.
+%    \begin{macrocode}
+\renewcommand\theenumi  {\@asbuk\c@enumi}
+\renewcommand\theenumii {\@arabic\c@enumii}
+\renewcommand\theenumiii{\@roman\c@enumiii}
+\renewcommand\theenumiv {\@Asbuk\c@enumiv}
+
+%    \end{macrocode}
+%
+% Формат меток.
+%    \begin{macrocode}
+\renewcommand\labelenumi  {\theenumi)}
+\renewcommand\labelenumii {\theenumii)}
+\renewcommand\labelenumiii{\theenumiii)}
+\renewcommand\labelenumiv {\theenumiv)}
+
+%    \end{macrocode}
+% Ссылочные префиксы.
+%    \begin{macrocode}
+\renewcommand\p@enumii  {\theenumi}
+\renewcommand\p@enumiii {\theenumi.\theenumii}
+\renewcommand\p@enumiv  {\p@enumiii.\theenumiii}
+
+%    \end{macrocode}
+%
+% \subsubsection{Маркированный список}
+%
+% Формат меток.
+%    \begin{macrocode}
+\renewcommand\labelitemi  {\normalfont\bfseries \textendash}
+\renewcommand\labelitemii {\textbullet}
+\renewcommand\labelitemiii{\textasteriskcentered}
+\renewcommand\labelitemiv {\textperiodcentered}
+
+%    \end{macrocode}
+% \Finale
+\endinput

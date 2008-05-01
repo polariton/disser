@@ -1,0 +1,93 @@
+
+% \iffalse
+%%% From File: lists.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*lists>
+%    \end{macrocode}
+%
+% \subsection{Списки}
+%
+% Пробелы между левым полем полем окружения и полем перечня для элементов
+% указанного уровня вложенности.
+% \paragraph{1}
+%    \begin{macrocode}
+\if@twocolumn
+  \setlength\leftmargini {2em}
+\else
+  \setlength\leftmargini {2.5em}
+\fi
+\leftmargin  \leftmargini
+%    \end{macrocode}
+% \paragraph{2}
+%    \begin{macrocode}
+\setlength\leftmarginii  {2.2em}
+%    \end{macrocode}
+% \paragraph{3}
+%    \begin{macrocode}
+\setlength\leftmarginiii {1.87em}
+%    \end{macrocode}
+% \paragraph{4}
+%    \begin{macrocode}
+\setlength\leftmarginiv  {1.7em}
+%    \end{macrocode}
+% \paragraph{5 и 6}
+%    \begin{macrocode}
+\if@twocolumn
+  \setlength\leftmarginv  {.5em}
+  \setlength\leftmarginvi {.5em}
+\else
+  \setlength\leftmarginv  {1em}
+  \setlength\leftmarginvi {1em}
+\fi
+%    \end{macrocode}
+% Пробел между концом бокса метки и текстом первого элемента
+%    \begin{macrocode}
+\setlength\labelsep{.5em}
+%    \end{macrocode}
+% Номинальная ширина бокса, содержащего метку.
+%    \begin{macrocode}
+\setlength\labelwidth{\leftmargini}
+\addtolength\labelwidth{-\labelsep}
+\@beginparpenalty -\@lowpenalty
+\@endparpenalty   -\@lowpenalty
+\@itempenalty     -\@lowpenalty
+
+%    \end{macrocode}
+%
+% \subsubsection{Нумерованный список}
+%
+% Формат счетчиков.
+%    \begin{macrocode}
+\renewcommand\theenumi  {\@arabic\c@enumi}
+\renewcommand\theenumii {\@asbuk\c@enumii}
+\renewcommand\theenumiii{\@roman\c@enumiii}
+\renewcommand\theenumiv {\@Asbuk\c@enumiv}
+%    \end{macrocode}
+%
+% Формат меток.
+%    \begin{macrocode}
+\newcommand\labelenumi  {\theenumi.}
+\newcommand\labelenumii {\theenumii.}
+\newcommand\labelenumiii{\theenumiii.}
+\newcommand\labelenumiv {\theenumiv.}
+%    \end{macrocode}
+% Ссылочные префиксы.
+%    \begin{macrocode}
+\renewcommand\p@enumii  {\theenumi}
+\renewcommand\p@enumiii {\theenumi.\theenumii}
+\renewcommand\p@enumiv  {\p@enumiii.\theenumiii}
+%    \end{macrocode}
+%
+% \subsubsection{Маркированный список}
+%
+% Формат меток.
+%    \begin{macrocode}
+\newcommand\labelitemi  {\textbullet}
+\newcommand\labelitemii {\normalfont\bfseries \textendash}
+\newcommand\labelitemiii{\textasteriskcentered}
+\newcommand\labelitemiv {\textperiodcentered}
+%</lists>
+%    \end{macrocode}

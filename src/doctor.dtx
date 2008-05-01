@@ -1,0 +1,69 @@
+%    \begin{macrocode}
+
+%<doctor>\ProvidesFile{doctor.rtx}
+
+%<*doctor>
+%    \end{macrocode}
+% \subsubsection{Титульный лист докторской диссертации}
+%
+% Вертикальные интервалы между элементами титульного листа.
+% \DescribeMacro{\firstskip}\index{Макросы!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Макросы!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Макросы!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Макросы!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Макросы!\verb*+\fifthskip+}
+%    \begin{macrocode}
+\def\firstskip{\vskip1.5cm}
+\def\secondskip{\vskip3cm}
+\def\thirdskip{\vskip1cm}
+\def\fourthskip{\vskip1cm}
+\def\fifthskip{\vskip1cm}
+
+%    \end{macrocode}
+% Шрифты элементов титульного листа.
+% \DescribeMacro{\titlefont}\index{Макросы!\verb*+\titlefont+}
+% \DescribeMacro{\topicfont}\index{Макросы!\verb*+\topicfont+}
+% \DescribeMacro{\authorfont}\index{Макросы!\verb*+\authorfont+}
+% \DescribeMacro{\specfont}\index{Макросы!\verb*+\specfont+}
+%    \begin{macrocode}
+\def\titlefont{\normalsize}
+\def\topicfont{\Large\bfseries}
+\def\authorfont{\large}
+\def\specfont{\normalsize}
+
+\normalfont
+\begin{flushright}
+%    \end{macrocode}
+% На правах рукописи
+%    \begin{macrocode}
+  \firstskip
+  \asmanuscriptname\\
+%    \end{macrocode}
+% Номер УДК
+%    \begin{macrocode}
+  {\libcatname\;\@libcatnum}
+\end{flushright}
+\begin{center}
+%    \end{macrocode}
+% Автор
+%    \begin{macrocode}
+  \secondskip
+  {\authorfont\@author}
+%    \end{macrocode}
+% Название диссертации
+%    \begin{macrocode}
+  \thirdskip
+  {\topicfont\@topic\par}
+%    \end{macrocode}
+% Шифр и наименование специальности
+%    \begin{macrocode}
+  \fourthskip
+  {\specfont\@specnum~--\;\@spec}
+%    \end{macrocode}
+% Диссертация на соискание ученой степени...
+%    \begin{macrocode}
+  \fifthskip
+  {\titlefont\@title}
+\end{center}
+%</doctor>
+%    \end{macrocode}

@@ -1,0 +1,177 @@
+
+% \iffalse
+%%% From File: page.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*page>
+%    \end{macrocode}
+%
+% \subsection{Формат страниц}
+%
+% \subsubsection{Шрифт колонтитулов}
+% \DescribeMacro{\evenheadfont}\index{Макросы!\verb*+\evenheadfont+}
+% \DescribeMacro{\evenfootfont}\index{Макросы!\verb*+\evenfootfont+}
+% \DescribeMacro{\oddheadfont}\index{Макросы!\verb*+\oddheadfont+}
+% \DescribeMacro{\oddfootfont}\index{Макросы!\verb*+\oddfootfont+}
+% Верхний, на четных страницах.
+%    \begin{macrocode}
+\newcommand\evenheadfont{\slshape}
+%    \end{macrocode}
+% Нижний, на четных страницах.
+%    \begin{macrocode}
+\newcommand\evenfootfont{}
+%    \end{macrocode}
+% Верхний, на нечетных страницах.
+%    \begin{macrocode}
+\newcommand\oddheadfont{\slshape}
+%    \end{macrocode}
+% Нижний, на нечетных страницах.
+%    \begin{macrocode}
+\newcommand\oddfootfont{}
+%    \end{macrocode}
+%
+% Шрифт колонтитулов.
+% \DescribeMacro{\chaptermarkfont}\index{Макросы!\verb*+\chaptermarkfont+}
+% \DescribeMacro{\sectionmarkfont}\index{Макросы!\verb*+\sectionmarkfont+}
+%    \begin{macrocode}
+\providecommand\chaptermarkfont{\slshape}
+\providecommand\sectionmarkfont{\MakeUppercase}
+%    \end{macrocode}
+% \subsubsection{Определения стилей колонтитулов}
+% \paragraph{headings}
+%    \begin{macrocode}
+\if@twoside
+%    \end{macrocode}
+% \begin{itemize}
+% \item Для двухсторонних документов.
+%    \begin{macrocode}
+  \def\ps@headings{%
+%    \end{macrocode}
+%   \begin{itemize}
+%   \item Колонтитулы:
+%     \begin{itemize}
+%     \item нижний на четных страницах.
+%    \begin{macrocode}
+    \let\@evenfoot\@empty
+%    \end{macrocode}
+%     \item нижний на нечетных страницах.
+%    \begin{macrocode}
+    \let\@oddfoot\@empty
+%    \end{macrocode}
+%     \item верхний на четных страницах.
+%    \begin{macrocode}
+    \def\@evenhead{\thepage\hfil\evenheadfont\leftmark}%
+%    \end{macrocode}
+%     \item верхний на нечетных страницах.
+%    \begin{macrocode}
+    \def\@oddhead{{\oddheadfont\rightmark}\hfil\thepage}%
+    \let\@mkboth\markboth
+%    \end{macrocode}
+%     \end{itemize}
+% \DescribeMacro{\chaptermark}\index{Макросы!\verb*+\chaptermark+}
+%   \item Формат заголовков глав в колонтитулах.
+%    \begin{macrocode}
+    \def\chaptermark##1{%
+      \markboth{{\chaptermarkfont %
+      \ifnum \c@secnumdepth >\m@ne
+        \@tocseccntformat{chapter} \ %
+      \fi
+      ##1}}{}%
+    }%
+%    \end{macrocode}
+% \DescribeMacro{\sectionmark}\index{Макросы!\verb*+\sectionmark+}
+%   \item Формат заголовков секций в колонтитулах.
+%    \begin{macrocode}
+    \def\sectionmark##1{%
+      \markright{{\sectionmarkfont %
+      \ifnum \c@secnumdepth >\z@
+        \@tocseccntformat{section}%
+      \fi
+      ##1}%
+      }%
+    }%
+  } % \def\ps@headings
+%    \end{macrocode}
+%   \end{itemize}
+%    \begin{macrocode}
+\else % \if@twoside
+%    \end{macrocode}
+%  \item Для односторонних документов.
+%    \begin{macrocode}
+  \def\ps@headings{%
+%    \end{macrocode}
+%  \begin{itemize}
+%    \item Колонтитулы.
+%    \begin{macrocode}
+    \let\@oddfoot\@empty
+    \def\@oddhead{
+      {\slshape\rightmark}%
+      \hfil\thepage
+    }%
+    \let\@mkboth\markboth
+%    \end{macrocode}
+%    \item Формат маркера главы.
+%    \begin{macrocode}
+    \def\chaptermark##1{%
+    \markright {{\chaptermarkfont %
+    \ifnum\c@secnumdepth >\m@ne
+      \@tocseccntformat{chapter} \ %
+    \fi
+    ##1}}{}}
+%    \end{macrocode}
+%    \item Формат маркера секции.
+%    \begin{macrocode}
+    \def\sectionmark##1{%
+      \markright{{\sectionmarkfont %
+          \ifnum \c@secnumdepth >\z@
+            \@tocseccntformat{section} \ %
+          \fi
+          ##1%
+        }
+      }
+    }
+  }
+\fi % \if@twoside
+
+%    \end{macrocode}
+%   \end{itemize}
+% \end{itemize}
+%
+% \paragraph{myheadings}
+% \DescribeMacro{\ps@myheadings}
+%    \begin{macrocode}
+\def\ps@myheadings{%
+  \let\@oddfoot\@empty\let\@evenfoot\@empty
+  \def\@evenhead{\thepage\hfil\evenheadfont\leftmark}%
+  \def\@oddhead{{\oddheadfont\rightmark}\hfil\thepage}%
+  \let\@mkboth\@gobbletwo
+  \let\chaptermark\@gobble
+  \let\sectionmark\@gobble
+}
+%    \end{macrocode}
+% \subsubsection{Формат по умолчанию}
+%
+% Стиль оформления колонтитулов страницы.
+%    \begin{macrocode}
+\pagestyle{plain}
+%    \end{macrocode}
+% Стиль нумерации страниц.
+%    \begin{macrocode}
+\pagenumbering{arabic}
+%    \end{macrocode}
+% Для односторонних документов разрешается делать страницы с разной высотой
+% текста.
+%    \begin{macrocode}
+\if@twoside\else\raggedbottom\fi
+%    \end{macrocode}
+% Для двухколоночных документов:
+% |\flushbottom| запрещает делать страницы с разной высотой текста,
+% |\sloppy| включает менее жесткие ограничения на разрывы строк.
+%    \begin{macrocode}
+\if@twocolumn\twocolumn\sloppy\flushbottom
+\else\onecolumn\fi
+
+%</page>
+%    \end{macrocode}

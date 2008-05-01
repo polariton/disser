@@ -1,0 +1,125 @@
+
+% \iffalse
+%%% From File: counters.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*counters>
+%    \end{macrocode}
+%
+% \subsection{Создание и настройка счетчиков}
+%
+% \DescribeMacro{part}\index{Счетчики!\verb*+part+}
+% \DescribeMacro{chapter}\index{Счетчики!\verb*+chapter+}
+% \DescribeMacro{section}\index{Счетчики!\verb*+section+}
+% \DescribeMacro{subsection}\index{Счетчики!\verb*+subsection+}
+% \DescribeMacro{subsubsection}\index{Счетчики!\verb*+subsubsection+}
+% \DescribeMacro{paragraph}\index{Счетчики!\verb*+paragraph+}
+% \DescribeMacro{subparagraph}\index{Счетчики!\verb*+subparagraph+}
+% \DescribeMacro{figure}\index{Счетчики!\verb*+figure+}
+% \DescribeMacro{table}\index{Счетчики!\verb*+table+}
+%    \begin{macrocode}
+\newcounter{part}
+\newcounter{chapter}
+\newcounter{section}[chapter]
+\newcounter{subsection}[section]
+\newcounter{subsubsection}[subsection]
+\newcounter{paragraph}[subsubsection]
+\newcounter{subparagraph}[paragraph]
+\newcounter{figure}[chapter]
+\newcounter{table}[chapter]
+%    \end{macrocode}
+%
+% Формат нумерации разделов документа в тексте.
+% \DescribeMacro{\thepart}\index{Макросы!\verb*+\thepart+}
+% \DescribeMacro{\thechapter}\index{Макросы!\verb*+\thechapter+}
+% \DescribeMacro{\theappendix}\index{Макросы!\verb*+\theappendix+}
+% \DescribeMacro{\thesection}\index{Макросы!\verb*+\thesection+}
+% \DescribeMacro{\thesubsection}\index{Макросы!\verb*+\thesubsection+}
+% \DescribeMacro{\thesubsubsection}\index{Макросы!\verb*+\thesubsubsection+}
+% \DescribeMacro{\theparagraph}\index{Макросы!\verb*+\theparagraph+}
+% \DescribeMacro{\thesubparagraph}\index{Макросы!\verb*+\thesubparagraph+}
+%    \begin{macrocode}
+\renewcommand\thepart{\@Roman\c@part}
+\renewcommand\thechapter{\@arabic\c@chapter}
+\newcommand\theappendix{\@Asbuk\c@chapter}
+\renewcommand\thesection{%
+\ifnum\c@chapter > \z@
+  \thechapter.\@arabic\c@section%
+\else\@arabic\c@section\fi}
+\renewcommand\thesubsection{\thesection.\@arabic\c@subsection}
+\renewcommand\thesubsubsection{\thesubsection.\@arabic\c@subsubsection}
+\renewcommand\theparagraph{\@arabic\c@paragraph}
+\renewcommand\thesubparagraph{\theparagraph.\@arabic\c@subparagraph}
+
+%    \end{macrocode}
+% Формат нумерации разделов документа в Содержании.
+% \DescribeMacro{\tocthepart}\index{Макросы!\verb*+\tocthepart+}
+% \DescribeMacro{\tocthechapter}\index{Макросы!\verb*+\tocthechapter+}
+% \DescribeMacro{\toctheappendix}\index{Макросы!\verb*+\toctheappendix+}
+% \DescribeMacro{\tocthesection}\index{Макросы!\verb*+\tocthesection+}
+% \DescribeMacro{\tocthesubsection}\index{Макросы!\verb*+\tocthesubsection+}
+% \DescribeMacro{\tocthesubsubsection}\index{Макросы!\verb*+\tocthesubsubsection+}
+% \DescribeMacro{\toctheparagraph}\index{Макросы!\verb*+\toctheparagraph+}
+% \DescribeMacro{\tocthesubparagraph}\index{Макросы!\verb*+\tocthesubparagraph+}
+%    \begin{macrocode}
+\newcommand\tocthepart{\thepart}
+\newcommand\tocthechapter{\thechapter}
+\newcommand\toctheappendix{\theappendix}
+\newcommand\tocthesection{\thesection}
+\newcommand\tocthesubsection{\thesubsection}
+\newcommand\tocthesubsubsection{\thesubsubsection}
+\newcommand\toctheparagraph{\theparagraph}
+\newcommand\tocthesubparagraph{\thesubparagraph}
+
+%    \end{macrocode}
+%
+% Схемы нумерации объектов для разных типов диссертаций.
+% \DescribeMacro{\bachelor@the}\index{Макросы!\verb*+\bachelor"@the+}
+%    \begin{macrocode}
+\newcommand\bachelor@the{%
+%    \end{macrocode}
+% Нумерация сносок и формул начинается заново в каждой главе.
+%    \begin{macrocode}
+  \@addtoreset{footnote}{chapter}
+  \@addtoreset{equation}{chapter}
+
+%    \end{macrocode}
+% Формат номера формулы.
+%    \begin{macrocode}
+  \renewcommand\theequation{%
+    \ifnum\c@chapter > \z@\thechapter.\fi%
+    \@arabic\c@equation}
+%    \end{macrocode}
+% Формат номера таблицы.
+%    \begin{macrocode}
+  \renewcommand\thetable{%
+    \ifnum \c@chapter>\z@\thechapter.\fi%
+    \@arabic\c@table}
+%    \end{macrocode}
+% Формат номера рисунка.
+%    \begin{macrocode}
+  \renewcommand\thefigure{%
+    \ifnum \c@chapter>\z@\thechapter.\fi%
+    \@arabic\c@figure}
+}
+%    \end{macrocode}
+% По умолчанию у всех одинаковая схема нумерации.
+% \DescribeMacro{\master@the}\index{Макросы!\verb*+\master"@the+}
+% \DescribeMacro{\candidate@the}\index{Макросы!\verb*+\candidate"@the+}
+% \DescribeMacro{\doctor@the}\index{Макросы!\verb*+\doctor"@the+}
+% \DescribeMacro{\autoref@the}\index{Макросы!\verb*+\autoref"@the+}
+%    \begin{macrocode}
+\newcommand\master@the   \bachelor@the
+\newcommand\candidate@the\bachelor@the
+\newcommand\doctor@the   \candidate@the
+\newcommand\autoref@the  \candidate@the
+
+\ifDis@bachelor \bachelor@the  \fi
+\ifDis@master   \master@the    \fi
+\ifDis@candidate\candidate@the \fi
+\ifDis@doctor   \doctor@the    \fi
+\ifDis@autoref  \autoref@the   \fi
+%</counters>
+%    \end{macrocode}

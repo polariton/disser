@@ -1,0 +1,87 @@
+disser changelog
+Copyright (C) 2004-2008 Stanislav Kruchinin
+-------------------------------------------
+
+Changes in version 1.0.5 (2008-04-26):
+
+Class:
+! Moved from Subversion to Mercurial
++ Support for wrapfig package instead of obsolete floatflt.
++ Many improvements and bugfixes in makefiles.
++ Documentation: added index of commands and lots of new descriptions.
++ New make targets: pdf_book and ps_book, that provides 
+  booklet makeup (useful for abstracts).
+* Fixed bug with star versions of \section-like commands.
+
+Templates:
+- No more srcltx by default because it is not included to the base TeX Live 
+  Debian packages.
+* Bachelor: added support for wrapfig package.
+
+
+Changes in version 1.0.4 (2007-11-04):
+
+Class:
++ Wrote some documentation on class options and Makefile targets.
+* Refactoring of sources and Makefiles.
+* gost732 class code is no longer included in disser.dtx.
++ New option fixint={true|false}.
++ Parametrization of format for theorem-like environments.
+
+Templates:
+* Appendix is now behind the Bibliography.
+* nomake.cmd scripts became a stub for one common file.
+  Don't forget to include it to your source distribution.
++ Macros for sharing text between dissertation and abstract.
++ Changed style of second page in abstract.
++ Added \usepackage{srcltx} to make source links by default.
+* Included makefiles has been moved to 'include' directory.
+
+
+Changes in version 1.0.3a (2007-07-28):
+
+Class:
++ \phantomchapter command was superseded by \metaphantom{}.
+
+Templates:
+* Changed default settings for margins.
+* Small fixes to comply standards.
+
+
+Changes in version 1.0.3 (2007-07-11):
+
+Class:
++ Major improvements in Makefile/nomake.cmd infrastructure.
++ subfig package is used instead of obsolete subfigure.
++ Added some parametrizations for page styles and headings.
+
+Templates:
++ Added more examples with figures to bachelor template.
+* Fix: thesis.bib EOLN changed to LF.
+
+
+Changes in version 1.0.2 (2007-03-04):
+
+Class:
++ Added class gost732.
++ Added parametrization of format for appendices.
+* Fixed parametrization of section headers.
+* Many other small fixes (see logs at 
+  http://disser.svn.sourceforge.net/viewvc/disser/).
+
+Templates:
++ Candidate and doctor: added templates of author's abstracts.
+* Candidate and doctor: fixed \title.
+
+
+Changes in version 1.0.1 (2006-11-10):
+
+Class:
+* Fixed mistakes in comments and README files.
++ Added parametrization for alignment of headers (\...align macros).
+
+Templates:
++ Added some targets to root Makefile
++ Common Makefiles for all templates (latex.mk and latex.fig.mk)
+
+First public release: version 1.0 (2006-10-28)

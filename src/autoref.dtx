@@ -1,0 +1,53 @@
+%    \begin{macrocode}
+
+%<autoref>\ProvidesFile{autoref.rtx}
+
+%<*autoref>
+%    \end{macrocode}
+% \subsubsection{Титульный лист автореферата}
+%
+% Вертикальные интервалы между элементами титульного листа.
+%    \begin{macrocode}
+\def\firstskip{\vskip1cm}
+\def\secondskip{\vskip2cm}
+\def\thirdskip{\vskip1cm}
+\def\fourthskip{\vskip1cm}
+\def\fifthskip{\vskip1cm}
+
+\def\titlefont{\normalsize}
+\def\topicfont{\Large\bfseries}
+\def\authorfont{\large}
+\def\specfont{\normalsize}
+
+\normalfont
+\begin{flushright}
+%    \end{macrocode}
+% На правах рукописи
+%    \begin{macrocode}
+  \firstskip
+  \asmanuscriptname\\
+\end{flushright}
+\begin{center}
+%    \end{macrocode}
+% Автор
+%    \begin{macrocode}
+  \secondskip
+  {\authorfont\@author}
+%    \end{macrocode}
+% Название диссертации
+%    \begin{macrocode}
+  \thirdskip
+  {\topicfont\@topic\par}
+%    \end{macrocode}
+% Шифр и наименование специальности
+%    \begin{macrocode}
+  \fourthskip
+  {\specfont\@specnum~--\;\@spec}
+%    \end{macrocode}
+% Диссертация на соискание ученой степени...
+%    \begin{macrocode}
+  \fifthskip
+  {\titlefont\@title}
+\end{center}
+%</autoref>
+%    \end{macrocode}

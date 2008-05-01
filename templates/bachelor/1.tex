@@ -1,0 +1,127 @@
+\chapter{Название главы}
+\section{Название секции}
+
+Внутритекстовая формула $\frac{1}{\epsilon^*}=\frac{1}{\epsilon_\infty}-\frac{1}{\epsilon_0}$.
+Внутритекстовая формула в стиле выделенной $\dfrac{1}{\epsilon_\infty}$.
+Ссылки на литературу~\cite{Efros-1982-FTP16-82-1209,%
+Yoffe-1993-AP-42-173,Kayanuma-1988-PRB-38-9797,Segall-1968}.
+Ссылка на формулу~\eqref{eq:e}
+\begin{equation}\label{eq:e}
+  \vec P=\sqrt{\frac{N_0 m_r \Omega_{LO}}{4\pi\epsilon^*}}(\vec u_+ - \vec u_-).
+\end{equation}
+
+Ссылка на рис.~\ref{fig:f}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=4cm]{fig}
+\caption{\label{fig:f}%
+Подпись к рисунку.
+}
+\end{figure}
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \centering
+  \includegraphics[width=4cm]{fig}
+  \caption{\label{fig:ff}Рисунок <<в оборку>>.}
+\end{wrapfigure}
+
+Если разность энергий электронно-дырочных уровней $E_2-E_1$ близка к энергии предельного оптического фонона $\hbar\Omega_{LO}$, то в разложении волновых функций полного гамильтониана можно ограничиться нулевым приближением для всех состояний, за исключением близких по значению к $E_2$. Волновые функции последних представляют собой следующие комбинации почти вырожденных состояний.
+
+Ссылка на таблицу~\ref{tab:t1}.
+\begin{table}[!ht]
+  \centering
+  \caption{Пример таблицы}\label{tab:t1}
+  \vskip1.em
+  \begin{tabular}{l|ccc}
+    \hline\hline
+    & \quad$\lambda \times 10^{-11}$,~$\text{Дин}\cdot\text{см}^{-2}$\quad &
+    \quad$\mu \times 10^{-11}$,~$\text{Дин}\cdot\text{см}^{-2}$ & \quad$\rho$, $\text{г}\cdot \text{см}^{-3}$\quad \\
+    \hline
+    InP       & 3.82 & 1.69 & 4.14 \\
+    SiO$_{2}$ & 1.57 & 3.11 & 2.2  \\
+    \hline\hline
+  \end{tabular}
+\end{table}
+
+\begin{figure}[!ht]
+\centering
+  \begin{minipage}{5cm}
+    \centering
+    \includegraphics[width=4cm]{fig}
+    \caption{Рисунок с отдельным названием}
+  \end{minipage}
+  \quad
+  \begin{minipage}{5cm}
+    \centering
+    \includegraphics[width=4cm]{fig}
+    \caption{Рисунок с отдельным названием}
+  \end{minipage}
+  \quad
+  \begin{minipage}{5cm}
+    \centering
+    \includegraphics[width=4cm]{fig}
+    \caption{Рисунок с отдельным названием}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+  \begin{minipage}{5cm}
+    \centering
+    \includegraphics[width=4cm]{fig}
+  \end{minipage}
+  \quad
+  \begin{minipage}{5cm}
+    \centering
+    \includegraphics[width=4cm]{fig}
+  \end{minipage}
+  \caption{Рисунки с единым названием}
+\end{figure}
+
+Ссылка на внутренний рисунок (рис.~\ref{fig:sub1})
+
+\begin{figure}[!ht]
+\centering
+  \subfloat[][]{\label{fig:sub1}\includegraphics[width=4cm]{fig}}\quad
+  \subfloat[][]{\label{fig:sub2}\includegraphics[width=4cm]{fig}}\quad
+  \subfloat[][]{\label{fig:sub3}\includegraphics[width=4cm]{fig}}
+\caption[]{%
+Рисунки с единым названием и подчинённой нумерацией:
+  \subref{fig:sub1} ссылка 1,
+  \subref{fig:sub2} ссылка 2,
+  \subref{fig:sub3} ссылка 3.
+}
+\end{figure}
+
+\subsection{Название подсекции}
+Текст подсекции
+\subsubsection{Название под-подсекции}
+Текст под-подсекции
+\paragraph{Название параграфа.}
+Текст параграфа
+\subparagraph{Название подпараграфа.}
+Текст подпараграфа
+
+Демонстрация полностью настраиваемых окружений типа <<теорема>>.
+
+\newtheorem{lemm}{Лемма}[chapter]
+
+\def\thelemmstyle{\bf}
+\def\oparglemmstyle{}
+\def\lemmstyle{\it}
+\def\preoparglemm{\{}
+\def\postoparglemm{\}}
+
+\newtheorem{remark}{Примечание}[chapter]
+
+\def\remarkstyle{\it}
+\def\theremarkstyle{}
+\def\posttheremark{:}
+
+\begin{lemm}[Шура]
+Матрица, коммутирующая со всеми матрицами неприводимого представления, кратна единичной.
+\end{lemm}
+
+\begin{remark}
+Имеется в виду квадратная матрица.
+\end{remark}

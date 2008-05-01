@@ -1,0 +1,231 @@
+
+% \iffalse
+%%% From File: floats.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*floats>
+%    \end{macrocode}
+%
+% \subsection{Плавающие объекты}
+% \subsubsection{Параметры размещения плавающих объектов на странице}
+% \paragraph{Количество объектов}
+%   \begin{itemize}
+%   \item Максимальное количество плавающих объектов, размещаемое вверху
+% страницы (при двухколонном наборе --- вверху колонки).
+%   \DescribeMacro{topnumber}\index{Счетчики!\verb*+topnumber+}
+%    \begin{macrocode}
+\setcounter{topnumber}{2}
+%    \end{macrocode}
+%   \item Максимальное количество плавающих объектов, размещаемое внизу
+% страницы (при двухколонном наборе --- внизу колонки).
+%   \DescribeMacro{bottomnumber}\index{Счетчики!\verb*+bottomnumber+}
+%    \begin{macrocode}
+\setcounter{bottomnumber}{1}
+%    \end{macrocode}
+%   \item Максимальное количество плавающих объектов, размещаемое
+%   на странице (при двухколонном наборе --- в колонке).
+%   \DescribeMacro{totalnumber}\index{Счетчики!\verb*+totalnumber+}
+%    \begin{macrocode}
+\setcounter{totalnumber}{3}
+%    \end{macrocode}
+%   \item При наборе в две колонки: максимальное количество плавающих
+%   объектов шириной во всю страницу, которое разрешается разместить вверху
+%   страницы
+%    \begin{macrocode}
+\setcounter{dbltopnumber}{2}
+%    \end{macrocode}
+%   \end{itemize}
+%
+% \paragraph{Величина места, занимаемого плавающими объектами}
+%   \begin{itemize}
+%   \item Максимальная доля страницы по высоте, которую могут занимать
+%   плавающие объекты, размещаемые вверху страницы.
+%   \DescribeMacro{\topfraction}\index{Макросы!\verb*+\topfraction+}
+%    \begin{macrocode}
+\renewcommand\topfraction{.7}
+%    \end{macrocode}
+%   \item Максимальная доля страницы по высоте, которую могут занимать
+%   плавающие объекты, размещаемые внизу страницы.
+%   \DescribeMacro{\bottomfraction}\index{Макросы!\verb*+\bottomfraction+}
+%    \begin{macrocode}
+\renewcommand\bottomfraction{.3}
+%    \end{macrocode}
+%   \item Минимальная доля страницы, которую должен занимать текст, а не
+%   плавающие объекты на обычной странице (к страницам, создаваемым
+%   \LaTeX{}'ом
+%   специально для размещения плавающих объектов при обработке
+%   необязательного аргумента |p|, это не относится).
+%   \DescribeMacro{\textfraction}\index{Макросы!\verb*+\textfraction+}
+%    \begin{macrocode}
+\renewcommand\textfraction{.2}
+%    \end{macrocode}
+%   \item Параметр, аналогичный предыдущему, относящийся к страницам для
+%   плавающих объектов.
+%   \DescribeMacro{\floatpagefraction}\index{Макросы!\verb*+\floatpagefraction+}
+%    \begin{macrocode}
+\renewcommand\floatpagefraction{.5}
+%    \end{macrocode}
+%   \item Тоже, что |\topfraction|, применительно к иллюстрациям (таблицам)
+%   шириной в целую страницу при двухколонном наборе.
+%   \DescribeMacro{\dbltopfraction}\index{Макросы!\verb*+\dbltopfraction+}
+%    \begin{macrocode}
+\renewcommand\dbltopfraction{.7}
+%    \end{macrocode}
+%   \item Тоже, что |\floatpagefraction|, применительно к иллюстрациям
+%   (таблицам) шириной в целую страницу при двухколонном наборе.
+%   \DescribeMacro{\dblfloatpagefraction}\index{Макросы!\verb*+\dblfloatpagefraction+}
+%    \begin{macrocode}
+\renewcommand\dblfloatpagefraction{.5}
+%    \end{macrocode}
+%   \end{itemize}
+%
+% \subsubsection{Параметры формата подписей}
+%
+% \DescribeMacro{\abovecaptionskip}\index{Макросы!\verb*+\abovecaptionskip+}
+% Вертикальный интервал перед подписью.
+%    \begin{macrocode}
+\newlength\abovecaptionskip
+\setlength\abovecaptionskip{10\p@}
+%    \end{macrocode}
+% \DescribeMacro{\belowcaptionskip}\index{Макросы!\verb*+\belowcaptionskip+}
+% Вертикальный интервал за подписью.
+%    \begin{macrocode}
+\newlength\belowcaptionskip
+\setlength\belowcaptionskip{0\p@}
+%    \end{macrocode}
+% \DescribeMacro{\captionlabeldelim}\index{Макросы!\verb*+\captionlabeldelim+}
+% Разделитель метки (постоянная часть + номер) и текста подписи.
+%    \begin{macrocode}
+\newcommand\captionlabeldelim{.}
+%    \end{macrocode}
+% \DescribeMacro{\captionfont}\index{Макросы!\verb*+\captionfont+}
+% Шрифт подписи.
+%    \begin{macrocode}
+\newcommand\captionfont{\small}
+%    \end{macrocode}
+% \DescribeMacro{\captionlabelfont}\index{Макросы!\verb*+\captionlabelfont+}
+% Шрифт метки.
+%    \begin{macrocode}
+\newcommand\captionlabelfont{\small\selectfont}
+%    \end{macrocode}
+% \DescribeMacro{\@makecaption}\index{Макросы!\verb+"\"@makecaption+}
+% Низкоуровневая команда, создающая подпись.
+%    \begin{macrocode}
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\captionlabelfont #1\captionlabeldelim} {\captionfont #2}}%
+  \ifdim \wd\@tempboxa >\hsize
+    {{\captionlabelfont  #1\captionlabeldelim} {\captionfont #2}}\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip
+}
+
+%    \end{macrocode}
+%
+% \subsubsection{figure}
+%
+% \DescribeMacro{\thefigure}\index{Макросы!\verb*+\thefigure+}
+% Формат номера.
+%    \begin{macrocode}
+\renewcommand\thefigure{\ifnum \c@chapter>\z@\thechapter.\fi\@arabic\c@figure}
+
+%    \end{macrocode}
+% \DescribeMacro{\fps@figure}
+% Описатель положения плавающих объектов типа |figure|.
+%    \begin{macrocode}
+\def\fps@figure{tbp}
+%    \end{macrocode}
+% \DescribeMacro{\ftype@figure}
+% Номер типа, ассоциированный с |figure|.
+%    \begin{macrocode}
+\def\ftype@figure{1}
+%    \end{macrocode}
+% \DescribeMacro{\ext@figure}
+% Расширение файла со списком иллюстраций.
+%    \begin{macrocode}
+\def\ext@figure{lof}
+%    \end{macrocode}
+% \DescribeMacro{\fnum@figure}
+% Формат заголовка подписи (Рис.~1).
+%    \begin{macrocode}
+\def\fnum@figure{\figurename~\thefigure}
+
+%    \end{macrocode}
+%
+% \subsubsection{table}
+%
+% \DescribeMacro{\thetable}\index{Макросы!\verb*+\thetable+}
+% Формат номера.
+%    \begin{macrocode}
+\renewcommand\thetable{\ifnum \c@chapter>\z@\thechapter.\fi\@arabic\c@table}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\arraycolsep}\index{Длины!\verb*+\arraycolsep+}
+% Промежуток между колонками в |array|.
+%    \begin{macrocode}
+\setlength\arraycolsep{5\p@}
+%    \end{macrocode}
+% \DescribeMacro{\tabcolsep}\index{Длины!\verb*+\tabcolsep+}
+% Промежуток между колонками в таблице.
+%    \begin{macrocode}
+\setlength\tabcolsep{6\p@}
+%    \end{macrocode}
+% \DescribeMacro{\arrayrulewidth}\index{Длины!\verb*+\arrayrulewidth+}
+% Толщина линейки в |array|.
+%    \begin{macrocode}
+\setlength\arrayrulewidth{.4\p@}
+%    \end{macrocode}
+% \DescribeMacro{\doublerulesep}\index{Длины!\verb*+\doublerulesep+}
+% Промежуток между линиями в двойной линейке |\hrule\hrule|.
+%    \begin{macrocode}
+\setlength\doublerulesep{2\p@}
+%    \end{macrocode}
+% \DescribeMacro{\tabbingsep}\index{Длины!\verb*+\tabbingsep+}
+% Промежуток между столбцами в окружении |tabular|.
+%    \begin{macrocode}
+\setlength\tabbingsep{\labelsep}
+%    \end{macrocode}
+% Промежуток, добавляемый при наличии сноски при использовании окружения
+% |minipage|.
+%    \begin{macrocode}
+\skip\@mpfootins = \skip\footins
+%    \end{macrocode}
+% \DescribeMacro{\fboxsep}\index{Длины!\verb*+\fboxsep+}
+% Промежуток между линией и текстом в |\fbox|.
+%    \begin{macrocode}
+\setlength\fboxsep{3\p@}
+%    \end{macrocode}
+% \DescribeMacro{\fboxrule}\index{Длины!\verb*+\fboxrule+}
+% Толщина линии для |\fbox|.
+%    \begin{macrocode}
+\setlength\fboxrule{.4\p@}
+
+%    \end{macrocode}
+% \DescribeMacro{\fps@table}
+% Описатель положения плавающих объектов типа |table|.
+%    \begin{macrocode}
+\def\fps@table{tbp}
+%    \end{macrocode}
+% \DescribeMacro{\ftype@table}
+% Номер типа, ассоциированный с |figure|.
+%    \begin{macrocode}
+\def\ftype@table{2}
+%    \end{macrocode}
+% \DescribeMacro{\ext@table}
+% Расширение файла, содержащего сгенерированный список таблиц.
+%    \begin{macrocode}
+\def\ext@table{lot}
+%    \end{macrocode}
+% \DescribeMacro{\fnum@table}
+% Формат заголовка подписи (Таблица~1).
+%    \begin{macrocode}
+\def\fnum@table{\tablename~\thetable}
+
+%</floats>
+%    \end{macrocode}

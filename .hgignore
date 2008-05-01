@@ -1,0 +1,32 @@
+syntax: glob
+# manual backups
+backup
+old
+*.diff
+*.old
+
+# (pdf)LaTeX output files
+*.aux
+*.dvi
+*.log
+*.toc
+*.pdf
+
+# BibTeX output files
+*.bbl
+*.blg
+
+# bitmap sources for EPS figures
+*.tif
+*.png
+
+# office drafts
+*.doc
+*.xls
+
+# LaTeX frontend files
+*.bak
+*.backup
+*.sav
+*.prj
+auto

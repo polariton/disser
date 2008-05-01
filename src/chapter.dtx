@@ -1,0 +1,268 @@
+
+% \iffalse
+%%% From File: chapter.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*chapter>
+%    \end{macrocode}
+%
+% \subsection{Глава}
+%
+% \subsubsection{Параметры формата записи в Содержании}
+%
+%    \begin{macrocode}
+\providecommand\tocprethechapter{\protect\chaptername~}
+\providecommand\tocpostthechapter{.\@postskip}
+\providecommand\tocchapterfill{\tocfill{.}}
+
+\providecommand\tocchapterfont{\bfseries}
+\providecommand\tocchapterfillfont{\normalfont}
+\providecommand\tocchapternumfont{\normalfont}
+
+%    \end{macrocode}
+% \subsubsection{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\thechapteralign{\centering}
+\providecommand\thechapterfont{\Large}
+\providecommand\prethechapter{\protect\chaptername~}
+\providecommand\postthechapter{\par\nobreak\vskip 5\p@}
+
+\providecommand\chapteralign{\centering}
+\providecommand\chapterfont{\Large\bfseries}
+\providecommand\prechapter{}
+\providecommand\postchapter{\par\nobreak\vskip 20\p@}
+
+\def\chapterpagestyle#1{\gdef\@chapterpagestyle{#1}}\chapterpagestyle{plain}
+
+%    \end{macrocode}
+%
+% \subsubsection{Низкоуровневые команды}
+%
+% Пустое определение колонтитула главы.
+%    \begin{macrocode}
+\newcommand*\chaptermark[1]{}
+%    \end{macrocode}
+% Интерфейс.
+%    \begin{macrocode}
+\newcommand\chapter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{\@chapterpagestyle}%
+  \global\@topnum\z@
+  \@afterindentfalse
+  \secdef\@chapter\@schapter
+}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\@chapter}\index{Макросы!\verb+"\"@chapter+}
+% Команда, формирующая нумеруемый заголовок |\chapter|.
+%    \begin{macrocode}
+\def\@chapter[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{chapter}%
+    {\def\\{ }\addcontentsline{toc}{chapter}{\@tocseccntformat{chapter} #1}}%
+  \else
+    {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
+  \fi
+  \chaptermark{#1}%
+%    \end{macrocode}
+% Добавление вертикальных разделителей в списки рисунков и таблиц.
+%    \begin{macrocode}
+  \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+  \if@twocolumn
+    \@topnewpage[\@makechapterhead{#2}]%
+  \else
+    \@makechapterhead{#2}%
+    \@afterheading
+  \fi
+}
+%    \end{macrocode}
+%
+% \DescribeMacro{\@makechapterhead}\index{Макросы!\verb+"\"@makechapterhead+}
+% Формат нумеруемого заголовка.
+%    \begin{macrocode}
+\def\@makechapterhead#1{%
+  {%
+%    \end{macrocode}
+% Установка нулевого абзацного отступа.
+%    \begin{macrocode}
+    \parindent \z@ \raggedright \normalfont
+%    \end{macrocode}
+% Постоянная часть заголовка.
+%    \begin{macrocode}
+      \ifnum \c@secnumdepth >\m@ne
+        {\thechapterfont\thechapteralign\@seccntformat{chapter}}
+      \fi
+      \interlinepenalty\@M
+      \chapterfont\chapteralign\prechapter #1\postchapter
+  }
+}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\@schapter}\index{Макросы!\verb+"\"@schapter+}
+% Команда, формирующая ненумеруемый заголовок |\chapter*|.
+%    \begin{macrocode}
+\def\@schapter#1{
+  \if@twocolumn
+    \@topnewpage[\@makeschapterhead{#1}]%
+  \else
+    \@makeschapterhead{#1}%
+    \@afterheading
+  \fi
+}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\@makeschapterhead}\index{Макросы!\verb+"\"@makeschapterhead+}
+% Формат ненумеруемого заголовка.
+%    \begin{macrocode}
+\def\@makeschapterhead#1{%
+  {%
+    \parindent \z@ \raggedright
+    \normalfont\interlinepenalty\@M
+    \chapteralign{\chapterfont\prechapter #1\postchapter}
+  }
+}
+%    \end{macrocode}
+%
+% \DescribeMacro{\l@chapter}
+% Команда, создающая запись в Содержании.
+%    \begin{macrocode}
+\newcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode\tocchapterfont
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak
+      \tocchapterfillfont\tocchapterfill\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss\tocchapternumfont #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi
+}
+
+%    \end{macrocode}
+%
+% \subsection{Приложение}
+%
+% \subsubsection{Параметры формата записи в Содержании}
+%    \begin{macrocode}
+\providecommand\tocpretheappendix{\protect\appendixname~}
+\providecommand\tocposttheappendix{.\@postskip}
+\providecommand\tocappendixfill{\tocfill{.}}
+
+\providecommand\tocappendixfont{\bfseries}
+\providecommand\tocappendixfillfont{\normalfont}
+\providecommand\tocappendixnumfont{\normalfont}
+
+%    \end{macrocode}
+% \subsubsection{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\theappendixalign{\centering}
+\providecommand\theappendixfont{\Large}
+\providecommand\pretheappendix{\protect\appendixname~}
+\providecommand\posttheappendix{\par\nobreak\vskip 5\p@}
+
+\providecommand\appendixalign{\centering}
+\providecommand\appendixfont{\Large\bfseries}
+\providecommand\preappendix{}
+\providecommand\postappendix{\par\nobreak\vskip 20\p@}
+%    \end{macrocode}
+%
+% \DescribeMacro{\appendix}\index{Макросы!\verb*+\appendix+}
+% Команда для создания глав Приложения. Сохранение и восстановление
+% значений параметров формата глав делаются для случая, когда
+% приложения идут до списка литературы.
+%    \begin{macrocode}
+\newcommand\appendix{
+  \setcounter{chapter}{0}
+  \setcounter{section}{0}
+
+%    \end{macrocode}
+% Сохранение старых значений.
+%    \begin{macrocode}
+  \let\oldtocprethechapter=\tocprethechapter
+  \let\oldtocpostthechapter=\tocpostthechapter
+  \let\oldtocchapterfill=\tocchapterfill
+
+  \let\oldtocchapterfont=\tocchapterfont
+  \let\oldtocchapterfillfont=\tocchapterfillfont
+  \let\oldtocchapternumfont=\tocchapternumfont
+
+  \let\oldthechapteralign=\thechapteralign
+  \let\oldthechapterfont=\thechapterfont
+  \let\oldprethechapter=\prethechapter
+  \let\oldpostthechapter=\postthechapter
+
+  \let\oldchapteralign=\chapteralign
+  \let\oldchapterfont=\chapterfont
+  \let\oldprechapter=\prechapter
+  \let\oldpostchapter=\postchapter
+  \let\oldthechapter=\thechapter
+
+%    \end{macrocode}
+% Перезапись параметров формата главы для оформления приложений.
+%    \begin{macrocode}
+  \renewcommand\tocprethechapter{\tocpretheappendix}
+  \renewcommand\tocpostthechapter{\tocposttheappendix}
+  \renewcommand\tocchapterfill{\tocappendixfill}
+
+  \renewcommand\tocchapterfont{\tocappendixfont}
+  \renewcommand\tocchapterfillfont{\tocappendixfillfont}
+  \renewcommand\tocchapternumfont{\tocappendixnumfont}
+
+  \renewcommand\thechapteralign{\theappendixalign}
+  \renewcommand\thechapterfont{\theappendixfont}
+  \renewcommand\prethechapter{\pretheappendix}
+  \renewcommand\postthechapter{\posttheappendix}
+
+  \renewcommand\chapteralign{\appendixalign}
+  \renewcommand\chapterfont{\appendixfont}
+  \renewcommand\prechapter{\preappendix}
+  \renewcommand\postchapter{\postappendix}
+
+  \gdef\thechapter{\theappendix}
+}
+
+%    \end{macrocode}
+% \DescribeMacro{\noappendix}\index{Макросы!\verb*+\noappendix+}
+% Восстановление исходных параметров формата заголовков глав.
+%    \begin{macrocode}
+\newcommand\noappendix{
+  \let\tocprethechapter=\oldtocprethechapter
+  \let\tocpostthechapter=\oldtocpostthechapter
+  \let\tocchapterfill=\oldtocchapterfill
+
+  \let\tocchapterfont=\oldtocchapterfont
+  \let\tocchapterfillfont=\oldtocchapterfillfont
+  \let\tocchapternumfont=\oldtocchapternumfont
+
+  \let\thechapteralign=\oldthechapteralign
+  \let\thechapterfont=\oldthechapterfont
+  \let\prethechapter=\oldprethechapter
+  \let\postthechapter=\oldpostthechapter
+
+  \let\chapteralign=\oldchapteralign
+  \let\chapterfont=\oldchapterfont
+  \let\prechapter=\oldprechapter
+  \let\postchapter=\oldpostchapter
+
+  \gdef\thechapter{\oldthechapter}
+}
+
+%</chapter>
+%    \end{macrocode}

@@ -1,0 +1,792 @@
+% \iffalse meta-comment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% disser -- LaTeX document class for dissertations.
+%%
+%% Copyright (c) 2004-2008 Stanislav Kruchinin
+%%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*driver>
+\ProvidesFile{disser.drv}[2008/03/10 1.0.5 Document class for dissertations.]
+
+\documentclass{ltxdoc}
+\usepackage[a4paper, includehead, includefoot, mag=1000,
+            left=4cm, right=1.5cm, top=1cm, bottom=2cm]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{ifpdf,indentfirst,tabularx,doc}
+\usepackage{makeidx}
+
+\ifpdf
+  \usepackage[unicode,
+    pdftitle = {Documented source code of the disser package},
+    pdfauthor = {Stanislav Kruchinin},
+    pdfsubject = {disser},
+    pdfstartview = {FitH},
+    pdfborder          = {0 0 0},
+    bookmarksopen      = true,
+    bookmarksnumbered  = true,
+    bookmarksopenlevel = 2
+  ]{hyperref}
+  \usepackage{cmap}
+\else
+  \usepackage[hypertex]{hyperref}
+\fi
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = black, citecolor=blue,
+  filecolor  = blue, menucolor=blue,
+  pagecolor  = blue, urlcolor=blue
+}
+
+\ifpdf\usepackage{hypdestopt}\fi
+
+\IfFileExists{pscyr.sty}{%
+  \usepackage{pscyr}
+  \renewcommand\ttdefault{cmtt}
+  \renewcommand\rmdefault{ftm}
+}{}
+\IfFileExists{url.sty}{\usepackage{url}}{\newcommand\url{\texttt}}
+
+\MakeShortVerb{\|}
+
+\def\deflabel#1{\ttfamily #1\hfill}
+\def\deflist#1{\begin{list}{}{\settowidth\labelwidth{\ttfamily #1}%
+                              \setlength\leftmargin\labelwidth
+                              \addtolength\leftmargin\labelsep
+                              \let\makelabel\deflabel}}
+\def\enddeflist{\end{list}}
+\let\DescribePackage=\DescribeEnv
+
+\makeindex
+
+\setlength\hfuzz{15pt}  % dont make so many
+\hbadness=7000          % over and under full box warnings
+
+\begin{document}
+\sloppy
+  \PrintChanges
+  \DocInput{disser.dtx}
+  \DocInput{counters.dtx}
+  \DocInput{part.dtx}
+  \DocInput{chapter.dtx}
+  \DocInput{sections.dtx}
+  \DocInput{lists.dtx}
+  \DocInput{floats.dtx}
+  \DocInput{env.dtx}
+  \DocInput{page.dtx}
+  \DocInput{titlepage.dtx}
+  \DocInput{bachelor.dtx}
+  \DocInput{master.dtx}
+  \DocInput{candidate.dtx}
+  \DocInput{doctor.dtx}
+  \DocInput{autoref.dtx}
+  \DocInput{titledefs.dtx}
+  \DocInput{toc.dtx}
+  \DocInput{custom.dtx}
+  \IndexPrologue{\section{Указатель команд}}
+  \printindex
+\end{document}
+%</driver>
+% \fi
+% \GetFileInfo{disser.drv}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  \title{|disser| "--- класс \LaTeX{} для оформления диссертаций}
+%  \date{Версия \fileversion\\[6pt]\filedate}
+%  \author{Станислав Кручинин\\[6pt]
+%  \normalsize E-mail:
+%  \href{mailto:stanislav.kruchinin@gmail.com}
+%  {\texttt{stanislav.kruchinin@gmail.com}}}
+%
+%  \maketitle
+%
+%  \begin{abstract}\noindent
+%  Данный документ содержит описание исходных текстов.
+%  Инструкции по установке смотрите в файлах |README| и |README.ru|.
+%  \end{abstract}
+%
+%  \tableofcontents
+%
+%  \section{Введение}
+%
+%  Класс |disser| был создан в результате объединения множества дополнений и
+%  исправлений для |extreport|, написанных автором при оформлении
+%  бакалаврской и магистерской работ по физике. Основной целью являлось
+%  устранение одного из главных недостатков стандартных классов ---
+%  отсутствия возможности прямого изменения формата элементов титульного
+%  листа, заголовков и записей в автоматически генерируемых списках
+%  (содержание, список иллюстраций, список таблиц). Для этого введен ряд
+%  высокоуровневых команд, которые описаны в комментариях к исходным текстам.
+%  К сожалению, на данный момент полноценная документация по этим
+%  командам отсутствует.
+%
+%  \section{Руководство по использованию}
+%
+%  \subsection{Шаблоны}
+%
+%  Поскольку дипломы и диссертации имеют фиксированную структуру,
+%  к классу прилагаются соответствующие шаблоны (каталог |disser/templates|),
+%  которые рекомендуется использовать для создания своих документов.
+%
+%  \subsection{Зависимости}
+%
+%  Список пакетов необходимых для cборки документации и шаблонов с минимумом
+%  опций (помимо пакетов для руссификации):
+%  \texttt{amssymb},
+%  \texttt{amsmath},
+%  \texttt{cmap},
+%  \texttt{floatflt},
+%  \texttt{graphicx},
+%  \texttt{ifpdf},
+%  \texttt{natbib},
+%  \texttt{oberdiek},
+%  \texttt{tabularx}.
+%
+%  Дополнительные пакеты:
+%  \texttt{caption},
+%  \texttt{hypernat},
+%  \texttt{hyperref},
+%  \texttt{pscyr},
+%  \texttt{subfig},
+%  \texttt{txfonts}.
+%
+%  Для полноценной работы рекомендуется установить все вышеперечисленное.
+%
+%  \subsection{Опции}
+%
+%  \extrarowheight=3pt
+%  \tabcolsep=6pt
+%  \arraycolsep=0pt
+%
+%  \begin{table}[!h]
+%  \begin{tabular}{p{0.3\linewidth}|p{0.55\linewidth}}
+%  \hline\hline
+%    \textbf{a4paper}, a5paper, b5paper &
+%    Размеры листов.
+%  \\\hline
+%    8pt, 9pt, 10pt, 11pt, 12pt, \textbf{14pt} &
+%    Размер шрифта основного текста.
+%  \\\hline
+%    landscape &
+%    Альбомная ориентация.
+%  \\\hline
+%    \textbf{oneside}, twoside &
+%    Односторонняя или двухсторонняя печать.
+%  \\\hline
+%    draft, \textbf{final} &
+%    Выводить (draft) или нет (final) пометки, фиксирующие переполнение |\hbox|
+%    для данной строки.
+%  \\\hline
+%    \textbf{titlepage}, notitlepage &
+%    Печатать титульный лист или нет.
+%  \\\hline
+%    openright, \textbf{openany} &
+%    Главы будут всегда начинаться только с нечетных страниц (т.е. справа, если
+%    смотреть на разворот) или c любых.
+%  \\\hline
+%    \textbf{onecolumn}, twocolumn &
+%    Верстка в один или в два столбца.
+%  \\\hline
+%    fleqn &
+%    Выключные формулы будут выравнены по левому краю, а не по центру.
+%  \\\hline
+%    leqno &
+%    Номера будут размещены слева, а не справа от формул.
+%  \\\hline
+%    openbib &
+%    Блоки текста в списке литературы будут печататься на новых строках и с
+%    отступом.
+%  \\\hline
+%    subf &
+%    Использовать пакет |subfig| для ведения вложенной нумерации рисунков.
+%  \\\hline
+%    href &
+%    Использовать пакет |hyperref|.
+%  \\\hline
+%    times &
+%    Включает использование гарнитуры Times в тексте и формулах.
+%    Для использования опции необходимо установить пакеты |pscyr| и
+%    |txfonts|.
+%  \\\hline
+%    bachelor, master, \textbf{candidate}, doctor &
+%    Тип диссертации.
+%  \\\hline
+%    fixint = \{\textbf{true}$\,\vert\,$false\} &
+%    Исправление знаков интегралов и положения пределов интегрирования
+%    на более привычные.
+%  \\\hline\hline
+%  \end{tabular}
+%  \end{table}
+%
+%  \textbf{Примечание:} жирным шрифтом выделены опции, используемые
+%  по умолчанию.
+%
+%  \subsection{\texttt{Makefile} и \texttt{nomake.cmd}}
+%
+%  Для автоматизации операций сборки, установки и обновления пакета созданы
+%  две системы скриптов, имеющих одинаковый набор целей:
+%  |Makefile| в формате GNU Make и файлы |nomake.cmd|, написанные на языке
+%  командного интерпретатора |cmd.exe| ОС Windows 2000 и выше.
+%
+%  Использование в Unix-подобных окружениях: |make <цель>|.
+%
+%  В Windows: |nomake <цель>|.
+%
+%  Далее следуют описания целей в зависимости от каталога, в котором
+%  производится сборка.
+%
+%  \subsubsection{Каталог \texttt{disser/}}
+%
+%  \begin{deflist}{marginbreak}
+%  \item[all]
+%    Сборка классов и шаблонов.
+%  \item[class]
+%    Сборка классов |disser| и |gost732|. Соответствует цели |class|
+%    в каталоге |disser/src|. Цель по умолчанию.
+%  \item[clean]
+%    Цель |clean| в каталогах |src| и |templates|.
+%  \item[doc]
+%    Сборка DVI- и PDF-версий документации.
+%  \item[help]
+%    Справка по целям сборки.
+%  \item[install]
+%    Копирование класса и документации в дерево каталогов \LaTeX{}.
+%    Соответствует цели |install| в каталоге |disser/src|.
+%  \item[sfupload]
+%    Загрузка |disser-<version>.zip| на upload-сервер SourceForge.
+%  \item[template]
+%    Сборка всех шаблонов. Соответствует цели по умолчанию в
+%    каталоге |disser/templates|.
+%  \item[update]
+%    Скачивание репозитория Mercurial в каталог |./disser|.
+%  \end{deflist}
+%
+%  \subsubsection{Каталог \texttt{disser/src/}}
+%
+%  \begin{deflist}{marginbreak}
+%  \item[all]
+%    Сборка классов и документации. Цель по умолчанию.
+%  \item[class]
+%    Сборка классов |disser| и |gost732|.
+%  \item[clean]
+%    Удаление файлов, указанных в переменной |CLFILES|.
+%  \item[doc]
+%    Сборка DVI- и PDF-версий документации.
+%  \item[dvi]
+%    Сборка DVI-версии документации.
+%  \item[help]
+%    Справка по целям сборки.
+%  \item[install]
+%    Копирование файлов класса и документации в дерево каталогов
+%    дистрибутива \LaTeX{}.
+%  \item[pdf]
+%    Сборка PDF-версии документации.
+%  \end{deflist}
+%
+%  \subsubsection{Каталоги \texttt{disser/templates} и
+%    \texttt{disser/templates/<тип-диссертации>/}}
+%
+%  \begin{deflist}{marginbreak}
+%  \item[dvi]
+%    Сборка |thesis.dvi|. Цель по умолчанию.
+%  \item[clean]
+%    Удаление файлов, указанных в переменной |CLFILES|.
+%  \item[epstoeps]
+%    Оптимизация EPS с помощью Ghostscript.
+%  \item[epstopdf]
+%    Конвертирование EPS в PDF.
+%  \item[fixbb]
+%    Исправление BoundingBox во всех EPS-файлах.
+%  \item[help]
+%    Справка по целям сборки.
+%  \item[html]
+%    Сборка HTML-файла.
+%  \item[pdf]
+%    Сборка |thesis.pdf|.
+%  \item[pdf\_2on1]
+%    Сборка PDF-файла по 2 страницы на один разворот A4.
+%  \item[pdf\_book]
+%    Сборка PDF-файла для брошюрования.
+%  \item[ps]
+%    Сборка |thesis.ps|.
+%  \item[ps\_2on1]
+%    Сборка PostScript-файла по 2 страницы на один разворот A4.
+%  \item[ps\_book]
+%    Сборка PostScript-файла для брошюрования.
+%  \item[srcdist]
+%    Сборка архива из содержимого текущего каталога.
+%  \end{deflist}
+%
+%  \textbf{Примечания:}
+%  1) |nomake.cmd| в подкаталогах шаблонов зависят от |include/latex.nmk.cmd| и
+%  |include/latex.fig.nmk.cmd|. |Makefile| зависят от |include/latex.mk| и |include/latex.fig.mk|.
+%  2) |Makefile/nomake.cmd| в подкаталогах шаблонов включают цели каталога |fig|.
+%
+%  \subsubsection{Каталог \texttt{disser/templates/<тип-диссертации>/fig/}}
+%
+%  \begin{deflist}{marginbreak}
+%  \item[clean]
+%    Удаление PDF файлов.
+%  \item[epstoeps]
+%    Оптимизация EPS с помощью Ghostscript.
+%  \item[epstopdf]
+%    Конвертирование EPS в PDF.
+%  \item[fixbb]
+%    Исправление BoundingBox во всех EPS-файлах.
+%  \item[help]
+%    Справка по целям сборки. Цель по умолчанию.
+%  \end{deflist}
+%
+%  \section{Исходный текст}\parindent=0pt
+%
+%    \begin{macrocode}
+
+%<*disser>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{disser}[2007/11/29 Document class for dissertations.]
+
+%    \end{macrocode}
+% Расширение включаемых в |disser.cls| файлов.
+%
+%    \begin{macrocode}
+\def\substyle@ext{.rtx}
+%    \end{macrocode}
+% Определение операторов условного выполнения.
+% \begin{itemize}
+% \item |true|, если включена опция, оставляющая одну колонку при
+% двухколонном наборе.
+%    \begin{macrocode}
+\newif\if@restonecol
+%    \end{macrocode}
+% \item |true|, если разрешена титульная страница.
+%    \begin{macrocode}
+\newif\if@titlepage
+%    \end{macrocode}
+% \item |true|, если главы начинаются только с нечетных страниц.
+%    \begin{macrocode}
+\newif\if@openright
+%    \end{macrocode}
+% \item подключение пакета, определяющего |\ifpdf|.
+%    \begin{macrocode}
+\RequirePackage{ifpdf}
+
+%    \end{macrocode}
+% \item Соответствующие типы диссертаций.
+%    \begin{macrocode}
+\newif\ifDis@bachelor
+\newif\ifDis@master
+\newif\ifDis@candidate
+\newif\ifDis@doctor
+\newif\ifDis@autoref
+
+%    \end{macrocode}
+% \item |true|, если подключается |hyperref|.
+%    \begin{macrocode}
+\newif\ifDis@href
+%    \end{macrocode}
+% \item Подключение и настройка пакета |subfig|.
+%    \begin{macrocode}
+\newif\ifDis@subf
+%    \end{macrocode}
+% \item Шрифт Times как основной.
+%    \begin{macrocode}
+\newif\ifDis@times
+
+%    \end{macrocode}
+% \end{itemize}
+%
+% Установка значений по уиолчанию.
+%    \begin{macrocode}
+\@titlepagetrue
+\Dis@bachelorfalse
+\Dis@masterfalse
+\Dis@candidatetrue
+\Dis@doctorfalse
+\Dis@autoreffalse
+\Dis@timesfalse
+\Dis@subffalse
+\Dis@hreffalse
+
+%    \end{macrocode}
+%
+% \subsection{Опции класса}
+%
+% Подключение пакета |kvoptions| для обработки опций в формате
+% |ключ = значение|.
+%    \begin{macrocode}
+\RequirePackage{kvoptions}[2006/08/17]
+
+%    \end{macrocode}
+% Подключение пакета |hyperref| и необходимых настроек.
+%    \begin{macrocode}
+\DeclareOption{href}{\Dis@hreftrue}
+
+%    \end{macrocode}
+% Подключение пакета |subfig| и необходимых настроек.
+%    \begin{macrocode}
+\DeclareOption{subf}{\Dis@subftrue}
+
+%    \end{macrocode}
+% Настройка опций.
+%    \begin{macrocode}
+\SetupKeyvalOptions{
+  family=Dis,
+  prefix=Dis@
+}
+%    \end{macrocode}
+% Исправление знаков интегралов и пределов интегрирования на более
+% привычные.
+%    \begin{macrocode}
+\DeclareBoolOption[true]{fixint}
+
+%    \end{macrocode}
+%
+% Размеры листов.
+%    \begin{macrocode}
+
+\DeclareOption{a4paper}{%
+  \setlength\paperheight{297mm}
+  \setlength\paperwidth {210mm}
+}
+\DeclareOption{a5paper}{%
+  \setlength\paperheight{210mm}
+  \setlength\paperwidth {148mm}
+}
+\DeclareOption{b5paper}{%
+  \setlength\paperheight{250mm}
+  \setlength\paperwidth {176mm}
+}
+%    \end{macrocode}
+% Альбомная ориентация.
+%    \begin{macrocode}
+\DeclareOption{landscape}{%
+  \setlength\@tempdima  {\paperheight}%
+  \setlength\paperheight{\paperwidth}%
+  \setlength\paperwidth {\@tempdima}
+}
+
+%    \end{macrocode}
+% Размер шрифта основного текста.
+%    \begin{macrocode}
+\newcommand\@ptsize{}
+\DeclareOption{8pt} {\renewcommand\@ptsize{8}}
+\DeclareOption{9pt} {\renewcommand\@ptsize{9}}
+\DeclareOption{10pt}{\renewcommand\@ptsize{10}}
+\DeclareOption{11pt}{\renewcommand\@ptsize{11}}
+\DeclareOption{12pt}{\renewcommand\@ptsize{12}}
+\DeclareOption{14pt}{\renewcommand\@ptsize{14}}
+\DeclareOption{17pt}{\renewcommand\@ptsize{17}}
+\DeclareOption{20pt}{\renewcommand\@ptsize{20}}
+
+%    \end{macrocode}
+% Установка полей для односторонней или двухсторонней печати.
+%    \begin{macrocode}
+\DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}
+\DeclareOption{twoside}{\@twosidetrue  \@mparswitchtrue}
+
+%    \end{macrocode}
+% Включение сообщений о строках, выходящих за поля.
+%    \begin{macrocode}
+\DeclareOption{draft}{\setlength\overfullrule{5pt}}
+\DeclareOption{final}{\setlength\overfullrule{0pt}}
+
+%    \end{macrocode}
+% Печатать титульный лист или нет.
+%    \begin{macrocode}
+\DeclareOption{titlepage}  {\@titlepagetrue}
+\DeclareOption{notitlepage}{\@titlepagefalse}
+
+%    \end{macrocode}
+% Главы будут начинаться только на нечетной странице (будет всегда справа на
+% развороте) или на первой доступной.
+%    \begin{macrocode}
+\DeclareOption{openright}{\@openrighttrue}
+\DeclareOption{openany}{\@openrightfalse}
+
+%    \end{macrocode}
+% Верстка в один или в два столбца.
+%    \begin{macrocode}
+\DeclareOption{onecolumn}{\@twocolumnfalse}
+\DeclareOption{twocolumn}{\@twocolumntrue}
+
+%    \end{macrocode}
+% Номера размещаются слева, а не справа от формул.
+%    \begin{macrocode}
+\DeclareOption{leqno}{\input{leqno.clo}}
+
+%    \end{macrocode}
+% Выключные формулы будут выравнены по левому краю, а не по центру.
+%    \begin{macrocode}
+\DeclareOption{fleqn}{\input{fleqn.clo}}
+%    \end{macrocode}
+% Использовать в тексте и формулах шрифт Times вместо Computer Modern
+% Roman.
+%    \begin{macrocode}
+\DeclareOption{times}{\Dis@timestrue}
+%    \end{macrocode}
+% Если указана эта опция, то блоки текста в списке литературы будут
+% печататься на новых строках и с отступом.
+%    \begin{macrocode}
+\DeclareOption{openbib}{%
+  \AtEndOfPackage{%
+    \renewcommand\@openbib@code{%
+      \advance\leftmargin\bibindent
+      \itemindent -\bibindent
+      \listparindent \itemindent
+      \parsep \z@
+    }%
+    \renewcommand\newblock{\par}
+  }%
+}
+
+%    \end{macrocode}
+% Тип диссертации.
+%    \begin{macrocode}
+\DeclareOption{bachelor}{%
+  \Dis@bachelortrue
+  \Dis@masterfalse
+  \Dis@candidatefalse
+  \Dis@doctorfalse
+  \Dis@autoreffalse
+}
+\DeclareOption{master}{%
+  \Dis@bachelorfalse
+  \Dis@mastertrue
+  \Dis@candidatefalse
+  \Dis@doctorfalse
+  \Dis@autoreffalse
+}
+\DeclareOption{candidate}{%
+  \Dis@bachelorfalse
+  \Dis@masterfalse
+  \Dis@candidatetrue
+  \Dis@doctorfalse
+  \Dis@autoreffalse
+}
+\DeclareOption{doctor}{%
+  \Dis@bachelorfalse
+  \Dis@masterfalse
+  \Dis@candidatefalse
+  \Dis@doctortrue
+  \Dis@autoreffalse
+}
+\DeclareOption{autoref}{%
+  \Dis@bachelorfalse
+  \Dis@masterfalse
+  \Dis@candidatefalse
+  \Dis@doctorfalse
+  \Dis@autoreftrue
+}
+
+%    \end{macrocode}
+% Команды изменения регистра.
+% \DescribeMacro{\MakeTextUppercase}\index{Макросы!\verb*+\MakeTextUppercase+}
+%    \begin{macrocode}
+\DeclareRobustCommand\MakeTextUppercase{%
+  \@uclcnotmath{\def\i{I}\def\j{J}}{##1##2}\uppercase}
+
+\protected@edef\MakeTextUppercase#1{\MakeTextUppercase{#1}}
+
+%    \end{macrocode}
+% \DescribeMacro{\MakeTextLowercase}\index{Макросы!\verb*+\MakeTextLowercase+}
+%    \begin{macrocode}
+\DeclareRobustCommand\MakeTextLowercase{%
+  \@uclcnotmath{}{##2##1}\lowercase}
+
+\protected@edef\MakeTextLowercase#1{\MakeTextLowercase{#1}}
+
+%    \end{macrocode}
+% Выполнение опций по умолчанию.
+%    \begin{macrocode}
+\ExecuteOptions{a4paper,14pt,oneside,titlepage,onecolumn,final,openany}
+%    \end{macrocode}
+% Выполнение пользовательских опций.
+%    \begin{macrocode}
+\ProcessOptions
+\ProcessKeyvalOptions{Dis}
+
+%    \end{macrocode}
+% \subsection{Настройка шрифтов}
+% \subsubsection{Определение размеров}
+%    \begin{macrocode}
+\def\EC@family#1#2#3#4#5{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}%
+  {<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74>%
+  <24.88><29.86><35.83><42.99><51.59>genb*#5}{}}
+\EC@family{T1}{cmr}{m}{n}{ecrm}
+\EC@family{T1}{cmr}{m}{sl}{ecsl}
+\EC@family{T1}{cmr}{m}{it}{ecti}
+\EC@family{T1}{cmr}{m}{sc}{eccc}
+\EC@family{T1}{cmr}{bx}{n}{ecbx}
+\EC@family{T1}{cmr}{b}{n}{ecrb}
+\EC@family{T1}{cmr}{bx}{it}{ecbi}
+\EC@family{T1}{cmr}{bx}{sl}{ecbl}
+\EC@family{T1}{cmr}{bx}{sc}{ecxc}
+\EC@family{T1}{cmr}{m}{ui}{ecui}
+\DeclareFontShape{OT1}{cmr}{m}{n}%
+     {<5><6><7><8><9><10><12>gen*cmr%
+      <10.95>cmr10%
+      <14.4>cmr12%
+      <17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmr17}{}
+\DeclareFontShape{OT1}{cmr}{m}{sl}%
+     {<5><6><7>cmsl8%
+      <8><9>gen*cmsl%
+      <10><10.95>cmsl10%
+      <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmsl12%
+      }{}
+\DeclareFontShape{OT1}{cmr}{m}{it}%
+     {<5><6><7>cmti7%
+      <8>cmti8%
+      <9>cmti9%
+      <10><10.95>cmti10%
+      <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmti12%
+      }{}
+\DeclareFontShape{OT1}{cmr}{m}{sc}%
+     {<5><6><7><8><9><10><10.95><12>%
+      <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmcsc10%
+      }{}
+\DeclareFontShape{OT1}{cmr}{m}{ui}{
+  <5><6><7><8><9><10><10.95><12>%
+  <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmu10%
+}{}
+\DeclareFontShape{OT1}{cmr}{b}{n}{
+  <5><6><7><8><9><10><10.95><12>%
+  <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmb10%
+}{}
+\DeclareFontShape{OT1}{cmr}{bx}{n}{
+  <5><6><7><8><9>gen*cmbx%
+  <10><10.95>cmbx10%
+  <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmbx12%
+}{}
+\DeclareFontShape{OT1}{cmr}{bx}{sl}{<5><6><7><8><9>%
+  <10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmbxsl10%
+}{}
+\DeclareFontShape{OT1}{cmr}{bx}{it}{<5><6><7><8><9>%
+  <10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmbxti10%
+}{}
+\input{size\@ptsize.clo}
+\RequirePackage{exscale}
+
+%    \end{macrocode}
+%
+% \subsubsection{Старые команды изменения начертания шрифтов (без NFSS)}
+%
+% Тоже не ясно, почему это вынесено в классы, а не входит в ядро.
+%
+% В текстовом режиме.
+%    \begin{macrocode}
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\it}{\normalfont\itshape} {\mathit}
+\DeclareOldFontCommand{\sl}{\normalfont\slshape} {\@nomath\sl}
+\DeclareOldFontCommand{\sc}{\normalfont\scshape} {\@nomath\sc}
+%    \end{macrocode}
+% В математическом режиме.
+%    \begin{macrocode}
+\DeclareRobustCommand*\cal{\@fontswitch\relax\mathcal}
+\DeclareRobustCommand*\mit{\@fontswitch\relax\mathnormal}
+
+%    \end{macrocode}
+%
+% \subsection{Параметры основного текста}
+%
+% \DescribeMacro{\lineskip}\index{Макросы!\verb*+\lineskip+}
+% \DescribeMacro{\normallineskip}\index{Макросы!\verb*+\normallineskip+}
+% Вертикальный интервал между строками. Упоминаемый здесь и далее макрос |\p@|
+% определяет единицу длины. По умолчанию она равна английскому пункту (pt).
+%    \begin{macrocode}
+\setlength\lineskip{1\p@}
+\setlength\normallineskip{1\p@}
+%    \end{macrocode}
+%
+% \DescribeMacro{\singlespacing}\index{Макросы!\verb*+\singlespacing+}
+% \DescribeMacro{\onehalfspacing}\index{Макросы!\verb*+\onehalfspacing+}
+% \DescribeMacro{\doublespacing}\index{Макросы!\verb*+\doublespacing+}
+% Характерные величины межстрочнах интервалов.
+%    \begin{macrocode}
+\newcommand\singlespacing {\renewcommand\baselinestretch{1}\normalsize}
+\newcommand\onehalfspacing{\renewcommand\baselinestretch{1.5}\normalsize}
+\newcommand\doublespacing {\renewcommand\baselinestretch{2}\normalsize}
+%    \end{macrocode}
+% Межстрочный интервал по умолчанию.
+%    \begin{macrocode}
+\onehalfspacing
+%    \end{macrocode}
+% Интервал между абзацами (добавляется к межстрочному).
+% \DescribeMacro{\parskip}\index{Макросы!\verb*+\parskip+}
+%    \begin{macrocode}
+\setlength\parskip{0\p@ \@plus \p@}
+
+%    \end{macrocode}
+% Максимальный уровень вложенности секций, помещаемых в Содержание
+% (по умолчанию вносятся |\part|, |\chapter| и |\section|).
+% \DescribeMacro{tocdepth}\index{Счетчики!\verb*+tocdepth+}
+%    \begin{macrocode}
+\setcounter{tocdepth}{1}
+%    \end{macrocode}
+% Максимальный уровень вложенности нумеруемых секций
+% (по умолчанию нумеруются |\part|, |\chapter|, |\section| и |\subsection|).
+% \DescribeMacro{secnumdepth}\index{Счетчики!\verb*+secnumdepth+}
+%    \begin{macrocode}
+\setcounter{secnumdepth}{2}
+
+%    \end{macrocode}
+%
+% Интервал между колонками текста.
+%    \begin{macrocode}
+\setlength\columnsep{10\p@}
+%    \end{macrocode}
+%
+% Ширина разделителя (линии) между колонками текста (по умолчанию его нет).
+%    \begin{macrocode}
+\setlength\columnseprule{0\p@}
+
+%    \end{macrocode}
+% Описание структуры постоянных частей заголовков.
+% \begin{itemize}
+% \item в тексте,
+% \DescribeMacro{\@seccntformat}\index{Макросы!\verb*+"\"@seccntformat+}
+%    \begin{macrocode}
+\def\@seccntformat#1{%
+  \csname prethe#1\endcsname%
+  \csname the#1\endcsname%
+  \csname postthe#1\endcsname%
+}
+%    \end{macrocode}
+% \item в Содержании.
+% \DescribeMacro{\@tocseccntformat}\index{Макросы!\verb*+"\"@tocseccntformat+}
+%    \begin{macrocode}
+\def\@tocseccntformat#1{%
+  \csname tocprethe#1\endcsname%
+  \csname tocthe#1\endcsname%
+  \csname tocpostthe#1\endcsname%
+}
+
+%    \end{macrocode}
+% \end{itemize}
+% Характерные величины штрафов. Штраф --- мера <<красоты>> разбиения
+% абзаца на строки. Чем больше величина, тем менее красиво.
+%    \begin{macrocode}
+\@lowpenalty   51
+\@medpenalty  151
+\@highpenalty 301
+%</disser>
+%    \end{macrocode}

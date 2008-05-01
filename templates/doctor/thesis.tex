@@ -1,0 +1,51 @@
+\documentclass[a4paper,14pt,doctor,subf,href]{disser}
+\usepackage[
+  a4paper, mag=1000, nohead, includefoot,
+  left=3cm, right=1cm, top=2cm, bottom=2cm, footskip=1cm
+]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{epstopdf}
+
+\graphicspath{{fig/}}
+% ----------------------------------------------------------------
+\begin{document}
+% Организация
+\institution{
+Название организации
+}
+% Номер УДК
+\libcatnum{111.222.333}
+
+\title{ДИССЕРТАЦИЯ\\
+на соискание ученой степени\\
+доктора физико-математических наук}
+% Тема
+\topic{Тема диссертации}
+%
+% Автор
+\author{ФИО автора}
+% Специальность
+\specnum{11.11.11}
+\spec{Специальность}
+% Город и год
+\city{Санкт-Петербург}
+\date{\number\year}
+
+\maketitle
+% ----------------------------------------------------------------
+\tableofcontents
+% ----------------------------------------------------------------
+\input{intro}
+\input{review}
+\input{1}
+\input{concl}
+% ----------------------------------------------------------------
+\bibliography{thesis}
+\bibliographystyle{gost71u}
+% ----------------------------------------------------------------
+\appendix
+\input{app-a}
+\end{document}
+% ----------------------------------------------------------------

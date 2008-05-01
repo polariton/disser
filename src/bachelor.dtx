@@ -1,0 +1,68 @@
+%    \begin{macrocode}
+
+%<bachelor>\ProvidesFile{bachelor.rtx}
+
+%<*bachelor>
+%    \end{macrocode}
+% \subsubsection{Титульный лист бакалаврской работы}
+%
+% Вертикальные интервалы между элементами титульного листа.
+% \DescribeMacro{\firstskip}\index{Макросы!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Макросы!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Макросы!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Макросы!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Макросы!\verb*+\fifthskip+}
+%    \begin{macrocode}
+
+\def\firstskip{\vskip1.5cm}
+\def\secondskip{\vskip1.5cm}
+\def\thirdskip{\vskip1.em}
+\def\fourthskip{\vskip1.em}
+\def\fifthskip{\vskip2cm}
+
+%    \end{macrocode}
+% Шрифты элементов титульного листа.
+% \DescribeMacro{\titlefont}\index{Макросы!\verb*+\titlefont+}
+% \DescribeMacro{\topiclabelfont}\index{Макросы!\verb*+\topiclabelfont+}
+% \DescribeMacro{\topicfont}\index{Макросы!\verb*+\topicfont+}
+%    \begin{macrocode}
+\def\titlefont{\Large\bfseries}
+\def\topiclabelfont{\large}
+\def\topicfont{\large\bfseries}
+
+%    \end{macrocode}
+% Работа
+% \DescribeMacro{\workname}\index{Макросы!\verb*+\topicfont+}
+%    \begin{macrocode}
+\def\workname{\CYRR\cyra\cyrb\cyro\cyrt\cyra}
+
+%    \end{macrocode}
+% Диссертация допущена к защите
+%    \begin{macrocode}
+\firstskip\@approved\secondskip
+%    \end{macrocode}
+% Заголовок, тема.
+%    \begin{macrocode}
+\begin{center}
+  {\titlefont\@title\par}
+  \thirdskip
+  {\topiclabelfont\topiclabel\;}
+  {\topicfont\@topic\par}
+  \fourthskip\normalfont
+  \courselabel\ \@coursenum~-- \@course
+\end{center}
+%    \end{macrocode}
+% Специальность, автор, руководитель.
+%    \begin{macrocode}
+\fifthskip
+\begin{tabbing}
+  \studentlabel\ \groupname\ \@group\hspace{2cm}\=
+  \makebox[8.5cm][l]{\hrulefill\ \@author}
+\\[9pt]
+%    \end{macrocode}
+% Научный руководитель.
+%    \begin{macrocode}
+  \field{sa}
+\end{tabbing}
+%</bachelor>
+%    \end{macrocode}

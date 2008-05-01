@@ -1,0 +1,25 @@
+
+% \iffalse
+%%% From File: footnote.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*footnote>
+%    \end{macrocode}
+%
+% \subsection{Сноска}
+%
+% \DescribeMacro{\footnoterule}\index{Макросы!\verb+\footnoterule+}
+% Горизонтальная линия, отделяющая сноску.
+%    \begin{macrocode}
+\renewcommand\footnoterule{%
+  \kern-3\p@\hrule\@width.4\columnwidth\kern2.6\p@
+}
+\newcommand\@makefntext[1]{%
+  \parindent 1em%
+  \noindent
+  \hb@xt@1.8em{\hss\@makefnmark}#1
+}
+%</footnote>
+%    \end{macrocode}

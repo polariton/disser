@@ -1,0 +1,190 @@
+
+% \iffalse
+%%% From File: part.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*part>
+%    \end{macrocode}
+% \subsection{Часть}
+%
+% Как уже говорилось во Введении, одной из основных проблем \LaTeX{} является
+% отсутствие простого способа настройки формата заголовков и соответствующих
+% им записей в Содержании. Любое изменение приходится вносить путем
+% переопределения громоздких низкоуровневых макросов. Класс |disser|
+% устраняет эту проблему путем ввода высокоуровневых макросов для всех
+% основных параметров формата заголовков и записей в автоматически формируемых
+% списках.
+%
+% \subsubsection{Параметры формата записи в Содержании}
+%
+% \DescribeMacro{\tocprethepart}\index{Макросы!\verb*+\tocprethepart+}
+% Постоянный текст до номера.
+%    \begin{macrocode}
+\providecommand\tocprethepart{\partname~}
+%    \end{macrocode}
+% \DescribeMacro{\tocpostthepart}\index{Макросы!\verb*+\tocpostthepart+}
+% Постоянный текст после номера.
+%    \begin{macrocode}
+\providecommand\tocpostthepart{.\@postskip}
+%    \end{macrocode}
+% \DescribeMacro{\tocpartfill}\index{Макросы!\verb*+\tocpartfill+}
+% Заполнитель между названием и номером страницы. Для части по умолчанию
+% отсутствует. Чтобы заполнить какими-либо символами, |\tocpartfill| нужно
+% присвоить значение |\tocfill{символ}|. Для примера см. далее определение
+% |\tocsectionfill|.
+%    \begin{macrocode}
+\providecommand\tocpartfill{}
+%    \end{macrocode}
+% \DescribeMacro{\tocpartfont}\index{Макросы!\verb*+\tocpartfont+}
+% Шрифт заголовка в Содержании.
+%    \begin{macrocode}
+\providecommand\tocpartfont{\bfseries}
+%    \end{macrocode}
+% \DescribeMacro{\tocpartfillfont}\index{Макросы!\verb*+\tocpartfillfont+}
+% Шрифт заполнителя.
+%    \begin{macrocode}
+\providecommand\tocpartfillfont{\normalfont}
+%    \end{macrocode}
+% \DescribeMacro{\tocpartnumfont}\index{Макросы!\verb*+\tocpartnumfont+}
+% Шрифт номера.
+%    \begin{macrocode}
+\providecommand\tocpartnumfont{\normalfont}
+
+%    \end{macrocode}
+%
+% \subsubsection{Параметры формата в тексте}
+% \DescribeMacro{\thepartalign}\index{Макросы!\verb*+\thepartalign+}
+% \DescribeMacro{\thepartfont}\index{Макросы!\verb*+\thepartfont+}
+% \DescribeMacro{\prethepart}\index{Макросы!\verb*+\prethepart+}
+% \DescribeMacro{\postthepart}\index{Макросы!\verb*+\postthepart+}
+% \DescribeMacro{\partalign}\index{Макросы!\verb*+\partalign+}
+% \DescribeMacro{\partfont}\index{Макросы!\verb*+\partfont+}
+% \DescribeMacro{\prepart}\index{Макросы!\verb*+\prepart+}
+% \DescribeMacro{\postpart}\index{Макросы!\verb*+\postpart+}
+% Параметры номера и названия: выравнивание, шрифт, отступы, текст до и после.
+%    \begin{macrocode}
+\providecommand\thepartalign{\centering}
+\providecommand\thepartfont{\huge}
+\providecommand\prethepart{\tocprethepart}
+\providecommand\postthepart{\par\vskip 20\p@}
+
+\providecommand\partalign{\centering}
+\providecommand\partfont{\huge\bfseries}
+\providecommand\prepart{}
+\providecommand\postpart{\par}
+
+%    \end{macrocode}
+% \DescribeMacro{\partpagestyle}\index{Макросы!\verb*+\partpagestyle+}
+% Стиль страницы, на которой расположен заголовок части.
+%    \begin{macrocode}
+\def\partpagestyle#1{\gdef\@partpagestyle{#1}}
+\partpagestyle{empty}
+%    \end{macrocode}
+%
+% \subsubsection{Низкоуровневые команды}
+%
+% \DescribeMacro{\part}\index{Макросы!\verb*+\part+}
+% Интерфейс.
+%    \begin{macrocode}
+\newcommand\part{
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{\@partpagestyle}%
+  \if@twocolumn
+    \onecolumn
+    \@tempswatrue
+  \else
+    \@tempswafalse
+  \fi
+  \null\vfil\secdef\@part\@spart
+}
+%    \end{macrocode}
+%
+% \DescribeMacro{\@part}\index{Макросы!\verb+"\"@part+}
+% Команда, формирующая нумеруемый заголовок части |\part|.
+%    \begin{macrocode}
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}%
+%    \end{macrocode}
+% Здесь и далее команда |\def\\{ }| используется для корректного отображения
+% заголовков с принудительными разрывами строк.
+%    \begin{macrocode}
+    {\def\\{ }\addcontentsline{toc}{part}{\@tocseccntformat{part} #1}}
+  \else
+    {\def\\{ }\addcontentsline{toc}{part}{#1}}
+  \fi
+  \markboth{}{}%
+  {%
+    \interlinepenalty \@M
+    \normalfont
+    \ifnum \c@secnumdepth >-2\relax
+%    \end{macrocode}
+% Постоянная часть заголовка и номер.
+%    \begin{macrocode}
+      {\thepartfont\partalign\@seccntformat{part}}
+    \fi%
+%    \end{macrocode}
+% Название.
+%    \begin{macrocode}
+    {\partfont\partalign\prepart #2\postpart}%
+  }
+  \@endpart%
+}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\@spart}\index{Макросы!\verb+"\"@spart+}
+% Команда, формирующая ненумеруемый заголовок части |\part*|.
+%    \begin{macrocode}
+\def\@spart#1{%
+  \partalign{\interlinepenalty \@M%
+    \partfont\prepart #1\postpart}%
+  \@endpart
+}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\@endpart}\index{Макросы!\verb+"\"@endpart+}
+% Завершение страницы с заголовком части.
+%    \begin{macrocode}
+\def\@endpart{
+  \vfil\newpage
+  \if@twoside
+    \null
+    \thispagestyle{\partpagestyle}%
+    \newpage
+  \fi
+  \if@tempswa\twocolumn\fi
+}
+
+%    \end{macrocode}
+% \DescribeMacro{\l@part}
+% Низкоуровневая команда, создающая запись в Содержании.
+%    \begin{macrocode}
+\newcommand*\l@part[2]
+{%
+  \ifnum \c@tocdepth >-2\relax
+    \addpenalty{-\@highpenalty}%
+    \addvspace{2.25em \@plus\p@}%
+    \begingroup
+      \setlength\@tempdima{3em}%
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      {\leavevmode \tocpartfont #1\nobreak
+      \tocpartfillfont\tocpartfill\hfill
+      \hb@xt@\@pnumwidth{\hss\tocpartnumfont #2}}
+      \par\nobreak
+      \global\@nobreaktrue
+      \everypar{\global\@nobreakfalse\everypar{}}%
+    \endgroup
+  \fi
+}
+
+%</part>
+%    \end{macrocode}

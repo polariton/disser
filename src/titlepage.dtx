@@ -1,0 +1,142 @@
+%    \begin{macrocode}
+
+%<*titlepage>
+%    \end{macrocode}
+%
+% \subsection{Титульный лист}
+%
+% Пустое определение макроса для вывода сегодняшней даты (переопределяется в |babel|).
+% \DescribeMacro{\today}\index{Макросы!\verb*+\today+}
+%    \begin{macrocode}
+\newcommand\today{}
+
+\if@titlepage
+%    \end{macrocode}
+%
+% Параметры частей титульного листа
+% \DescribeMacro{\titlefont}\index{Макросы!\verb*+\titlefont+}
+% \DescribeMacro{\topiclabelfont}\index{Макросы!\verb*+\topiclabelfont+}
+% \DescribeMacro{\topicfont}\index{Макросы!\verb*+\topicfont+}
+% \DescribeMacro{\instfont}\index{Макросы!\verb*+\instfont+}
+%    \begin{macrocode}
+  \newcommand\titlefont{\Large\bfseries}
+  \newcommand\topiclabelfont{\large}
+  \newcommand\topicfont{\large\bfseries}
+  \newcommand\instfont{\normalfont}
+%    \end{macrocode}
+%
+% Разделитель между названием города и годом.
+% \DescribeMacro{\cdsep}\index{Макросы!\verb*+\cdsep+}
+%    \begin{macrocode}
+  \newcommand\cdsep{~-- }
+
+  \input{titledefs\substyle@ext}
+%    \end{macrocode}
+% \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
+%    \begin{macrocode}
+  \newcommand\maketitle{
+%    \end{macrocode}
+%
+% \subsubsection{Общие элементы титульного листа}
+%    \begin{macrocode}
+      \thispagestyle{empty}
+      \vspace*{-2cm}
+%    \end{macrocode}
+% \paragraph{Название организации}
+%    \begin{macrocode}
+      \begin{center}
+      \instfont\@institution\par
+%    \end{macrocode}
+%  Для решения проблемы с |@| в именах макросов.
+%    \begin{macrocode}
+      \makeatletter
+%    \end{macrocode}
+% \paragraph{Включение того или иного титульного листа в зависимости от типа
+% документа}
+%    \begin{macrocode}
+      \ifDis@bachelor \input{bachelor\substyle@ext}\fi
+      \ifDis@master   \input{master\substyle@ext}\fi
+      \ifDis@candidate\input{candidate\substyle@ext}\fi
+      \ifDis@doctor   \input{doctor\substyle@ext}\fi
+      \ifDis@autoref  \input{autoref\substyle@ext}\fi
+      \enlargethispage{2cm}
+      \vfill
+%    \end{macrocode}
+% \paragraph{Город и год}
+%    \begin{macrocode}
+        {\@city\cdsep\@date}
+      \end{center}
+    \normalsize
+    \clearpage
+    \thispagestyle{empty}
+  } % \newcommand\maketitle
+  \setcounter{footnote}{0}
+\else %\if@titlepage
+%    \end{macrocode}
+% Заголовок без отдельного титульного листа.
+% \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
+%    \begin{macrocode}
+  \newcommand\maketitle{%
+    \par
+    \begingroup
+      \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+      \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+      \long\def\@makefntext##1{%
+        \parindent 1em\noindent
+        \hb@xt@1.8em{\hss\@textsuperscript{\normalfont\@thefnmark}}##1%
+      }%
+      \if@twocolumn
+        \ifnum \col@number=\@ne
+          \@maketitle
+        \else
+          \twocolumn[\@maketitle]%
+        \fi
+      \else
+        \newpage
+%    \end{macrocode}
+% Предотвращает размещение плавающих объектов вверху страницы.
+%    \begin{macrocode}
+          \global\@topnum\z@
+        \@maketitle
+      \fi
+      \thispagestyle{plain}
+    \endgroup
+    \setcounter{footnote}{0}%
+
+    \global\let\thanks\relax
+    \global\let\maketitle\relax
+    \global\let\@maketitle\relax
+    \global\let\@author\@empty
+    \global\let\@date\@empty
+    \global\let\@title\@empty
+    \global\let\title\relax
+    \global\let\author\relax
+    \global\let\date\relax
+    \global\let\and\relax
+  }
+%    \end{macrocode}
+% \DescribeMacro{\@maketitle}\index{Макросы!\verb+"\"@maketitle+}
+% Команда для форматирования заголовка документа, который не будет
+% расположен на отдельной странице.
+%    \begin{macrocode}
+  \def\@maketitle{%
+    \newpage
+    \null
+    \vskip 2em%
+    \begin{center}%
+      \let\footnotesize\small
+      \let\footnote\thanks
+      {\titlefont\@title\par}%
+      \vskip 1.5em%
+      {\large\lineskip .5em%
+        \begin{tabular}[t]{c}%
+          \@author
+        \end{tabular}\par}%
+        \vskip 1em%
+      {\large \@date}%
+    \end{center}%
+    \par\vskip 1.5em%
+  }
+\fi % \if@titlepage
+%</titlepage>
+%    \end{macrocode}

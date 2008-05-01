@@ -1,0 +1,232 @@
+
+% \iffalse
+%%% From File: custom.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*custom>
+%    \end{macrocode}
+% \subsection{Подключение и настройка сторонних пакетов}
+% Включает отступ в первой строке первого абзаца.
+%    \begin{macrocode}
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+%    \end{macrocode}
+% Опция |intlimits| включает правильную расстановку пределов интегрирования
+% (сверху и снизу).
+% \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
+% \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
+% \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
+%    \begin{macrocode}
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb,amsfonts}
+%    \end{macrocode}
+% \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
+% Включение шрифта Times вместо Computer Modern Roman.
+%    \begin{macrocode}
+\ifDis@times
+  \AtEndOfPackage{%
+    \usepackage{pscyr}
+%    \end{macrocode}
+% \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
+% Пакет |txfonts| необходимо подключать \textbf{после} |pscyr| для
+% корректного определения символов, составленных из двух других (таких как
+% $\hbar$ и $\neq$).
+%    \begin{macrocode}
+    \usepackage{txfonts}
+%    \end{macrocode}
+% Установка Times как шрифта по умолчанию.
+%    \begin{macrocode}
+    \renewcommand{\rmdefault}{ftm}
+  }
+\fi
+%    \end{macrocode}
+% Более естественные символы интегралов из шрифтов семейства Euler.
+%    \begin{macrocode}
+\ifDis@fixint
+  \DeclareSymbolFont{EulerExtension}{U}{euex}{m}{n}
+  \DeclareMathSymbol\intop\mathop{EulerExtension}{"52}
+  \DeclareMathSymbol\ointop\mathop{EulerExtension}{"48}
+  \AtBeginDocument{%
+    \def\intkern@{\mkern -6mu }%
+    \def\ints@#1{\mkern -3mu
+      \mathop{\mkern 3mu
+        \intop
+        \ifnum #1=\z@ \intdots@ \else
+          \intkern@
+          \ifnum #1>\tw@ \intop\intkern@
+            \ifnum #1>\thr@@ \intop\intkern@ \fi
+          \fi
+        \fi
+        \intop
+       }\ilimits@
+    }%
+    \renewcommand{\iint}{\DOTSI\protect\MultiIntegral{2}}
+    \renewcommand{\iiint}{\DOTSI\protect\MultiIntegral{3}}
+    \renewcommand{\iiiint}{\DOTSI\protect\MultiIntegral{4}}
+    \renewcommand{\idotsint}{\DOTSI\protect\MultiIntegral{0}}
+  }{}
+\fi
+%    \end{macrocode}
+% \DescribePackage{natbib}\index{Пакеты!\verb*+natbib+}
+% Пакет для оформления библиографических ссылок.
+%    \begin{macrocode}
+\usepackage[square, comma, sort&compress]{natbib}
+%    \end{macrocode}
+% \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
+% Команда для исправления PDF-закладок, указывающих на ненумеруемые разделы
+% (|\chapter*|, |\section*| и т. п.).
+%    \begin{macrocode}
+\def\metaphantom#1{%
+  \ifDis@href
+    \Hy@GlobalStepCount\Hy@linkcounter
+    \xdef\@currentHref{#1*.\the\Hy@linkcounter}%
+    \Hy@raisedlink{\hyper@anchorstart{\@currentHref}\hyper@anchorend}%
+  \fi
+}
+%    \end{macrocode}
+% Команда для создания ненумеруемых глав, которые будут включены в
+% Содержание и PDF-закладки. Для того, чтобы закладка указывала именно на
+% заголовок, а не на первый абзац под ним, нужно поместить |\metaphantom{chapter}|
+% и |\addcontentsline| внутри аргумента |\chapter*|. Честно говоря, мне это
+% не нравится. Надо придумать что-то более простое и изящное.
+% \DescribeMacro{\nchapter}\index{Макросы!\verb*+\nchapter+}
+% \DescribeMacro{\nsection}\index{Макросы!\verb*+\nsection+}
+% \DescribeMacro{\nsubsection}\index{Макросы!\verb*+\nsubsection+}
+% \DescribeMacro{\nsubsubsection}\index{Макросы!\verb*+\nsubsubsection+}
+%    \begin{macrocode}
+\newcommand\nchapter[1]{%
+  \chapter*{%
+    \metaphantom{chapter}\addcontentsline{toc}{chapter}{#1}%
+    #1%
+    \@mkboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
+  }
+}
+\newcommand\nsection[1]{%
+  \section*{\metaphantom{section}%
+  \addcontentsline{toc}{section}{#1}#1}
+}
+\newcommand\nsubsection[1]{%
+  \subsection*{\metaphantom{subsection}%
+  \addcontentsline{toc}{subsection}{#1}#1}
+}
+\newcommand\nsubsubsection[1]{%
+  \subsection*{\metaphantom{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{#1}#1}
+}
+%    \end{macrocode}
+% Переопределение для включения ссылки на список литературы в Содержание.
+% \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
+%    \begin{macrocode}
+\renewcommand\bibsection{\nchapter{\bibname}}
+
+%    \end{macrocode}
+% Переопределение для создания корректной PDF-закладки (основано на варианте
+% из |natbib|).
+% \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
+%    \begin{macrocode}
+\renewenvironment{thebibliography}[1]{%
+  \bibsection
+  \parindent \z@
+  \bibpreamble\bibfont
+  \list{\@biblabel{\arabic{NAT@ctr}}}%
+  {\@bibsetup{#1}\setcounter{NAT@ctr}{0}}%
+  \ifNAT@openbib
+    \renewcommand\newblock{\par}
+  \else
+    \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
+  \fi
+  \sloppy\clubpenalty4000\widowpenalty4000
+  \sfcode`\.=1000\relax
+  \let\citeN\cite
+  \let\shortcite\cite
+  \let\citeasnoun\cite
+%    \end{macrocode}
+% Убираем интервал между библиографическими ссылками для автореферата.
+%    \begin{macrocode}
+  \ifDis@autoref\setlength\bibsep{0pt}\fi
+}{%
+  \def\@noitemerr{\PackageWarning{natbib}{Empty `thebibliography' environment}}
+  \endlist\vskip-\lastskip%
+}
+%    \end{macrocode}
+%
+% Подключение и настройка параметров пакета |hyperref|:
+%    \begin{macrocode}
+\ifpdf
+%    \end{macrocode}
+% \begin{itemize}
+% \item для pdf\LaTeX{}
+%    \begin{macrocode}
+  \ifDis@href
+%    \end{macrocode}
+% \DescribePackage{hyperref}\index{Пакеты!\verb*+hyperref+}
+%    \begin{macrocode}
+    \usepackage[pdftex,unicode,hyperfigures=true]{hyperref}
+    \hypersetup{
+      colorlinks         = false,
+      bookmarksopen      = true,
+      bookmarksnumbered  = true,
+      bookmarksopenlevel = 2,
+      pdfstartview       = {FitH},
+      pdfborder          = {0 0 0}
+    }
+    \pdfcompresslevel = 9
+  \fi
+%    \end{macrocode}
+% \DescribePackage{graphicx}\index{Пакеты!\verb*+graphicx+}
+% \DescribePackage{cmap}\index{Пакеты!\verb*+cmap+}
+%    \begin{macrocode}
+  \usepackage[pdftex]{graphicx}
+  \usepackage{cmap}
+\else
+%    \end{macrocode}
+% \item для \LaTeX{}
+% \end{itemize}
+%    \begin{macrocode}
+  \ifDis@href
+%    \end{macrocode}
+% \DescribePackage{hyperref}\index{Пакеты!\verb*+hyperref+}
+%    \begin{macrocode}
+    \usepackage[hypertex,colorlinks=false,hyperfigures=true]{hyperref}
+  \fi
+%    \end{macrocode}
+% \DescribePackage{graphicx}\index{Пакеты!\verb*+graphicx+}
+%    \begin{macrocode}
+  \usepackage{graphicx}
+\fi
+%    \end{macrocode}
+% Пакеты для исправления ошибок |hyperref|.
+% \DescribePackage{hypernat}\index{Пакеты!\verb*+hypernat+}
+% \DescribePackage{hypcap}\index{Пакеты!\verb*+hypcap+}
+%    \begin{macrocode}
+\ifDis@href
+  \usepackage{hypernat}
+  \usepackage[all]{hypcap}
+\fi
+%    \end{macrocode}
+% Плавающие рисунки ``в оборку''.
+%    \begin{macrocode}
+\usepackage{wrapfig}
+%    \end{macrocode}
+% Пакет для вложенной нумерации плавающих объектов.
+% \DescribePackage{caption}\index{Пакеты!\verb*+caption+}
+% \DescribePackage{subfig}\index{Пакеты!\verb*+subfig+}
+%    \begin{macrocode}
+\ifDis@subf
+  \usepackage[config,font=small,labelsep=period]{caption,subfig}
+%    \end{macrocode}
+% Формат счетчика.
+%    \begin{macrocode}
+  \def\thesubfigure{\textit{\asbuk{subfigure}}}
+%    \end{macrocode}
+% Формат ссылки через |\ref|.
+% \DescribeMacro{\thefigsubsep}\index{Макросы!\verb*+\thefigsubsep+}
+% Разделитель между номером и буквой.
+%    \begin{macrocode}
+  \providecommand\thefigsubsep{,~}
+  \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
+\fi
+%</custom>
+%    \end{macrocode}

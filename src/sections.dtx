@@ -1,0 +1,290 @@
+
+% \iffalse
+%%% From File: sections.dtx
+% \fi
+%
+%    \begin{macrocode}
+
+%<*sections>
+%    \end{macrocode}
+% \subsection{Секции и параграфы}
+%
+% \subsubsection{Section}
+% \paragraph{Параметры формата записи в Содержании}
+%    \begin{macrocode}
+\providecommand\tocprethesection{}
+\providecommand\tocpostthesection{.\@postskip}
+\providecommand\tocsectionfill{\tocfill{.}}
+
+\providecommand\tocsectionfont{\normalfont}
+\providecommand\tocsectionfillfont{}
+\providecommand\tocsectionnumfont{}
+%    \end{macrocode}
+% \DescribeMacro{\tocsectionindent}\index{Макросы!\verb*+\tocsectionindent+}
+% Величина отступа записи в Содержании.
+%    \begin{macrocode}
+\providecommand\tocsectionindent{1.5em}
+%    \end{macrocode}
+% \DescribeMacro{\tocsectionnameindent}\index{Макросы!\verb*+\tocsectionnameindent+}
+% Пробел после номера.
+%    \begin{macrocode}
+\providecommand\tocsectionnameindent{2.3em}
+
+%    \end{macrocode}
+% \paragraph{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\sectionfont{\normalfont\large\bfseries}
+
+\providecommand\prethesection{}
+\providecommand\postthesection{.~}
+
+%    \end{macrocode}
+% \DescribeMacro{\sectionindent}\index{Макросы!\verb*+\sectionindent+}
+% Величина отступа заголовка секции на странице.
+%    \begin{macrocode}
+\providecommand\sectionindent{\z@}
+%    \end{macrocode}
+% \DescribeMacro{\presection}\index{Макросы!\verb*+\presection+}
+% Величина вертикального отступа перед заголовком секции.
+%    \begin{macrocode}
+\providecommand\beforesection{-3.5ex \@plus -1ex \@minus -.2ex}
+%    \end{macrocode}
+% \DescribeMacro{\postsection}\index{Макросы!\verb*+\postsection+}
+% Величина вертикального отступа после заголовка секции.
+%    \begin{macrocode}
+\providecommand\aftersection{2.3ex \@plus.2ex}
+%    \end{macrocode}
+% \DescribeMacro{\sectionalign}\index{Макросы!\verb*+\sectionalign+}
+% Выравнивание заголовка.
+%    \begin{macrocode}
+\providecommand\sectionalign{\raggedright}
+
+%    \end{macrocode}
+% \subsubsection{Subsection}
+% \paragraph{Параметры формата записи в Содержании}
+%    \begin{macrocode}
+\providecommand\tocprethesubsection{}
+\providecommand\tocpostthesubsection{.\@postskip}
+\providecommand\tocsubsectionfill{\tocfill{.}}
+
+\providecommand\tocsubsectionfont{\normalfont}
+\providecommand\tocsubsectionfillfont{}
+\providecommand\tocsubsectionnumfont{}
+
+\providecommand\tocsubsectionindent{3.8em}
+\providecommand\tocsubsectionnameindent{3.2em}
+
+%    \end{macrocode}
+% \paragraph{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\subsectionfont{\normalfont\normalsize\bfseries}
+
+\providecommand\prethesubsection{}
+\providecommand\postthesubsection{.~}
+
+\providecommand\subsectionindent{\z@}
+\providecommand\beforesubsection{-3.25ex\@plus -1ex \@minus -.2ex}
+\providecommand\aftersubsection{1.5ex \@plus .2ex}
+\providecommand\subsectionalign{\raggedright}
+
+%    \end{macrocode}
+% \subsubsection{Subsubsection}
+% \paragraph{Параметры формата записи в Содержании}
+%    \begin{macrocode}
+\providecommand\tocprethesubsubsection{}
+\providecommand\tocpostthesubsubsection{.\@postskip}
+\providecommand\tocsubsubsectionfill{\tocfill{.}}
+
+\providecommand\tocsubsubsectionfont{\normalfont}
+\providecommand\tocsubsubsectionfillfont{}
+\providecommand\tocsubsubsectionnumfont{}
+
+\providecommand\tocsubsubsectionindent{7.0em}
+\providecommand\tocsubsubsectionnameindent{4.1em}
+
+%    \end{macrocode}
+% \paragraph{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\subsubsectionfont{\normalfont\normalsize\bfseries}
+
+\providecommand\prethesubsubsection{}
+\providecommand\postthesubsubsection{.~}
+
+\providecommand\subsubsectionindent{\z@}
+\providecommand\beforesubsubsection{-3.25ex\@plus -1ex \@minus -.2ex}
+\providecommand\aftersubsubsection{1.5ex \@plus .2ex}
+\providecommand\subsubsectionalign{\raggedright}
+
+%    \end{macrocode}
+% \subsubsection{Paragraph}
+% \paragraph{Параметры формата записи в Содержании}
+%    \begin{macrocode}
+\providecommand\tocpretheparagraph{}
+\providecommand\tocposttheparagraph{.\@postskip}
+\providecommand\tocparagraphfill{\tocfill{.}}
+
+\providecommand\tocparagraphfont{\normalfont}
+\providecommand\tocparagraphfillfont{}
+\providecommand\tocparagraphnumfont{}
+
+\providecommand\tocparagraphindent{10em}
+\providecommand\tocparagraphnameindent{5em}
+
+%    \end{macrocode}
+% \paragraph{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\paragraphfont{\normalfont\normalsize\bfseries}
+
+\providecommand\pretheparagraph{}
+\providecommand\posttheparagraph{.~}
+
+\providecommand\paragraphindent{\z@}
+\providecommand\beforeparagraph{3.25ex \@plus1ex \@minus.2ex}
+\providecommand\afterparagraph{-1em}
+\providecommand\paragraphalign{\raggedright}
+
+%    \end{macrocode}
+% \subsubsection{Subparagraph}
+% \paragraph{Параметры формата записи в Содержании}
+%    \begin{macrocode}
+\providecommand\tocprethesubparagraph{}
+\providecommand\tocpostthesubparagraph{.\@postskip}
+\providecommand\tocsubparagraphfill{\tocfill{.}}
+
+\providecommand\tocsubparagraphfont{\normalfont}
+\providecommand\tocsubparagraphfillfont{}
+\providecommand\tocsubparagraphnumfont{}
+
+\providecommand\tocsubparagraphindent{12em}
+\providecommand\tocsubparagraphnameindent{6em}
+
+%    \end{macrocode}
+% \paragraph{Параметры формата в тексте}
+%    \begin{macrocode}
+\providecommand\subparagraphfont{\normalfont\normalsize\bfseries}
+
+\providecommand\prethesubparagraph{}
+\providecommand\postthesubparagraph{.~}
+
+\providecommand\subparagraphindent{\parindent}
+\providecommand\beforesubparagraph{3.25ex \@plus1ex \@minus .2ex}
+\providecommand\aftersubparagraph{-1em}
+\providecommand\subparagraphalign{\raggedright}
+
+%    \end{macrocode}
+% \subsubsection{Низкоуровневые команды}
+%
+% \DescribeMacro{\@sect}\index{Макросы!\verb+"\"@sect+}
+% Обобщенная версия команды, создающей заголовки секций.
+%    \begin{macrocode}
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M #8\@@par}%
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\@tocseccntformat{#1}}%
+      \fi
+      #7}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\@tocseccntformat{#1}}%
+        \fi
+        #7}}%
+  \fi
+  \@xsect{#5}%
+}
+%    \end{macrocode}
+%
+% \DescribeMacro{\@tocline}\index{Макросы!\verb+"\"@tocline+}
+% Обобщенная версия команды, добавляющей запись в Содержание.
+%    \begin{macrocode}
+\def\@tocline#1#2#3#4#5#6{%
+  \ifnum #2>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #3\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent #3\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #4\relax
+     \csname toc#1font\endcsname
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+     {#5}\nobreak
+     \csname toc#1fillfont\endcsname \csname toc#1fill\endcsname\hfill
+     \nobreak\hb@xt@\@pnumwidth{\hfil\csname toc#1numfont\endcsname #6}%
+     \par%
+    }%
+  \fi
+}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\defsection}\index{Макросы!\verb*+\defsection+}
+% Генератор команд типа |\l@<section>| и |\<section>|.
+%    \begin{macrocode}
+%\newcommand\defsection[2]{%
+%  \@namedef{l@#1}{%
+%    \@tocline{#1}{#2}{\csname toc#1indent\endcsname}
+%    {\csname toc#1nameindent\endcsname}
+%  }
+%  \@namedef{#1}{%
+%    \@startsection{#1}{#2}{\csname #1indent\endcsname}
+%      {\csname before#1\endcsname}{\csname after#1\endcsname}
+%      {\csname #1font\endcsname\csname #1align\endcsname}
+%  }
+%}
+%
+%\defsection{section}{1}
+%\defsection{subsection}{2}
+%\defsection{subsubsection}{3}
+%\defsection{paragraph}{4}
+%\defsection{subparagraph}{5}
+
+\newcommand\section{\@startsection{section}{1}
+  {\sectionindent}{\beforesection}%
+  {\aftersection}{\sectionfont\sectionalign}}
+\newcommand*\l@section{\@tocline{section}{1}{\tocsectionindent}%
+{\tocsectionnameindent}}
+
+\newcommand\subsection{\@startsection{subsection}{2}
+  {\subsectionindent}{\beforesubsection}%
+  {\aftersubsection}{\subsectionfont\subsectionalign}}
+\newcommand*\l@subsection{\@tocline{subsection}{2}{\tocsubsectionindent}%
+{\tocsubsectionnameindent}}
+
+\newcommand\subsubsection{\@startsection{subsubsection}{3}
+  {\subsubsectionindent}{\beforesubsubsection}%
+  {\aftersubsubsection}{\subsubsectionfont\subsubsectionalign}}
+\newcommand*\l@subsubsection{\@tocline{subsubsection}{3}{\tocsubsubsectionindent}%
+{\tocsubsubsectionnameindent}}
+
+\newcommand\paragraph{\@startsection{paragraph}{4}
+  {\paragraphindent}{\beforeparagraph}%
+  {\afterparagraph}{\paragraphfont\paragraphalign}}
+\newcommand*\l@paragraph{\@tocline{paragraph}{4}{\tocparagraphindent}%
+{\tocparagraphnameindent}}
+
+\newcommand\subparagraph{\@startsection{subparagraph}{5}
+  {\subparagraphindent}{\beforesubparagraph}%
+  {\aftersubparagraph}{\subparagraphfont\subparagraphalign}}
+\newcommand*\l@subparagraph{\@tocline{subparagraph}{5}{\tocsubparagraphindent}%
+{\tocsubparagraphnameindent}}
+
+%</sections>
+%    \end{macrocode}

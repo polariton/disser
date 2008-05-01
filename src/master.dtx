@@ -1,0 +1,92 @@
+%    \begin{macrocode}
+
+%<master>\ProvidesFile{master.rtx}
+
+%<*master>
+%    \end{macrocode}
+% \subsubsection{Титульный лист магистерской диссертации}
+%
+% Вертикальные интервалы между элементами титульного листа.
+% \DescribeMacro{\firstskip}\index{Макросы!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Макросы!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Макросы!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Макросы!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Макросы!\verb*+\fifthskip+}
+%    \begin{macrocode}
+\def\firstskip{\vspace*{1em}}
+\def\secondskip{\vspace*{1em}}
+\def\thirdskip{\vskip1.em}
+\def\fourthskip{\vspace*{-1cm}}
+\def\fifthskip{\vskip0em}
+
+%    \end{macrocode}
+% Шрифты элементов титульного листа.
+% \DescribeMacro{\titlefont}\index{Макросы!\verb*+\titlefont+}
+% \DescribeMacro{\topiclabelfont}\index{Макросы!\verb*+\topiclabelfont+}
+% \DescribeMacro{\topicfont}\index{Макросы!\verb*+\topicfont+}
+%    \begin{macrocode}
+\def\titlefont{\Large\bfseries}
+\def\topiclabelfont{\large}
+\def\topicfont{\large\bfseries}
+
+%    \end{macrocode}
+% Диссертация допущена к защите
+%    \begin{macrocode}
+\firstskip\@approved\secondskip
+\begin{center}
+%    \end{macrocode}
+% Заголовок.
+%    \begin{macrocode}
+  {\titlefont\@title}
+  \par\thirdskip
+%    \end{macrocode}
+%
+% Тема
+%    \begin{macrocode}
+  {\topiclabelfont\topiclabel}
+  {\topicfont\@topic}
+  \par
+\end{center}
+\fourthskip
+\begin{tabbing}
+  \phantom{\masterproglabel}\=\\
+%    \end{macrocode}
+%
+% Направление
+%    \begin{macrocode}
+  \courselabel\>\ \@coursenum\ --\ \@course\\
+%    \end{macrocode}
+%
+% Магистерская программа: номер -- название.
+%    \begin{macrocode}
+  \masterproglabel\>\ \@masterprognum\ --\ \@masterprog
+\end{tabbing}
+\fifthskip
+\begin{tabbing}
+%    \end{macrocode}
+%
+% Выполнил студент гр. номер...
+%    \begin{macrocode}
+  \studentlabel\ \groupname\ \@group\hspace{2cm}\=
+  \makebox[8.5cm][l]{\hrulefill\ \@author}
+\\[9pt]
+%    \end{macrocode}
+%
+% Научный руководитель
+%    \begin{macrocode}
+  \field{sa}
+\\[9pt]
+%    \end{macrocode}
+%
+% Рецензент
+%    \begin{macrocode}
+  \field{rev}
+\\[9pt]
+%    \end{macrocode}
+%
+% Консультант
+%    \begin{macrocode}
+  \ifdefined\@con\field{con}\fi
+\end{tabbing}
+%</master>
+%    \end{macrocode}

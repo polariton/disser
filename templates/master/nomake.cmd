@@ -1,0 +1,1 @@
+@call ..\..\include\latex.nmk.cmd %*
