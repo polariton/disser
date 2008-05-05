@@ -49,7 +49,7 @@ srcdist:
 		rm -f $(ARCHIVE);\
 	fi
 
-	$(HG) archive -X .hgignore -X .hg_archival.txt -t $(ARCHEXT) \
+	$(HG) archive -X .hgignore -X .hg_archival.txt -X .hgtags -t $(ARCHEXT) \
 		$(TARGET).$(ARCHEXT)
 	@if [ -f $(TARGET).$(ARCHEXT) ];\
 	then \

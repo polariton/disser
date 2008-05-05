@@ -97,7 +97,7 @@ goto :eof
 if "%1"=="srcdist" (
 :srcdist
 	if exist %archive% del /q %archive%
-	%hg% archive -X .hgignore -X .hg_archival.txt -t %archext% %target%.%archext%
+	%hg% archive -X .hgignore -X .hg_archival.txt -X .hgtags -t %archext% %target%.%archext%
 	if exist %target%.%archext% move %target%.%archext% %archive%
 goto :eof
 )
