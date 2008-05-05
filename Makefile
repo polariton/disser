@@ -10,7 +10,7 @@ EXPORTDIR?=$(TARGET)-latest
 HG?=hg
 REPO?=http://disser.sourceforge.net/hg/disser/
 
-ARCHEXT?=tar
+ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
 
 FTPSERVER=upload.sourceforge.net
