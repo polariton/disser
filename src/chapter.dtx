@@ -12,6 +12,13 @@
 %
 % \subsubsection{Параметры формата записи в Содержании}
 %
+% \DescribeMacro{\tocprethechapter}\index{Макросы!\verb*+\tocprethechapter+}
+% \DescribeMacro{\tocpostthechapter}\index{Макросы!\verb*+\tocpostthechapter+}
+% \DescribeMacro{\tocchapterfill}\index{Макросы!\verb*+\tocchapterfill+}
+%
+% \DescribeMacro{\tocchapterfont}\index{Макросы!\verb*+\tocchapterfont+}
+% \DescribeMacro{\tocchapterfillfont}\index{Макросы!\verb*+\tocchapterfillfont+}
+% \DescribeMacro{\tocchapternumfont}\index{Макросы!\verb*+\tocchapternumfont+}
 %    \begin{macrocode}
 \providecommand\tocprethechapter{\protect\chaptername~}
 \providecommand\tocpostthechapter{.\@postskip}
@@ -23,6 +30,15 @@
 
 %    \end{macrocode}
 % \subsubsection{Параметры формата в тексте}
+% \DescribeMacro{\thechapteralign}\index{Макросы!\verb*+\thechapteralign+}
+% \DescribeMacro{\thechapterfont}\index{Макросы!\verb*+\thechapterfont+}
+% \DescribeMacro{\prethechapter}\index{Макросы!\verb*+\prethechapter+}
+% \DescribeMacro{\postthechapter}\index{Макросы!\verb*+\postthechapter+}
+%
+% \DescribeMacro{\chapteralign}\index{Макросы!\verb*+\chapteralign+}
+% \DescribeMacro{\chapterfont}\index{Макросы!\verb*+\chapterfont+}
+% \DescribeMacro{\prechapter}\index{Макросы!\verb*+\prechapter+}
+% \DescribeMacro{\postchapter}\index{Макросы!\verb*+\postchapter+}
 %    \begin{macrocode}
 \providecommand\thechapteralign{\centering}
 \providecommand\thechapterfont{\Large}
@@ -34,16 +50,24 @@
 \providecommand\prechapter{}
 \providecommand\postchapter{\par\nobreak\vskip 20\p@}
 
-\def\chapterpagestyle#1{\gdef\@chapterpagestyle{#1}}\chapterpagestyle{plain}
+%    \end{macrocode}
+% Стиль страницы, с которой начинается глава.
+%
+% \DescribeMacro{\chapterpagestyle}\index{Макросы!\verb*+\chapterpagestyle+}
+%    \begin{macrocode}
+\def\chapterpagestyle#1{\gdef\@chapterpagestyle{#1}}
+\chapterpagestyle{plain}
 
 %    \end{macrocode}
 %
 % \subsubsection{Низкоуровневые команды}
 %
+% \DescribeMacro{\chaptermark}\index{Макросы!\verb*+\chaptermark+}
 % Пустое определение колонтитула главы.
 %    \begin{macrocode}
 \newcommand*\chaptermark[1]{}
 %    \end{macrocode}
+% \DescribeMacro{\chapter}\index{Макросы!\verb*+\chapter+}
 % Интерфейс.
 %    \begin{macrocode}
 \newcommand\chapter{%
@@ -133,7 +157,7 @@
 }
 %    \end{macrocode}
 %
-% \DescribeMacro{\l@chapter}
+% \DescribeMacro{\l@chapter}\index{Макросы!\verb+"\l"@chapter+}
 % Команда, создающая запись в Содержании.
 %    \begin{macrocode}
 \newcommand*\l@chapter[2]{%
@@ -160,6 +184,13 @@
 % \subsection{Приложение}
 %
 % \subsubsection{Параметры формата записи в Содержании}
+% \DescribeMacro{\tocpretheappendix}\index{Макросы!\verb*+\tocpretheappendix+}
+% \DescribeMacro{\tocposttheappendix}\index{Макросы!\verb*+\tocposttheappendix+}
+% \DescribeMacro{\tocappendixfill}\index{Макросы!\verb*+\tocappendixfill+}
+%
+% \DescribeMacro{\tocappendixfont}\index{Макросы!\verb*+\tocappendixfont+}
+% \DescribeMacro{\tocappendixfillfont}\index{Макросы!\verb*+\tocappendixfillfont+}
+% \DescribeMacro{\tocappendixnumfont}\index{Макросы!\verb*+\tocappendixnumfont+}
 %    \begin{macrocode}
 \providecommand\tocpretheappendix{\protect\appendixname~}
 \providecommand\tocposttheappendix{.\@postskip}
@@ -171,6 +202,15 @@
 
 %    \end{macrocode}
 % \subsubsection{Параметры формата в тексте}
+% \DescribeMacro{\theappendixalign}\index{Макросы!\verb*+\theappendixalign+}
+% \DescribeMacro{\theappendixfont}\index{Макросы!\verb*+\theappendixfont+}
+% \DescribeMacro{\pretheappendix}\index{Макросы!\verb*+\pretheappendix+}
+% \DescribeMacro{\posttheappendix}\index{Макросы!\verb*+\posttheappendix+}
+%
+% \DescribeMacro{\appendixalign}\index{Макросы!\verb*+\appendixalign+}
+% \DescribeMacro{\appendixfont}\index{Макросы!\verb*+\appendixfont+}
+% \DescribeMacro{\preappendix}\index{Макросы!\verb*+\preappendix+}
+% \DescribeMacro{\postappendix}\index{Макросы!\verb*+\postappendix+}
 %    \begin{macrocode}
 \providecommand\theappendixalign{\centering}
 \providecommand\theappendixfont{\Large}
