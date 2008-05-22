@@ -8,10 +8,16 @@
 %<*custom>
 %    \end{macrocode}
 % \subsection{Подключение и настройка сторонних пакетов}
-% Включает отступ в первой строке первого абзаца.
+% Отступ в первой строке первого абзаца.
 %    \begin{macrocode}
 \let\@afterindentfalse\@afterindenttrue
 \@afterindenttrue
+%    \end{macrocode}
+% Перенос в словах с дефисом.
+%    \begin{macrocode}
+\lccode`\-=`\-
+\defaulthyphenchar=127
+\hyphenchar\font=127
 %    \end{macrocode}
 % Опция |intlimits| включает правильную расстановку пределов интегрирования
 % (сверху и снизу).
