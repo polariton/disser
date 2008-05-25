@@ -77,6 +77,9 @@
 \setlength\hfuzz{15pt}  % dont make so many
 \hbadness=7000          % over and under full box warnings
 
+\setlength\oddsidemargin{72pt}
+\setlength\textwidth{420pt}
+
 \begin{document}
 \sloppy
   \PrintChanges
@@ -334,8 +337,9 @@
 %  \end{deflist}
 %
 %  \textbf{Примечания:}
-%  1) |nomake.cmd| в подкаталогах шаблонов зависят от |include/latex.nmk.cmd| и
-%  |include/latex.fig.nmk.cmd|. |Makefile| зависят от |include/latex.mk| и |include/latex.fig.mk|.
+%  1) Файлы |nomake.cmd| в подкаталогах шаблонов зависят от |include/latex.nmk.cmd| и
+%  |include/latex.fig.nmk.cmd|. Файлы |Makefile| зависят от |include/latex.mk| и
+%  |include/latex.fig.mk|.
 %  2) |Makefile/nomake.cmd| в подкаталогах шаблонов включают цели каталога |fig|.
 %
 %  \subsubsection{Каталог \texttt{disser/templates/<тип-диссертации>/fig/}}
