@@ -13,7 +13,11 @@
 % \DescribeMacro{\fourthskip}\index{Макросы!\verb*+\fourthskip+}
 % \DescribeMacro{\fifthskip}\index{Макросы!\verb*+\fifthskip+}
 %    \begin{macrocode}
-\def\firstskip{\vskip1.5cm}
+\ifDis@libcat
+  \def\firstskip{\vskip1em}
+\else
+  \def\firstskip{\vskip4em}
+\fi
 \def\secondskip{\vskip3cm}
 \def\thirdskip{\vskip1cm}
 \def\fourthskip{\vskip1cm}
@@ -31,17 +35,19 @@
 \def\authorfont{\large}
 \def\specfont{\normalsize}
 
+\firstskip
 \normalfont
 \begin{flushright}
 %    \end{macrocode}
 % На правах рукописи
 %    \begin{macrocode}
-  \firstskip
   \asmanuscriptname\\
 %    \end{macrocode}
 % Номер УДК
 %    \begin{macrocode}
-  {\libcatname\;\@libcatnum}
+\ifDis@libcat
+  {\libcatname\ \@libcatnum}
+\fi
 \end{flushright}
 \begin{center}
 %    \end{macrocode}

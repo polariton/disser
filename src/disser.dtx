@@ -398,6 +398,7 @@
 \newif\ifDis@candidate
 \newif\ifDis@doctor
 \newif\ifDis@autoref
+\newif\ifDis@libcat
 
 %    \end{macrocode}
 % \item |true|, если подключается |hyperref|.
@@ -426,6 +427,7 @@
 \Dis@timesfalse
 \Dis@subffalse
 \Dis@hreffalse
+\Dis@libcatfalse
 
 %    \end{macrocode}
 %
@@ -445,6 +447,11 @@
 % Подключение пакета |subfig| и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{subf}{\Dis@subftrue}
+
+%    \end{macrocode}
+% Показывать номер УДК на титульном листе.
+%    \begin{macrocode}
+\DeclareOption{libcat}{\Dis@libcattrue}
 
 %    \end{macrocode}
 % Настройка опций.
