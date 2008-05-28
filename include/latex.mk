@@ -19,6 +19,7 @@ PSNUP?=psnup
 ARCHEXT?=zip
 ARCHFLAGS?=a -t$(ARCHEXT)
 ARCHIVE?=$(TARGET).$(ARCHEXT)
+BIBFILE?=$(TARGET).bib
 BIBTEXFLAGS?=-H -c cp1251
 
 L2HFLAGS?=-dir html -iso_language RU.RU -split 3 -short_index \
@@ -58,7 +59,7 @@ rtf: $(TARGET).rtf
 
 $(TARGET).dvi: $(TARGET).tex
 	$(LATEX) $(TEXFLAGS) $^
-	@if [ -f $(TARGET).bib ];\
+	@if [ -f $(BIBFILE) ];\
 	then \
 		$(BIBTEX) $(BIBTEXFLAGS) $(TARGET) ;\
 		$(LATEX) $(TEXFLAGS) $^ ;\

@@ -27,7 +27,10 @@ if "%l2rtf%"=="" set l2rtf=latex2rtf
 if "%archext%"=="" set archext=zip
 if "%archflags%"=="" set archflags=a -t%archext%
 if "%archive%"=="" set archive=%target%.%archext%
+
+if "%bibfile%"=="" set bibfile=%target%.bib
 if "%bibtexflags%"=="" set bibtexflags=-H -c cp1251
+
 if "%l2hflags%"=="" (
 	set l2hflags=-dir html -iso_language RU.RU -split 3 -short_index ^
     -numbered_footnotes -no_footnode -white -antialias ^
@@ -60,7 +63,7 @@ if "%1"=="" goto :eof
 if "%1"=="dvi" (
 :dvi
 	%latex% %latexflags% %target%.tex
-	if exist %target%.bib (
+	if exist %bibfile% (
 		%bibtex% %bibtexflags% %target%
 		%latex% %latexflags% %target%.tex
 	) else (
