@@ -29,7 +29,7 @@ Installation
 Automatically
 
 Unix-like environment:
-> env TEXMF=/путь/к/texmf make install
+> env TEXMF=/path/to/texmf make install
 > mktexlsr
 
 Windows:
