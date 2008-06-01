@@ -23,6 +23,8 @@ if "%suffix%"=="" set suffix=~
 
 rem end of configuration
 
+setlocal enabledelayedexpansion
+
 if "%1"=="" (
 :default
 	call :help
@@ -51,7 +53,8 @@ goto :eof
 
 if "%1"=="epstopdf" (
 :epstopdf
-	for %%f in (%e2pfiles%) do (
+	if "%2" neq "" set e2pfiles=%2 %3 %4 %5 %6 %7 %8 %9
+	for %%f in (!e2pfiles!) do (
 		if not exist "%%~nf.pdf" (
 			%epstopdf% "%%f"
 			echo epstopdf: %%f
@@ -62,7 +65,8 @@ goto :eof
 
 if "%1"=="fixbb" (
 :fixbb
-	for %%f in (%fbbfiles%) do (
+	if "%2" neq "" set fbbfiles=%2 %3 %4 %5 %6 %7 %8 %9
+	for %%f in (!fbbfiles!) do (
 		%epstool% %etflags% "%%f" "%%f%suffix%"
 		move "%%f%suffix%" "%%f" > nul
 		echo fixbb: %%f
@@ -72,7 +76,8 @@ goto :eof
 
 if "%1"=="epstoeps" (
 :epstoeps
-	for %%f in (%e2efiles%) do (
+	if "%2" neq "" set e2efiles=%2 %3 %4 %5 %6 %7 %8 %9
+	for %%f in (!e2efiles!) do (
 		%e2e% %e2eflags% "%%f" "%%f%suffix%"
 		move "%%f%suffix%" "%%f" > nul
 		echo epstoeps: %%f
