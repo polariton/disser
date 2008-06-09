@@ -33,22 +33,26 @@
 %    \begin{macrocode}
 \ifDis@times
   \AtEndOfPackage{%
-    \usepackage{pscyr}
 %    \end{macrocode}
 % \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
 % Пакет |txfonts| необходимо подключать \textbf{после} |pscyr| для
 % корректного определения символов, составленных из двух других (таких как
 % $\hbar$ и $\neq$).
 %    \begin{macrocode}
-    \usepackage{txfonts}
+    \IfFileExists{txfonts.sty}{
+      \usepackage{txfonts}
+    }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
+    \IfFileExists{pscyr.sty}{
+      \usepackage{pscyr}
 %    \end{macrocode}
 % Установка Times как шрифта по умолчанию.
 %    \begin{macrocode}
-    \renewcommand\rmdefault{ftm}
+      \renewcommand\rmdefault{ftm}
 %    \end{macrocode}
-% Стандартный шрифт для начертания Teletype.
+% Выбор стандартного моноширинного шрифта.
 %    \begin{macrocode}
-    \renewcommand\ttdefault{cmtt}
+      \renewcommand\ttdefault{cmtt}
+    }{\PackageWarning{disser}{Unable to find pscyr package. Font is unchanged.}}
   }
 \fi
 %    \end{macrocode}
