@@ -10,6 +10,19 @@
 %
 % \subsection{Создание и настройка счетчиков}
 %
+% Максимальный уровень вложенности секций, помещаемых в Содержание
+% (по умолчанию вносятся |\part|, |\chapter| и |\section|).
+% \DescribeMacro{tocdepth}\index{Счетчики!\verb*+tocdepth+}
+%    \begin{macrocode}
+\setcounter{tocdepth}{1}
+%    \end{macrocode}
+% Максимальный уровень вложенности нумеруемых секций
+% (по умолчанию нумеруются |\part|, |\chapter|, |\section| и |\subsection|).
+% \DescribeMacro{secnumdepth}\index{Счетчики!\verb*+secnumdepth+}
+%    \begin{macrocode}
+\setcounter{secnumdepth}{2}
+%    \end{macrocode}
+%
 % \DescribeMacro{part}\index{Счетчики!\verb*+part+}
 % \DescribeMacro{chapter}\index{Счетчики!\verb*+chapter+}
 % \DescribeMacro{section}\index{Счетчики!\verb*+section+}
@@ -20,6 +33,7 @@
 % \DescribeMacro{figure}\index{Счетчики!\verb*+figure+}
 % \DescribeMacro{table}\index{Счетчики!\verb*+table+}
 %    \begin{macrocode}
+
 \newcounter{part}
 \newcounter{chapter}
 \newcounter{section}[chapter]
