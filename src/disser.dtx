@@ -137,8 +137,9 @@
 %  листа, заголовков и записей в автоматически генерируемых списках
 %  (содержание, список иллюстраций, список таблиц). Для этого введен ряд
 %  высокоуровневых команд, которые описаны в комментариях к исходным текстам.
-%  К сожалению, на данный момент полноценная документация по этим
-%  командам отсутствует.
+%  К сожалению, на данный момент пользовательская документация по этим
+%  командам отсутствует. Пример их использования можно увидеть в исходном тексте
+%  класса |gost732|.
 %
 %  \section{Руководство по использованию}
 %
@@ -413,6 +414,10 @@
 % \item Шрифт Times как основной.
 %    \begin{macrocode}
 \newif\ifDis@times
+%    \end{macrocode}
+% \item Поддержка математических шрифтов MathTime Pro.
+%    \begin{macrocode}
+\newif\ifDis@mtpro
 
 %    \end{macrocode}
 % \end{itemize}
@@ -426,6 +431,7 @@
 \Dis@doctorfalse
 \Dis@autoreffalse
 \Dis@timesfalse
+\Dis@mtprofalse
 \Dis@subffalse
 \Dis@hreffalse
 \Dis@libcatfalse
@@ -551,6 +557,10 @@
 % Roman.
 %    \begin{macrocode}
 \DeclareOption{times}{\Dis@timestrue}
+%    \end{macrocode}
+% Использовать математические шрифты MathTime Pro.
+%    \begin{macrocode}
+\DeclareOption{mtpro}{\Dis@mtprotrue}
 %    \end{macrocode}
 % Если указана эта опция, то блоки текста в списке литературы будут
 % печататься на новых строках и с отступом.

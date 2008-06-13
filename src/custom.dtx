@@ -25,7 +25,11 @@
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
 % \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
 %    \begin{macrocode}
-\usepackage[intlimits]{amsmath}
+\ifDis@fixint
+  \usepackage[intlimits]{amsmath}
+\else
+  \usepackage{amsmath}
+\fi
 \usepackage{amssymb,amsfonts}
 %    \end{macrocode}
 % \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
@@ -39,9 +43,16 @@
 % корректного определения символов, составленных из двух других (таких как
 % $\hbar$ и $\neq$).
 %    \begin{macrocode}
-    \IfFileExists{txfonts.sty}{
-      \usepackage{txfonts}
-    }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
+    \ifDis@mtpro
+      \IfFileExists{mtpro.sty}{
+        \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
+      }{\PackageWarning{disser}{Unable to find mtpro package. Font is unchanged.}}
+    \else
+      \IfFileExists{txfonts.sty}{
+        \usepackage{txfonts}
+      }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
+    \fi
+
     \IfFileExists{pscyr.sty}{
       \usepackage{pscyr}
 %    \end{macrocode}
