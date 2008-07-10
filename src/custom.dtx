@@ -30,7 +30,7 @@
 % Использование шрифта Times вместо Computer Modern Roman.
 %    \begin{macrocode}
 \ifDis@times
-  \AtEndOfPackage{%
+  \AtBeginDocument{%
     \IfFileExists{pscyr.sty}{
 %    \end{macrocode}
 % \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
@@ -45,8 +45,6 @@
 %    \begin{macrocode}
       \renewcommand\ttdefault{cmtt}
     }{\PackageWarning{disser}{Unable to find pscyr package. Font is unchanged.}}
-  }
-  \AtBeginDocument{%
     \ifDis@mtpro
 %    \end{macrocode}
 % \DescribePackage{mtpro}\index{Пакеты!\verb*+mtpro+}
