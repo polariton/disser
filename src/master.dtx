@@ -7,17 +7,23 @@
 % \subsubsection{Титульный лист магистерской диссертации}
 %
 % Вертикальные интервалы между элементами титульного листа.
-% \DescribeMacro{\firstskip}\index{Макросы!\verb*+\firstskip+}
-% \DescribeMacro{\secondskip}\index{Макросы!\verb*+\secondskip+}
-% \DescribeMacro{\thirdskip}\index{Макросы!\verb*+\thirdskip+}
-% \DescribeMacro{\fourthskip}\index{Макросы!\verb*+\fourthskip+}
-% \DescribeMacro{\fifthskip}\index{Макросы!\verb*+\fifthskip+}
+% \DescribeMacro{\firstskip}\index{Длины!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Длины!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Длины!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Длины!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Длины!\verb*+\fifthskip+}
 %    \begin{macrocode}
-\def\firstskip{\vspace*{1em}}
-\def\secondskip{\vspace*{1em}}
-\def\thirdskip{\vskip1.em}
-\def\fourthskip{\vspace*{-1cm}}
-\def\fifthskip{\vskip0em}
+\newlength\firstskip
+\newlength\secondskip
+\newlength\thirdskip
+\newlength\fourthskip
+\newlength\fifthskip
+
+\setlength\firstskip{1em}
+\setlength\secondskip{1em}
+\setlength\thirdskip{1em}
+\setlength\fourthskip{-1cm}
+\setlength\fifthskip{0em}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -32,22 +38,23 @@
 %    \end{macrocode}
 % Диссертация допущена к защите
 %    \begin{macrocode}
-\firstskip\@approved\secondskip
+\vskip\firstskip
+\@approved
+\vskip\secondskip
 \begin{center}
 %    \end{macrocode}
 % Заголовок.
 %    \begin{macrocode}
   {\titlefont\@title}
-  \par\thirdskip
+  \vskip\thirdskip
 %    \end{macrocode}
 %
 % Тема
 %    \begin{macrocode}
   {\topiclabelfont\topiclabel}
   {\topicfont\@topic}
-  \par
 \end{center}
-\fourthskip
+\vskip\fourthskip
 \begin{tabbing}
   \phantom{\masterproglabel}\=\\
 %    \end{macrocode}
@@ -61,7 +68,7 @@
 %    \begin{macrocode}
   \masterproglabel\>\ \@masterprognum\ --\ \@masterprog
 \end{tabbing}
-\fifthskip
+\vskip\fifthskip
 \begin{tabbing}
 %    \end{macrocode}
 %

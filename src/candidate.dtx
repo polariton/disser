@@ -7,24 +7,33 @@
 % \subsubsection{Òèòóëüíûé ëèñò êàíäèäàòñêîé äèññåğòàöèè}
 %
 % Âåğòèêàëüíûå èíòåğâàëû ìåæäó ıëåìåíòàìè òèòóëüíîãî ëèñòà.
-% \DescribeMacro{\firstskip}\index{Ìàêğîñû!\verb*+\firstskip+}
-% \DescribeMacro{\secondskip}\index{Ìàêğîñû!\verb*+\secondskip+}
-% \DescribeMacro{\thirdskip}\index{Ìàêğîñû!\verb*+\thirdskip+}
-% \DescribeMacro{\fourthskip}\index{Ìàêğîñû!\verb*+\fourthskip+}
-% \DescribeMacro{\fifthskip}\index{Ìàêğîñû!\verb*+\fifthskip+}
-% \DescribeMacro{\sixthskip}\index{Ìàêğîñû!\verb*+\sixthskip+}
+% \DescribeMacro{\firstskip}\index{Äëèíû!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Äëèíû!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Äëèíû!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Äëèíû!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Äëèíû!\verb*+\fifthskip+}
+% \DescribeMacro{\sixthskip}\index{Äëèíû!\verb*+\sixthskip+}
 %    \begin{macrocode}
+\newlength\firstskip
+\newlength\secondskip
+\newlength\thirdskip
+\newlength\fourthskip
+\newlength\fifthskip
+\newlength\sixthskip
+
 \ifDis@libcat
-  \def\firstskip{\vskip2em}
+  \setlength\firstskip{2em}
 \else
-  \def\firstskip{\vskip4em}
+  \setlength\firstskip{4em}
 \fi
-\def\secondskip{\vskip2cm}
-\def\thirdskip{\vskip1cm}
-\def\fourthskip{\vskip1cm}
-\def\fifthskip{\vskip1cm}
-\def\sixthskip{}
-\def\@sahshift{8cm}
+\setlength\secondskip{2cm}
+\setlength\thirdskip{1cm}
+\setlength\fourthskip{1cm}
+\setlength\fifthskip{1cm}
+\setlength\sixthskip{0pt}
+
+\newlength\@sahshift
+\setlength\@sahshift{8cm}
 
 %    \end{macrocode}
 % Øğèôòû ıëåìåíòîâ òèòóëüíîãî ëèñòà.
@@ -38,7 +47,7 @@
 \def\authorfont{\large}
 \def\specfont{\normalsize}
 
-\firstskip
+\vskip\firstskip
 \normalfont
 \begin{flushright}
 %    \end{macrocode}
@@ -56,28 +65,28 @@
 %    \end{macrocode}
 % Àâòîğ
 %    \begin{macrocode}
-  \secondskip
+  \vskip\secondskip
   {\authorfont\@author}
 %    \end{macrocode}
 % Íàçâàíèå äèññåğòàöèè
 %    \begin{macrocode}
-  \thirdskip
+  \vskip\thirdskip
   {\topicfont\@topic\par}
 %    \end{macrocode}
 % Øèôğ è íàèìåíîâàíèå ñïåöèàëüíîñòè
 %    \begin{macrocode}
-  \fourthskip
+  \vskip\fourthskip
   {\specfont\@specnum~--\ \@spec}
 %    \end{macrocode}
 % Äèññåğòàöèÿ íà ñîèñêàíèå ó÷åíîé ñòåïåíè...
 %    \begin{macrocode}
-  \fifthskip
+  \vskip\fifthskip
   {\titlefont\@title}
 \end{center}
 %    \end{macrocode}
 % Íàó÷íûé ğóêîâîäèòåëü
 %    \begin{macrocode}
-\sixthskip
+\vskip\sixthskip
 \begin{tabbing}
   \hspace{\@sahshift}\={\saname}\\
   \>\@sastatus\\

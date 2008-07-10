@@ -7,21 +7,27 @@
 % \subsubsection{Титульный лист докторской диссертации}
 %
 % Вертикальные интервалы между элементами титульного листа.
-% \DescribeMacro{\firstskip}\index{Макросы!\verb*+\firstskip+}
-% \DescribeMacro{\secondskip}\index{Макросы!\verb*+\secondskip+}
-% \DescribeMacro{\thirdskip}\index{Макросы!\verb*+\thirdskip+}
-% \DescribeMacro{\fourthskip}\index{Макросы!\verb*+\fourthskip+}
-% \DescribeMacro{\fifthskip}\index{Макросы!\verb*+\fifthskip+}
+% \DescribeMacro{\firstskip}\index{Длины!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Длины!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Длины!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Длины!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Длины!\verb*+\fifthskip+}
 %    \begin{macrocode}
+\newlength\firstskip
+\newlength\secondskip
+\newlength\thirdskip
+\newlength\fourthskip
+\newlength\fifthskip
+
 \ifDis@libcat
-  \def\firstskip{\vskip1em}
+  \setlength\firstskip{1em}
 \else
-  \def\firstskip{\vskip4em}
+  \setlength\firstskip{4em}
 \fi
-\def\secondskip{\vskip3cm}
-\def\thirdskip{\vskip1cm}
-\def\fourthskip{\vskip1cm}
-\def\fifthskip{\vskip1cm}
+\setlength\secondskip{3cm}
+\setlength\thirdskip{1cm}
+\setlength\fourthskip{1cm}
+\setlength\fifthskip{1cm}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -35,7 +41,7 @@
 \def\authorfont{\large}
 \def\specfont{\normalsize}
 
-\firstskip
+\vskip\firstskip
 \normalfont
 \begin{flushright}
 %    \end{macrocode}
@@ -53,22 +59,22 @@
 %    \end{macrocode}
 % Автор
 %    \begin{macrocode}
-  \secondskip
+  \vskip\secondskip
   {\authorfont\@author}
 %    \end{macrocode}
 % Название диссертации
 %    \begin{macrocode}
-  \thirdskip
+  \vskip\thirdskip
   {\topicfont\@topic\par}
 %    \end{macrocode}
 % Шифр и наименование специальности
 %    \begin{macrocode}
-  \fourthskip
+  \vskip\fourthskip
   {\specfont\@specnum~--\;\@spec}
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
 %    \begin{macrocode}
-  \fifthskip
+  \vskip\fifthskip
   {\titlefont\@title}
 \end{center}
 %</doctor>
