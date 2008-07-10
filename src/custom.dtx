@@ -19,41 +19,22 @@
 \defaulthyphenchar=127
 \hyphenchar\font=127
 %    \end{macrocode}
-% Опция |intlimits| включает правильную расстановку пределов интегрирования
-% (сверху и снизу).
+% Опция |intlimits| включает расстановку пределов интегрирования сверху и снизу.
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
 % \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
 %    \begin{macrocode}
-\ifDis@fixint
-  \usepackage[intlimits]{amsmath}
-\else
-  \usepackage{amsmath}
-\fi
+\usepackage[intlimits]{amsmath}
 \usepackage{amssymb,amsfonts}
 %    \end{macrocode}
-% \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
-% Включение шрифта Times вместо Computer Modern Roman.
+% Использование шрифта Times вместо Computer Modern Roman.
 %    \begin{macrocode}
 \ifDis@times
   \AtEndOfPackage{%
-%    \end{macrocode}
-% \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
-% Пакет |txfonts| необходимо подключать \textbf{после} |pscyr| для
-% корректного определения символов, составленных из двух других (таких как
-% $\hbar$ и $\neq$).
-%    \begin{macrocode}
-    \ifDis@mtpro
-      \IfFileExists{mtpro.sty}{
-        \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
-      }{\PackageWarning{disser}{Unable to find mtpro package. Font is unchanged.}}
-    \else
-      \IfFileExists{txfonts.sty}{
-        \usepackage{txfonts}
-      }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
-    \fi
-
     \IfFileExists{pscyr.sty}{
+%    \end{macrocode}
+% \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
+%    \begin{macrocode}
       \usepackage{pscyr}
 %    \end{macrocode}
 % Установка Times как шрифта по умолчанию.
@@ -64,6 +45,23 @@
 %    \begin{macrocode}
       \renewcommand\ttdefault{cmtt}
     }{\PackageWarning{disser}{Unable to find pscyr package. Font is unchanged.}}
+  }
+  \AtBeginDocument{%
+    \ifDis@mtpro
+%    \end{macrocode}
+% \DescribePackage{mtpro}\index{Пакеты!\verb*+mtpro+}
+%    \begin{macrocode}
+      \IfFileExists{mtpro.sty}{
+        \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
+      }{\PackageWarning{disser}{Unable to find mtpro package. Font is unchanged.}}
+    \else
+%    \end{macrocode}
+% \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
+%    \begin{macrocode}
+      \IfFileExists{txfonts.sty}{
+        \usepackage{txfonts}
+      }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
+    \fi
   }
 \fi
 %    \end{macrocode}
