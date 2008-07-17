@@ -30,7 +30,26 @@
 % Использование шрифта Times вместо Computer Modern Roman.
 %    \begin{macrocode}
 \ifDis@times
+  \ifDis@mtpro
   \AtBeginDocument{%
+%    \end{macrocode}
+% \DescribePackage{mtpro}\index{Пакеты!\verb*+mtpro+}
+%    \begin{macrocode}
+    \IfFileExists{mtpro.sty}{
+      \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
+    }{\PackageWarning{disser}{Unable to find mtpro package. Font is unchanged.}}
+  }
+  \else
+%    \end{macrocode}
+% \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
+%    \begin{macrocode}
+  \AtEndOfPackage{%
+    \IfFileExists{txfonts.sty}{
+      \usepackage{txfonts}
+    }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
+  }
+  \fi
+  \AtEndOfPackage{%
     \IfFileExists{pscyr.sty}{
 %    \end{macrocode}
 % \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
@@ -45,21 +64,6 @@
 %    \begin{macrocode}
       \renewcommand\ttdefault{cmtt}
     }{\PackageWarning{disser}{Unable to find pscyr package. Font is unchanged.}}
-    \ifDis@mtpro
-%    \end{macrocode}
-% \DescribePackage{mtpro}\index{Пакеты!\verb*+mtpro+}
-%    \begin{macrocode}
-      \IfFileExists{mtpro.sty}{
-        \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
-      }{\PackageWarning{disser}{Unable to find mtpro package. Font is unchanged.}}
-    \else
-%    \end{macrocode}
-% \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
-%    \begin{macrocode}
-      \IfFileExists{txfonts.sty}{
-        \usepackage{txfonts}
-      }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
-    \fi
   }
 \fi
 %    \end{macrocode}
