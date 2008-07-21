@@ -6,6 +6,7 @@ old
 *.diff
 *.old
 *.zip
+*~
 
 # (pdf)LaTeX output files
 *.out
