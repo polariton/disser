@@ -63,7 +63,14 @@
 % Выбор стандартного моноширинного шрифта.
 %    \begin{macrocode}
       \renewcommand\ttdefault{cmtt}
-    }{\PackageWarning{disser}{Unable to find pscyr package. Font is unchanged.}}
+    }{
+      \IfFileExists{cyrtimes.sty}{
+%    \end{macrocode}
+% \DescribePackage{cyrtimes}\index{Пакеты!\verb*+cyrtimes+}
+%    \begin{macrocode}
+        \usepackage{cyrtimes}
+      }{\PackageWarning{disser}{Unable to find pscyr or cyrtimes package. Font is unchanged.}}
+    }
   }
 \fi
 %    \end{macrocode}
