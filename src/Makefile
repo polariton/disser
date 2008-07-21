@@ -35,7 +35,7 @@ install: all
 	mkdir -p $(DESTDIR)
 	mkdir -p $(DOCDIR)
 	cp $(INSTFILES) $(DESTDIR)
-	cp $(DOCFILES) $(DOCDIR)
+	cp *.pdf *.dvi $(DOCDIR)
 
 clean:
 	rm -f $(CLFILES)
