@@ -21,6 +21,7 @@
 % \DescribeMacro{secnumdepth}\index{Счетчики!\verb*+secnumdepth+}
 %    \begin{macrocode}
 \setcounter{secnumdepth}{2}
+
 %    \end{macrocode}
 %
 % \DescribeMacro{part}\index{Счетчики!\verb*+part+}
@@ -33,7 +34,6 @@
 % \DescribeMacro{figure}\index{Счетчики!\verb*+figure+}
 % \DescribeMacro{table}\index{Счетчики!\verb*+table+}
 %    \begin{macrocode}
-
 \newcounter{part}
 \newcounter{chapter}
 \newcounter{section}[chapter]
@@ -43,6 +43,7 @@
 \newcounter{subparagraph}[paragraph]
 \newcounter{figure}[chapter]
 \newcounter{table}[chapter]
+
 %    \end{macrocode}
 %
 % Формат нумерации разделов документа в тексте.
@@ -101,18 +102,21 @@
 
 %    \end{macrocode}
 % Формат номера формулы.
+% \DescribeMacro{\theequation}\index{Макросы!\verb*+\theequation+}
 %    \begin{macrocode}
   \renewcommand\theequation{%
     \ifnum\c@chapter > \z@\thechapter.\fi%
     \@arabic\c@equation}
 %    \end{macrocode}
 % Формат номера таблицы.
+% \DescribeMacro{\thetable}\index{Макросы!\verb*+\thetable+}
 %    \begin{macrocode}
   \renewcommand\thetable{%
     \ifnum \c@chapter>\z@\thechapter.\fi%
     \@arabic\c@table}
 %    \end{macrocode}
 % Формат номера рисунка.
+% \DescribeMacro{\thefigure}\index{Макросы!\verb*+\thefigure+}
 %    \begin{macrocode}
   \renewcommand\thefigure{%
     \ifnum \c@chapter>\z@\thechapter.\fi%
