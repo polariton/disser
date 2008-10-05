@@ -98,6 +98,7 @@
 %    \begin{macrocode}
 \else % \if@twoside
 %    \end{macrocode}
+% \DescribeMacro{\ps@headings}\index{Макросы!\verb*+\ps@headings+}
 %  \item Для односторонних документов.
 %    \begin{macrocode}
   \def\ps@headings{%
@@ -112,6 +113,7 @@
     }%
     \let\@mkboth\markboth
 %    \end{macrocode}
+% \DescribeMacro{\chaptermark}\index{Макросы!\verb*+\chaptermark+}
 %    \item Формат маркера главы.
 %    \begin{macrocode}
     \def\chaptermark##1{%
@@ -121,6 +123,7 @@
     \fi
     ##1}}{}}
 %    \end{macrocode}
+% \DescribeMacro{\sectionmark}\index{Макросы!\verb*+\sectionmark+}
 %    \item Формат маркера секции.
 %    \begin{macrocode}
     \def\sectionmark##1{%

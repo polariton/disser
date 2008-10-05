@@ -623,6 +623,16 @@
 }
 
 %    \end{macrocode}
+% Выполнение опций по умолчанию.
+%    \begin{macrocode}
+\ExecuteOptions{a4paper,14pt,oneside,titlepage,onecolumn,final,openany}
+%    \end{macrocode}
+% Выполнение пользовательских опций.
+%    \begin{macrocode}
+\ProcessOptions
+\ProcessKeyvalOptions{Dis}
+
+%    \end{macrocode}
 % Команды изменения регистра.
 % \DescribeMacro{\MakeTextUppercase}\index{Макросы!\verb*+\MakeTextUppercase+}
 %    \begin{macrocode}
@@ -638,16 +648,6 @@
   \@uclcnotmath{}{##2##1}\lowercase}
 
 \protected@edef\MakeTextLowercase#1{\MakeTextLowercase{#1}}
-
-%    \end{macrocode}
-% Выполнение опций по умолчанию.
-%    \begin{macrocode}
-\ExecuteOptions{a4paper,14pt,oneside,titlepage,onecolumn,final,openany}
-%    \end{macrocode}
-% Выполнение пользовательских опций.
-%    \begin{macrocode}
-\ProcessOptions
-\ProcessKeyvalOptions{Dis}
 
 %    \end{macrocode}
 % \subsection{Настройка шрифтов}
@@ -736,8 +736,8 @@
 %
 % \subsection{Параметры основного текста}
 %
-% \DescribeMacro{\lineskip}\index{Макросы!\verb*+\lineskip+}
-% \DescribeMacro{\normallineskip}\index{Макросы!\verb*+\normallineskip+}
+% \DescribeMacro{\lineskip}\index{Расстояния!\verb*+\lineskip+}
+% \DescribeMacro{\normallineskip}\index{Расстояния!\verb*+\normallineskip+}
 % Вертикальный интервал между строками. Упоминаемый здесь и далее макрос |\p@|
 % определяет единицу длины. По умолчанию она равна английскому пункту (pt).
 %    \begin{macrocode}
@@ -759,18 +759,20 @@
 \onehalfspacing
 %    \end{macrocode}
 % Интервал между абзацами (добавляется к межстрочному).
-% \DescribeMacro{\parskip}\index{Макросы!\verb*+\parskip+}
+% \DescribeMacro{\parskip}\index{Расстояния!\verb*+\parskip+}
 %    \begin{macrocode}
 \setlength\parskip{0\p@ \@plus \p@}
 
 %    \end{macrocode}
 %
 % Интервал между колонками текста.
+% \DescribeMacro{\columnsep}\index{Расстояния!\verb*+\columnsep+}
 %    \begin{macrocode}
 \setlength\columnsep{10\p@}
 %    \end{macrocode}
 %
 % Ширина разделителя (линии) между колонками текста (по умолчанию его нет).
+% \DescribeMacro{\columnseprule}\index{Расстояния!\verb*+\columnseprule+}
 %    \begin{macrocode}
 \setlength\columnseprule{0\p@}
 
