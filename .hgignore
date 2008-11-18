@@ -27,6 +27,7 @@ old
 # BibTeX output files
 *.bbl
 *.blg
+*.bst
 
 # bitmap sources for EPS figures
 *.tif
