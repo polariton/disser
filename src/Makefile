@@ -3,23 +3,27 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 # 
 
-TARGET=disser
+TARGET?=disser
 SUBCLASS=gost732
-TEXMF=/usr/share/texmf
-DESTDIR=$(TEXMF)/tex/latex/$(TARGET)
-DOCDIR=$(TEXMF)/doc/latex/$(TARGET)
+TEXMF?=/usr/share/texmf
 
-LATEX=latex
-PDFLATEX=pdflatex
-MI=makeindex
+CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
+BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
+DOCDIR?=$(TEXMF)/doc/latex/$(TARGET)
 
-LATEXFLAGS=
-PDFLATEXFLAGS=
+CLSFILES?=*.cls *.rtx
+BSTFILES?=*.bst
+DOCFILES?=*.dvi *.pdf
 
-INSTFILES=*.cls *.rtx
-DOCFILES=*.dvi *.pdf *.ps
-CLEXT= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
-CLFILES=$(INSTFILES) $(DOCFILES) $(CLEXT)
+CLEXT?= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
+CLFILES?=$(CLSFILES) $(BSTFILES) $(DOCFILES) $(CLEXT)
+
+LATEX?=latex
+PDFLATEX?=pdflatex
+MI?=makeindex
+
+LATEXFLAGS?=
+PDFLATEXFLAGS?=
 
 all: class doc
 
@@ -32,10 +36,12 @@ dvi: $(TARGET).dvi $(SUBCLASS).dvi
 pdf: $(TARGET).pdf $(SUBCLASS).pdf
 
 install: all
-	mkdir -p $(DESTDIR)
+	mkdir -p $(CLSDIR)
+	mkdir -p $(BSTDIR)
 	mkdir -p $(DOCDIR)
-	cp $(INSTFILES) $(DESTDIR)
-	cp *.pdf *.dvi $(DOCDIR)
+	cp $(CLSFILES) $(CLSDIR)
+	cp $(BSTFILES) $(BSTDIR)
+	cp $(DOCFILES) $(DOCDIR)
 
 clean:
 	rm -f $(CLFILES)

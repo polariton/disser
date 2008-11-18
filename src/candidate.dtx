@@ -54,12 +54,13 @@
 % На правах рукописи
 %    \begin{macrocode}
   \asmanuscriptname\\
+  \ifDis@facsimile\facsimile\fi
 %    \end{macrocode}
 % Номер УДК
 %    \begin{macrocode}
-\ifDis@libcat
-  {\libcatname\ \@libcatnum}
-\fi
+  \ifDis@libcat
+    {\libcatname\ \@libcatnum}
+  \fi
 \end{flushright}
 \begin{center}
 %    \end{macrocode}

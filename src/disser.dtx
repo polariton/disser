@@ -19,16 +19,16 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*driver>
-\ProvidesFile{disser.drv}[2008/05/01 1.0.5 Document class for dissertations.]
+\ProvidesFile{disser.drv}[2008/11/11 1.1.0 Document class for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper, includehead, includefoot, mag=1000,
-            left=4cm, right=1.5cm, top=1cm, bottom=2cm]{geometry}
+            left=4cm, right=1.5cm, top=1cm, bottom=1.5cm]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{ifpdf,indentfirst,tabularx,doc}
-\usepackage{makeidx}
+\usepackage{makeidx,longtable}
 
 \ifpdf
   \usepackage[unicode,
@@ -75,7 +75,7 @@
 \makeindex
 
 \setlength\hfuzz{15pt}  % dont make so many
-\hbadness=7000          % over and under full box warnings
+\hbadness=9000          % over and under full box warnings
 
 
 \setlength\oddsidemargin{72pt}
@@ -131,15 +131,15 @@
 %
 %  Класс |disser| был создан в результате объединения множества дополнений и
 %  исправлений для |extreport|, написанных автором при оформлении
-%  бакалаврской и магистерской работ по физике. Основной целью являлось
-%  устранение одного из главных недостатков стандартных классов ---
-%  отсутствия возможности прямого изменения формата элементов титульного
+%  бакалаврской и магистерской работ, а также кандидатской диссертации.
+%  Основной целью являлось устранение одного из главных недостатков стандартных
+%  классов "--- отсутствия возможности прямого изменения формата элементов титульного
 %  листа, заголовков и записей в автоматически генерируемых списках
-%  (содержание, список иллюстраций, список таблиц). Для этого введен ряд
-%  высокоуровневых команд, которые описаны в комментариях к исходным текстам.
-%  К сожалению, на данный момент пользовательская документация по этим
-%  командам отсутствует. Пример их использования можно увидеть в исходном тексте
-%  класса |gost732|.
+%  (содержание, список иллюстраций, список таблиц). Для этого переопределена часть команд,
+%  входящих в ядро \LaTeX{} и введен ряд высокоуровневых команд, которые описаны в
+%  комментариях к исходным текстам. К сожалению, на данный момент пользовательская
+%  документация по этим командам отсутствует. Пример их использования можно увидеть
+%  в исходном тексте класса |gost732|.
 %
 %  \section{Руководство по использованию}
 %
@@ -179,8 +179,7 @@
 %  \tabcolsep=6pt
 %  \arraycolsep=0pt
 %
-%  \begin{table}[!h]
-%  \begin{tabular}{p{0.3\linewidth}|p{0.55\linewidth}}
+%  \begin{longtable}{p{0.3\linewidth}|p{0.55\linewidth}}
 %  \hline\hline
 %    \textbf{a4paper}, a5paper, b5paper &
 %    Размеры листов.
@@ -238,12 +237,15 @@
 %    libcat &
 %    Включает вывод номера УДК на титульном листе.
 %  \\\hline
+%    facsimile &
+%    Включает отображение подписей диссертанта и ученого секретаря на
+%    титульных листах автореферата и диссертации (только для кандидатских и докторских).
+%  \\\hline
 %    mtpro &
 %    Поддержка шрифтов MathTime Pro. При наличии опции |times| вместо
 %    пакета |txfonts| подключается пакет |mtpro|.
 %  \\\hline\hline
-%  \end{tabular}
-%  \end{table}
+%  \end{longtable}
 %
 %  \textbf{Примечание:} жирным шрифтом выделены опции, используемые
 %  по умолчанию.
@@ -371,7 +373,7 @@
 
 %<*disser>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{disser}[2007/11/29 Document class for dissertations.]
+\ProvidesClass{disser}[2008/11/11 1.1.0 Document class for dissertations.]
 
 %    \end{macrocode}
 % Расширение включаемых в |disser.cls| файлов.
@@ -407,6 +409,7 @@
 \newif\ifDis@doctor
 \newif\ifDis@autoref
 \newif\ifDis@libcat
+\newif\ifDis@facsimile
 
 %    \end{macrocode}
 % \item |true|, если подключается |hyperref|.
@@ -441,6 +444,7 @@
 \Dis@subffalse
 \Dis@hreffalse
 \Dis@libcatfalse
+\Dis@facsimilefalse
 
 %    \end{macrocode}
 %
@@ -465,6 +469,11 @@
 % Показывать номер УДК на титульном листе.
 %    \begin{macrocode}
 \DeclareOption{libcat}{\Dis@libcattrue}
+%    \end{macrocode}
+% Включить отображение подписей диссертанта и ученого секретаря на
+% титульных листах автореферата и диссертации (для кандидатских и докторских).
+%    \begin{macrocode}
+\DeclareOption{facsimile}{\Dis@facsimiletrue}
 
 %    \end{macrocode}
 % Настройка опций.

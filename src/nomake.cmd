@@ -9,18 +9,23 @@ if "%CMDEXTVERSION%"=="" (
 )
 
 if "%target%"=="" set target=disser
-
 set subclass=gost732
-
 if "%texmf%"=="" set texmf=%programfiles%\miktex
-if "%destdir%"=="" set destdir=%texmf%\tex\latex\%target%
+
+if "%clsdir%"=="" set clsdir=%texmf%\tex\latex\%target%
+if "%bstdir%"=="" set bstdir=%texmf%\bibtex\bst\%target%
 if "%docdir%"=="" set docdir=%texmf%\doc\latex\%target%
+
+if "%clsfiles%"=="" set clsfiles=*.cls *.rtx
+if "%docfiles%"=="" set docfiles=*.dvi *.pdf
+if "%bstfiles%"=="" set bstfiles=*.bst
+
 if "%clfiles%"=="" set clfiles=*.rtx *.cls *.log *.out *.aux *.dvi *.ind ^
-*.idx *.ilg *.glo *.toc *.ind *.bak *.bbl *.blg *.pdf *.sav *.ps
+*.idx *.ilg *.glo *.toc *.ind *.bak *.bbl *.blg *.pdf *.sav *.ps *.bst
 
 if "%latex%"=="" set latex=latex
 if "%pdflatex%"=="" set pdflatex=pdflatex
-set mi=makeindex
+if "%mi%"=="" set mi=makeindex
 
 if "%latexflags%"=="" set latexflags=-src-specials
 if "%pdflatexflags%"=="" set pdflatexflags=""
@@ -84,10 +89,12 @@ goto :eof
 if "%1"=="install" (
 :install
 	if not exist %target%.cls call :all
-	if not exist "%destdir%" md "%destdir%"
+	if not exist "%clsdir%" md "%clsdir%"
 	if not exist "%docdir%" md "%docdir%"
-	xcopy /y /f *.rtx "%destdir%"
-	xcopy /y /f *.cls "%destdir%"
+	if not exist "%bstdir%" md "%bstdir%"
+	xcopy /y /f *.cls "%clsdir%"
+	xcopy /y /f *.rtx "%clsdir%"
+	xcopy /y /f %target%.bst "%bstdir%"
 	xcopy /y /f *.dvi "%docdir%"
 	xcopy /y /f *.pdf "%docdir%"
 goto :eof

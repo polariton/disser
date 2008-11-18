@@ -1,10 +1,16 @@
-\documentclass[14pt,autoref,href]{disser}
+\documentclass[14pt,autoref,href
+%,fixint=false
+,facsimile
+]{disser}
+
 \usepackage[a4paper, nohead, includefoot, mag=1000,
             margin=2cm, footskip=1cm]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{tabularx}
+\graphicspath{{fig/}}
+
 % Включение общего текста, используемого в автореферате и диссертации
 \input{common}
 % --------------------------------------------------------------------------
@@ -12,8 +18,6 @@
 \institution{
 Название организации
 }
-% Номер УДК
-\libcatnum{111.222.333}
 % Тема
 \topic{Тема диссертации}
 \title{АВТОРЕФЕРАТ\\
@@ -34,6 +38,9 @@
 % Город и год
 \city{Санкт-Петербург}
 \date{\number\year}
+
+% Факсимиле диссертанта
+%\renewcommand\facsimile{\vskip 6pt\includegraphics[width=4cm]{your-facsimile}}
 
 \maketitle
 
@@ -71,10 +78,14 @@
 \vfill\noindent
 Ученый секретарь\\
 диссертационного совета,\\
-\emph{ученая степень}, \emph{ученое звание}\hfill \emph{фамилия, имя, отчество}
+\emph{ученая степень}, \emph{ученое звание}%
+% факсимиле ученого секретаря
+\hfill\raisebox{-4pt}{\includegraphics[width=3cm]{sec-facsimile}}\hfill
+\emph{фамилия, имя, отчество}
 
 \clearpage
-\section*{Общая характеристика работы}
+
+\nsection{Общая характеристика работы}
 
 % Актуальность работы
 \actualitysection
@@ -112,9 +123,12 @@
 \structsection
 \structtext
 
-\section*{Содержание работы}
+\nsection{Содержание работы}
 
-\textbf{Во Введении} обоснована актуальность диссертационной работы, сформулирована цель и аргументирована научная новизна исследований, показана практическая значимость полученных результатов, представлены выносимые на защиту научные положения.
+\textbf{Во Введении} обоснована актуальность диссертационной работы,
+сформулирована цель и аргументирована научная новизна исследований, показана
+практическая значимость полученных результатов, представлены выносимые на
+защиту научные положения.
 
 \textbf{В первой главе}
 
@@ -122,8 +136,8 @@
 
 \textbf{В Заключении}
 
-\section*{Список публикаций}
+\nsection{Список публикаций}
 
-\section*{Цитированная литература}
+\nsection{Цитированная литература}
 
 \end{document}
