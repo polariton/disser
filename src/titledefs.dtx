@@ -231,12 +231,12 @@
 %    \begin{macrocode}
 \def\yearname{\cyr\cyrg.}
 %    \end{macrocode}
-% \DescribeMacro{\introsect}\index{Макросы!\verb*+\introsect+}
-% \DescribeMacro{\postintrosect}\index{Макросы!\verb*+\postintrosect+}
+% \DescribeMacro{\commonsect}\index{Макросы!\verb*+\commonsect+}
+% \DescribeMacro{\postcommonsect}\index{Макросы!\verb*+\postcommonsect+}
 % Стиль заголовков общего текста <<Введения>> и автореферата.
 %    \begin{macrocode}
-\let\introsect=\textbf
-\def\postintrosect{\ }
+\let\commonsect=\textbf
+\def\postcommonsect{\ }
 %    \end{macrocode}
 %
 % \subsubsection{Научный руководитель}
@@ -367,15 +367,21 @@
 \newcommand\datefield[1][\number\year]{<<\rule[0pt]{1cm}{.5pt}\,>>%
 \rule[0pt]{3cm}{0.5pt}\ #1~\yearname}
 %    \end{macrocode}
-% \DescribeMacro{\mkintrosect}\index{Макросы!\verb*+\mkintrosect+}
-% Генератор команд для оформления общего текста раздела <<Введение>>
-% диссертации и автореферата.
+% \DescribeMacro{\mkcommonsect}\index{Макросы!\verb*+\mkcommonsect+}
+% Генератор команд для общего текста диссертации и автореферата.
 %    \begin{macrocode}
-\newcommand\mkintrosect[3]{%
+\newcommand\mkcommonsect[3]{%
   \@namedef{#1head}{#2}
-  \@namedef{#1section}{\introsect{\expandafter\csname #1head\endcsname}\postintrosect}
+  \@namedef{#1section}{\commonsect{\expandafter\csname #1head\endcsname}\postcommonsect}
   \@namedef{#1text}{#3}
 }
+\let\makeintrosect=\makecommonsect
+
+%    \end{macrocode}
+% \DescribeMacro{\facsimile}\index{Макросы!\verb*+\facsimile+}
+% Команда для включения графического файла с подписью диссертанта.
+%    \begin{macrocode}
+\newcommand\facsimile{\vskip 6pt\includegraphics[width=3cm]{facsimile}}
 
 %</titledefs>
 %    \end{macrocode}
