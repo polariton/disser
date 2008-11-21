@@ -5,15 +5,18 @@
 
 TARGET?=disser
 SUBCLASS=gost732
+BST=disser-bst
+
 TEXMF?=/usr/share/texmf
-
 CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
-BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
 DOCDIR?=$(TEXMF)/doc/latex/$(TARGET)
+BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
+BSTDOCDIR?=$(TEXMF)/doc/bibtex/$(TARGET)
 
-CLSFILES?=*.cls *.rtx
-BSTFILES?=*.bst
-DOCFILES?=*.dvi *.pdf
+CLSFILES?=$(TARGET).cls *.rtx $(SUBCLASS).cls
+BSTFILES?=$(TARGET).bst
+DOCFILES?=$(TARGET).dvi $(SUBCLASS).dvi $(TARGET).pdf $(SUBCLASS).pdf
+BSTDOCFILES?=$(BST).dvi $(BST).pdf
 
 CLEXT?= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
 CLFILES?=$(CLSFILES) $(BSTFILES) $(DOCFILES) $(CLEXT)
@@ -31,17 +34,19 @@ class: *.cls
 
 doc: dvi pdf
 
-dvi: $(TARGET).dvi $(SUBCLASS).dvi
+dvi: $(TARGET).dvi $(SUBCLASS).dvi $(BST).dvi
 
-pdf: $(TARGET).pdf $(SUBCLASS).pdf
+pdf: $(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf
 
 install: all
 	mkdir -p $(CLSDIR)
 	mkdir -p $(BSTDIR)
 	mkdir -p $(DOCDIR)
+	mkdir -p $(BSTDOCDIR)
 	cp $(CLSFILES) $(CLSDIR)
 	cp $(BSTFILES) $(BSTDIR)
 	cp $(DOCFILES) $(DOCDIR)
+	cp $(BSTDOCFILES) $(BSTDOCDIR)
 
 clean:
 	rm -f $(CLFILES)

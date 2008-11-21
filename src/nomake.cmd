@@ -10,15 +10,19 @@ if "%CMDEXTVERSION%"=="" (
 
 if "%target%"=="" set target=disser
 set subclass=gost732
+set bst=disser-bst
+
 if "%texmf%"=="" set texmf=%programfiles%\miktex
 
 if "%clsdir%"=="" set clsdir=%texmf%\tex\latex\%target%
 if "%bstdir%"=="" set bstdir=%texmf%\bibtex\bst\%target%
 if "%docdir%"=="" set docdir=%texmf%\doc\latex\%target%
+if "%bstdocdir%"=="" set bstdocdir=%texmf%\doc\bibtex\%target%
 
 if "%clsfiles%"=="" set clsfiles=*.cls *.rtx
-if "%docfiles%"=="" set docfiles=*.dvi *.pdf
-if "%bstfiles%"=="" set bstfiles=*.bst
+if "%docfiles%"=="" set docfiles=%target%.dvi %subclass%.pdf %target%.pdf %subclass%.pdf
+if "%bstdocfiles%"=="" set bstdocfiles=%bst%.dvi %bst%.pdf
+if "%bstfiles%"=="" set bstfiles=%target%.bst
 
 if "%clfiles%"=="" set clfiles=*.rtx *.cls *.log *.out *.aux *.dvi *.ind ^
 *.idx *.ilg *.glo *.toc *.ind *.bak *.bbl *.blg *.pdf *.sav *.ps *.bst
@@ -73,6 +77,8 @@ if "%1"=="dvi" (
 	%latex% %latexflags% %target%.dtx
 	%latex% %latexflags% %subclass%.dtx
 	%latex% %latexflags% %subclass%.dtx
+	%latex% %latexflags% %bst%.dtx
+	%latex% %latexflags% %bst%.dtx
 goto :eof
 )
 
@@ -83,6 +89,8 @@ if "%1"=="pdf" (
 	%pdflatex% %pdflatexflags% %target%.dtx
 	%pdflatex% %pdflatexflags% %subclass%.dtx
 	%pdflatex% %pdflatexflags% %subclass%.dtx
+	%pdflatex% %pdflatexflags% %bst%.dtx
+	%pdflatex% %pdflatexflags% %bst%.dtx
 goto :eof
 )
 
@@ -92,11 +100,11 @@ if "%1"=="install" (
 	if not exist "%clsdir%" md "%clsdir%"
 	if not exist "%docdir%" md "%docdir%"
 	if not exist "%bstdir%" md "%bstdir%"
-	xcopy /y /f *.cls "%clsdir%"
-	xcopy /y /f *.rtx "%clsdir%"
-	xcopy /y /f %target%.bst "%bstdir%"
-	xcopy /y /f *.dvi "%docdir%"
-	xcopy /y /f *.pdf "%docdir%"
+	if not exist "%bstdocdir%" md "%bstdocdir%"
+	for %%f in (%clsfiles%) do xcopy /y /f %%f "%clsdir%"
+	for %%f in (%docfiles%) do xcopy /y /f %%f "%docdir%"
+	for %%f in (%bstfiles%) do xcopy /y /f %%f "%bstdir%"
+	for %%f in (%bstdocfiles%) do xcopy /y /f %%f "%bstdocdir%"
 goto :eof
 )
 

@@ -1,6 +1,4 @@
-% \endinput
-%    \begin{macrocode}
-%<*disser-bst>
+% \iffalse meta-comment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% This bibliography style attempts
@@ -23,6 +21,119 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%<*driver>
+\ProvidesFile{disser-bst.drv}[2008/11/11 1.0.0 GOST 7.1-84 implementation.]
+
+\documentclass{ltxdoc}
+\usepackage[a4paper,includehead,includefoot,mag=1000,
+            left=4cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{ifpdf,indentfirst}
+
+\ifpdf
+  \usepackage[unicode,
+    pdftitle = {Documented source code of the disser.bst},
+    pdfauthor = {Stanislav Kruchinin},
+    pdfsubject = {GOST 7.1-84},
+    pdfstartview = {FitH},
+    pdfborder = {0 0 0},
+    bookmarksopen = true,
+    bookmarksnumbered = true,
+    bookmarksopenlevel = 2]{hyperref}
+  \usepackage{cmap}
+\else
+  \usepackage[hypertex]{hyperref}
+\fi
+
+\let\package\textsf
+\IfFileExists{pscyr.sty}{%
+  \usepackage{pscyr}
+  \renewcommand\ttdefault{cmtt}
+  \renewcommand\rmdefault{ftm}
+}{}
+\IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = black, citecolor=blue,
+  filecolor  = blue, menucolor=blue,
+  pagecolor  = blue, urlcolor=blue
+}
+
+%\OnlyDescription                  % uncomment to suppress code line listing
+\RecordChanges                    % uncomment for a change history
+%\EnableCrossrefs    % uncomment for command index
+
+\MakeShortVerb{\|}
+
+\begin{document}
+  \sloppy
+  \PrintChanges
+  \DocInput{disser-bst.dtx}
+\end{document}
+%</driver>
+% \fi
+% \GetFileInfo{disser-bst.drv}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \title{Стиль верстки библиографических ссылок \texttt{disser.bst}}
+% \date{Версия \fileversion\\[6pt]\filedate}
+% \author{Станислав Кручинин\\[6pt]
+% \normalsize E-mail:
+% \href{mailto:stanislav.kruchinin@gmail.com}
+% {\texttt{stanislav.kruchinin@gmail.com}}}
+%
+% \maketitle
+%
+% \tableofcontents
+%
+% \section{Введение}
+%
+%  В состав пакета начиная с версии 1.1.0 включен стиль для оформления
+%  библиографических ссылок |disser.bst|. Данный стиль представляет собой
+%  переработанную версию стиля |gost71u.bst| Максима Полякова, автора пакета |gost|.
+%  Создание |disser.bst| обусловлено следующей причиной: пакет |gost| более не
+%  поддерживается автором, а стили, входящие в него, противоречат некоторым
+%  требованиям, предъявляемым диссертационными советами к библиографическим ссылкам.
+%
+%  Основные отличия |disser.bst| от |gost71u.bst|:
+%
+%  \begin{enumerate}
+%  \item Инициалы авторов всегда печатаются перед фамилией.
+%  \item Список авторов (независимо от их количества) всегда печатается перед
+%  названием источника.
+%  \item Отсутствует поддержка украинского языка.
+%  \end{enumerate}
+%
+%  \section{Руководство по использованию}
+%
+%  Для использования |disser.bst| необходима версия \BibTeX{} с поддержкой
+%  8-битных символов (|bibtex8|). В зависимости от кодировки, использованной
+%  в bib-файле, необходимо использовать тот или иной файл с описанием кодовой
+%  страницы и порядка сортировки (csf-файл), например, |koi8r.csf| или
+%  |cp1251.csf|. Примеры библиографических записей можно найти в файле |gost71u.pdf|.
+%  Перечисленные файлы входят в пакет |gost| и могут быть найдены в любом
+%  современном дистрибутиве \LaTeX{}.
+%
+%  Последовательность команд, используемая для полной сборки документа
+%  с библиографией:
+%  \begin{verbatim}
+%     latex <tex_file>
+%     bibtex8 -H -c <csf_file> <tex_file_basename>
+%     latex <tex_file>
+%     latex <tex_file>
+%  \end{verbatim}
+%  Здесь |<tex_file>| "--- файл документа, |<csf_file>| "--- файл описания кодовой страницы,
+%  |<tex_file_basename>| "--- имя файла документа без расширения.
+%
+%  \section{Исходный текст}\parindent=0pt
+%
+%    \begin{macrocode}
+
+%<*disser-bst>
 ENTRY
   { address
     annote
