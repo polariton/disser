@@ -9,6 +9,7 @@ if "%CMDEXTVERSION%"=="" (
 )
 
 if "%target%"=="" set target=thesis
+set bibfile=thesis.bib
 
 if "%arch%"=="" set arch=7z
 if "%bibtex%"=="" set bibtex=bibtex8
@@ -28,7 +29,6 @@ if "%archext%"=="" set archext=zip
 if "%archflags%"=="" set archflags=a -t%archext%
 if "%archive%"=="" set archive=%target%.%archext%
 
-if "%bibfile%"=="" set bibfile=%target%.bib
 if "%bibtexflags%"=="" set bibtexflags=-H -c cp1251
 
 if "%l2hflags%"=="" (
@@ -63,9 +63,10 @@ if "%1"=="" goto :eof
 if "%1"=="dvi" (
 :dvi
 	%latex% %latexflags% %target%.tex
+	pause
 	if exist %bibfile% (
-		%bibtex% %bibtexflags% %target%
-		%latex% %latexflags% %target%.tex
+		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
+		%latex% %texflags% %target%.tex
 	) else (
 		echo Warning: Bibliography file does not exist
 	)
@@ -76,9 +77,11 @@ goto :eof
 if "%1"=="pdf" (
 :pdf
 	%pdflatex% %pdflatexflags% %target%.tex
-	if exist %target%.bib (
-		%bibtex% %bibtexflags% %target%
+	if exist %bibfile% (
+		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
 		%pdflatex% %pdflatexflags% %target%.tex
+	) else (
+		echo Warning: Bibliography file does not exist
 	)
 	%pdflatex% %pdflatexflags% %target%.tex
 goto :eof
@@ -188,4 +191,3 @@ goto :eof
 if "%1" neq "" echo Don't know how to make %1
 :end
 shift & goto :start
-

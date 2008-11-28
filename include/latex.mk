@@ -4,6 +4,7 @@
 #
 
 TARGET?=thesis
+BIBFILE?=thesis.bib
 
 ARCH?=7z
 BIBTEX?=bibtex8
@@ -19,7 +20,6 @@ PSNUP?=psnup
 ARCHEXT?=zip
 ARCHFLAGS?=a -t$(ARCHEXT)
 ARCHIVE?=$(TARGET).$(ARCHEXT)
-BIBFILE?=$(TARGET).bib
 BIBTEXFLAGS?=-H -c cp1251
 
 L2HFLAGS?=-dir html -iso_language RU.RU -split 3 -short_index \
@@ -59,9 +59,8 @@ rtf: $(TARGET).rtf
 
 $(TARGET).dvi: $(TARGET).tex
 	$(LATEX) $(TEXFLAGS) $^
-	@if [ -f $(BIBFILE) ];\
-	then \
-		$(BIBTEX) $(BIBTEXFLAGS) $(TARGET) ;\
+	@if [ -f $(BIBFILE) ]; then \
+		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f; done ;\
 		$(LATEX) $(TEXFLAGS) $^ ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
@@ -80,9 +79,9 @@ $(TARGET)_book.ps: $(TARGET).ps
 
 $(TARGET).pdf: $(TARGET).tex
 	$(PDFLATEX) $(PDFLATEXFLAGS) $^
-	@if [ -f $(TARGET).bib ];\
+	@if [ -f $(BIBFILE) ];\
 	then \
-		$(BIBTEX) $(BIBTEXFLAGS) $(TARGET) ;\
+		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
 		$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
