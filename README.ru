@@ -4,23 +4,31 @@
 Пакет disser предназначен для верстки дипломов и диссертаций. Ориентирован 
 на руcскоязычных пользователей.
 
+
 Зависимости
 -----------
 
 Класс использует стронние пакеты. Для корректной сборки всех шаблонов 
-следует установить всё нижеперечисленное: amssymb, amsmath, graphicx, natbib, 
-wrapfig, pscyr, hyperref, hypernat, subfig, caption, cmap.
+следует установить всё нижеперечисленное: 
+amsfonts, amsmath, amssymb, caption, cmap, graphicx, hyperref, hypernat, 
+multibib, natbib, oberdiek, pscyr (or cyrtimes), txfonts (or mtpro), subfig, 
+wrapfig.
+
+В данном списке не указаны пакеты, предназначенные для поддержки русского 
+языка.
 
 
 Получение последней версии
 --------------------------
 
-Репозиторий проекта доступен по адресу
-http://disser.sourceforge.net/hg/disser/
+Репозиторий проекта доступен по следующим адресам
+http://freehg.org/u/stkr/disser
+http://mercurial.intuxication.org/hg/disser/
 
 Наиболее свежую версию пакета можно получить, скачав автоматически
-генерируемый архив
-http://disser.sourceforge.net/hg/disser/archive/tip.zip
+генерируемый архив:
+http://freehg.org/u/stkr/disser/archive/tip.zip
+http://mercurial.intuxication.org/hg/disser/archive/tip.zip
 
 
 Установка
@@ -71,7 +79,7 @@ http://disser.sourceforge.net/hg/disser/archive/tip.zip
 Лицензия
 --------
 
-Цопыригхт (ц) 2004-2008 Станислав Кручинин
+Цопыригхт (ц) 2004-2009 Станислав Кручинин
 
 Ит маы бе дистрибутед анд/ор модифиед ундер тхе
 цондитионс оф тхе ЛаТеХ Пройецт Публиц Лиценсе, еитхер версион 1.3
