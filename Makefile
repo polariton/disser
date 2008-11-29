@@ -4,12 +4,8 @@
 # 
 
 TARGET=disser
-VER?=1.0.5
-EXPORTDIR?=$(TARGET)-latest
 
-HG?=hg
-REPO?=http://disser.sourceforge.net/hg/disser/
-
+VER?=1.1.0
 ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
 
@@ -29,10 +25,6 @@ clean:
 
 doc:
 	@$(MAKE) -i -C src $@
-
-update:
-	rm -rf $(EXPORTDIR)
-	$(HG) clone $(REPO) $(EXPORTDIR)
 
 install:
 	@$(MAKE) -i -C src $@
@@ -67,4 +59,3 @@ help:
 	@echo "  srcdist    create source distribution"
 	@echo "  template   build templates"
 	@echo "  help       show help"
-	@echo "  update     download latest Mercurial repository"

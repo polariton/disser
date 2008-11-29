@@ -9,14 +9,10 @@ if "%CMDEXTVERSION%"=="" (
 )
 
 set target=disser
-if "%ver%"=="" set ver=1.0.5
-set exportdir=%target%-latest
 
+if "%ver%"=="" set ver=1.1.0
 set archext=zip
 set archive=%target%-%ver%.%archext%
-
-set hg=hg
-set repo=http://disser.sourceforge.net/hg/disser/
 
 set ftpscript=ftpscript~
 set ftpserver=ftp://upload.sourceforge.net
@@ -57,13 +53,6 @@ goto :eof
 if "%1"=="doc" (
 :doc
 	cd src & nomake doc & cd ..
-goto :eof
-)
-
-if "%1"=="update" (
-:update
-	if exist %exportdir% (del /s /f /q %exportdir% > nul)
-	%hg% export %repo% %exportdir%
 goto :eof
 )
 
@@ -114,7 +103,6 @@ if "%1"=="help" (
 	echo   sfupload   upload source distribution to Sourceforge
 	echo   srcdist    create source distribution
 	echo   template   build all templates
-	echo   update     download latest Mercurial repository
 goto :eof
 )
 
