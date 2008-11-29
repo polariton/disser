@@ -21,13 +21,13 @@ wrapfig.
 Получение последней версии
 --------------------------
 
-Репозиторий проекта доступен по следующим адресам
-http://freehg.org/u/stkr/disser
+Репозиторий проекта доступен по следующим адресам:
+http://freehg.org/u/sk/disser
 http://mercurial.intuxication.org/hg/disser/
 
 Наиболее свежую версию пакета можно получить, скачав автоматически
 генерируемый архив:
-http://freehg.org/u/stkr/disser/archive/tip.zip
+http://freehg.org/u/sk/disser/archive/tip.zip
 http://mercurial.intuxication.org/hg/disser/archive/tip.zip
 
 
