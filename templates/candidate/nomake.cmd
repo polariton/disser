@@ -18,7 +18,8 @@ goto :eof
 	set target=
 goto :eof
 ) else (
-	..\..\include\latex.nmk.cmd %*
+	call ..\..\include\latex.nmk.cmd %*
+	goto :eof
 )
 
 if "%1" neq "" echo Don't know how to make %1

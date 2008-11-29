@@ -15,4 +15,4 @@ if "%1"=="help" (
 )
 
 for %%i in (%subdirs%) do @cd %%i & nomake %1 %2 %3 %4 %5 %6 %7 %8 %9
-
+cd ..
