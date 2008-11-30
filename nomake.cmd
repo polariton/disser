@@ -11,12 +11,9 @@ if "%CMDEXTVERSION%"=="" (
 set target=disser
 
 if "%ver%"=="" set ver=1.1.0
+set hg=hg
 set archext=zip
 set archive=%target%-%ver%.%archext%
-
-set ftpscript=ftpscript~
-set ftpserver=ftp://upload.sourceforge.net
-set ftpdir=incoming
 
 if "%1"=="" (
 :default
@@ -46,7 +43,7 @@ if "%1"=="clean" (
 :clean
 	cd src & nomake clean
 	cd ..\templates & nomake clean
-	cd ..
+	cd ..\..
 goto :eof
 )
 
@@ -62,32 +59,19 @@ if "%1"=="install" (
 goto :eof
 )
 
-if "%1"=="template" (
-:template
-	cd templates & nomake & cd ..
-goto :eof
-)
-
-if "%1"=="sfupload" (
-:sfupload
-	if not exist %archive% call :srcdist
-
-	echo bin > %ftpscript%
-	echo passive >> %ftpscript%
-	echo cd /%ftpdir% >> %ftpscript%
-	echo put %archive% >> %ftpscript%
-	echo quit >> %ftpscript%
-
-	ftp -A -v -s:%ftpscript% %ftpserver% > nul
-	del /q %ftpscript%
-goto :eof
-)
-
 if "%1"=="srcdist" (
 :srcdist
 	if exist %archive% del /q %archive%
 	%hg% archive -X .hgignore -X .hg_archival.txt -X .hgtags -t %archext% %target%.%archext%
 	if exist %target%.%archext% move %target%.%archext% %archive%
+goto :eof
+)
+
+if "%1"=="template" (
+:template
+	set target=thesis
+	cd templates & nomake
+	cd ..\..
 goto :eof
 )
 
@@ -100,7 +84,6 @@ if "%1"=="help" (
 	echo   doc        build DVI and PDF versions of documentation
 	echo   help       show help
 	echo   install    install package and documentation
-	echo   sfupload   upload source distribution to Sourceforge
 	echo   srcdist    create source distribution
 	echo   template   build all templates
 goto :eof

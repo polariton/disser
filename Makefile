@@ -6,11 +6,9 @@
 TARGET=disser
 
 VER?=1.1.0
+HG?=hg
 ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
-
-FTPSERVER=upload.sourceforge.net
-FTPDIR=incoming
 
 class:
 	@$(MAKE) -i -C src
@@ -29,12 +27,6 @@ doc:
 install:
 	@$(MAKE) -i -C src $@
 
-template: 
-	@$(MAKE) -i -C templates
-
-sfupload: $(ARCHIVE)
-	ncftpput $(FTPSERVER) /$(FTPDIR) $^
-
 srcdist:
 	@if [ -f $(ARCHIVE) ];\
 	then \
@@ -48,6 +40,10 @@ srcdist:
 		mv $(TARGET).$(ARCHEXT) $(ARCHIVE);\
 	fi
 
+template:
+	set target=thesis
+	@$(MAKE) -i -C templates
+
 help:
 	@echo "List of targets:"
 	@echo "  all        build classes, documentation and templates"
@@ -55,7 +51,6 @@ help:
 	@echo "  clean      remove ouptut files"
 	@echo "  doc        build DVI and PDF versions of documentation"
 	@echo "  install    install package and documentation"
-	@echo "  sfupload   upload source distribution to Sourceforge"
 	@echo "  srcdist    create source distribution"
 	@echo "  template   build templates"
 	@echo "  help       show help"
