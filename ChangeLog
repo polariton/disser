@@ -1,6 +1,25 @@
 disser changelog
-Copyright (C) 2004-2008 Stanislav Kruchinin
+Copyright (C) 2004-2009 Stanislav Kruchinin
 -------------------------------------------
+
+Changes in version 1.1.0 (2008-12-01):
+
+Class:
++ New default bibliography style disser.bst.
++ New option "facsimile".
++ Option "times" now supports "mtpro" and "cyrtimes" packages.
++ Documentation: added some text about author's abstract and thesis preparation.
++ Documentation: many new commands were added to index.
+
+Templates:
++ Major improvements in candidate and doctor templates.
++ Author's abstract now supports two separate bibliographies using 
+  "multibib" package.
++ Support for applicant's and secretary's facsimile.
++ New Makefile commands "all" and "allpdf" that perform consecutive build of 
+  thesis.tex and autoref.tex.
+* Major fixes in Makefile's.
+
 
 Changes in version 1.0.5 (2008-05-01):
 
