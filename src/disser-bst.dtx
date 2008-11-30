@@ -22,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %<*driver>
-\ProvidesFile{disser-bst.drv}[2008/11/11 1.0.0 Bibliography style, GOST 7.1-84 implementation.]
+\ProvidesFile{disser-bst.drv}[2008/12/01 1.0.0 Bibliography style for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includehead,includefoot,mag=1000,
@@ -75,7 +75,7 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% \title{Стиль верстки библиографических ссылок \texttt{disser.bst}}
+% \title{\texttt{disser.bst} "--- стиль библиографических ссылок}
 % \date{Версия \fileversion\\[6pt]\filedate}
 % \author{Станислав Кручинин\\[6pt]
 % \normalsize E-mail:
@@ -117,18 +117,35 @@
 %  Последовательность команд, используемая для полной сборки документа
 %  с библиографией:
 %  \begin{verbatim}
-%     latex <tex_file>
-%     bibtex8 -H -c <csf_file> <tex_file_basename>
-%     latex <tex_file>
-%     latex <tex_file>
+%    latex <tex_file>
+%    bibtex8 -H -c <csf_file> <tex_file_basename>
+%    latex <tex_file>
+%    latex <tex_file>
 %  \end{verbatim}
 %  Здесь |<tex_file>| "--- файл документа, |<csf_file>| "--- файл описания
 %  кодовой страницы, |<tex_file_basename>| "--- имя файла документа без расширения.
 %
-%  \section{Исходный текст}\parindent=0pt
+%  Данный стиль позволяет менять префикс номера ссылок, т.\,е. использовать
+%  ссылки вида [A1] вместо [1]. Эта возможность необходима поскольку в
+%  автореферате следует различать ссылки на работы соискателя и на внешние
+%  источники. Префикс номера ссылки определяется макросом |\BibPrefix|,
+%  значение которого должно быть задано до использования команды
+%  |\bibliographystyle|. Пример:
+%  \begin{verbatim}
+%    \def\BibPrefix{A}
+%    \bibliographystyle{disser}
+%    \bibliography{thesis}
+%  \end{verbatim}
+%  В данном случае ссылки на библиографию будут иметь вид [A$n$], где $n$ "---
+%  номер.
 %
+%  К сожалению, пакет |natbib| не <<сжимает>> ссылки, содержащие нецифровые
+%  символы. Поэтому ссылки вида [A1, A2, A3, A4] не преобразуются к более
+%  компактной форме [A1--A4]. В данный момент ведется работа над
+%  исправлением этого недостатка.
+%
+%  \section{Исходный текст}\parindent=0pt
 %    \begin{macrocode}
-
 %<*disser-bst>
 
 %    \end{macrocode}
