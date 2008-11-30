@@ -19,7 +19,7 @@ DOCFILES?=$(TARGET).dvi $(SUBCLASS).dvi $(TARGET).pdf $(SUBCLASS).pdf
 BSTDOCFILES?=$(BST).dvi $(BST).pdf
 
 CLEXT?= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
-CLFILES?=$(CLSFILES) $(BSTFILES) $(DOCFILES) $(CLEXT)
+CLFILES?=$(CLSFILES) $(BSTFILES) $(DOCFILES) $(BSTDOCFILES) $(CLEXT)
 
 LATEX?=latex
 PDFLATEX?=pdflatex
