@@ -11,15 +11,15 @@ Dependencies
 This class uses many third party packages. It is recommended to install all of 
 the following: 
 amsfonts, amsmath, amssymb, caption, cmap, graphicx, hyperref, hypernat, 
-multibib, natbib, oberdiek, pscyr (or cyrtimes), txfonts (or mtpro), 
-subfig, wrapfig.
+multibib, natbib, oberdiek, pscyr (or cyrtimes), subfig, txfonts (or mtpro), 
+wrapfig.
 
 
 Getting latest version
 ----------------------
 
 Project repository can be found at
-http://freehg.org/u/stkr/disser
+http://freehg.org/u/stkr/disser/
 http://mercurial.intuxication.org/hg/disser/
 
 The latest version of package can be obtained by downloading one of these

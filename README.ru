@@ -11,7 +11,7 @@
 Класс использует стронние пакеты. Для корректной сборки всех шаблонов 
 следует установить всё нижеперечисленное: 
 amsfonts, amsmath, amssymb, caption, cmap, graphicx, hyperref, hypernat, 
-multibib, natbib, oberdiek, pscyr (or cyrtimes), txfonts (or mtpro), subfig, 
+multibib, natbib, oberdiek, pscyr (или cyrtimes), subfig, txfonts (или mtpro), 
 wrapfig.
 
 В данном списке не указаны пакеты, предназначенные для поддержки русского 
@@ -22,7 +22,7 @@ wrapfig.
 --------------------------
 
 Репозиторий проекта доступен по следующим адресам:
-http://freehg.org/u/sk/disser
+http://freehg.org/u/sk/disser/
 http://mercurial.intuxication.org/hg/disser/
 
 Наиболее свежую версию пакета можно получить, скачав автоматически
