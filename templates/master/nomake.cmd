@@ -9,7 +9,7 @@ goto :eof
 	..\..\include\latex.nmk.cmd pdf
 goto :eof
 ) else (
-	call ..\..\include\latex.nmk.cmd %*
+	..\..\include\latex.nmk.cmd %*
 )
 
 if "%1" neq "" echo Don't know how to make %1

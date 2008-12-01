@@ -18,7 +18,7 @@ goto :eof
 	set target=
 goto :eof
 ) else (
-	call ..\..\include\latex.nmk.cmd %*
+	..\..\include\latex.nmk.cmd %*
 	goto :eof
 )
 
