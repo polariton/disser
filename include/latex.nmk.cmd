@@ -63,7 +63,6 @@ if "%1"=="" goto :eof
 if "%1"=="dvi" (
 :dvi
 	%latex% %latexflags% %target%.tex
-	pause
 	if exist %bibfile% (
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
 		%latex% %texflags% %target%.tex
