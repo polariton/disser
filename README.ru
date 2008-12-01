@@ -22,12 +22,11 @@ wrapfig.
 --------------------------
 
 Репозиторий проекта доступен по следующим адресам:
-http://freehg.org/u/sk/disser/
 http://mercurial.intuxication.org/hg/disser/
+http://freehg.org/u/sk/disser/
 
 Наиболее свежую версию пакета можно получить, скачав автоматически
 генерируемый архив:
-http://freehg.org/u/sk/disser/archive/tip.zip
 http://mercurial.intuxication.org/hg/disser/archive/tip.zip
 
 
