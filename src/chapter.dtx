@@ -37,8 +37,8 @@
 %
 % \DescribeMacro{\chapteralign}\index{Макросы!\verb*+\chapteralign+}
 % \DescribeMacro{\chapterfont}\index{Макросы!\verb*+\chapterfont+}
-% \DescribeMacro{\prechapter}\index{Макросы!\verb*+\prechapter+}
-% \DescribeMacro{\postchapter}\index{Макросы!\verb*+\postchapter+}
+% \DescribeMacro{\beforechapter}\index{Макросы!\verb*+\beforechapter+}
+% \DescribeMacro{\afterchapter}\index{Макросы!\verb*+\afterchapter+}
 %    \begin{macrocode}
 \providecommand\thechapteralign{\centering}
 \providecommand\thechapterfont{\Large}
@@ -47,8 +47,8 @@
 
 \providecommand\chapteralign{\centering}
 \providecommand\chapterfont{\Large\bfseries}
-\providecommand\prechapter{}
-\providecommand\postchapter{\par\nobreak\vskip 20\p@}
+\providecommand\beforechapter{}
+\providecommand\afterchapter{\par\nobreak\vskip 20\p@}
 
 %    \end{macrocode}
 % Стиль страницы, с которой начинается глава.
@@ -125,7 +125,7 @@
         {\thechapterfont\thechapteralign\@seccntformat{chapter}}
       \fi
       \interlinepenalty\@M
-      \chapterfont\chapteralign\prechapter #1\postchapter
+      \chapterfont\chapteralign\beforechapter #1\afterchapter
   }
 }
 
@@ -152,7 +152,7 @@
   {%
     \parindent \z@ \raggedright
     \normalfont\interlinepenalty\@M
-    \chapteralign{\chapterfont\prechapter #1\postchapter}
+    \chapteralign{\chapterfont\beforechapter #1\afterchapter}
   }
 }
 %    \end{macrocode}
@@ -209,8 +209,8 @@
 %
 % \DescribeMacro{\appendixalign}\index{Макросы!\verb*+\appendixalign+}
 % \DescribeMacro{\appendixfont}\index{Макросы!\verb*+\appendixfont+}
-% \DescribeMacro{\preappendix}\index{Макросы!\verb*+\preappendix+}
-% \DescribeMacro{\postappendix}\index{Макросы!\verb*+\postappendix+}
+% \DescribeMacro{\beforeappendix}\index{Макросы!\verb*+\beforeappendix+}
+% \DescribeMacro{\afterappendix}\index{Макросы!\verb*+\afterappendix+}
 %    \begin{macrocode}
 \providecommand\theappendixalign{\centering}
 \providecommand\theappendixfont{\Large}
@@ -219,8 +219,8 @@
 
 \providecommand\appendixalign{\centering}
 \providecommand\appendixfont{\Large\bfseries}
-\providecommand\preappendix{}
-\providecommand\postappendix{\par\nobreak\vskip 20\p@}
+\providecommand\beforeappendix{}
+\providecommand\afterappendix{\par\nobreak\vskip 20\p@}
 %    \end{macrocode}
 %
 % \DescribeMacro{\appendix}\index{Макросы!\verb*+\appendix+}
@@ -250,8 +250,8 @@
 
   \let\oldchapteralign=\chapteralign
   \let\oldchapterfont=\chapterfont
-  \let\oldprechapter=\prechapter
-  \let\oldpostchapter=\postchapter
+  \let\oldbeforechapter=\afterchapter
+  \let\oldafterchapter=\afterchapter
   \let\oldthechapter=\thechapter
 
 %    \end{macrocode}
@@ -272,8 +272,8 @@
 
   \renewcommand\chapteralign{\appendixalign}
   \renewcommand\chapterfont{\appendixfont}
-  \renewcommand\prechapter{\preappendix}
-  \renewcommand\postchapter{\postappendix}
+  \renewcommand\beforechapter{\beforeappendix}
+  \renewcommand\afterchapter{\afterappendix}
 
   \gdef\thechapter{\theappendix}
 }
@@ -298,8 +298,8 @@
 
   \let\chapteralign=\oldchapteralign
   \let\chapterfont=\oldchapterfont
-  \let\prechapter=\oldprechapter
-  \let\postchapter=\oldpostchapter
+  \let\beforechapter=\oldbeforechapter
+  \let\afterchapter=\oldafterchapter
 
   \gdef\thechapter{\oldthechapter}
 }

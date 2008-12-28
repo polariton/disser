@@ -61,8 +61,8 @@
 % \DescribeMacro{\postthepart}\index{Макросы!\verb*+\postthepart+}
 % \DescribeMacro{\partalign}\index{Макросы!\verb*+\partalign+}
 % \DescribeMacro{\partfont}\index{Макросы!\verb*+\partfont+}
-% \DescribeMacro{\prepart}\index{Макросы!\verb*+\prepart+}
-% \DescribeMacro{\postpart}\index{Макросы!\verb*+\postpart+}
+% \DescribeMacro{\beforepart}\index{Макросы!\verb*+\beforepart+}
+% \DescribeMacro{\afterpart}\index{Макросы!\verb*+\afterpart+}
 % Параметры номера и названия: выравнивание, шрифт, отступы, текст до и после.
 %    \begin{macrocode}
 \providecommand\thepartalign{\centering}
@@ -72,8 +72,8 @@
 
 \providecommand\partalign{\centering}
 \providecommand\partfont{\huge\bfseries}
-\providecommand\prepart{}
-\providecommand\postpart{\par}
+\providecommand\beforepart{}
+\providecommand\afterpart{\par}
 
 %    \end{macrocode}
 % \DescribeMacro{\partpagestyle}\index{Макросы!\verb*+\partpagestyle+}
@@ -132,7 +132,7 @@
 %    \end{macrocode}
 % Название.
 %    \begin{macrocode}
-    {\partfont\partalign\prepart #2\postpart}%
+    {\partfont\partalign\beforepart #2\afterpart}%
   }
   \@endpart%
 }
@@ -144,7 +144,7 @@
 %    \begin{macrocode}
 \def\@spart#1{%
   \partalign{\interlinepenalty \@M%
-    \partfont\prepart #1\postpart}%
+    \partfont\beforepart #1\afterpart}%
   \@endpart
 }
 
