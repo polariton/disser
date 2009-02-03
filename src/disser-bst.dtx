@@ -212,6 +212,9 @@ STRINGS { s t }
 
 STRINGS { curlanguage }
 
+%    \end{macrocode}
+% Изменение текущего языка.
+%    \begin{macrocode}
 FUNCTION {change.language}
 { booklanguage empty$
   {""}
@@ -224,6 +227,9 @@ FUNCTION {change.language}
   if$
 }
 
+%    \end{macrocode}
+% Базовая функция вывода библиографической записи.
+%    \begin{macrocode}
 FUNCTION {output.nonnull}
 %%%{ 's :=
 { swap$
@@ -263,6 +269,9 @@ FUNCTION {output.nonnull}
 %%%  s
 }
 
+%    \end{macrocode}
+% Обертки для |output.nonnull|.
+%    \begin{macrocode}
 FUNCTION {output}
 { duplicate$ empty$
     'pop$
@@ -334,6 +343,9 @@ FUNCTION {add.blank}
 { " " * before.all 'output.state :=
 }
 
+%    \end{macrocode}
+% Логические операторы.
+%    \begin{macrocode}
 FUNCTION {not}
 {   { #0 }
     { #1 }
@@ -407,7 +419,10 @@ FUNCTION {emphasize}
 FUNCTION {space.word}
 { " " swap$ * " " * }
 
-FUNCTION {bbl.edby}    %  { "\bbledby{}" }
+%    \end{macrocode}
+% Сокращения.
+%    \begin{macrocode}
+FUNCTION {bbl.edby} % { "\bbledby{}" }
 {
   curlanguage "english" =
   {"Ed. by "}
@@ -429,7 +444,7 @@ FUNCTION {bbl.cmplr}
   if$
 }
 
-FUNCTION {bbl.edition} %  { "\bbledition{}" }
+FUNCTION {bbl.edition} % { "\bbledition{}" }
 {
   curlanguage "english" =
   {"edition"}
@@ -440,7 +455,7 @@ FUNCTION {bbl.edition} %  { "\bbledition{}" }
   if$
 }
 
-FUNCTION {bbl.vvolume} %  { "\bblVolume{}" }
+FUNCTION {bbl.vvolume} % { "\bblVolume{}" }
 {
   curlanguage "english" =
   {"Volume"}
@@ -451,7 +466,7 @@ FUNCTION {bbl.vvolume} %  { "\bblVolume{}" }
   if$
 }
 
-FUNCTION {bbl.vvol}    %  { "\bblVol{}" }
+FUNCTION {bbl.vvol} % { "\bblVol{}" }
 {
   curlanguage "english" =
   {"Vol."}
@@ -462,7 +477,7 @@ FUNCTION {bbl.vvol}    %  { "\bblVol{}" }
   if$
 }
 
-FUNCTION {bbl.iissue}  %  { "\bblIssue{}" }
+FUNCTION {bbl.iissue} % { "\bblIssue{}" }
 {
   curlanguage "english" =
   {"Issue"}
@@ -473,7 +488,7 @@ FUNCTION {bbl.iissue}  %  { "\bblIssue{}" }
   if$
 }
 
-FUNCTION {bbl.iiss}  %  { "\bblIss{}" }
+FUNCTION {bbl.iiss} % { "\bblIss{}" }
 {
   curlanguage "english" =
   {"Iss."}
@@ -484,7 +499,7 @@ FUNCTION {bbl.iiss}  %  { "\bblIss{}" }
   if$
 }
 
-FUNCTION {bbl.of}      %  { "\bblof{}" }
+FUNCTION {bbl.of} % { "\bblof{}" }
 {
   curlanguage "english" =
   {"of"}
@@ -495,7 +510,7 @@ FUNCTION {bbl.of}      %  { "\bblof{}" }
   if$
 }
 
-FUNCTION {bbl.etal}      %  { "\bblof{}" }
+FUNCTION {bbl.etal} % { "\bblof{}" }
 {
   curlanguage "english" =
   {"et~al."}
@@ -506,7 +521,7 @@ FUNCTION {bbl.etal}      %  { "\bblof{}" }
   if$
 }
 
-FUNCTION {bbl.nnumber} %  { "\bblNumber{}" }
+FUNCTION {bbl.nnumber} % { "\bblNumber{}" }
 {
   curlanguage "english" =
   {"Number"}
@@ -517,7 +532,7 @@ FUNCTION {bbl.nnumber} %  { "\bblNumber{}" }
   if$
 }
 
-FUNCTION {bbl.number}  %  { "\bblnumber{}" }
+FUNCTION {bbl.number} % { "\bblnumber{}" }
 {
   curlanguage "english" =
   {"number"}
@@ -528,7 +543,7 @@ FUNCTION {bbl.number}  %  { "\bblnumber{}" }
   if$
 }
 
-FUNCTION {bbl.nr}     %   { "\bblno{}" }
+FUNCTION {bbl.nr} % { "\bblno{}" }
 {
   curlanguage "english" =
   {"no."}
@@ -539,7 +554,7 @@ FUNCTION {bbl.nr}     %   { "\bblno{}" }
   if$
 }
 
-FUNCTION {bbl.nnr}     %   { "\bblno{}" }
+FUNCTION {bbl.nnr} % { "\bblno{}" }
 {
   curlanguage "english" =
   {"No."}
@@ -550,7 +565,7 @@ FUNCTION {bbl.nnr}     %   { "\bblno{}" }
   if$
 }
 
-FUNCTION {bbl.in}    %    { "\bblin{}" }
+FUNCTION {bbl.in} % { "\bblin{}" }
 {
   curlanguage "english" =
   {"in"}
@@ -561,7 +576,7 @@ FUNCTION {bbl.in}    %    { "\bblin{}" }
   if$
 }
 
-FUNCTION {bbl.iin}  %     { "\bblIn{}" }
+FUNCTION {bbl.iin} % { "\bblIn{}" }
 {
   curlanguage "english" =
   {"In"}
@@ -572,7 +587,7 @@ FUNCTION {bbl.iin}  %     { "\bblIn{}" }
   if$
 }
 
-FUNCTION {bbl.pages}    % { "\bblpp." }
+FUNCTION {bbl.pages} % { "\bblpp." }
 {
   curlanguage "english" =
   {"pp."}
@@ -583,7 +598,7 @@ FUNCTION {bbl.pages}    % { "\bblpp." }
   if$
 }
 
-FUNCTION {bbl.page}   %   { "\bblp."
+FUNCTION {bbl.page} % { "\bblp." }
 {
   curlanguage "english" =
   {"p."}
@@ -594,7 +609,7 @@ FUNCTION {bbl.page}   %   { "\bblp."
   if$
 }
 
-FUNCTION {bbl.ppages}%    { "\bblPp." }
+FUNCTION {bbl.ppages} % { "\bblPp." }
 {
   curlanguage "english" =
   {"Pp."}
@@ -605,7 +620,7 @@ FUNCTION {bbl.ppages}%    { "\bblPp." }
   if$
 }
 
-FUNCTION {bbl.ppage}  %   { "\bblP." }
+FUNCTION {bbl.ppage} % { "\bblP." }
 {
   curlanguage "english" =
   {"P."}
@@ -616,11 +631,42 @@ FUNCTION {bbl.ppage}  %   { "\bblP." }
   if$
 }
 
+FUNCTION {bbl.techrep}
+{
+  curlanguage "english" =
+  {"Tech. Rep."}
+    { curlanguage "russian" =
+      {"{\cyr\CYRT\cyre\cyrh. \cyrd\cyro\cyrk\cyrl\cyra\cyrd.}"}
+      {"language is not defined: " language  "Tech. Rep." * * warning$ "P."}
+    if$}
+  if$
+}
 
-FUNCTION {bbl.techrep}   { "Tech. Rep." }
-FUNCTION {bbl.mthesis}   { "Master's thesis" }
-FUNCTION {bbl.phdthesis} { "Ph.D. thesis" }
+FUNCTION {bbl.mthesis}
+{
+  curlanguage "english" =
+  {"Master's thesis"}
+    { curlanguage "russian" =
+      {"{\cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\ \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}"}
+      {"language is not defined: " language  "Master's thesis" * * warning$ "P."}
+    if$}
+  if$
+}
 
+FUNCTION {bbl.phdthesis}
+{
+  curlanguage "english" =
+  {"Ph.D. thesis"}
+    { curlanguage "russian" =
+      {"{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}"}
+      {"language is not defined: " language  "Ph.D. thesis" * * warning$ "P."}
+    if$}
+  if$
+}
+
+%    \end{macrocode}
+% Глобальные целочисленные переменные.
+%    \begin{macrocode}
 INTEGERS { nameptr namesleft numnames }
 
 FUNCTION {format.names}
@@ -908,7 +954,6 @@ FUNCTION {extract.num}
   if$
 }
 
-
 FUNCTION {convert.edition}
 { edition }
 
@@ -1001,7 +1046,6 @@ FUNCTION {format.number}
     { bbl.nr number tie.or.space.connect }
   if$
 }
-
 
 FUNCTION {empty.misc.check}
 { author empty$ title empty$ howpublished empty$
