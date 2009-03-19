@@ -112,7 +112,7 @@ if "%1"=="help" (
 :help
 	echo List of targets:
 	echo   all       ^(default^) build classes and documentation
-	echo   class     build classes
+	echo   class     build class
 	echo   clean     remove ouptut files
 	echo   doc       build documentation
 	echo   dvi       build DVI version of documentation

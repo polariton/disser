@@ -21,7 +21,7 @@ wrapfig.
 Получение последней версии
 --------------------------
 
-Репозиторий проекта доступен по следующим адресам:
+Репозиторий исходных текстов проекта доступен по следующим адресам:
 http://mercurial.intuxication.org/hg/disser/
 http://freehg.org/u/sk/disser/
 
@@ -33,21 +33,30 @@ http://mercurial.intuxication.org/hg/disser/archive/tip.zip
 Установка
 ---------
 
-Автоматически
+Автоматическая установка
 
 В Unix-like ОС:
 > env TEXMF=/путь/к/texmf make install
 > mktexlsr
 
 В Windows:
-> set texmf=<путь к texmf или localtexmf>
+> set TEXMF=<путь к каталогу дистрибутива LaTeX>
 > nomake install
 > mktexlsr
 
-Вручную
+Пример для пользователей MiKTeX:
+set TEXMF=C:\Program Files\MiKTeX 2.7
+nomake install
+mktexlsr
 
-1. Создаем каталог.
+
+Установка вручную
+
+1. Создаем каталоги для класса, стиля библиографии и документации.
 > mkdir /путь/к/texmf/tex/latex/disser
+> mkdir /путь/к/texmf/bibtex/bst/disser
+> mkdir /путь/к/texmf/doc/latex/disser
+> mkdir /путь/к/texmf/doc/bibtex/disser
 
 2. Генерируем файлы классов.
 > cd src
@@ -65,15 +74,16 @@ http://mercurial.intuxication.org/hg/disser/archive/tip.zip
 > pdflatex gost732.dtx
 > pdflatex gost732.dtx
 
-4. Копируем *.cls и *.rtx в каталог назначения.
+4. Копируем файлы в каталог назначения.
 > cp *.cls *.rtx /путь/к/texmf/tex/latex/disser
+> cp disser.bst /путь/к/texmf/bibtex/bst/disser
 
 5. Устанавливаем документацию.
-> cp *.dvi *.pdf /путь/к/texmf/doc/latex/disser
+> cp disser.dvi disser.pdf gost732.dvi gost732.pdf /путь/к/texmf/doc/latex/disser
+> cp disser-bst.dvi disser-bst.pdf /путь/к/texmf/doc/bibtex/disser
 
 6. Обновляем базу имен файлов.
 > mktexlsr
-
 
 Лицензия
 --------
