@@ -2,6 +2,7 @@
 
 if "%1"=="help" (
 :help
+	call ..\..\include\latex.nmk.cmd %1
 	echo   all        build DVI of autoref and thesis
 	echo   allpdf     build PDF of autoref and thesis
 goto :eof
