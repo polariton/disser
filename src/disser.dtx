@@ -148,7 +148,7 @@
 %  к классу прилагаются соответствующие шаблоны (каталог |disser/templates|),
 %  которые рекомендуется использовать для создания своих документов.
 %
-%  \subsection{Опции}
+%  \subsection{Опции класса}
 %
 %  \textbf{Примечание:} полужирным начертанием выделены опции, используемые по умолчанию.
 %  \extrarowheight=3pt
@@ -192,6 +192,9 @@
 %    Блоки текста в списке литературы будут печататься на новых строках и с
 %    отступом.
 %  \\\hline
+%    noams &
+%    Не подключать пакеты |amsmath|, |amssymb| и |amsfonts|.
+%  \\\hline
 %    subf &
 %    Использовать пакет |subfig| для ведения вложенной нумерации рисунков.
 %  \\\hline
@@ -222,6 +225,38 @@
 %    пакета |txfonts| подключается пакет |mtpro|.
 %  \\\hline\hline
 %  \end{longtable}
+%
+%  \subsection{Стили колонтитулов}
+%
+%  Поскольку в диссертациях обычно не используются колонтитулы, содержащие 
+%  название текущей главы документа, то стили, реализованные в данном классе, 
+%  влияют лишь на положение номера страницы. Стиль обычных страниц документа 
+%  задается в преамбуле командой |\pagestyle{<style>}|, а стиль 
+%  страниц, на которых начинается новая глава --- командой 
+%  |\chapterpagestyle{<style>}|. Здесь |<style>| может принимать следующие 
+%  значения:
+%  \begin{deflist}{marginbreak}
+%  \item[footleft] Номер внизу и слева.
+%  \item[footcenter] Номер внизу и по середине.
+%  \item[footright] Номер внизу и справа.
+%  \item[headleft] Номер вверху и слева.
+%  \item[headcenter] Номер вверху и по середине.
+%  \item[headright] Номер вверху и справа.
+%  \item[plain] Совпадает с |footcenter|.
+%  \end{deflist}
+%  
+%  Для односторонних документов шрифт надписей в верхнем и нижнем колонтитулах 
+%  можно задать путем переопределения команд |\headfont| и |\footfont|. 
+%  В двухсторонних документах следует использовать команды
+%  |\evenheadfont|, |\evenfootfont|, |\oddheadfont|, |\oddfootfont| для 
+%  четных и нечетных страниц, соответственно.
+%  
+%  Пример: номера всех страниц одностороннего документа печатаются 
+%  в верхнем колонтитуле по центру, шрифтом размера |\small|.
+%  \begin{verbatim}
+%  \def\headfont{\small}
+%  \pagestyle{headcenter}
+%  \chapterpagestyle{headcenter}\end{verbatim}
 %
 %  \subsection{\texttt{Makefile} и \texttt{nomake.cmd}}
 %
@@ -344,7 +379,7 @@
 %  библиографических ссылок |disser.bst|. Данный стиль представляет собой
 %  доработанную версию |gost71u.bst| из пакета |gost|, написанного Максимом Поляковым.
 %  Создание |disser.bst| обусловлено следующими причинами: пакет |gost| более не
-%  поддерживается автором, а оформление библиографии в соответствии с его стилями
+%  поддерживается автором, оформление библиографии в соответствии с его стилями
 %  противоречит некоторым требованиям, предъявляемым диссертационными советами
 %  к библиографическим ссылкам.
 %
@@ -365,9 +400,9 @@
 %
 %  \subsubsection{Общий текст}
 %
-%  В соответствии с неформальными требованиями, раздел <<Общая характеристика работы>> 
-%  автореферата и глава <<Введение>> диссертации должны совпадать. Общие разделы 
-%  создаются с помощью команды |\mkcommonsect| в файле |common.tex|, который 
+%  В соответствии с неформальными требованиями, раздел <<Общая характеристика работы>>
+%  автореферата и глава <<Введение>> диссертации должны совпадать. Общие разделы
+%  создаются с помощью команды |\mkcommonsect| в файле |common.tex|, который
 %  подключается из |autoref.tex| и |thesis.tex|.
 %
 %  Пример:
@@ -398,10 +433,15 @@
 %  bibtex8 -H -c cp1251 autoref
 %  bibtex8 -H -c cp1251 my
 %  latex autoref
-%  latex autoref
-%  \end{verbatim}
+%  latex autoref\end{verbatim}
 %  Данные операции выполняются автоматически при сборке с помощью скриптов |Makefile|
-%  и |nomake.cmd|.
+%  и |nomake.cmd|. Сборка автореферата в Windows:
+%  \begin{verbatim}
+%  set target=autoref
+%  nomake\end{verbatim}
+%  В Unix-like окружениях:
+%  \begin{verbatim}
+%  env TARGET=autoref make\end{verbatim}
 %
 %  \subsubsection{Подписи диссертанта и ученого секретаря}
 %
@@ -428,82 +468,73 @@
 
 %    \end{macrocode}
 % Расширение включаемых в |disser.cls| файлов.
-%
 %    \begin{macrocode}
 \def\substyle@ext{.rtx}
+
 %    \end{macrocode}
 % Определение операторов условного выполнения.
 % \begin{itemize}
-% \item |true|, если включена опция, оставляющая одну колонку при
-% двухколонном наборе.
+% \item подключение пакета, определяющего |\ifpdf|.
+% \DescribePackage{ifpdf}\index{Пакеты!\verb*+ifpdf+}
+%    \begin{macrocode}
+\RequirePackage{ifpdf}
+%    \end{macrocode}
+% \item Разрешено оставлять одну колонку при двухколонном наборе.
 %    \begin{macrocode}
 \newif\if@restonecol
 %    \end{macrocode}
-% \item |true|, если разрешена титульная страница.
+% \item Отображение титульного листа (включено).
 %    \begin{macrocode}
-\newif\if@titlepage
+\newif\if@titlepage\@titlepagetrue
 %    \end{macrocode}
-% \item |true|, если главы начинаются только с нечетных страниц.
+% \item Главы начинаются только с нечетных страниц (отключено).
 %    \begin{macrocode}
-\newif\if@openright
+\newif\if@openright\@openrightfalse
 %    \end{macrocode}
-% \item подключение пакета, определяющего |\ifpdf|.
+% \item Типы документов (по умолчанию candidate).
 %    \begin{macrocode}
-\RequirePackage{ifpdf}
-
+\newif\ifDis@bachelor\Dis@bachelorfalse
+\newif\ifDis@master\Dis@masterfalse
+\newif\ifDis@candidate\Dis@candidatetrue
+\newif\ifDis@doctor\Dis@doctorfalse
+\newif\ifDis@autoref\Dis@autoreffalse
 %    \end{macrocode}
-% \item Соответствующие типы диссертаций.
+% \item Отображение УДК на титульном листе (отключено).
 %    \begin{macrocode}
-\newif\ifDis@bachelor
-\newif\ifDis@master
-\newif\ifDis@candidate
-\newif\ifDis@doctor
-\newif\ifDis@autoref
-\newif\ifDis@libcat
-\newif\ifDis@facsimile
-
+\newif\ifDis@libcat\Dis@libcatfalse
 %    \end{macrocode}
-% \item |true|, если подключается |hyperref|.
+% \item Отображение подписей диссертанта и ученого секретаря (отключено).
 %    \begin{macrocode}
-\newif\ifDis@href
+\newif\ifDis@facsimile\Dis@facsimilefalse
 %    \end{macrocode}
-% \item Подключение и настройка пакета |subfig|.
+% \item Подключение пакетов |amsmath|, |amsfonts|, |amssymb| (включено).
 %    \begin{macrocode}
-\newif\ifDis@subf
+\newif\ifDis@ams\Dis@amstrue
 %    \end{macrocode}
-% \item Шрифт Times как основной.
+% \item Подключение |hyperref| (отключено).
 %    \begin{macrocode}
-\newif\ifDis@times
+\newif\ifDis@href\Dis@hreffalse
 %    \end{macrocode}
-% \item Поддержка математических шрифтов MathTime Pro.
+% \item Подключение |subfig| (отключено).
 %    \begin{macrocode}
-\newif\ifDis@mtpro
-
+\newif\ifDis@subf\Dis@subffalse
+%    \end{macrocode}
+% \item Шрифт Times как основной (отключено).
+%    \begin{macrocode}
+\newif\ifDis@times\Dis@timesfalse
+%    \end{macrocode}
+% \item Поддержка математических шрифтов MathTime Pro (отключено).
+%    \begin{macrocode}
+\newif\ifDis@mtpro\Dis@mtprofalse
 %    \end{macrocode}
 % \end{itemize}
-%
-% Установка значений по уиолчанию.
-%    \begin{macrocode}
-\@titlepagetrue
-\Dis@bachelorfalse
-\Dis@masterfalse
-\Dis@candidatetrue
-\Dis@doctorfalse
-\Dis@autoreffalse
-\Dis@timesfalse
-\Dis@mtprofalse
-\Dis@subffalse
-\Dis@hreffalse
-\Dis@libcatfalse
-\Dis@facsimilefalse
-
-%    \end{macrocode}
 %
 % \subsection{Опции класса}
 %
 % Подключение пакета |kvoptions| для обработки опций в формате
 % |ключ = значение|.
 %    \begin{macrocode}
+
 \RequirePackage{kvoptions}[2006/08/17]
 
 %    \end{macrocode}
@@ -517,14 +548,19 @@
 \DeclareOption{subf}{\Dis@subftrue}
 
 %    \end{macrocode}
-% Показывать номер УДК на титульном листе.
+% Отображение УДК на титульном листе.
 %    \begin{macrocode}
 \DeclareOption{libcat}{\Dis@libcattrue}
+
 %    \end{macrocode}
-% Включить отображение подписей диссертанта и ученого секретаря на
-% титульных листах автореферата и диссертации (для кандидатских и докторских).
+% Отображение подписей диссертанта и ученого секретаря.
 %    \begin{macrocode}
 \DeclareOption{facsimile}{\Dis@facsimiletrue}
+
+%    \end{macrocode}
+% Не подключать пакеты |amsmath|, |amsfonts|, |amssymb|.
+%    \begin{macrocode}
+\DeclareOption{noams}{\Dis@amsfalse}
 
 %    \end{macrocode}
 % Настройка опций.
@@ -533,6 +569,7 @@
   family=Dis,
   prefix=Dis@
 }
+
 %    \end{macrocode}
 % Исправление знаков интегралов и пределов интегрирования на более
 % привычные.
@@ -543,7 +580,6 @@
 %
 % Размеры листов.
 %    \begin{macrocode}
-
 \DeclareOption{a4paper}{%
   \setlength\paperheight{297mm}
   \setlength\paperwidth {210mm}
@@ -575,7 +611,8 @@
 \DeclareOption{11pt}{\renewcommand\@ptsize{11}}
 \DeclareOption{12pt}{\renewcommand\@ptsize{12}}
 \DeclareOption{14pt}{\renewcommand\@ptsize{14}}
-\DeclareOption{17pt}{\renewcommand\@ptsize{17}}
+\DeclareOption{16pt}{\renewcommand\@ptsize{16}}
+\DeclareOption{18pt}{\renewcommand\@ptsize{18}}
 \DeclareOption{20pt}{\renewcommand\@ptsize{20}}
 
 %    \end{macrocode}
@@ -712,6 +749,9 @@
 %    \end{macrocode}
 % \subsection{Настройка шрифтов}
 % \subsubsection{Определение размеров}
+%
+% Эти вещи должны быть в стандартных классах.
+% Ради таких незначительных отличий не стоило городить |extarticle|, |extreport|, |extbook|.
 %    \begin{macrocode}
 \def\EC@family#1#2#3#4#5{%
   \DeclareFontShape{#1}{#2}{#3}{#4}%
@@ -775,9 +815,9 @@
 %
 % \subsubsection{Старые команды изменения начертания шрифтов (без NFSS)}
 %
-% Не ясно, почему это вынесено в классы, а не входит в ядро.
+% Опять же, не ясно, почему все это вынесено в классы, а не входит в ядро.
 %
-% В текстовом режиме.
+% Изменение начертания в текстовом режиме.
 %    \begin{macrocode}
 \DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
 \DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
@@ -799,7 +839,7 @@
 % \DescribeMacro{\lineskip}\index{Расстояния!\verb*+\lineskip+}
 % \DescribeMacro{\normallineskip}\index{Расстояния!\verb*+\normallineskip+}
 % Вертикальный интервал между строками. Упоминаемый здесь и далее макрос |\p@|
-% определяет единицу длины. По умолчанию она равна английскому пункту (pt).
+% определяет стандартную единицу длины. По умолчанию она равна английскому пункту (pt).
 %    \begin{macrocode}
 \setlength\lineskip{1\p@}
 \setlength\normallineskip{1\p@}
@@ -837,7 +877,7 @@
 \setlength\columnseprule{0\p@}
 
 %    \end{macrocode}
-% Описание структуры автоматически формируемых частей заголовков.
+% Описание структуры заголовков.
 % \begin{itemize}
 % \item в тексте,
 % \DescribeMacro{\@seccntformat}\index{Макросы!\verb*+"\"@seccntformat+}

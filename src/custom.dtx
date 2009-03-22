@@ -24,8 +24,10 @@
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
 % \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
 %    \begin{macrocode}
-\usepackage[intlimits]{amsmath}
-\usepackage{amssymb,amsfonts}
+\ifDis@ams
+  \usepackage[intlimits]{amsmath}
+  \usepackage{amssymb,amsfonts}
+\fi
 %    \end{macrocode}
 % Использование шрифта Times вместо Computer Modern Roman.
 %    \begin{macrocode}
@@ -154,8 +156,8 @@
 \renewcommand\bibsection{\nchapter{\bibname}}
 
 %    \end{macrocode}
-% Переопределение для создания корректной PDF-закладки (основано на варианте
-% из |natbib|).
+% Переопределение |thebibliography| для создания корректной PDF-закладки 
+% (основано на варианте из |natbib|).
 % \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
 %    \begin{macrocode}
 \renewenvironment{thebibliography}[1]{%
@@ -186,7 +188,7 @@
 %
 % Подключение и настройка параметров пакета |hyperref|:
 %    \begin{macrocode}
-\ifpdf
+\ifpdf  
 %    \end{macrocode}
 % \begin{itemize}
 % \item для pdf\LaTeX{}
