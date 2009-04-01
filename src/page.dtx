@@ -45,10 +45,10 @@
 %    \end{macrocode}
 %
 % \subsubsection{Определения стилей колонтитулов}
-% 
-% В диссертациях не используются колонтитулы с заголовком текущей главы, 
+%
+% В диссертациях на русском языке не используются колонтитулы с заголовком текущей главы,
 % поэтому все представленные стили влияют только на положение номера страницы.
-% 
+%
 % \paragraph{footcenter}
 %    \begin{macrocode}
 \def\ps@footcenter{
@@ -157,7 +157,7 @@
 %    \end{macrocode}
 % \paragraph{plain}\hfil\\[6pt]
 %    \begin{macrocode}
-\def\ps@plain\ps@footcenter
+\let\ps@plain=\ps@footcenter
 
 %    \end{macrocode}
 % \subsubsection{Стили колонтитулов по умолчанию}
