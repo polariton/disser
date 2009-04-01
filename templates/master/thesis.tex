@@ -1,47 +1,53 @@
 \documentclass[a4paper,14pt,master,href,subf]{disser}
 \usepackage[
-  a4paper, mag=1000, nohead, includefoot,
-  left=3cm, right=1cm, top=2cm, bottom=2cm, footskip=1cm
+  a4paper, mag=1000, includefoot,
+  left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm
 ]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{epstopdf}
 
+% Нумерация страниц по центру
+%\def\headfont{\small}
+%\pagestyle{headcenter}
+%\chapterpagestyle{headcenter}
+
 \graphicspath{{fig/}}
 % --------------------------------------------------------------------------
-
 \begin{document}
-% организация
+% Название организации
 \institution{%
 Название организации
 }
+% Имя лица, допускающего к защите (зав. кафедрой)
 \apname{ФИО зав. кафедрой}
 \title{ДИССЕРТАЦИЯ\\[-14pt]на соискание учёной степени\\МАГИСТРА}
-% Тема диссертации
+% Тема
 \topic{Тема диссертации}
-%
-% Данные автора
+
+% Автор
 \author       {ФИО автора} % ФИО
 \group        {1111/1} % Группа
 \coursenum    {111111} % Номер направления
 \course       {Название направления}
 \masterprognum{111111} % Номер магистерской программы
 \masterprog   {Название программы}
-%
+
 % Научный руководитель
 \sa      {ФИО руководителя}
 \sastatus{д.~ф.-м.~н., ст.~н.~с.}
-%
+
 % Рецензент
 \rev      {ФИО рецензента}
 \revstatus{д.~ф.-м.~н., в.~н.~с.}
-%
+
 % Консультант
 \conspec{вопросам\\охраны труда}
 \con{ФИО консультанта}
 \constatus{к.~т.~н., доц.}
-%
+
+% Город и год
 \city{Санкт-Петербург}
 \date{\number\year}
 

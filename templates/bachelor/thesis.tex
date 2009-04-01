@@ -1,38 +1,37 @@
-\documentclass[14pt,bachelor,href,subf]{disser}
+\documentclass[a4paper,14pt,bachelor,href,subf]{disser}
 \usepackage[
-  a4paper, mag=1000, nohead, includefoot,
-  left=3cm, right=1cm, top=2cm, bottom=2cm, footskip=1cm
+  a4paper, mag=1000, includefoot,
+  left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm
 ]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{epstopdf}
 
+% Нумерация страниц по центру
+%\def\headfont{\small}
+%\pagestyle{headcenter}
+%\chapterpagestyle{headcenter}
+
 \graphicspath{{fig/}}
 % ----------------------------------------------------------------
 \begin{document}
-\title{ВЫПУСКНАЯ РАБОТА\\БАКАЛАВРА}
-
 % Название организации
 \institution{
 Название организации
 }
 % Имя лица, допускающего к защите (зав. кафедрой)
 \apname{ФИО зав. кафедрой}
-% Тема диссертации
-\topic{
-Тема работы
-}
-%
+\title{ВЫПУСКНАЯ РАБОТА\\БАКАЛАВРА}
+% Тема
+\topic{Тема работы}
+
 % Автор
-\author{ФИО студента}
-% Группа
-\group{1111/1}
-% Номер специальности
-\coursenum{111111}
-% Название специальности
-\course{Физика}
-%
+\author{ФИО студента} % ФИО
+\group{1111/1} % Группа
+\coursenum{111111} % Номер специальности
+\course{Физика} % Название специальности
+
 % Научный руководитель
 \sa      {ФИО руководителя}
 \sastatus{д.~ф.-м.~н., ст.~н.~с.}

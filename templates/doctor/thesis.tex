@@ -4,13 +4,18 @@
 ]{disser}
 
 \usepackage[
-  a4paper, mag=1000, nohead, includefoot,
-  left=3cm, right=1cm, top=2cm, bottom=2cm, footskip=1cm
+  a4paper, mag=1000, includefoot,
+  left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm
 ]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{epstopdf}
+
+% Нумерация страниц по центру
+%\def\headfont{\small}
+%\pagestyle{headcenter}
+%\chapterpagestyle{headcenter}
 
 % Ссылки на работы соискателя включаются в общий список литературы
 \let\citemy=\cite
