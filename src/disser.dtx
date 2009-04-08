@@ -19,7 +19,7 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*driver>
-\ProvidesFile{disser.drv}[2008/12/01 1.1.0 Document class for dissertations.]
+\ProvidesFile{disser.drv}[2009/04/08 1.1.1 Document class for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper, includehead, includefoot, mag=1000,
@@ -28,29 +28,30 @@
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{ifpdf,indentfirst,tabularx,doc}
-\usepackage{makeidx,longtable}
+\usepackage{makeidx,longtable,color}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
 
 \ifpdf
-  \usepackage[unicode,
-    pdftitle           = {Documented source code of the disser class},
-    pdfauthor          = {Stanislav Kruchinin},
-    pdfsubject         = {disser},
-    pdfstartview       = {FitH},
-    pdfborder          = {0 0 0},
-    bookmarksopen      = true,
-    bookmarksnumbered  = true,
-    bookmarksopenlevel = 2
-  ]{hyperref}
+  \usepackage[pdftex,unicode]{hyperref}
   \usepackage{cmap}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
 
 \hypersetup{
+  pdftitle           = {Documented source code of the disser package},
+  pdfauthor          = {Stanislav Kruchinin},
+  pdfsubject         = {disser},
+  pdfstartview       = {FitH},
+  pdfborder          = {0 0 0},
+  bookmarksopen      = true,
+  bookmarksnumbered  = true,
+  bookmarksopenlevel = 2,
   colorlinks = true,
-  linkcolor  = black, citecolor=blue,
-  filecolor  = blue, menucolor=blue,
-  pagecolor  = blue, urlcolor=blue
+  linkcolor  = black,    citecolor = darkblue,
+  filecolor  = darkblue, menucolor = darkblue,
+  pagecolor  = darkblue, urlcolor  = darkblue
 }
 
 \ifpdf\usepackage{hypdestopt}\fi
@@ -65,21 +66,28 @@
 \MakeShortVerb{\|}
 
 \def\deflabel#1{\ttfamily #1\hfill}
-\def\deflist#1{\begin{list}{}{\settowidth\labelwidth{\ttfamily #1}%
-                              \setlength\leftmargin\labelwidth
-                              \addtolength\leftmargin\labelsep
-                              \let\makelabel\deflabel}}
-\def\enddeflist{\end{list}}
+\newenvironment{deflist}[1]{%
+  \begin{list}{}{%
+  \settowidth\labelwidth{\ttfamily #1}%
+  \setlength\leftmargin\labelwidth
+  \addtolength\leftmargin\labelsep
+  \let\makelabel\deflabel}
+}{\end{list}}
+
 \let\DescribePackage=\DescribeEnv
 
 \makeindex
 
-\setlength\hfuzz{15pt}  % dont make so many
-\hbadness=9000          % over and under full box warnings
+\setlength\hfuzz{20pt}  % dont make so many
+\hbadness=10000         % over and under full box warnings
 
-
-\setlength\oddsidemargin{72pt}
-\setlength\textwidth{420pt}
+\makeatletter
+  \def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
+    \columnseprule \z@  \columnsep 35\p@
+    \twocolumn[\index@prologue]%
+    \IndexParms \let\item\@idxitem \ignorespaces}
+  \def\endtheindex{\if@restonecol\onecolumn\else\clearpage\fi}
+\makeatother
 
 \begin{document}
 \sloppy
@@ -120,343 +128,28 @@
 %
 %  \maketitle
 %
-%  \begin{abstract}\noindent
-%  Данный документ содержит описание исходных текстов.
-%  Инструкции по установке смотрите в файлах |README| и |README.ru|.
-%  \end{abstract}
+%  \section{Обзор документации}
+%
+%  Документация пакета |disser| включает следующие файлы:
+%
+%  \begingroup
+%  \begin{deflist}{README, README.ru}
+%  \item[\href{file:manual.pdf}{Manual.pdf}] Руководство пользователя.
+%  \item[README, README.ru] Информация о сборке и установке пакета (текстовые файлы).
+%  \item[ChangeLog] История версий (текстовый файл).
+%  \end{deflist}
+%  \endgroup
+%  Документированные исходные тексты:
+%  \begin{deflist}{disser-bst.dtx}
+%  \item[\href{file:disser.pdf}{disser.dtx}] Исходный текст класса |disser| (данный файл).
+%  \item[\href{file:gost732.pdf}{gost732.dtx}]
+%    Исходный текст класса класса |gost732| для оформления документов в
+%    соответствии с ГОСТ 7.32-2001.
+%  \item[\href{file:disser-bst.pdf}{disser-bst.dtx}]
+%    Стиль библиографических ссылок.
+%  \end{deflist}
 %
 %  \tableofcontents
-%
-%  \section{Введение}
-%
-%  Класс |disser| был создан в результате объединения множества дополнений и
-%  исправлений для класса |extreport|, написанных автором при оформлении
-%  бакалаврской и магистерской работ, а также кандидатской диссертации.
-%  Основной целью этих исправлений являлось устранение одного из главных недостатков стандартных
-%  классов "--- отсутствия возможности прямого изменения формата элементов титульного
-%  листа, заголовков и записей в автоматически генерируемых списках
-%  (содержание, список иллюстраций, список таблиц). Для этого переопределена часть команд,
-%  входящих в ядро \LaTeX{}, и введен ряд высокоуровневых команд, которые описаны в
-%  комментариях к исходным текстам. Пример их использования можно увидеть
-%  в исходном тексте класса |gost732|, в котором реализован ГОСТ 7.32-2001.
-%
-%  \section{Руководство по использованию}
-%
-%  \subsection{Шаблоны}
-%
-%  Поскольку дипломы и диссертации имеют фиксированную структуру,
-%  к классу прилагаются соответствующие шаблоны (каталог |disser/templates|),
-%  которые рекомендуется использовать для создания своих документов.
-%
-%  \subsection{Опции класса}
-%
-%  \textbf{Примечание:} полужирным начертанием выделены опции, используемые по умолчанию.
-%  \extrarowheight=3pt
-%  \tabcolsep=6pt
-%  \arraycolsep=0pt
-%  \begin{longtable}{p{0.3\linewidth}|p{0.55\linewidth}}
-%  \hline\hline
-%    \textbf{a4paper}, a5paper, b5paper &
-%    Размеры листов.
-%  \\\hline
-%    8pt, 9pt, 10pt, 11pt, 12pt, \textbf{14pt} &
-%    Размер шрифта основного текста.
-%  \\\hline
-%    landscape &
-%    Альбомная ориентация.
-%  \\\hline
-%    \textbf{oneside}, twoside &
-%    Односторонняя или двухсторонняя печать.
-%  \\\hline
-%    draft, \textbf{final} &
-%    Выводить (draft) или нет (final) пометки, фиксирующие переполнение |\hbox|
-%    для данной строки.
-%  \\\hline
-%    \textbf{titlepage}, notitlepage &
-%    Печатать титульный лист или нет.
-%  \\\hline
-%    openright, \textbf{openany} &
-%    Главы будут всегда начинаться только с нечетных страниц (т.е. справа, если
-%    смотреть на разворот) или c любых.
-%  \\\hline
-%    \textbf{onecolumn}, twocolumn &
-%    Верстка в один или в два столбца.
-%  \\\hline
-%    fleqn &
-%    Выключные формулы будут выравнены по левому краю, а не по центру.
-%  \\\hline
-%    leqno &
-%    Номера будут размещены слева, а не справа от формул.
-%  \\\hline
-%    openbib &
-%    Блоки текста в списке литературы будут печататься на новых строках и с
-%    отступом.
-%  \\\hline
-%    noams &
-%    Не подключать пакеты |amsmath|, |amssymb| и |amsfonts|.
-%  \\\hline
-%    subf &
-%    Использовать пакет |subfig| для ведения вложенной нумерации рисунков.
-%  \\\hline
-%    href &
-%    Использовать пакет |hyperref|.
-%  \\\hline
-%    times &
-%    Включает использование гарнитуры Times в тексте и формулах.
-%    Для использования опции необходимо установить пакеты |pscyr| (или |cyrtimes|) и
-%    |txfonts| (или |mtpro|).
-%  \\\hline
-%    bachelor, master, \textbf{candidate}, doctor &
-%    Тип диссертации.
-%  \\\hline
-%    fixint = \{\textbf{true}$\,\vert\,$false\} &
-%    Замена стандартных знаков интегралов на прямые (из математического шрифта |euler|).
-%  \\\hline
-%    libcat &
-%    Включает вывод номера УДК на титульном листе.
-%  \\\hline
-%    facsimile &
-%    Включает отображение подписей диссертанта и ученого секретаря на
-%    титульных листах автореферата и диссертации (только для кандидатских и докторских).
-%    По умолчанию включена только в шаблоне автореферата.
-%  \\\hline
-%    mtpro &
-%    Поддержка шрифтов MathTime Pro. При наличии опции |times| вместо
-%    пакета |txfonts| подключается пакет |mtpro|.
-%  \\\hline\hline
-%  \end{longtable}
-%
-%  \subsection{Стили колонтитулов}
-%
-%  Поскольку в российских диссертациях обычно не используются колонтитулы, содержащие
-%  название текущей главы документа, то стили, реализованные в данном классе,
-%  влияют лишь на положение номера страницы. Стиль обычных страниц документа
-%  задается в преамбуле командой |\pagestyle{<style>}|, а стиль
-%  страниц, на которых начинается новая глава --- командой
-%  |\chapterpagestyle{<style>}|. Здесь |<style>| может принимать следующие
-%  значения:
-%  \begin{deflist}{marginbreak}
-%  \item[footleft] Номер внизу и слева.
-%  \item[footcenter] Номер внизу и по середине.
-%  \item[footright] Номер внизу и справа.
-%  \item[headleft] Номер вверху и слева.
-%  \item[headcenter] Номер вверху и по середине.
-%  \item[headright] Номер вверху и справа.
-%  \item[plain] Совпадает с |footcenter|.
-%  \end{deflist}
-%
-%  Для односторонних документов шрифт надписей в верхнем и нижнем колонтитулах
-%  можно задать путем переопределения команд |\headfont| и |\footfont|.
-%  В двухсторонних документах следует использовать команды
-%  |\evenheadfont|, |\evenfootfont|, |\oddheadfont|, |\oddfootfont| для
-%  четных и нечетных страниц, соответственно.
-%
-%  \textbf{Пример:} номера всех страниц одностороннего документа печатаются
-%  в верхнем колонтитуле по центру, шрифтом размера |\small|.
-%  \begin{verbatim}
-%  \def\headfont{\small}
-%  \pagestyle{headcenter}
-%  \chapterpagestyle{headcenter}\end{verbatim}
-%
-%  \subsection{\texttt{Makefile} и \texttt{nomake.cmd}}
-%
-%  Для автоматизации сборки и установки пакета созданы
-%  две системы скриптов, имеющих одинаковый набор целей:
-%  |Makefile| в формате GNU Make и файлы |nomake.cmd|, написанные на языке
-%  командного интерпретатора |cmd.exe| ОС Windows 2000 и выше.
-%  Использование в Unix-подобных окружениях: |make <цель>|.
-%  В Windows: |nomake <цель>|.
-%
-%  Далее следуют описания целей в зависимости от каталога, в котором
-%  производится сборка.
-%
-%  \subsubsection{Каталог \texttt{disser/}}
-%
-%  \begin{deflist}{marginbreak}
-%  \item[all]
-%    Сборка классов и шаблонов.
-%  \item[class]
-%    Сборка классов |disser| и |gost732|. Соответствует цели |class|
-%    в каталоге |disser/src|. Цель по умолчанию.
-%  \item[clean]
-%    Цель |clean| в каталогах |src| и |templates|.
-%  \item[doc]
-%    Сборка DVI- и PDF-версий документации.
-%  \item[help]
-%    Справка по целям сборки.
-%  \item[install]
-%    Копирование класса и документации в дерево каталогов \LaTeX{}.
-%    Соответствует цели |install| в каталоге |disser/src|.
-%  \item[sfupload]
-%    Загрузка |disser-<version>.zip| на upload-сервер SourceForge.
-%  \item[template]
-%    Сборка всех шаблонов. Соответствует цели по умолчанию в
-%    каталоге |disser/templates|.
-%  \item[update]
-%    Скачивание репозитория Mercurial в каталог |./disser|.
-%  \end{deflist}
-%
-%  \subsubsection{Каталог \texttt{disser/src/}}
-%
-%  \begin{deflist}{marginbreak}
-%  \item[all]
-%    Сборка классов и документации. Цель по умолчанию.
-%  \item[class]
-%    Сборка классов |disser| и |gost732|.
-%  \item[clean]
-%    Удаление файлов, указанных в переменной |CLFILES|.
-%  \item[doc]
-%    Сборка DVI- и PDF-версий документации.
-%  \item[dvi]
-%    Сборка DVI-версии документации.
-%  \item[help]
-%    Справка по целям сборки.
-%  \item[install]
-%    Копирование файлов класса и документации в дерево каталогов
-%    дистрибутива \LaTeX{}.
-%  \item[pdf]
-%    Сборка PDF-версии документации.
-%  \end{deflist}
-%
-%  \subsubsection{Каталоги \texttt{disser/templates} и
-%    \texttt{disser/templates/<тип-диссертации>/}}
-%
-%  \begin{deflist}{marginbreak}
-%  \item[dvi]
-%    Сборка |thesis.dvi|. Цель по умолчанию.
-%  \item[clean]
-%    Удаление файлов, указанных в переменной |CLFILES|.
-%  \item[epstoeps]
-%    Оптимизация EPS с помощью Ghostscript.
-%  \item[epstopdf]
-%    Конвертирование EPS в PDF.
-%  \item[fixbb]
-%    Исправление BoundingBox во всех EPS-файлах.
-%  \item[help]
-%    Справка по целям сборки.
-%  \item[html]
-%    Сборка HTML-файла.
-%  \item[pdf]
-%    Сборка |thesis.pdf|.
-%  \item[pdf\_2on1]
-%    Сборка PDF-файла по 2 страницы на один разворот A4.
-%  \item[pdf\_book]
-%    Сборка PDF-файла для брошюрования.
-%  \item[ps]
-%    Сборка |thesis.ps|.
-%  \item[ps\_2on1]
-%    Сборка PostScript-файла по 2 страницы на один разворот A4.
-%  \item[ps\_book]
-%    Сборка PostScript-файла для брошюрования.
-%  \item[srcdist]
-%    Сборка архива из содержимого текущего каталога.
-%  \end{deflist}
-%
-%  \textbf{Примечания:}
-%  1) Файлы |nomake.cmd| в подкаталогах шаблонов зависят от |include/latex.nmk.cmd| и
-%  |include/latex.fig.nmk.cmd|. Файлы |Makefile| зависят от |include/latex.mk| и
-%  |include/latex.fig.mk|.
-%  2) |Makefile/nomake.cmd| в подкаталогах шаблонов включают цели каталога |fig|.
-%
-%  \subsubsection{Каталог \texttt{disser/templates/<тип-диссертации>/fig/}}
-%
-%  \begin{deflist}{marginbreak}
-%  \item[clean]
-%    Удаление PDF файлов.
-%  \item[epstoeps]
-%    Оптимизация EPS с помощью Ghostscript.
-%  \item[epstopdf]
-%    Конвертирование EPS в PDF.
-%  \item[fixbb]
-%    Исправление BoundingBox во всех EPS-файлах.
-%  \item[help]
-%    Справка по целям сборки. Цель по умолчанию.
-%  \end{deflist}
-%
-%  \subsection{Стиль верстки библиографических ссылок \texttt{disser.bst}}
-%
-%  В состав пакета начиная с версии 1.1.0 включен стиль для оформления
-%  библиографических ссылок |disser.bst|. Данный стиль представляет собой
-%  доработанную версию |gost71u.bst| из пакета |gost|, написанного Максимом Поляковым.
-%  Создание |disser.bst| обусловлено следующими причинами: пакет |gost| более не
-%  поддерживается автором, оформление библиографии в соответствии с его стилями
-%  противоречит некоторым требованиям, предъявляемым диссертационными советами
-%  к библиографическим ссылкам.
-%
-%  Основные отличия |disser.bst| от |gost71u.bst|:
-%
-%  \begin{enumerate}
-%  \item Инициалы авторов всегда печатаются перед фамилией.
-%  \item Авторы, независимо от их количества, всегда печатаются перед
-%  названием источника.
-%  \item Отсутствует поддержка украинского языка.
-%  \item Настраиваемый префикс у номера библиографической ссылки (макрос |\BibPrefix|).
-%  \end{enumerate}
-%
-%  Руководство по использованию стиля и описание его исходного кода
-%  находится в файле |disser-bst.dtx|.
-%
-%  \subsection{Особенности верстки авторефератов кандидатских и докторских диссертаций}
-%
-%  \subsubsection{Общий текст}
-%
-%  В соответствии с неформальными требованиями, раздел <<Общая характеристика работы>>
-%  автореферата и глава <<Введение>> диссертации должны совпадать. Общие разделы
-%  создаются с помощью команды |\mkcommonsect| в файле |common.tex|, который
-%  подключается из |autoref.tex| и |thesis.tex|.
-%
-%  Пример:
-%  \begin{verbatim}
-%  \mkcommonsect{novelty}{Научная новизна}{%
-%  Текст раздела
-%  }
-%  \end{verbatim}
-%  Здесь первый аргумент |novelty| "--- базовое имя создаваемых макросов
-%  (|\noveltysection| и |\noveltytext|),
-%  второй аргумент "--- заголовок раздела (значение |\noveltysection|),
-%  третий "--- текст раздела (значение |\noveltytext|).
-%
-%  \subsubsection{Список работ диссертанта}
-%
-%  В автореферате список работ диссертанта должен быть отделен от списка цитируемой
-%  литературы, а ссылки на них должны отличаться друг от друга. Для этого в стиле |disser.bst|
-%  введен макрос, в котором содержится настраиваемый префикс номеров ссылок называется |\BibPrefix|
-%  Для размещения двух списков литературы с независимой нумерацией пакет |multibib|.
-%
-%  Описание библиографических ссылок на работы диссертанта должно находиться в
-%  файле |thesis.bib| вместе с остальными ссылками.
-%
-%  Полная ручная сборка автореферата с двумя библиографиями выполняется следующей
-%  последовательностью команд.
-%  \begin{verbatim}
-%  latex autoref
-%  bibtex8 -H -c cp1251 autoref
-%  bibtex8 -H -c cp1251 my
-%  latex autoref
-%  latex autoref\end{verbatim}
-%  Данные операции выполняются автоматически при сборке с помощью скриптов |Makefile|
-%  и |nomake.cmd|. Сборка автореферата в Windows:
-%  \begin{verbatim}
-%  set target=autoref
-%  nomake\end{verbatim}
-%  В Unix-like окружениях:
-%  \begin{verbatim}
-%  env TARGET=autoref make\end{verbatim}
-%
-%  \subsubsection{Подписи диссертанта и ученого секретаря}
-%
-%  Согласно требованиям ВАК, автореферат должен быть подписан диссертантом и
-%  ученым секретарем. Поскольку экземпляров автореферата достаточно много, эту
-%  задачу необходимо автоматизировать. Начиная с версии 1.1.0 в классе появилась опция
-%  |facsimile|, позволяющая включать графические файлы в нужных местах на
-%  титульном листе и внутренней стороне обложки. Эта опция включена по умолчанию только
-%  в шаблонах авторефератов. Факсимиле диссертанта должно находиться в файле
-%  |./fig/facsimile.<type>|, факсимиле ученого секретаря диссертационного совета "---
-%  в файле |./fig/sec-facsimile.<type>|. Здесь |<type>| "--- один из типов графических файлов,
-%  поддерживаемых в \LaTeX{} (eps) или в pdf\LaTeX{} (pdf, tiff, png).
-%  Команда |\facsimile|, включающая файл с подписью диссертанта в документ,
-%  определена в файле |titledefs.dtx|. Команда, включающая файл с подписью
-%  ученого секретаря, находится в файле |autoref.tex|.
 %
 %  \section{Исходный текст класса}\parindent=0pt
 %

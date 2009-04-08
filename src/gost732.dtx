@@ -28,22 +28,31 @@
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
-\usepackage{ifpdf,indentfirst}
+\usepackage{ifpdf,indentfirst,color}
+
+\definecolor{darkblue}{rgb}{0,0,.5}
 
 \ifpdf
-  \usepackage[unicode,
-    pdftitle = {Documented source code of the gost732 package},
-    pdfauthor = {Stanislav Kruchinin},
-    pdfsubject = {gost732},
-    pdfstartview = {FitH},
-    pdfborder = {0 0 0},
-    bookmarksopen = true,
-    bookmarksnumbered = true,
-    bookmarksopenlevel = 2]{hyperref}
+  \usepackage[pdftex,unicode]{hyperref}
   \usepackage{cmap}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
+
+\hypersetup{
+  pdftitle           = {Documented source code of the disser package},
+  pdfauthor          = {Stanislav Kruchinin},
+  pdfsubject         = {disser},
+  pdfstartview       = {FitH},
+  pdfborder          = {0 0 0},
+  bookmarksopen      = true,
+  bookmarksnumbered  = true,
+  bookmarksopenlevel = 2,
+  colorlinks = true,
+  linkcolor  = black,    citecolor = darkblue,
+  filecolor  = darkblue, menucolor = darkblue,
+  pagecolor  = darkblue, urlcolor  = darkblue
+}
 
 \let\package\textsf
 \IfFileExists{pscyr.sty}{%
@@ -53,23 +62,11 @@
 }{}
 \IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
 
-\hypersetup{
-  colorlinks = true,
-  linkcolor  = black, citecolor=blue,
-  filecolor  = blue, menucolor=blue,
-  pagecolor  = blue, urlcolor=blue
-}
-
-%\OnlyDescription                  % uncomment to suppress code line listing
-\RecordChanges                    % uncomment for a change history
-%\EnableCrossrefs    % uncomment for command index
-
 \MakeShortVerb{\|}
 
 \GetFileInfo{gost732.drv}
 \begin{document}
   \sloppy
-  \PrintChanges
   \DocInput{gost732.dtx}
 \end{document}
 %</driver>
