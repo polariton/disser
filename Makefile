@@ -5,7 +5,7 @@
 
 TARGET=disser
 
-VER?=1.1.0
+VER?=1.1.1
 HG?=hg
 ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)

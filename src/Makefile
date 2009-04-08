@@ -6,6 +6,7 @@
 TARGET?=disser
 SUBCLASS=gost732
 BST=disser-bst
+MANUAL?=manual
 
 TEXMF?=/usr/share/texmf
 CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
@@ -14,12 +15,12 @@ BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
 BSTDOCDIR?=$(TEXMF)/doc/bibtex/$(TARGET)
 
 CLSFILES?=$(TARGET).cls *.rtx $(SUBCLASS).cls
-BSTFILES?=$(TARGET).bst
-DOCFILES?=$(TARGET).dvi $(SUBCLASS).dvi $(TARGET).pdf $(SUBCLASS).pdf
-BSTDOCFILES?=$(BST).dvi $(BST).pdf
+BSTFILE?=$(TARGET).bst
+DOCFILES?=$(TARGET).pdf $(SUBCLASS).pdf $(MANUAL).pdf
+BSTDOCFILE?=$(BST).pdf
 
 CLEXT?= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
-CLFILES?=$(CLSFILES) $(BSTFILES) $(DOCFILES) $(BSTDOCFILES) $(CLEXT)
+CLFILES?=$(CLSFILES) $(BSTFILE) $(DOCFILES) $(BSTDOCFILE) $(CLEXT)
 
 LATEX?=latex
 PDFLATEX?=pdflatex
@@ -32,11 +33,11 @@ all: class doc
 
 class: *.cls
 
-doc: dvi pdf
+doc: pdf
 
-dvi: $(TARGET).dvi $(SUBCLASS).dvi $(BST).dvi
+dvi: $(TARGET).dvi $(SUBCLASS).dvi $(BST).dvi $(MANUAL).dvi
 
-pdf: $(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf
+pdf: $(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf $(MANUAL).pdf
 
 install: all
 	mkdir -p $(CLSDIR)
@@ -44,9 +45,10 @@ install: all
 	mkdir -p $(DOCDIR)
 	mkdir -p $(BSTDOCDIR)
 	cp $(CLSFILES) $(CLSDIR)
-	cp $(BSTFILES) $(BSTDIR)
+	cp $(BSTFILE) $(BSTDIR)
 	cp $(DOCFILES) $(DOCDIR)
-	cp $(BSTDOCFILES) $(BSTDOCDIR)
+	cp $(BSTDOCFILE) $(BSTDOCDIR)
+	ln -s $(BSTDOCDIR)/$(BSTDOCFILE) $(DOCDIR)/$(BSTDOCFILE)
 	@echo -e "\nDon't forget to run 'mktexlsr' if you install this class first time\n"
 
 clean:
@@ -61,9 +63,17 @@ clean:
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
 
+%.dvi: %.tex
+	$(LATEX) $(LATEXFLAGS) $<
+	$(MI) -r $(TARGET)
+	$(LATEX) $(LATEXFLAGS) $<
+	$(LATEX) $(LATEXFLAGS) $<
+
 %.pdf: %.dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
-	$(MI) -r $(TARGET)
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+
+%.pdf: %.tex
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 

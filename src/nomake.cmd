@@ -11,6 +11,7 @@ if "%CMDEXTVERSION%"=="" (
 if "%target%"=="" set target=disser
 set subclass=gost732
 set bst=disser-bst
+set manual=manual
 
 if "%texmf%"=="" set texmf=%programfiles%\miktex
 
@@ -20,9 +21,9 @@ if "%docdir%"=="" set docdir=%texmf%\doc\latex\%target%
 if "%bstdocdir%"=="" set bstdocdir=%texmf%\doc\bibtex\%target%
 
 if "%clsfiles%"=="" set clsfiles=*.cls *.rtx
-if "%docfiles%"=="" set docfiles=%target%.dvi %subclass%.pdf %target%.pdf %subclass%.pdf
-if "%bstdocfiles%"=="" set bstdocfiles=%bst%.dvi %bst%.pdf
-if "%bstfiles%"=="" set bstfiles=%target%.bst
+if "%docfiles%"=="" set docfiles=%subclass%.pdf %target%.pdf %subclass%.pdf %manual%.pdf
+if "%bstfile%"=="" set bstfile=%target%.bst
+if "%bstdocfile%"=="" set bstdocfile=%bst%.pdf
 
 if "%clfiles%"=="" set clfiles=*.rtx *.cls *.log *.out *.aux *.dvi *.ind ^
 *.idx *.ilg *.glo *.toc *.ind *.bak *.bbl *.blg *.pdf *.sav *.ps *.bst
@@ -65,7 +66,6 @@ goto :eof
 
 if "%1"=="doc" (
 :doc
-	call :dvi
 	call :pdf
 goto :eof
 )
@@ -79,6 +79,8 @@ if "%1"=="dvi" (
 	%latex% %latexflags% %subclass%.dtx
 	%latex% %latexflags% %bst%.dtx
 	%latex% %latexflags% %bst%.dtx
+	%latex% %latexflags% %manual%.tex
+	%latex% %latexflags% %manual%.tex
 goto :eof
 )
 
@@ -91,6 +93,8 @@ if "%1"=="pdf" (
 	%pdflatex% %pdflatexflags% %subclass%.dtx
 	%pdflatex% %pdflatexflags% %bst%.dtx
 	%pdflatex% %pdflatexflags% %bst%.dtx
+	%pdflatex% %pdflatexflags% %manual%.tex
+	%pdflatex% %pdflatexflags% %manual%.tex
 goto :eof
 )
 
@@ -103,8 +107,9 @@ if "%1"=="install" (
 	if not exist "%bstdocdir%" md "%bstdocdir%"
 	for %%f in (%clsfiles%) do xcopy /y /f %%f "%clsdir%"
 	for %%f in (%docfiles%) do xcopy /y /f %%f "%docdir%"
-	for %%f in (%bstfiles%) do xcopy /y /f %%f "%bstdir%"
-	for %%f in (%bstdocfiles%) do xcopy /y /f %%f "%bstdocdir%"
+	for %%f in (%bstfile%) do xcopy /y /f %%f "%bstdir%"
+	for %%f in (%bstdocfile%) do xcopy /y /f %%f "%bstdocdir%"
+	for %%f in (%bstdocfile%) do xcopy /y /f %%f "%docdir%"
 	echo.
 	echo Don't forget to run 'mktexlsr' if you install this class first time
 	echo.
