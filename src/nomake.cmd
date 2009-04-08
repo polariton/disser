@@ -105,6 +105,9 @@ if "%1"=="install" (
 	for %%f in (%docfiles%) do xcopy /y /f %%f "%docdir%"
 	for %%f in (%bstfiles%) do xcopy /y /f %%f "%bstdir%"
 	for %%f in (%bstdocfiles%) do xcopy /y /f %%f "%bstdocdir%"
+	echo.
+	echo Don't forget to run 'mktexlsr' if you install this class first time
+	echo.
 goto :eof
 )
 
