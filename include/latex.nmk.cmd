@@ -177,6 +177,7 @@ if "%1"=="help" (
 	echo   fixbb      fix BoundingBox of EPS files
 	echo   help       show list of targets
 	echo   html       convert to HTML
+	echo   pdf        build PDF
 	echo   pdf_2on1   build PDF with two A5 pages on one A4 ordered by number
 	echo   pdf_book   build PDF booklet ^(two A5 on A4^)
 	echo   ps         build PS
