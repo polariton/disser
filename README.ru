@@ -1,8 +1,8 @@
 Введение
 --------
 
-Пакет disser предназначен для верстки дипломов и диссертаций. Ориентирован 
-на руcскоязычных пользователей.
+Пакет disser предназначен для верстки дипломов, диссертаций и авторефератов 
+в соответствии с требованиями, предъявляемыми ВАК РФ.
 
 
 Зависимости
@@ -21,29 +21,59 @@ wrapfig.
 Получение последней версии
 --------------------------
 
-Репозиторий исходных текстов проекта доступен по следующим адресам:
-http://disser.hg.sourceforge.net/hgweb/disser/
-http://mercurial.intuxication.org/hg/disser/
-http://freehg.org/u/sk/disser/
+Пакет disser доступен на CTAN:
+  http://www.ctan.org/tex-archive/macros/latex/contrib/disser/
+
+ZIP-файл с исходными текстами:
+  http://www.ctan.org/get/macros/latex/contrib/disser.zip
+
+ZIP-файл с собранными файлами и документацией, отсортированными в соответствии со
+стандартной структурой каталогов TeX:
+  http://tug.ctan.org/pub/tex-archive/install/macros/latex/contrib/disser.tds.zip
+
+Основной репозиторий исходных текстов проекта находится на Sourceforge:
+  http://disser.hg.sourceforge.net/hgweb/disser/
+
+Зеркала репозитория:
+  http://mercurial.intuxication.org/hg/disser/
+  http://freehg.org/u/sk/disser/
 
 Наиболее свежую версию пакета можно получить, скачав автоматически
 генерируемый архив:
-http://mercurial.intuxication.org/hg/disser/archive/tip.zip
+  http://mercurial.intuxication.org/hg/disser/archive/tip.zip
+
+Структура файлов и каталогов архива исходных текстов disser.zip:
+  ./
+    Корневой каталог содержит файлы ChangeLog, README, README.ru, Makefile,
+    nomake.cmd. Версия, скачанная из репозитория также содержит служебные файлы 
+    SCM Mercurial, их имена начинаются с .hg.
+
+  include/
+    Каталог со скриптами, которые подключаются из файлов Makefile и nomake.cmd.
+
+  src/
+    Каталог с исходными текстами пакета.
+
+  doc/
+    Каталог с пользовательской документацией.
+
+  templates/
+    Каталог для шаблонов документов.
 
 
 Установка
 ---------
 
-Автоматическая установка
+1. Установка из исходных текстов
 
 В Unix-like ОС:
-> env TEXMF=/путь/к/texmf make install
-> mktexlsr
+  env TEXMF=/путь/к/texmf make install
+  mktexlsr
 
 В Windows:
-> set TEXMF=<путь к каталогу дистрибутива LaTeX>
-> nomake install
-> mktexlsr
+  set TEXMF=<путь к каталогу дистрибутива LaTeX>
+  nomake install
+  mktexlsr
 
 Пример для пользователей MiKTeX:
 set TEXMF=C:\Program Files\MiKTeX 2.7
@@ -51,40 +81,54 @@ nomake install
 mktexlsr
 
 
-Установка вручную
+2. Установка из исходных текстов вручную
 
-1. Создаем каталоги для класса, стиля библиографии и документации.
-> mkdir /путь/к/texmf/tex/latex/disser
-> mkdir /путь/к/texmf/bibtex/bst/disser
-> mkdir /путь/к/texmf/doc/latex/disser
-> mkdir /путь/к/texmf/doc/bibtex/disser
+a. Создаем каталоги для класса, стиля библиографии и документации.
+  mkdir /путь/к/texmf/tex/latex/disser
+  mkdir /путь/к/texmf/bibtex/bst/disser
+  mkdir /путь/к/texmf/doc/latex/disser
+  mkdir /путь/к/texmf/doc/bibtex/disser
 
-2. Генерируем файлы классов.
-> cd src
-> latex disser.ins
+b. Генерируем файлы классов.
+  cd src
+  latex disser.ins
 
-3. Собираем документацию.
-> latex disser.dtx
-> makeindex -r disser
-> latex disser.dtx
-> latex disser.dtx
-> latex gost732.dtx
-> latex gost732.dtx
-> pdflatex disser.dtx
-> pdflatex disser.dtx
-> pdflatex gost732.dtx
-> pdflatex gost732.dtx
+c. Собираем документацию.
+  latex disser.dtx
+  makeindex -r disser
+  latex disser.dtx
+  latex disser.dtx
+  latex gost732.dtx
+  latex gost732.dtx
+  pdflatex disser.dtx
+  pdflatex disser.dtx
+  pdflatex gost732.dtx
+  pdflatex gost732.dtx
 
-4. Копируем файлы в каталог назначения.
-> cp *.cls *.rtx /путь/к/texmf/tex/latex/disser
-> cp disser.bst /путь/к/texmf/bibtex/bst/disser
+d. Копируем файлы в каталог назначения.
+  cp *.cls *.rtx /путь/к/texmf/tex/latex/disser
+  cp disser.bst /путь/к/texmf/bibtex/bst/disser
 
-5. Устанавливаем документацию.
-> cp disser.dvi disser.pdf gost732.dvi gost732.pdf /путь/к/texmf/doc/latex/disser
-> cp disser-bst.dvi disser-bst.pdf /путь/к/texmf/doc/bibtex/disser
+e. Устанавливаем документацию.
+  cp disser.dvi disser.pdf gost732.dvi gost732.pdf /путь/к/texmf/doc/latex/disser
+  cp disser-bst.dvi disser-bst.pdf /путь/к/texmf/doc/bibtex/disser
 
-6. Обновляем базу имен файлов.
-> mktexlsr
+f. Обновляем базу имен файлов.
+  mktexlsr
+
+
+3. Установка из ZIP-архива со скомпилированными файлами
+
+Файл disser.tds.zip содержит собранные файлы классов и документации, 
+поэтому его можно просто распаковать в каталог, в котором установлен TeX.
+
+Пример:
+  cd /путь/к/texmf
+  unzip /путь/к/файлу/disser.tds.zip
+
+После установки следует обновить базу имен файлов.
+  mktexlsr
+
 
 Лицензия
 --------

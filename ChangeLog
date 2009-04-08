@@ -2,16 +2,16 @@ disser changelog
 Copyright (C) 2004-2009 Stanislav Kruchinin
 -------------------------------------------
 
-Summary of changes in version 1.1.0a (2009-04-01):
+Summary of changes in version 1.1.1 (2009-04-01):
 
 Class:
-* Compatibility with newest version of natbib package
-+ New pagestyles (see documentation)
-* Fixes in documentation
+* Compatibility with newest version of natbib package.
++ New pagestyles that allow to change position of page numbers.
++ User manual has been moved from disser.dtx to the separate file manual.tex.
 
 Templates:
-* Changed format of BibTeX labels
-* Fixed double inclusion of common.tex
+* Changed format of BibTeX labels for compatibility with hyphenated surnames.
+* Fixed double inclusion of common.tex.
 
 Changes in version 1.1.0 (2008-12-01):
 
