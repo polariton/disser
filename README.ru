@@ -22,6 +22,7 @@ wrapfig.
 --------------------------
 
 Репозиторий исходных текстов проекта доступен по следующим адресам:
+http://disser.hg.sourceforge.net/hgweb/disser/
 http://mercurial.intuxication.org/hg/disser/
 http://freehg.org/u/sk/disser/
 
