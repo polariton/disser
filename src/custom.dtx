@@ -156,7 +156,7 @@
 \renewcommand\bibsection{\nchapter{\bibname}}
 
 %    \end{macrocode}
-% Переопределение |thebibliography| для создания корректной PDF-закладки 
+% Переопределение |thebibliography| для создания корректной PDF-закладки
 % (основано на варианте из |natbib|).
 % \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
 %    \begin{macrocode}
@@ -185,10 +185,33 @@
   \endlist\vskip-\lastskip%
 }
 %    \end{macrocode}
+% Плавающие рисунки ``в оборку''.
+%    \begin{macrocode}
+\usepackage{wrapfig}
+%    \end{macrocode}
+% Пакет для вложенной нумерации плавающих объектов.
+% \DescribePackage{caption}\index{Пакеты!\verb*+caption+}
+% \DescribePackage{subfig}\index{Пакеты!\verb*+subfig+}
+%    \begin{macrocode}
+\ifDis@subf
+  \usepackage[config,font=small,labelsep=period]{caption,subfig}
+%    \end{macrocode}
+% Формат счетчика.
+%    \begin{macrocode}
+  \def\thesubfigure{\textit{\asbuk{subfigure}}}
+%    \end{macrocode}
+% Формат ссылки через |\ref|.
+% \DescribeMacro{\thefigsubsep}\index{Макросы!\verb*+\thefigsubsep+}
+% Разделитель между номером и буквой.
+%    \begin{macrocode}
+  \providecommand\thefigsubsep{,~}
+  \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
+\fi
+%    \end{macrocode}
 %
 % Подключение и настройка параметров пакета |hyperref|:
 %    \begin{macrocode}
-\ifpdf  
+\ifpdf
 %    \end{macrocode}
 % \begin{itemize}
 % \item для pdf\LaTeX{}
@@ -238,29 +261,6 @@
 \ifDis@href
   \usepackage{hypernat}
   \usepackage[all]{hypcap}
-\fi
-%    \end{macrocode}
-% Плавающие рисунки ``в оборку''.
-%    \begin{macrocode}
-\usepackage{wrapfig}
-%    \end{macrocode}
-% Пакет для вложенной нумерации плавающих объектов.
-% \DescribePackage{caption}\index{Пакеты!\verb*+caption+}
-% \DescribePackage{subfig}\index{Пакеты!\verb*+subfig+}
-%    \begin{macrocode}
-\ifDis@subf
-  \usepackage[config,font=small,labelsep=period]{caption,subfig}
-%    \end{macrocode}
-% Формат счетчика.
-%    \begin{macrocode}
-  \def\thesubfigure{\textit{\asbuk{subfigure}}}
-%    \end{macrocode}
-% Формат ссылки через |\ref|.
-% \DescribeMacro{\thefigsubsep}\index{Макросы!\verb*+\thefigsubsep+}
-% Разделитель между номером и буквой.
-%    \begin{macrocode}
-  \providecommand\thefigsubsep{,~}
-  \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
 \fi
 %</custom>
 %    \end{macrocode}
