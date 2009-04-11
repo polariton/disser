@@ -48,10 +48,9 @@
   bookmarksopen      = true,
   bookmarksnumbered  = true,
   bookmarksopenlevel = 2,
-  colorlinks = true,
-  linkcolor  = black,    citecolor = darkblue,
-  filecolor  = darkblue, menucolor = darkblue,
-  pagecolor  = darkblue, urlcolor  = darkblue
+  colorlinks = true,     linkcolor  = black,
+  citecolor  = darkblue, filecolor  = darkblue,
+  menucolor  = darkblue, urlcolor   = darkblue
 }
 
 \ifpdf\usepackage{hypdestopt}\fi
@@ -110,7 +109,7 @@
   \DocInput{titledefs.dtx}
   \DocInput{toc.dtx}
   \DocInput{custom.dtx}
-  \IndexPrologue{\section{Указатель команд}}
+  \IndexPrologue{\section{Предметный указатель}}
   \printindex
 \end{document}
 %</driver>
@@ -157,7 +156,7 @@
 
 %<*disser>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{disser}[2008/11/11 1.1.0 Document class for dissertations.]
+\ProvidesClass{disser}[2008/04/08 1.1.1 Document class for dissertations.]
 
 %    \end{macrocode}
 % Расширение включаемых в |disser.cls| файлов.
