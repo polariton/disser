@@ -8,24 +8,27 @@ if "%CMDEXTVERSION%"=="" (
 	goto :eof
 )
 
+setlocal enabledelayedexpansion
+
 set target=disser
 set subclass=gost732
 set bst=disser-bst
 set manual=manual
 
 set clsfiles=*.cls *.rtx
-set docfiles=%subclass%.pdf %target%.pdf %subclass%.pdf %manual%.pdf
+set docfiles=%subclass%.pdf %target%.pdf %subclass%.pdf %manual%.pdf ^
+..\README ..\README.ru ..\ChangeLog
 set bstfile=%target%.bst
 set bstdocfile=%bst%.pdf
 set srcfiles=*.dtx *.ins %manual%.tex Makefile nomake.cmd
 
-if "%texmf%"=="" set texmf=%programfiles%\miktex
+if "!texmf!"=="" set texmf=%programfiles%\miktex
 
-if "%clsdir%"=="" set clsdir=%texmf%\tex\latex\%target%
-if "%bstdir%"=="" set bstdir=%texmf%\bibtex\bst\%target%
-if "%docdir%"=="" set docdir=%texmf%\doc\latex\%target%
-if "%bstdocdir%"=="" set bstdocdir=%texmf%\doc\bibtex\%target%
-if "%srcdir%"=="" set srcdir=%texmf%\source\latex\%target%
+if "%clsdir%"=="" set clsdir=!texmf!\tex\latex\%target%
+if "%bstdir%"=="" set bstdir=!texmf!\bibtex\bst\%target%
+if "%docdir%"=="" set docdir=!texmf!\doc\latex\%target%
+if "%bstdocdir%"=="" set bstdocdir=!texmf!\doc\bibtex\%target%
+if "%srcdir%"=="" set srcdir=!texmf!\source\latex\%target%
 
 if "%clfiles%"=="" set clfiles=*.rtx *.cls *.log *.out *.aux *.dvi *.ind ^
 *.idx *.ilg *.glo *.toc *.ind *.bak *.bbl *.blg *.pdf *.sav *.ps *.bst
@@ -114,9 +117,6 @@ if "%1"=="install" (
 	for %%f in (%bstdocfile%) do xcopy /y /f %%f "%bstdocdir%"
 	for %%f in (%bstdocfile%) do xcopy /y /f %%f "%docdir%"
 	for %%f in (%srcfiles%) do xcopy /y /f %%f "%srcdir%"
-	echo.
-	echo Don't forget to run 'mktexlsr' if you install this class first time
-	echo.
 goto :eof
 )
 

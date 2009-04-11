@@ -9,6 +9,7 @@ VER?=1.1.1
 HG?=hg
 ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
+TDSDIR?=../disser-tds
 
 class:
 	@$(MAKE) -i -C src
@@ -41,8 +42,14 @@ srcdist:
 	fi
 
 template:
-	set target=thesis
-	@$(MAKE) -i -C templates
+	@env TARGET=thesis $(MAKE) -i -C templates
+
+tds:
+	mkdir -p $(TDSDIR)/source/latex/disser
+	cp src/*.dtx src/*.tex src/*.ins $(TDSDIR)/source/latex/disser
+	@env TEXMF=../$(TDSDIR) $(MAKE) -i -C src install
+	@env TEXMF=../$(TDSDIR) $(MAKE) -i -C templates install
+	7z a -tzip -mx=9 disser.tds.zip $(TDSDIR)/*
 
 help:
 	@echo "Targets:"

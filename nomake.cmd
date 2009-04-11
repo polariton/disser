@@ -14,6 +14,9 @@ if "%ver%"=="" set ver=1.1.1
 set hg=hg
 set archext=zip
 set archive=%target%-%ver%.%archext%
+set tdsdir=..\disser-tds
+
+setlocal enabledelayedexpansion
 
 if "%1"=="" (
 :default
@@ -27,9 +30,8 @@ if "%1"=="" goto :eof
 
 if "%1"=="all" (
 :all
-	cd src & nomake
-	cd ..\templates & nomake
-	cd ..
+	cd src & nomake & cd ..
+	cd templates & nomake & cd ..
 goto :eof
 )
 
@@ -41,21 +43,24 @@ goto :eof
 
 if "%1"=="clean" (
 :clean
-	cd src & nomake clean
-	cd ..\templates & nomake clean
-	cd ..\..
+	cd src & call nomake clean & cd ..
+	cd templates & call nomake clean & cd ..
 goto :eof
 )
 
 if "%1"=="doc" (
 :doc
-	cd src & nomake doc & cd ..
+	cd src & call nomake doc
 goto :eof
 )
 
 if "%1"=="install" (
 :install
-	cd src & nomake install & cd ..
+	cd src & call nomake install & cd ..
+	cd templates & call nomake install & cd ..
+	echo.
+	echo Don't forget to run 'mktexlsr' if you install this class first time
+	echo.
 goto :eof
 )
 
@@ -67,11 +72,21 @@ if "%1"=="srcdist" (
 goto :eof
 )
 
-if "%1"=="template" (
-:template
+if "%1"=="tds" (
+:tds
+	if not exist %tdsdir%\source\latex\disser mkdir %tdsdir%\source\latex\disser
+	for %%f in (src\*.dtx src\*.tex src\*.ins) do xcopy /y /f %%f "%tdsdir%\source\latex\disser"
+	set texmf=..\%tdsdir%
+	cd src & call nomake install & cd ..
+	cd templates & call nomake install & cd ..
+	7z a -tzip -mx=9 disser.tds.zip %tdsdir%\*
+goto :eof
+)
+
+if "%1"=="templates" (
+:templates
 	set target=thesis
-	cd templates & nomake
-	cd ..\..
+	cd templates & call nomake
 goto :eof
 )
 
@@ -85,7 +100,7 @@ if "%1"=="help" (
 	echo   help       show help
 	echo   install    install package and documentation
 	echo   srcdist    create source distribution
-	echo   template   build all templates
+	echo   templates  build all templates
 goto :eof
 )
 

@@ -10,7 +10,7 @@ MANUAL?=manual
 
 CLSFILES=$(TARGET).cls *.rtx $(SUBCLASS).cls
 BSTFILE=$(TARGET).bst
-DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(MANUAL).pdf
+DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(MANUAL).pdf ../README ../README.ru ../ChangeLog
 BSTDOCFILE=$(BST).pdf
 SRCFILES=*.dtx *.ins $(MANUAL).tex
 

@@ -3,6 +3,11 @@
 rem nomake script for LaTeX projects
 rem Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 
+setlocal enabledelayedexpansion
+
+if "!texmf!"=="" set texmf=%programfiles%\miktex
+if "!docdir!"=="" set tdir=!texmf!\doc\latex\%target%
+
 if "%CMDEXTVERSION%"=="" (
 	echo Error: This script requires command interpreter from Windows 2000 or above.
 	goto :eof
@@ -14,5 +19,12 @@ if "%1"=="help" (
 	set subdirs=bachelor ..\master ..\candidate ..\doctor
 )
 
-for %%i in (%subdirs%) do @cd %%i & nomake %1 %2 %3 %4 %5 %6 %7 %8 %9
-cd ..
+if "%1"=="install" (
+:install
+	if not exist "%docdir%" md "%docdir%"
+	xcopy /y /e /i /f ..\templates "%tdir%\templates"
+	xcopy /y /e /i /f ..\include "%tdir%\include"
+goto :eof
+)
+
+for %%i in (%subdirs%) do @cd %%i & call nomake %*
