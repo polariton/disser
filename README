@@ -32,11 +32,10 @@ ZIP file with compiled sources and documentation sorted in a
 TDS (TeX Directory Structure) tree:
   http://tug.ctan.org/pub/tex-archive/install/macros/latex/contrib/disser.tds.zip
 
-The main source code repository of disser can be found at the Sourceforge:
-  http://disser.hg.sourceforge.net/hgweb/disser/
-
-Repository mirrors:
+Source code repositories of disser:
   http://mercurial.intuxication.org/hg/disser/
+  http://disser.hg.sourceforge.net/hgweb/disser/
+  http://bitbucket.org/sky/disser/
   http://freehg.org/u/sk/disser/
 
 The latest version of package can be obtained by downloading this 
@@ -109,8 +108,8 @@ d. Copy *.cls and *.rtx.
   cp disser.bst /path/to/texmf/bibtex/bst/disser
 
 e. Copy documentation.
-  cp disser.dvi disser.pdf gost732.dvi gost732.pdf /path/to/texmf/doc/latex/disser
-  cp disser-bst.dvi disser-bst.pdf /path/to/texmf/doc/bibtex/disser
+  cp disser.pdf gost732.pdf disser-bst.pdf /path/to/texmf/doc/latex/disser
+  cp disser-bst.pdf /path/to/texmf/doc/bibtex/disser
 
 f. Refresh filename database.
   mktexlsr

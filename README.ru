@@ -31,11 +31,10 @@ ZIP-файл с собранными файлами и документацией, отсортированными в соответствии с
 стандартной структурой каталогов TeX:
   http://tug.ctan.org/pub/tex-archive/install/macros/latex/contrib/disser.tds.zip
 
-ќсновной репозиторий исходных текстов проекта находитс€ на Sourceforge:
-  http://disser.hg.sourceforge.net/hgweb/disser/
-
-«еркала репозитори€:
+–епозитории исходных текстов проекта:
   http://mercurial.intuxication.org/hg/disser/
+  http://disser.hg.sourceforge.net/hgweb/disser/
+  http://bitbucket.org/sky/disser/
   http://freehg.org/u/sk/disser/
 
 Ќаиболее свежую версию пакета можно получить, скачав автоматически
@@ -108,8 +107,8 @@ d.  опируем файлы в каталог назначени€.
   cp disser.bst /путь/к/texmf/bibtex/bst/disser
 
 e. ”станавливаем документацию.
-  cp disser.dvi disser.pdf gost732.dvi gost732.pdf /путь/к/texmf/doc/latex/disser
-  cp disser-bst.dvi disser-bst.pdf /путь/к/texmf/doc/bibtex/disser
+  cp disser.pdf gost732.pdf disser-bst.pdf /путь/к/texmf/doc/latex/disser
+  cp disser-bst.pdf /путь/к/texmf/doc/bibtex/disser
 
 f. ќбновл€ем базу имен файлов.
   mktexlsr
