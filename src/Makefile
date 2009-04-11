@@ -3,21 +3,24 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 # 
 
-TARGET?=disser
+TARGET=disser
 SUBCLASS=gost732
 BST=disser-bst
 MANUAL?=manual
 
+CLSFILES=$(TARGET).cls *.rtx $(SUBCLASS).cls
+BSTFILE=$(TARGET).bst
+DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(MANUAL).pdf
+BSTDOCFILE=$(BST).pdf
+SRCFILES=*.dtx *.ins $(MANUAL).tex
+
 TEXMF?=/usr/share/texmf
+
 CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
 DOCDIR?=$(TEXMF)/doc/latex/$(TARGET)
 BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
 BSTDOCDIR?=$(TEXMF)/doc/bibtex/$(TARGET)
-
-CLSFILES?=$(TARGET).cls *.rtx $(SUBCLASS).cls
-BSTFILE?=$(TARGET).bst
-DOCFILES?=$(TARGET).pdf $(SUBCLASS).pdf $(MANUAL).pdf
-BSTDOCFILE?=$(BST).pdf
+SRCDIR?=$(TEXMF)/source/latex/$(TARGET)
 
 CLEXT?= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
 CLFILES?=$(CLSFILES) $(BSTFILE) $(DOCFILES) $(BSTDOCFILE) $(CLEXT)
@@ -44,10 +47,12 @@ install: all
 	mkdir -p $(BSTDIR)
 	mkdir -p $(DOCDIR)
 	mkdir -p $(BSTDOCDIR)
+	mkdir -p $(SRCDIR)
 	cp $(CLSFILES) $(CLSDIR)
 	cp $(BSTFILE) $(BSTDIR)
 	cp $(DOCFILES) $(DOCDIR)
 	cp $(BSTDOCFILE) $(BSTDOCDIR)
+	cp $(SRCFILES) $(SRCDIR)
 	ln -s $(BSTDOCDIR)/$(BSTDOCFILE) $(DOCDIR)/$(BSTDOCFILE)
 	@echo -e "\nDon't forget to run 'mktexlsr' if you install this class first time\n"
 
