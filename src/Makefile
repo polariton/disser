@@ -83,7 +83,7 @@ clean:
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 help:
-	@echo "List of targets:"
+	@echo "Targets:"
 	@echo "  all       (default) build classes and documentation"
 	@echo "  class     build classes"
 	@echo "  clean     remove ouptut files"

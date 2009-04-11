@@ -116,7 +116,7 @@ clean:
 	@$(MAKE) -C fig $@
 
 help:
-	@echo "List of targets:"
+	@echo "Targets:"
 	@echo "  dvi        (default) build DVI"
 	@echo "  clean      remove output files"
 	@echo "  epstoeps   optimize EPS files"

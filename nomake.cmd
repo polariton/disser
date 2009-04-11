@@ -77,7 +77,7 @@ goto :eof
 
 if "%1"=="help" (
 :help
-	echo List of targets:
+	echo Targets:
 	echo   all        build classes, documentation and templates
 	echo   class      ^(default^) build classes and documentation
 	echo   clean      remove ouptut files

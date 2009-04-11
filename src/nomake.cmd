@@ -122,7 +122,7 @@ goto :eof
 
 if "%1"=="help" (
 :help
-	echo List of targets:
+	echo Targets:
 	echo   all       ^(default^) build classes and documentation
 	echo   class     build class
 	echo   clean     remove ouptut files
