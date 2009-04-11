@@ -25,8 +25,8 @@
 \ProvidesFile{disser-bst.drv}[2008/12/01 1.0.0 Bibliography style for dissertations.]
 
 \documentclass{ltxdoc}
-\usepackage[a4paper,includehead,includefoot,mag=1000,
-            left=4cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[a4paper, includeheadfoot, nohead, mag=1000,
+            left=5cm, right=1cm, top=1.5cm, bottom=1.5cm]{geometry}
 \usepackage{ifpdf,indentfirst,color}
 \definecolor{darkblue}{rgb}{0,0,.5}
 \ifpdf
@@ -59,13 +59,21 @@
   \usepackage{pscyr}
   \renewcommand\ttdefault{cmtt}
   \renewcommand\rmdefault{ftm}
-}{}
+}{
+  \IfFileExists{cyrtimes.sty}{%
+    \renewcommand\ttdefault{cmtt}
+    \renewcommand\rmdefault{ftm}
+  }{}
+}
 \IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 
 \MakeShortVerb{\|}
+
+\setlength\hfuzz{20pt}
+\hbadness=10000
 
 \GetFileInfo{disser-bst.drv}
 \begin{document}
@@ -134,19 +142,19 @@
 %  автореферате следует различать ссылки на работы соискателя и на внешние
 %  источники. Префикс номера ссылки определяется макросом |\BibPrefix|,
 %  значение которого должно быть задано до использования команды
-%  |\bibliographystyle|. Пример:
+%  |\bibliographystyle|.
+%  
+%  Пример:
 %  \begin{verbatim}
 %    \def\BibPrefix{A}
 %    \bibliographystyle{disser}
-%    \bibliography{thesis}
-%  \end{verbatim}
+%    \bibliography{thesis}\end{verbatim}
 %  В данном случае ссылки на библиографию будут иметь вид [A$n$], где $n$ "---
 %  номер.
 %
 %  К сожалению, пакет |natbib| не <<сжимает>> ссылки, содержащие нецифровые
 %  символы. Поэтому ссылки вида [A1, A2, A3, A4] не преобразуются к более
-%  компактной форме [A1--A4]. В данный момент ведется работа над
-%  исправлением этого недостатка.
+%  компактной форме [A1--A4]. Ведется работа над исправлением этого недостатка.
 %
 %  \section{Исходный текст}\parindent=0pt
 %    \begin{macrocode}

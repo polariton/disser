@@ -22,8 +22,8 @@
 \ProvidesFile{disser.drv}[2009/04/08 1.1.1 Document class for dissertations.]
 
 \documentclass{ltxdoc}
-\usepackage[a4paper, includehead, includefoot, mag=1000,
-            left=4cm, right=1.5cm, top=1cm, bottom=1.5cm]{geometry}
+\usepackage[a4paper, includeheadfoot, nohead, mag=1000,
+            left=5cm, right=1cm, top=1.5cm, bottom=1.5cm]{geometry}
 \usepackage{ifpdf,indentfirst,tabularx,doc}
 \usepackage{makeidx,longtable,color}
 
@@ -56,7 +56,12 @@
   \usepackage{pscyr}
   \renewcommand\ttdefault{cmtt}
   \renewcommand\rmdefault{ftm}
-}{}
+}{
+  \IfFileExists{cyrtimes.sty}{%
+    \renewcommand\ttdefault{cmtt}
+    \renewcommand\rmdefault{ftm}
+  }{}
+}
 \IfFileExists{url.sty}{\usepackage{url}}{\newcommand\url{\texttt}}
 
 \usepackage[T2A]{fontenc}
@@ -78,8 +83,8 @@
 
 \makeindex
 
-\setlength\hfuzz{20pt}  % dont make so many
-\hbadness=10000         % over and under full box warnings
+\setlength\hfuzz{20pt}
+\hbadness=10000
 
 \makeatletter
   \def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
