@@ -1,19 +1,13 @@
 \RequirePackage{ifpdf}
 \ifpdf % We are running pdfTeX in pdf mode
-\documentclass[pdftex]{article}
+  \documentclass[pdftex]{article}
 \else
-\documentclass{article}
+  \documentclass{article}
 \fi
-
 \usepackage[a4paper, includehead, includefoot, mag=1000,
             left=3cm, right=2cm, top=1cm, bottom=2cm]{geometry}
-\usepackage[T2A]{fontenc}
-\usepackage[cp1251]{inputenc}
-\usepackage[english,russian]{babel}
 \usepackage{doc,indentfirst,ltxtable,multicol,color}
-
 \definecolor{darkblue}{rgb}{0,0,.5}
-
 \ifpdf
   \usepackage[%
     pdftex,
@@ -35,10 +29,9 @@
 \fi
 
 \hypersetup{
-  colorlinks = true,
-  linkcolor  =    black, citecolor = darkblue,
-  filecolor  = darkblue, menucolor = darkblue,
-  pagecolor  = darkblue, urlcolor  = darkblue
+  colorlinks = true,     linkcolor = black,
+  citecolor  = darkblue, filecolor = darkblue,
+  menucolor  = darkblue, urlcolor  = darkblue
 }
 
 \ifpdf\usepackage{hypdestopt}\fi
@@ -49,6 +42,9 @@
   \renewcommand\rmdefault{ftm}
 }{}
 \IfFileExists{url.sty}{\usepackage{url}}{\newcommand\url{\texttt}}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
 
 \MakeShortVerb{\|}
 

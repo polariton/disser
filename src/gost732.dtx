@@ -29,31 +29,33 @@
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{ifpdf,indentfirst,color}
-
 \definecolor{darkblue}{rgb}{0,0,.5}
-
 \ifpdf
-  \usepackage[pdftex,unicode]{hyperref}
+  \usepackage[%
+    pdftex,
+    colorlinks,
+    plainpages=false,
+    pdftitle     = {User manual for disser},
+    pdfauthor    = {Stanislav Kruchinin},
+    pdfsubject   = {disser},
+    pdfstartview = {FitH},
+    pdfborder    = {0 0 0},
+    bookmarksopen,
+    bookmarksnumbered,
+    bookmarksopenlevel = 2,
+    pdfusetitle,
+    unicode]{hyperref}
   \usepackage{cmap}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
 
 \hypersetup{
-  pdftitle           = {Documented source code of the disser package},
-  pdfauthor          = {Stanislav Kruchinin},
-  pdfsubject         = {disser},
-  pdfstartview       = {FitH},
-  pdfborder          = {0 0 0},
-  bookmarksopen      = true,
-  bookmarksnumbered  = true,
-  bookmarksopenlevel = 2,
-  colorlinks = true,     linkcolor  = black,
-  citecolor  = darkblue, filecolor  = darkblue,
-  menucolor  = darkblue, urlcolor   = darkblue
+  colorlinks = true,     linkcolor = black,
+  citecolor  = darkblue, filecolor = darkblue,
+  menucolor  = darkblue, urlcolor  = darkblue
 }
 
-\let\package\textsf
 \IfFileExists{pscyr.sty}{%
   \usepackage{pscyr}
   \renewcommand\ttdefault{cmtt}

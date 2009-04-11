@@ -24,9 +24,6 @@
 \documentclass{ltxdoc}
 \usepackage[a4paper, includehead, includefoot, mag=1000,
             left=4cm, right=1.5cm, top=1cm, bottom=1.5cm]{geometry}
-\usepackage[T2A]{fontenc}
-\usepackage[cp1251]{inputenc}
-\usepackage[english,russian]{babel}
 \usepackage{ifpdf,indentfirst,tabularx,doc}
 \usepackage{makeidx,longtable,color}
 
@@ -61,6 +58,10 @@
   \renewcommand\rmdefault{ftm}
 }{}
 \IfFileExists{url.sty}{\usepackage{url}}{\newcommand\url{\texttt}}
+
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
 
 \MakeShortVerb{\|}
 
