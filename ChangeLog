@@ -7,11 +7,18 @@ Summary of changes in version 1.1.1 (2009-04-01):
 Class:
 * Compatibility with newest version of natbib package.
 + New pagestyles that allow to change position of page numbers.
++ New option "noams" to forbid inclusion of AMS packages from the class.
 + User manual has been moved from disser.dtx to the separate file manual.tex.
 
 Templates:
-* Changed format of BibTeX labels for compatibility with hyphenated surnames.
+* Changed separators in BibTeX labels for compatibility with hyphenated surnames.
 * Fixed double inclusion of common.tex.
+
+Makefiles and Installation:
+- Documentation for class is compiled only as PDF.
++ Added installation of sources to TeX tree.
++ Provide ZIP-archive with compiled class, documentation and templates.
+
 
 Changes in version 1.1.0 (2008-12-01):
 

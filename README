@@ -77,9 +77,9 @@ In Windows:
   mktexlsr
 
 Example for MiKTeX users:
-set TEXMF=C:\Program Files\MiKTeX 2.7
-nomake install
-mktexlsr
+  set TEXMF=C:\Program Files\MiKTeX 2.7
+  nomake install
+  mktexlsr
 
 
 2. Manual installation from sources
@@ -95,16 +95,14 @@ b. Extract class files from dtx.
   latex disser.ins
 
 c. Build documentation.
-  latex disser.dtx
+  pdflatex disser.dtx
   makeindex -r disser
-  latex disser.dtx
-  latex disser.dtx
-  latex gost732.dtx
-  latex gost732.dtx
   pdflatex disser.dtx
   pdflatex disser.dtx
   pdflatex gost732.dtx
   pdflatex gost732.dtx
+  pdflatex disser-bst.dtx
+  pdflatex disser-bst.dtx
 
 d. Copy *.cls and *.rtx.
   cp *.cls *.rtx /path/to/texmf/tex/latex/disser

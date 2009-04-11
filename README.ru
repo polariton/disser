@@ -46,7 +46,7 @@ ZIP-файл с собранными файлами и документацией, отсортированными в соответствии с
   ./
     Корневой каталог содержит файлы ChangeLog, README, README.ru, Makefile,
     nomake.cmd. Версия, скачанная из репозитория также содержит служебные файлы 
-    SCM Mercurial, их имена начинаются с .hg.
+    .hg*.
 
   include/
     Каталог со скриптами, которые подключаются из файлов Makefile и nomake.cmd.
@@ -94,16 +94,14 @@ b. Генерируем файлы классов.
   latex disser.ins
 
 c. Собираем документацию.
-  latex disser.dtx
+  pdflatex disser.dtx
   makeindex -r disser
-  latex disser.dtx
-  latex disser.dtx
-  latex gost732.dtx
-  latex gost732.dtx
   pdflatex disser.dtx
   pdflatex disser.dtx
   pdflatex gost732.dtx
   pdflatex gost732.dtx
+  pdflatex disser-bst.dtx
+  pdflatex disser-bst.dtx
 
 d. Копируем файлы в каталог назначения.
   cp *.cls *.rtx /путь/к/texmf/tex/latex/disser
