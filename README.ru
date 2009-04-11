@@ -106,8 +106,7 @@ d. Копируем файлы в каталог назначения.
   cp disser.bst /путь/к/texmf/bibtex/bst/disser
 
 e. Устанавливаем документацию.
-  cp disser.pdf gost732.pdf disser-bst.pdf /путь/к/texmf/doc/latex/disser
-  cp disser-bst.pdf /путь/к/texmf/doc/bibtex/disser
+  cp manual.pdf disser.pdf gost732.pdf disser-bst.pdf /путь/к/texmf/doc/latex/disser
 
 f. Обновляем базу имен файлов.
   mktexlsr

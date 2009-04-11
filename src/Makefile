@@ -51,9 +51,8 @@ install: all
 	cp $(CLSFILES) $(CLSDIR)
 	cp $(BSTFILE) $(BSTDIR)
 	cp $(DOCFILES) $(DOCDIR)
-	cp $(BSTDOCFILE) $(BSTDOCDIR)
+	cp $(BSTDOCFILE) $(DOCDIR)
 	cp $(SRCFILES) $(SRCDIR)
-	ln -s $(BSTDOCDIR)/$(BSTDOCFILE) $(DOCDIR)/$(BSTDOCFILE)
 	@echo -e "\nDon't forget to run 'mktexlsr' if you install this class first time\n"
 
 clean:

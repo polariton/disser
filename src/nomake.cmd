@@ -114,7 +114,6 @@ if "%1"=="install" (
 	for %%f in (%clsfiles%) do xcopy /y /f %%f "%clsdir%"
 	for %%f in (%docfiles%) do xcopy /y /f %%f "%docdir%"
 	for %%f in (%bstfile%) do xcopy /y /f %%f "%bstdir%"
-	for %%f in (%bstdocfile%) do xcopy /y /f %%f "%bstdocdir%"
 	for %%f in (%bstdocfile%) do xcopy /y /f %%f "%docdir%"
 	for %%f in (%srcfiles%) do xcopy /y /f %%f "%srcdir%"
 goto :eof

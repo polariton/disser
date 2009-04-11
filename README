@@ -107,8 +107,7 @@ d. Copy *.cls and *.rtx.
   cp disser.bst /path/to/texmf/bibtex/bst/disser
 
 e. Copy documentation.
-  cp disser.pdf gost732.pdf disser-bst.pdf /path/to/texmf/doc/latex/disser
-  cp disser-bst.pdf /path/to/texmf/doc/bibtex/disser
+  cp manual.pdf disser.pdf gost732.pdf disser-bst.pdf /path/to/texmf/doc/latex/disser
 
 f. Refresh filename database.
   mktexlsr
