@@ -35,7 +35,6 @@ ZIP-файл с собранными файлами и документацией, отсортированными в соответствии с
   http://mercurial.intuxication.org/hg/disser/
   http://disser.hg.sourceforge.net/hgweb/disser/
   http://bitbucket.org/sky/disser/
-  http://freehg.org/u/sk/disser/
 
 Наиболее свежую версию пакета можно получить, скачав автоматически
 генерируемый архив:
