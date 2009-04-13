@@ -8,15 +8,11 @@
 Зависимости
 -----------
 
-Класс использует стронние пакеты. Для корректной сборки всех шаблонов 
+Класс использует стронние пакеты. Для корректной сборки всех шаблонов
 следует установить всё нижеперечисленное: 
-amsfonts, amsmath, amssymb, caption, cmap, graphicx, hyperref, hypernat, 
-multibib, natbib, oberdiek, pscyr (или cyrtimes), subfig, txfonts (или mtpro), 
-wrapfig.
-
-В данном списке не указаны пакеты, предназначенные для поддержки русского 
-языка.
-
+amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib, 
+oberdiek, hyperref, hypernat, pscyr или cyrtimes, txfonts или mtpro, subfig,
+wrapfig, пакеты для поддержки русского языка.
 
 Получение последней версии
 --------------------------
@@ -24,39 +20,25 @@ wrapfig.
 Пакет disser доступен на CTAN:
   http://www.ctan.org/tex-archive/macros/latex/contrib/disser/
 
-ZIP-файл с исходными текстами:
+Страница проекта на Sourceforge:
+  http://sourceforge.net/projects/disser/
+
+ZIP-архив с исходными текстами:
   http://www.ctan.org/get/macros/latex/contrib/disser.zip
 
-ZIP-файл с собранными файлами и документацией, отсортированными в соответствии со
-стандартной структурой каталогов TeX:
-  http://tug.ctan.org/pub/tex-archive/install/macros/latex/contrib/disser.tds.zip
+ZIP-архив с готовыми файлами и документацией, которые размещены в 
+соответствии со стандартной структурой каталогов TeX 
+(файл disser.tds.zip в разделе Download):
+  http://sourceforge.net/projects/disser/
 
 Репозитории исходных текстов проекта:
   http://mercurial.intuxication.org/hg/disser/
   http://disser.hg.sourceforge.net/hgweb/disser/
   http://bitbucket.org/sky/disser/
 
-Наиболее свежую версию пакета можно получить, скачав автоматически
-генерируемый архив:
+Наиболее свежую версию исходных текстов пакета можно получить, скачав 
+автоматически генерируемый архив
   http://mercurial.intuxication.org/hg/disser/archive/tip.zip
-
-Структура файлов и каталогов архива исходных текстов disser.zip:
-  ./
-    Корневой каталог содержит файлы ChangeLog, README, README.ru, Makefile,
-    nomake.cmd. Версия, скачанная из репозитория также содержит служебные файлы 
-    .hg*.
-
-  include/
-    Каталог со скриптами, которые подключаются из файлов Makefile и nomake.cmd.
-
-  src/
-    Каталог с исходными текстами пакета.
-
-  doc/
-    Каталог с пользовательской документацией.
-
-  templates/
-    Каталог для шаблонов документов.
 
 
 Установка
@@ -69,14 +51,11 @@ ZIP-файл с собранными файлами и документацией, отсортированными в соответствии с
   mktexlsr
 
 В Windows:
-  set TEXMF=<путь к каталогу дистрибутива LaTeX>
+  set TEXMF=/путь/к/texmf
   nomake install
   mktexlsr
 
-Пример для пользователей MiKTeX:
-set TEXMF=C:\Program Files\MiKTeX 2.7
-nomake install
-mktexlsr
+/путь/к/texmf -- это путь к каталогу, в котором установлен TeX.
 
 
 2. Установка из исходных текстов вручную
