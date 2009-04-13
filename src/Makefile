@@ -46,7 +46,6 @@ install: all
 	mkdir -p $(CLSDIR)
 	mkdir -p $(BSTDIR)
 	mkdir -p $(DOCDIR)
-	mkdir -p $(BSTDOCDIR)
 	mkdir -p $(SRCDIR)
 	cp $(CLSFILES) $(CLSDIR)
 	cp $(BSTFILE) $(BSTDIR)

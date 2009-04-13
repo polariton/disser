@@ -109,7 +109,6 @@ if "%1"=="install" (
 	if not exist "%clsdir%" md "%clsdir%"
 	if not exist "%docdir%" md "%docdir%"
 	if not exist "%bstdir%" md "%bstdir%"
-	if not exist "%bstdocdir%" md "%bstdocdir%"
 	if not exist "%srcdir%" md "%srcdir%"
 	for %%f in (%clsfiles%) do xcopy /y /f %%f "%clsdir%"
 	for %%f in (%docfiles%) do xcopy /y /f %%f "%docdir%"

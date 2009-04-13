@@ -74,7 +74,7 @@ goto :eof
 
 if "%1"=="tds" (
 :tds
-	if not exist %tdsdir%\source\latex\disser mkdir %tdsdir%\source\latex\disser
+	if not exist %tdsdir%\source\latex\disser md %tdsdir%\source\latex\disser
 	for %%f in (src\*.dtx src\*.tex src\*.ins) do xcopy /y /f %%f "%tdsdir%\source\latex\disser"
 	set texmf=..\%tdsdir%
 	cd src & call nomake install & cd ..
