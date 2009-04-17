@@ -10,8 +10,8 @@ MANUAL?=manual
 
 CLSFILES=$(TARGET).cls *.rtx $(SUBCLASS).cls
 BSTFILE=$(TARGET).bst
-DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(MANUAL).pdf ../README ../README.ru ../ChangeLog
-BSTDOCFILE=$(BST).pdf
+DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf $(MANUAL).pdf
+TEXTFILES=../README ../README.ru ../ChangeLog
 SRCFILES=*.dtx *.ins $(MANUAL).tex
 
 TEXMF?=/usr/share/texmf
@@ -19,11 +19,10 @@ TEXMF?=/usr/share/texmf
 CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
 DOCDIR?=$(TEXMF)/doc/latex/$(TARGET)
 BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
-BSTDOCDIR?=$(TEXMF)/doc/bibtex/$(TARGET)
 SRCDIR?=$(TEXMF)/source/latex/$(TARGET)
 
-CLEXT?= *.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
-CLFILES?=$(CLSFILES) $(BSTFILE) $(DOCFILES) $(BSTDOCFILE) $(CLEXT)
+CLEXT?=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
+CLFILES?=$(CLSFILES) $(BSTFILE) $(DOCFILES) $(CLEXT)
 
 LATEX?=latex
 PDFLATEX?=pdflatex
@@ -50,9 +49,21 @@ install: all
 	cp $(CLSFILES) $(CLSDIR)
 	cp $(BSTFILE) $(BSTDIR)
 	cp $(DOCFILES) $(DOCDIR)
-	cp $(BSTDOCFILE) $(DOCDIR)
+	cp $(TEXTFILES) $(DOCDIR)
 	cp $(SRCFILES) $(SRCDIR)
-	@echo -e "\nDon't forget to run 'mktexlsr' if you install this class first time\n"
+
+uninstall:
+	rm $(addprefix $(CLSDIR)/, $(CLSFILES))
+	rm $(addprefix $(BSTDIR)/, $(BSTFILE))
+	rm $(addprefix $(DOCDIR)/, $(DOCFILES))
+	rm $(addprefix $(DOCDIR)/, $(notdir $(TEXTFILES)))
+	rm $(addprefix $(SRCDIR)/, $(SRCFILES))
+	rmdir $(CLSDIR)
+	rmdir $(BSTDIR)
+	rmdir $(DOCDIR)
+	rmdir $(SRCDIR)
+
+reinstall: uninstall install
 
 clean:
 	rm -f $(CLFILES)
@@ -82,12 +93,13 @@ clean:
 
 help:
 	@echo "Targets:"
-	@echo "  all       (default) build classes and documentation"
-	@echo "  class     build classes"
-	@echo "  clean     remove ouptut files"
-	@echo "  doc       build DVI and PDF versions of documentation"
-	@echo "  dvi       build DVI version of documentation"
-	@echo "  pdf       build PDF version of documentation"
-	@echo "  install   install package and documentation"
-	@echo "  help      show help"
-
+	@echo "  all        (default) build classes and documentation"
+	@echo "  class      build classes"
+	@echo "  clean      remove output files"
+	@echo "  doc        build DVI and PDF versions of documentation"
+	@echo "  dvi        build DVI version of documentation"
+	@echo "  help       show help"
+	@echo "  install    install package and documentation"
+	@echo "  pdf        build PDF version of documentation"
+	@echo "  reinstall  reinstall package and documentation"
+	@echo "  uninstall  uninstall package and documentation"

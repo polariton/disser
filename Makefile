@@ -10,23 +10,22 @@ HG?=hg
 ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
 TDSDIR?=../disser-tds
+TDSARCHIVE=$(TARGET).tds.$(ARCHEXT)
 
 class:
 	@$(MAKE) -i -C src
 
-all:
-	@$(MAKE) -i -C src
+templates:
 	@$(MAKE) -i -C templates
 
-clean:
-	@$(MAKE) -i -C src $@
-	@$(MAKE) -i -C templates $@
+all: class templates
 
 doc:
 	@$(MAKE) -i -C src $@
 
-install:
+clean install uninstall reinstall:
 	@$(MAKE) -i -C src $@
+	@$(MAKE) -i -C templates $@
 
 srcdist:
 	@if [ -f $(ARCHIVE) ];\
@@ -41,15 +40,11 @@ srcdist:
 		mv $(TARGET).$(ARCHEXT) $(ARCHIVE);\
 	fi
 
-template:
-	@env TARGET=thesis $(MAKE) -i -C templates
-
 tds:
-	mkdir -p $(TDSDIR)/source/latex/disser
-	cp src/*.dtx src/*.tex src/*.ins $(TDSDIR)/source/latex/disser
+	mkdir -p $(TDSDIR)
 	@env TEXMF=../$(TDSDIR) $(MAKE) -i -C src install
 	@env TEXMF=../$(TDSDIR) $(MAKE) -i -C templates install
-	7z a -tzip -mx=9 disser.tds.zip $(TDSDIR)/*
+	7z a -t$(ARCHEXT) -mx=9 $(TDSARCHIVE) $(TDSDIR)/*
 
 help:
 	@echo "Targets:"
@@ -57,7 +52,9 @@ help:
 	@echo "  class      (default) build classes and documentation"
 	@echo "  clean      remove ouptut files"
 	@echo "  doc        build DVI and PDF versions of documentation"
+	@echo "  help       show help"
 	@echo "  install    install package and documentation"
+	@echo "  reinstall  reinstall package and documentation"
 	@echo "  srcdist    create source distribution"
 	@echo "  template   build templates"
-	@echo "  help       show help"
+	@echo "  uninstall  uninstall package and documentation"

@@ -15,6 +15,7 @@ set hg=hg
 set archext=zip
 set archive=%target%-%ver%.%archext%
 set tdsdir=..\disser-tds
+set tdsarchive=%target%.tds.%archext%
 
 setlocal enabledelayedexpansion
 
@@ -28,16 +29,28 @@ goto :eof
 :start
 if "%1"=="" goto :eof
 
-if "%1"=="all" (
-:all
-	cd src & nomake & cd ..
-	cd templates & nomake & cd ..
+if "%1"=="class" (
+:class
+	cd src & call nomake & cd ..
 goto :eof
 )
 
-if "%1"=="class" (
-:class
-	cd src & nomake & cd ..
+if "%1"=="templates" (
+:templates
+	cd templates & call nomake & cd ..
+goto :eof
+)
+
+if "%1"=="all" (
+:all
+	call :class
+	call :templates
+goto :eof
+)
+
+if "%1"=="doc" (
+:doc
+	cd src & call nomake %1 & cd ..
 goto :eof
 )
 
@@ -48,19 +61,24 @@ if "%1"=="clean" (
 goto :eof
 )
 
-if "%1"=="doc" (
-:doc
-	cd src & call nomake doc
-goto :eof
-)
-
 if "%1"=="install" (
 :install
 	cd src & call nomake install & cd ..
 	cd templates & call nomake install & cd ..
-	echo.
-	echo Don't forget to run 'mktexlsr' if you install this class first time
-	echo.
+goto :eof
+)
+
+if "%1"=="uninstall" (
+:uninstall
+	cd src & call nomake uninstall & cd ..
+	cd templates & call nomake uninstall & cd ..
+goto :eof
+)
+
+if "%1"=="reinstall" (
+:uninstall
+	cd src & call nomake reinstall & cd ..
+	cd templates & call nomake reinstall & cd ..
 goto :eof
 )
 
@@ -74,19 +92,10 @@ goto :eof
 
 if "%1"=="tds" (
 :tds
-	if not exist %tdsdir%\source\latex\disser md %tdsdir%\source\latex\disser
-	for %%f in (src\*.dtx src\*.tex src\*.ins) do xcopy /y /f %%f "%tdsdir%\source\latex\disser"
+	if not exist %tdsdir% md "%tdsdir%"
 	set texmf=..\%tdsdir%
-	cd src & call nomake install & cd ..
-	cd templates & call nomake install & cd ..
-	7z a -tzip -mx=9 disser.tds.zip %tdsdir%\*
-goto :eof
-)
-
-if "%1"=="templates" (
-:templates
-	set target=thesis
-	cd templates & call nomake
+	call :install
+	7z a -t%archext% -mx=9 %tdsarchive% %tdsdir%\*
 goto :eof
 )
 
@@ -99,8 +108,10 @@ if "%1"=="help" (
 	echo   doc        build DVI and PDF versions of documentation
 	echo   help       show help
 	echo   install    install package and documentation
+	echo   reinstall  reinstall package and documentation
 	echo   srcdist    create source distribution
 	echo   templates  build all templates
+	echo   uninstall  uninstall package and documentation
 goto :eof
 )
 
