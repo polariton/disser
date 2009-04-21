@@ -1628,15 +1628,15 @@ ITERATE {longest.label.pass}
 
 FUNCTION {begin.bib}
 {
-  "\ifx\undefined\BibPrefix\def\BibPrefix{}\else\fi"  write$ newline$
+  "\ifx\undefined\BibPrefix\def\BibPrefix{}\else\fi"          write$ newline$
   "\begin{thebibliography}{\BibPrefix" longest.label  * "}" * write$ newline$
-  "\def\selectlanguageifdefined#1{"                  write$ newline$
-  "\expandafter\ifx\csname date#1\endcsname\relax"   write$ newline$
+  "\def\selectlanguageifdefined#1{"                           write$ newline$
+  "\expandafter\ifx\csname date#1\endcsname\relax"            write$ newline$
   "\else\language\csname l@#1\endcsname\fi}"                  write$ newline$
-  "\ifx\undefined\url\def\url#1{{\small #1}}\else\fi"                  write$ newline$
-  "\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi"   write$ newline$
-  "\ifx\undefined\BibAnnote\long\def\BibAnnote#1{}\else\fi"    write$ newline$
-  "\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi"    write$ newline$
+  "\ifx\undefined\url\def\url#1{{\small #1}}\else\fi"         write$ newline$
+  "\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi"      write$ newline$
+  "\ifx\undefined\BibAnnote\long\def\BibAnnote#1{}\else\fi"   write$ newline$
+  "\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi"   write$ newline$
   preamble$ empty$
     'skip$
     { preamble$ write$ newline$ }
