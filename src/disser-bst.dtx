@@ -87,7 +87,7 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% \title{\texttt{disser.bst} "--- стиль библиографических ссылок}
+% \title{Стили библиографических ссылок \texttt{disser} и \texttt{disser-s}}
 % \date{Версия \fileversion\\[6pt]\filedate}
 % \author{Станислав Кручинин\\[6pt]
 % \normalsize E-mail:
@@ -96,69 +96,10 @@
 %
 % \maketitle
 %
-% \tableofcontents
-%
-% \section{Введение}
-%
-%  Cтиль для оформления библиографических ссылок |disser.bst| представляет собой
-%  доработанную версию |gost71u.bst| из пакета |gost|, написанного Максимом Поляковым.
-%  Создание |disser.bst| обусловлено следующими причинами: пакет |gost| более не
-%  поддерживается автором, а оформление библиографии в соответствии с его стилями
-%  противоречит некоторым требованиям, предъявляемым диссертационными советами
-%  к библиографическим ссылкам.
-%
-%  Основные отличия |disser.bst| от |gost71u.bst|:
-%
-%  \begin{enumerate}
-%  \item Инициалы авторов всегда печатаются перед фамилией.
-%  \item Авторы, независимо от их количества, всегда печатаются перед
-%  названием источника.
-%  \item Отсутствует поддержка украинского языка.
-%  \item Настраиваемый префикс у номера библиографической ссылки (макрос |\BibPrefix|).
-%  \end{enumerate}
-%
-%  \section{Руководство по использованию}
-%
-%  Для использования |disser.bst| необходима версия \BibTeX{} с поддержкой
-%  8-битных символов (|bibtex8|). В зависимости от кодировки, использованной
-%  в bib-файле, необходимо подключать тот или иной файл с описанием кодовой
-%  страницы и порядка сортировки (csf-файл), например, |koi8u.csf| или
-%  |cp1251.csf|. Примеры библиографических записей приведены в документации к
-%  пакету |gost|, который может быть найден в любом современном дистрибутиве \LaTeX{}.
-%
-%  Последовательность команд, используемая для полной сборки документа
-%  с библиографией:
-%  \begin{verbatim}
-%    latex <tex_file>
-%    bibtex8 -H -c <csf_file> <tex_file_basename>
-%    latex <tex_file>
-%    latex <tex_file>
-%  \end{verbatim}
-%  Здесь |<tex_file>| "--- файл документа, |<csf_file>| "--- файл описания
-%  кодовой страницы, |<tex_file_basename>| "--- имя файла документа без расширения.
-%
-%  Данный стиль позволяет менять префикс номера ссылок, т.\,е. использовать
-%  ссылки вида [A1] вместо [1]. Эта возможность необходима поскольку в
-%  автореферате следует различать ссылки на работы соискателя и на внешние
-%  источники. Префикс номера ссылки определяется макросом |\BibPrefix|,
-%  значение которого должно быть задано до использования команды
-%  |\bibliographystyle|.
-%  
-%  Пример:
-%  \begin{verbatim}
-%    \def\BibPrefix{A}
-%    \bibliographystyle{disser}
-%    \bibliography{thesis}\end{verbatim}
-%  В данном случае ссылки на библиографию будут иметь вид [A$n$], где $n$ "---
-%  номер.
-%
-%  К сожалению, пакет |natbib| не <<сжимает>> ссылки, содержащие нецифровые
-%  символы. Поэтому ссылки вида [A1, A2, A3, A4] не преобразуются к более
-%  компактной форме [A1--A4]. Ведется работа над исправлением этого недостатка.
-%
 %  \section{Исходный текст}\parindent=0pt
 %    \begin{macrocode}
-%<*disser-bst>
+
+%<*disser-bst|disser-s-bst>
 
 %    \end{macrocode}
 % Список полей, используемых в bib-файлах.
@@ -1544,6 +1485,121 @@ MACRO {tcs} {"Theoretical Computer Science"}
 
 READ
 
+%<*disser-s-bst>
+
+FUNCTION {sortify}
+{ purify$
+  "l" change.case$
+}
+
+INTEGERS { len }
+
+FUNCTION {chop.word}
+{ 's :=
+  'len :=
+  s #1 len substring$ =
+    { s len #1 + global.max$ substring$ }
+    's
+  if$
+}
+
+FUNCTION {sort.format.names}
+{ 's :=
+  #1 'nameptr :=
+  ""
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+    { namesleft #0 > }
+    { nameptr #1 >
+        { "   " * }
+        'skip$
+      if$
+      s nameptr
+      "{vv{ } }{ll{ }}{  f{ }}{  jj{ }}"
+      format.name$ 't :=
+      nameptr numnames = t "others" = and
+        { "et al" * }
+        { t sortify * }
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+}
+
+FUNCTION {sort.format.title}
+{ 't :=
+  "A " #2
+    "An " #3
+      "The " #4 t chop.word
+    chop.word
+  chop.word
+  sortify
+  #1 global.max$ substring$
+}
+
+FUNCTION {author.sort}
+{ author empty$
+    { key empty$
+        { "to sort, need author or key in " cite$ * warning$
+          ""
+        }
+        { key sortify }
+      if$
+    }
+    {
+      author num.names$ #4 <
+        {author sort.format.names }
+        {title sort.format.title}
+      if$
+    }
+  if$
+}
+
+FUNCTION {author.title.sort}
+{ author empty$
+    { title empty$
+        { key empty$
+            { "to sort, need author, title, or key in " cite$ * warning$
+              ""
+            }
+            { key sortify }
+          if$
+        }
+        { title sort.format.title }
+      if$
+    }
+    {
+      author num.names$ #4 <
+        {author sort.format.names }
+        {title sort.format.title}
+      if$
+     }  	
+  if$
+}
+
+
+FUNCTION {presort}
+{
+  author.title.sort
+  "   "
+  *
+  year field.or.null sortify
+  *
+  "   "
+  *
+  title field.or.null
+  sort.format.title
+  *
+  #1 entry.max$ substring$
+  'sort.key$ :=
+}
+
+ITERATE {presort}
+
+SORT
+
+%</disser-s-bst>
 
 STRINGS { longest.label }
 
@@ -1600,5 +1656,5 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 
-%</disser-bst>
+%</disser-bst|disser-s-bst>
 %    \end{macrocode}
