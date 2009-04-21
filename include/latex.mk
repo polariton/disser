@@ -40,6 +40,16 @@ SRCFILES?=*
 
 dvi: $(TARGET).dvi
 
+clean:
+	rm -f $(CLFILES)
+	@$(MAKE) -C fig $@
+
+epstoeps epstopdf fixbb pdftopng256 pdftotiffg4:
+	@$(MAKE) -C fig $@
+
+html: $(TARGET).dvi
+	$(L2H) $(L2HFLAGS) $(TARGET).tex
+
 pdf: $(TARGET).pdf
 
 pdf_2on1: $(TARGET)_2on1.pdf
@@ -52,10 +62,10 @@ ps_2on1: $(TARGET)_2on1.ps
 
 ps_book: $(TARGET)_book.ps
 
-html: $(TARGET).dvi
-	$(L2H) $(L2HFLAGS) $(TARGET).tex
-
 rtf: $(TARGET).rtf
+
+srcdist: clean
+	$(ARCH) $(ARCHFLAGS) $(ARCHIVE) $(SRCFILES)
 
 $(TARGET).dvi: $(TARGET).tex
 	$(LATEX) $(TEXFLAGS) $^
@@ -97,39 +107,16 @@ $(TARGET)_book.pdf: $(TARGET)_book.ps
 $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
-epstoeps:
-	@$(MAKE) -C fig $@
-
-epstopdf:
-	@$(MAKE) -C fig $@
-
-fixbb:
-	@$(MAKE) -C fig $@
-
-srcdist:
-	@$(MAKE) clean
-	$(ARCH) $(ARCHFLAGS) $(ARCHIVE) $(SRCFILES)
-
-clean:
-	rm -f $(CLFILES)
-	rm -f html/*.*
-	@$(MAKE) -C fig $@
-
 help:
-	@echo "Targets:"
-	@echo "  dvi        (default) build DVI"
-	@echo "  clean      remove output files"
-	@echo "  epstoeps   optimize EPS files"
-	@echo "  epstopdf   convert figures to PDF"
-	@echo "  fixbb      fix BoundingBox of EPS files"
-	@echo "  help       show help"
-	@echo "  html       convert to HTML"
-	@echo "  pdf        build PDF"
-	@echo "  pdf_2on1   build PDF with two A5 pages on one A4 ordered by number"
-	@echo "  pdf_book   build PDF booklet (two A5 on A4)"
-	@echo "  ps         build PS"
-	@echo "  ps_2on1    build PS with two A5 pages on one A4 ordered by number"
-	@echo "  ps_book    build PS booklet (two A5 on A4)"
-	@echo "  rtf        convert to RTF"
-	@echo "  srcdist    build source distribution $(ARCHIVE)"
-
+	@echo "  dvi       (default) build DVI"
+	@echo "  clean     remove output files"
+	@echo "  help      show description of targets"
+	@echo "  html      convert DVI to HTML"
+	@echo "  pdf       build PDF"
+	@echo "  pdf_2on1  build PDF with two A5 pages on one A4 ordered by number"
+	@echo "  pdf_book  build PDF booklet (two A5 on A4)"
+	@echo "  ps        build PS"
+	@echo "  ps_2on1   build PS with two A5 pages on one A4 ordered by number"
+	@echo "  ps_book   build PS booklet (two A5 on A4)"
+	@echo "  rtf       convert DVI to RTF"
+	@echo "  srcdist   build source distribution $(ARCHIVE)"

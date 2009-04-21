@@ -47,14 +47,14 @@ tds:
 	7z a -t$(ARCHEXT) -mx=9 $(TDSARCHIVE) $(TDSDIR)/*
 
 help:
-	@echo "Targets:"
 	@echo "  all        build classes, documentation and templates"
 	@echo "  class      (default) build classes and documentation"
 	@echo "  clean      remove ouptut files"
 	@echo "  doc        build DVI and PDF versions of documentation"
-	@echo "  help       show help"
+	@echo "  help       show description of targets"
 	@echo "  install    install package and documentation"
 	@echo "  reinstall  reinstall package and documentation"
 	@echo "  srcdist    create source distribution"
+	@echo "  tds        create TDS archive"
 	@echo "  template   build templates"
 	@echo "  uninstall  uninstall package and documentation"

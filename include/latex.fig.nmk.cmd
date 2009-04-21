@@ -38,9 +38,32 @@ goto :eof
 :start
 if "%1"=="" goto :eof
 
+if "%1"=="help" (
+:help
+	echo   clean        clean PDF, PNG and TIFF files
+	echo   epstoeps     optimize EPS files using Ghostscript
+	echo   epstopdf     convert EPS to PDF
+	echo   fixbb        fix BoundingBox of EPS files
+	echo   help         ^(default^) show description of targets
+	echo   pdftopng256  convert PDF to PNG (256-color)
+	echo   pdftotiffg4  convert PDF to TIFF (b/w CCITT Group 4)
+goto :eof
+)
+
 if "%1"=="clean" (
 :clean
 	del /s %figclfiles% 2> nul
+goto :eof
+)
+
+if "%1"=="epstoeps" (
+:epstoeps
+	if "%2" neq "" set e2efiles=%2 %3 %4 %5 %6 %7 %8 %9
+	for %%f in (!e2efiles!) do (
+		%e2e% %e2eflags% "%%f" "%%f%suffix%"
+		move "%%f%suffix%" "%%f" > nul
+		echo epstoeps: %%f
+	)
 goto :eof
 )
 
@@ -54,6 +77,17 @@ if "%1"=="epstopdf" (
 		)
 	)
 goto :eof	
+)
+
+if "%1"=="fixbb" (
+:fixbb
+	if "%2" neq "" set fbbfiles=%2 %3 %4 %5 %6 %7 %8 %9
+	for %%f in (!fbbfiles!) do (
+		%epstool% %etflags% "%%f" "%%f%suffix%"
+		move "%%f%suffix%" "%%f" > nul
+		echo fixbb: %%f
+	)
+goto :eof
 )
 
 if "%1"=="pdftopng256" (
@@ -78,41 +112,6 @@ if "%1"=="pdftotiffg4" (
 		)
 	)
 goto :eof	
-)
-
-if "%1"=="fixbb" (
-:fixbb
-	if "%2" neq "" set fbbfiles=%2 %3 %4 %5 %6 %7 %8 %9
-	for %%f in (!fbbfiles!) do (
-		%epstool% %etflags% "%%f" "%%f%suffix%"
-		move "%%f%suffix%" "%%f" > nul
-		echo fixbb: %%f
-	)
-goto :eof
-)
-
-if "%1"=="epstoeps" (
-:epstoeps
-	if "%2" neq "" set e2efiles=%2 %3 %4 %5 %6 %7 %8 %9
-	for %%f in (!e2efiles!) do (
-		%e2e% %e2eflags% "%%f" "%%f%suffix%"
-		move "%%f%suffix%" "%%f" > nul
-		echo epstoeps: %%f
-	)
-goto :eof
-)
-
-if "%1"=="help" (
-:help
-	echo Targets:
-	echo   clean        clean PDF files
-	echo   epstoeps     optimize EPS files using Ghostscript
-	echo   epstopdf     convert EPS to PDF
-	echo   fixbb        fix BoundingBox of EPS files
-	echo   pdftopng256  convert PDF to PNG (256-color)
-	echo   pdftotiffg4  convert PDF to TIFF (b/w CCITT Group 4)
-	echo   help         ^(default^) show this message
-goto :eof
 )
 
 if "%1" neq "" echo Don't know how to make %1

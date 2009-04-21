@@ -16,7 +16,7 @@ set bst=disser-bst
 set manual=manual
 
 set clsfiles=*.cls *.rtx
-set bstfile=%target%.bst
+set bstfiles=%target%.bst %target%-s.bst
 set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
 set srcfiles=*.dtx *.ins %manual%.tex Makefile nomake.cmd
@@ -30,7 +30,7 @@ if "%srcdir%"=="" set srcdir=!texmf!\source\latex\%target%
 
 if "%clext%"=="" set clext=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo ^
 *.toc *.bak *.bbl *.blg *.sav
-if "%clfiles%"=="" set clfiles=%clsfiles% %bstfile% %docfiles% %clext%
+if "%clfiles%"=="" set clfiles=%clsfiles% %bstfiles% %docfiles% %clext%
 
 if "%latex%"=="" set latex=latex
 if "%pdflatex%"=="" set pdflatex=pdflatex
@@ -113,22 +113,8 @@ if "%1"=="install" (
 	for %%f in (%clsfiles%)  do xcopy /y /f %%f "%clsdir%"
 	for %%f in (%docfiles%)  do xcopy /y /f %%f "%docdir%"
 	for %%f in (%textfiles%) do xcopy /y /f %%f "%docdir%"
-	for %%f in (%bstfile%)   do xcopy /y /f %%f "%bstdir%"
+	for %%f in (%bstfiles%)  do xcopy /y /f %%f "%bstdir%"
 	for %%f in (%srcfiles%)  do xcopy /y /f %%f "%srcdir%"
-goto :eof
-)
-
-if "%1"=="uninstall" (
-:uninstall
-	for %%f in (%clsfiles%)  do del "%clsdir%\%%~nxf"
-	for %%f in (%docfiles%)  do del "%docdir%\%%~nxf"
-	for %%f in (%textfiles%) do del "%docdir%\%%~nxf"
-	for %%f in (%bstfile%)   do del "%bstdir%\%%~nxf"
-	for %%f in (%srcfiles%)  do del "%srcdir%\%%~nxf"
-	rmdir "%clsdir%"
-	rmdir "%docdir%"
-	rmdir "%bstdir%"
-	rmdir "%srcdir%"
 goto :eof
 )
 
@@ -139,15 +125,28 @@ if "%1"=="reinstall" (
 goto :eof
 )
 
+if "%1"=="uninstall" (
+:uninstall
+	for %%f in (%clsfiles%)  do del "%clsdir%\%%~nxf"
+	for %%f in (%docfiles%)  do del "%docdir%\%%~nxf"
+	for %%f in (%textfiles%) do del "%docdir%\%%~nxf"
+	for %%f in (%bstfiles%)  do del "%bstdir%\%%~nxf"
+	for %%f in (%srcfiles%)  do del "%srcdir%\%%~nxf"
+	rmdir "%clsdir%"
+	rmdir "%docdir%"
+	rmdir "%bstdir%"
+	rmdir "%srcdir%"
+goto :eof
+)
+
 if "%1"=="help" (
 :help
-	echo Targets:
 	echo   all        ^(default^) build classes and documentation
 	echo   class      build class
 	echo   clean      remove output files
 	echo   doc        build documentation
 	echo   dvi        build DVI version of documentation
-	echo   help       show help
+	echo   help       show description of targets
 	echo   install    install package and documentation
 	echo   pdf        build PDF version of documentation
 	echo   reinstall  reinstall package and documentation

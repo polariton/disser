@@ -169,13 +169,12 @@ goto :eof
 
 if "%1"=="help" (
 :help
-	echo Targets:
 	echo   dvi        ^(default^) build DVI
 	echo   clean      remove output files
 	echo   epstoeps   optimize EPS files
 	echo   epstopdf   convert figures to PDF
 	echo   fixbb      fix BoundingBox of EPS files
-	echo   help       show list of targets
+	echo   help       show description of targets
 	echo   html       convert to HTML
 	echo   pdf        build PDF
 	echo   pdf_2on1   build PDF with two A5 pages on one A4 ordered by number

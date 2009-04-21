@@ -29,28 +29,28 @@ goto :eof
 :start
 if "%1"=="" goto :eof
 
+if "%1"=="all" (
+:all
+	call :default
+	call :templates
+goto :eof
+)
+
 if "%1"=="class" (
 :class
 	cd src & call nomake & cd ..
 goto :eof
 )
 
-if "%1"=="templates" (
-:templates
-	cd templates & call nomake & cd ..
-goto :eof
-)
-
-if "%1"=="all" (
-:all
-	call :class
-	call :templates
-goto :eof
-)
-
 if "%1"=="doc" (
 :doc
 	cd src & call nomake %1 & cd ..
+goto :eof
+)
+
+if "%1"=="templates" (
+:templates
+	cd templates & call nomake & cd ..
 goto :eof
 )
 
@@ -68,17 +68,17 @@ if "%1"=="install" (
 goto :eof
 )
 
-if "%1"=="uninstall" (
-:uninstall
-	cd src & call nomake uninstall & cd ..
-	cd templates & call nomake uninstall & cd ..
-goto :eof
-)
-
 if "%1"=="reinstall" (
 :uninstall
 	cd src & call nomake reinstall & cd ..
 	cd templates & call nomake reinstall & cd ..
+goto :eof
+)
+
+if "%1"=="uninstall" (
+:uninstall
+	cd src & call nomake uninstall & cd ..
+	cd templates & call nomake uninstall & cd ..
 goto :eof
 )
 
@@ -101,15 +101,15 @@ goto :eof
 
 if "%1"=="help" (
 :help
-	echo Targets:
 	echo   all        build classes, documentation and templates
 	echo   class      ^(default^) build classes and documentation
 	echo   clean      remove ouptut files
 	echo   doc        build DVI and PDF versions of documentation
-	echo   help       show help
+	echo   help       show description of targets
 	echo   install    install package and documentation
 	echo   reinstall  reinstall package and documentation
 	echo   srcdist    create source distribution
+	echo   tds        create TDS archive
 	echo   templates  build all templates
 	echo   uninstall  uninstall package and documentation
 goto :eof

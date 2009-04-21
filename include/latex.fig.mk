@@ -23,14 +23,13 @@ SUFFIX?=~
 # end of configuration
 
 help:
-	@echo "Targets:"
-	@echo "  clean        clean PDF files"
-	@echo "  epstoeps     optimize EPS files"
-	@echo "  epstopdf     convert all figures to PDF"
+	@echo "  clean        clean PDF, PNG and TIFF files"
+	@echo "  epstoeps     optimize EPS files using Ghostscript"
+	@echo "  epstopdf     convert EPS to PDF"
+	@echo "  fixbb        fix BoundingBox of EPS files"
+	@echo "  help         (default) show description of targets"
 	@echo "  pdftopng256  convert PDF to PNG (256-color)"
 	@echo "  pdftotiffg4  convert PDF to TIFF (b/w CCITT Group 4)"
-	@echo "  fixbb        fix BoundingBox of EPS files"
-	@echo "  help         (default) show help"
 
 clean:
 	rm -f $(FIGCLFILES)
@@ -44,11 +43,7 @@ epstoeps: $(E2EFILES)
 		echo "done" ;\
 	done
 
-epstopdf:	$(patsubst %.eps, %.pdf, $(wildcard $(E2PFILES)))
-
-pdftopng256:	$(patsubst %.pdf, %.png, $(wildcard $(PDF2PNGFILES)))
-
-pdftotiffg4:	$(patsubst %.pdf, %.tif, $(wildcard $(PDF2TIFFILES)))
+epstopdf: $(patsubst %.eps, %.pdf, $(wildcard $(E2PFILES)))
 
 fixbb: $(FBBFILES)
 	@for f in $^ ;\
@@ -59,18 +54,22 @@ fixbb: $(FBBFILES)
 		echo "done" ;\
 	done
 
-%.pdf:	%.eps
+pdftopng256: $(patsubst %.pdf, %.png, $(wildcard $(PDF2PNGFILES)))
+
+pdftotiffg4: $(patsubst %.pdf, %.tif, $(wildcard $(PDF2TIFFILES)))
+
+%.pdf: %.eps
 	@echo -n "epstopdf: $^..."
 	@$(EPSTOPDF) "$^"
 	@echo "done"
 
-%.png:	%.pdf
+%.png: %.pdf
 	@echo -n "pdftopng256: $^..."
 	@$(GS) -sDEVICE=png256 -r$(RES) -q -sOutputFile=$(^:.pdf=.png) \
 		-dNOPAUSE -dBATCH -dSAFER "$^"
 	@echo "done"
 
-%.tif:	%.pdf
+%.tif: %.pdf
 	@echo -n "pdftotiffg4: $^..."
 	@$(GS) -sDEVICE=tiffg4 -r$(RES) -q -sOutputFile=$(^:.pdf=.tif) \
 		-dNOPAUSE -dBATCH -dSAFER "$^"

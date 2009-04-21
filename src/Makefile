@@ -9,7 +9,7 @@ BST=disser-bst
 MANUAL?=manual
 
 CLSFILES=$(TARGET).cls *.rtx $(SUBCLASS).cls
-BSTFILE=$(TARGET).bst
+BSTFILES=$(TARGET).bst $(TARGET)-s.bst
 DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf $(MANUAL).pdf
 TEXTFILES=../README ../README.ru ../ChangeLog
 SRCFILES=*.dtx *.ins $(MANUAL).tex
@@ -46,15 +46,15 @@ install: all
 	mkdir -p $(BSTDIR)
 	mkdir -p $(DOCDIR)
 	mkdir -p $(SRCDIR)
-	cp $(CLSFILES) $(CLSDIR)
-	cp $(BSTFILE) $(BSTDIR)
-	cp $(DOCFILES) $(DOCDIR)
+	cp $(CLSFILES)  $(CLSDIR)
+	cp $(BSTFILES)  $(BSTDIR)
+	cp $(DOCFILES)  $(DOCDIR)
 	cp $(TEXTFILES) $(DOCDIR)
-	cp $(SRCFILES) $(SRCDIR)
+	cp $(SRCFILES)  $(SRCDIR)
 
 uninstall:
 	rm $(addprefix $(CLSDIR)/, $(CLSFILES))
-	rm $(addprefix $(BSTDIR)/, $(BSTFILE))
+	rm $(addprefix $(BSTDIR)/, $(BSTFILES))
 	rm $(addprefix $(DOCDIR)/, $(DOCFILES))
 	rm $(addprefix $(DOCDIR)/, $(notdir $(TEXTFILES)))
 	rm $(addprefix $(SRCDIR)/, $(SRCFILES))
@@ -71,17 +71,23 @@ clean:
 %.cls: %.ins
 	$(TEX) $<
 
-%.dvi: %.dtx
+disser.dvi: disser.dtx
 	$(LATEX) $(LATEXFLAGS) $<
 	$(MI) -r $(TARGET)
+	$(LATEX) $(LATEXFLAGS) $<
+
+%.dvi: %.dtx
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
 
 %.dvi: %.tex
 	$(LATEX) $(LATEXFLAGS) $<
+	$(LATEX) $(LATEXFLAGS) $<
+
+disser.pdf: disser.dtx
+	$(LATEX) $(LATEXFLAGS) $<
 	$(MI) -r $(TARGET)
-	$(LATEX) $(LATEXFLAGS) $<
-	$(LATEX) $(LATEXFLAGS) $<
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 %.pdf: %.dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
@@ -92,13 +98,12 @@ clean:
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 help:
-	@echo "Targets:"
 	@echo "  all        (default) build classes and documentation"
 	@echo "  class      build classes"
 	@echo "  clean      remove output files"
 	@echo "  doc        build DVI and PDF versions of documentation"
 	@echo "  dvi        build DVI version of documentation"
-	@echo "  help       show help"
+	@echo "  help       show description of targets"
 	@echo "  install    install package and documentation"
 	@echo "  pdf        build PDF version of documentation"
 	@echo "  reinstall  reinstall package and documentation"
