@@ -21,7 +21,7 @@ setlocal enabledelayedexpansion
 
 if "%1"=="" (
 :default
-	call :class
+	call :package
 	call :doc
 goto :eof
 )
@@ -36,8 +36,8 @@ if "%1"=="all" (
 goto :eof
 )
 
-if "%1"=="class" (
-:class
+if "%1"=="package" (
+:package
 	cd src & call nomake & cd ..
 goto :eof
 )
@@ -102,8 +102,8 @@ goto :eof
 if "%1"=="help" (
 :help
 	echo   all        build classes, documentation and templates
-	echo   class      ^(default^) build classes and documentation
-	echo   clean      remove ouptut files
+	echo   package    ^(default^) build package and documentation
+	echo   clean      remove output files
 	echo   doc        build DVI and PDF versions of documentation
 	echo   help       show description of targets
 	echo   install    install package and documentation

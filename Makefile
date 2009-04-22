@@ -12,13 +12,13 @@ ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
 TDSDIR?=../disser-tds
 TDSARCHIVE=$(TARGET).tds.$(ARCHEXT)
 
-class:
+package:
 	@$(MAKE) -i -C src
 
 templates:
 	@$(MAKE) -i -C templates
 
-all: class templates
+all: package templates
 
 doc:
 	@$(MAKE) -i -C src $@
@@ -48,13 +48,13 @@ tds:
 
 help:
 	@echo "  all        build classes, documentation and templates"
-	@echo "  class      (default) build classes and documentation"
-	@echo "  clean      remove ouptut files"
+	@echo "  clean      remove output files"
 	@echo "  doc        build DVI and PDF versions of documentation"
 	@echo "  help       show description of targets"
 	@echo "  install    install package and documentation"
+	@echo "  package    (default) build package and documentation"
 	@echo "  reinstall  reinstall package and documentation"
 	@echo "  srcdist    create source distribution"
-	@echo "  tds        create TDS archive"
+	@echo "  tds        create TDS archive with compiled sources"
 	@echo "  template   build templates"
 	@echo "  uninstall  uninstall package and documentation"

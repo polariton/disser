@@ -6,7 +6,7 @@
 TARGET=disser
 SUBCLASS=gost732
 BST=disser-bst
-MANUAL?=manual
+MANUAL=manual
 
 CLSFILES=$(TARGET).cls *.rtx $(SUBCLASS).cls
 BSTFILES=$(TARGET).bst $(TARGET)-s.bst
@@ -31,9 +31,10 @@ MI?=makeindex
 LATEXFLAGS?=
 PDFLATEXFLAGS?=
 
-all: class doc
+all: package doc
 
-class: *.cls
+package: $(TARGET).ins
+	$(LATEX) $^
 
 doc: pdf
 
@@ -68,9 +69,6 @@ reinstall: uninstall install
 clean:
 	rm -f $(CLFILES)
 
-%.cls: %.ins
-	$(TEX) $<
-
 disser.dvi: disser.dtx
 	$(LATEX) $(LATEXFLAGS) $<
 	$(MI) -r $(TARGET)
@@ -98,8 +96,8 @@ disser.pdf: disser.dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 help:
-	@echo "  all        (default) build classes and documentation"
-	@echo "  class      build classes"
+	@echo "  all        (default) build package files and documentation"
+	@echo "  package    build package"
 	@echo "  clean      remove output files"
 	@echo "  doc        build DVI and PDF versions of documentation"
 	@echo "  dvi        build DVI version of documentation"

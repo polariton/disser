@@ -52,13 +52,13 @@ if "%1"=="" goto :eof
 
 if "%1"=="all" (
 :all
-	call :class
+	call :package
 	call :doc
 goto :eof
 )
 
-if "%1"=="class" (
-:class
+if "%1"=="package" (
+:package
     %latex% %target%.ins
 goto :eof
 )
@@ -141,8 +141,8 @@ goto :eof
 
 if "%1"=="help" (
 :help
-	echo   all        ^(default^) build classes and documentation
-	echo   class      build class
+	echo   all        ^(default^) build package and documentation
+	echo   package    build package and documentation
 	echo   clean      remove output files
 	echo   doc        build documentation
 	echo   dvi        build DVI version of documentation
