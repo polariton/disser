@@ -33,12 +33,13 @@ ZIP-архив с готовыми файлами и документацией, которые размещены в
 
 Репозитории исходных текстов проекта:
   http://mercurial.intuxication.org/hg/disser/
-  http://disser.hg.sourceforge.net/hgweb/disser/
   http://bitbucket.org/sky/disser/
+  http://disser.hg.sourceforge.net/hgweb/disser/
 
 Наиболее свежую версию исходных текстов пакета можно получить, скачав 
-автоматически генерируемый архив
+автоматически генерируемый архив с одного из зеркал
   http://mercurial.intuxication.org/hg/disser/archive/tip.zip
+  http://bitbucket.org/sky/disser/get/tip.zip
 
 
 Установка
