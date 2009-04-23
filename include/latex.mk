@@ -9,8 +9,8 @@ BIBFILE?=thesis.bib
 ARCH?=7z
 BIBTEX?=bibtex8
 DVIPS?=dvips
-FIND?=/bin/find
 L2H?=latex2html
+L2RTF?=latex2rtf
 LATEX?=latex
 PDFLATEX?=pdflatex
 PS2PDF?=gs
@@ -23,7 +23,7 @@ ARCHIVE?=$(TARGET).$(ARCHEXT)
 BIBTEXFLAGS?=-H -c cp1251
 
 L2HFLAGS?=-dir html -iso_language RU.RU -split 3 -short_index \
-  -numbered_footnotes -no_footnode -white -antialias -html_version 4.0
+  -numbered_footnotes -white -antialias -html_version 4.0
 L2RTFFLAGS?=-F -M12 -i russian
 PS2PDFFLAGS?=-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -g4960x7016 -r600 \
   -dCompatibilityLevel=1.2
@@ -119,4 +119,4 @@ help:
 	@echo "  ps_2on1   build PS with two A5 pages on one A4 ordered by number"
 	@echo "  ps_book   build PS booklet (two A5 on A4)"
 	@echo "  rtf       convert DVI to RTF"
-	@echo "  srcdist   build source distribution $(ARCHIVE)"
+	@echo "  srcdist   build source distribution"

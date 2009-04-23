@@ -45,20 +45,19 @@ if "%1"=="help" (
 	echo   epstopdf     convert EPS to PDF
 	echo   fixbb        fix BoundingBox of EPS files
 	echo   help         ^(default^) show description of targets
-	echo   pdftopng256  convert PDF to PNG (256-color)
-	echo   pdftotiffg4  convert PDF to TIFF (b/w CCITT Group 4)
+	echo   pdftopng256  convert PDF to PNG ^(256-color^)
+	echo   pdftotiffg4  convert PDF to TIFF ^(b/w CCITT Group 4^)
 goto :eof
 )
 
 if "%1"=="clean" (
 :clean
-	del /s %figclfiles% 2> nul
+	del /s %figclfiles%
 goto :eof
 )
 
 if "%1"=="epstoeps" (
 :epstoeps
-	if "%2" neq "" set e2efiles=%2 %3 %4 %5 %6 %7 %8 %9
 	for %%f in (!e2efiles!) do (
 		%e2e% %e2eflags% "%%f" "%%f%suffix%"
 		move "%%f%suffix%" "%%f" > nul
@@ -69,7 +68,6 @@ goto :eof
 
 if "%1"=="epstopdf" (
 :epstopdf
-	if "%2" neq "" set e2pfiles=%2 %3 %4 %5 %6 %7 %8 %9
 	for %%f in (!e2pfiles!) do (
 		if not exist "%%~nf.pdf" (
 			%epstopdf% "%%f"
@@ -81,7 +79,6 @@ goto :eof
 
 if "%1"=="fixbb" (
 :fixbb
-	if "%2" neq "" set fbbfiles=%2 %3 %4 %5 %6 %7 %8 %9
 	for %%f in (!fbbfiles!) do (
 		%epstool% %etflags% "%%f" "%%f%suffix%"
 		move "%%f%suffix%" "%%f" > nul
