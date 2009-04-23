@@ -19,7 +19,7 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*driver>
-\ProvidesFile{disser.drv}[2009/04/08 1.1.1 Document class for dissertations.]
+\ProvidesFile{disser.drv}[2009/04/23 1.1.1 Document class for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper, includeheadfoot, nohead, mag=1000,
@@ -27,7 +27,7 @@
 \usepackage{ifpdf,indentfirst,tabularx,doc}
 \usepackage{makeidx,longtable,color}
 
-\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkblue}{rgb}{0,0,.6}
 
 \ifpdf
   \usepackage[pdftex,hyperindex,unicode]{hyperref}
@@ -135,7 +135,7 @@
 %
 %  \section*{Обзор документации}
 %
-%  Документация пакета |disser| включает следующие файлы:
+%  Документация пакета |disser| состоит из следующих файлов:
 %
 %  \begingroup
 %  \begin{deflist}{README, README.ru}
@@ -153,7 +153,8 @@
 %    Исходный текст класса класса |gost732| для оформления документов в
 %    соответствии с ГОСТ 7.32-2001.
 %  \item[\href{file:disser-bst.pdf}{disser-bst.dtx}]
-%    Стиль библиографических ссылок.
+%    Исходный текст стилей библиографических ссылок |disser.bst| и
+%    |disser-s.bst|.
 %  \end{deflist}
 %
 %  \clearpage
