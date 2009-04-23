@@ -59,40 +59,7 @@ ZIP-архив с готовыми файлами и документацией, которые размещены в
 /путь/к/texmf -- это путь к каталогу, в котором установлен TeX.
 
 
-2. Установка из исходных текстов вручную
-
-a. Создаем каталоги для класса, стиля библиографии и документации.
-  mkdir /путь/к/texmf/tex/latex/disser
-  mkdir /путь/к/texmf/bibtex/bst/disser
-  mkdir /путь/к/texmf/doc/latex/disser
-  mkdir /путь/к/texmf/doc/bibtex/disser
-
-b. Генерируем файлы классов.
-  cd src
-  latex disser.ins
-
-c. Собираем документацию.
-  pdflatex disser.dtx
-  makeindex -r disser
-  pdflatex disser.dtx
-  pdflatex disser.dtx
-  pdflatex gost732.dtx
-  pdflatex gost732.dtx
-  pdflatex disser-bst.dtx
-  pdflatex disser-bst.dtx
-
-d. Копируем файлы в каталог назначения.
-  cp *.cls *.rtx /путь/к/texmf/tex/latex/disser
-  cp disser.bst /путь/к/texmf/bibtex/bst/disser
-
-e. Устанавливаем документацию.
-  cp manual.pdf disser.pdf gost732.pdf disser-bst.pdf /путь/к/texmf/doc/latex/disser
-
-f. Обновляем базу имен файлов.
-  mktexlsr
-
-
-3. Установка из ZIP-архива со скомпилированными файлами
+2. Установка из ZIP-архива со скомпилированными файлами
 
 Файл disser.tds.zip содержит собранные файлы классов и документации, 
 поэтому его можно просто распаковать в каталог, в котором установлен TeX.

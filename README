@@ -60,40 +60,8 @@ In Windows:
 
 /path/to/texmf is the full path to your TeX distribution.
 
-2. Manual installation from sources
 
-a. Make directory for class and bibliography style.
-  mkdir /path/to/texmf/tex/latex/disser
-  mkdir /path/to/texmf/bibtex/bst/disser
-  mkdir /path/to/texmf/doc/latex/disser
-  mkdir /path/to/texmf/doc/bibtex/disser
-
-b. Extract class files from dtx.
-  cd src
-  latex disser.ins
-
-c. Build documentation.
-  pdflatex disser.dtx
-  makeindex -r disser
-  pdflatex disser.dtx
-  pdflatex disser.dtx
-  pdflatex gost732.dtx
-  pdflatex gost732.dtx
-  pdflatex disser-bst.dtx
-  pdflatex disser-bst.dtx
-
-d. Copy *.cls and *.rtx.
-  cp *.cls *.rtx /path/to/texmf/tex/latex/disser
-  cp disser.bst /path/to/texmf/bibtex/bst/disser
-
-e. Copy documentation.
-  cp manual.pdf disser.pdf gost732.pdf disser-bst.pdf /path/to/texmf/doc/latex/disser
-
-f. Refresh filename database.
-  mktexlsr
-
-
-3. Installation with ZIP file in TDS format
+2. Installation with ZIP file in TDS format
 
 The ZIP file disser.tds.zip contains files sorted in a TDS tree. This means
 you can directly unpack this file inside directory with your TeX installation.
