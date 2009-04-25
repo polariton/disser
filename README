@@ -60,7 +60,6 @@ In Windows:
 
 /path/to/texmf is the full path to your TeX distribution.
 
-
 2. Installation with ZIP file in TDS format
 
 The ZIP file disser.tds.zip contains files sorted in a TDS tree. This means
@@ -72,6 +71,7 @@ Example:
 
 After unpacking you should refresh file name database.
   mktexlsr
+
 
 License
 -------
