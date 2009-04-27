@@ -20,9 +20,4 @@ goto :eof
 goto :eof
 ) else (
 	call ..\..\include\latex.nmk.cmd %*
-	goto :eof
 )
-
-if "%1" neq "" echo Don't know how to make %1
-:end
-shift & goto :start

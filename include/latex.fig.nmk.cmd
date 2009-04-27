@@ -33,12 +33,7 @@ if "%1"=="" (
 :default
 	call :help
 goto :eof
-)
-
-:start
-if "%1"=="" goto :eof
-
-if "%1"=="help" (
+) else if "%1"=="help" (
 :help
 	echo   clean        clean PDF, PNG and TIFF files
 	echo   epstoeps     optimize EPS files using Ghostscript
@@ -48,15 +43,11 @@ if "%1"=="help" (
 	echo   pdftopng256  convert PDF to PNG ^(256-color^)
 	echo   pdftotiffg4  convert PDF to TIFF ^(b/w CCITT Group 4^)
 goto :eof
-)
-
-if "%1"=="clean" (
+) else if "%1"=="clean" (
 :clean
 	del /s %figclfiles%
 goto :eof
-)
-
-if "%1"=="epstoeps" (
+) else if "%1"=="epstoeps" (
 :epstoeps
 	for %%f in (!e2efiles!) do (
 		%e2e% %e2eflags% "%%f" "%%f%suffix%"
@@ -64,9 +55,7 @@ if "%1"=="epstoeps" (
 		echo epstoeps: %%f
 	)
 goto :eof
-)
-
-if "%1"=="epstopdf" (
+) else if "%1"=="epstopdf" (
 :epstopdf
 	for %%f in (!e2pfiles!) do (
 		if not exist "%%~nf.pdf" (
@@ -75,9 +64,7 @@ if "%1"=="epstopdf" (
 		)
 	)
 goto :eof	
-)
-
-if "%1"=="fixbb" (
+) else if "%1"=="fixbb" (
 :fixbb
 	for %%f in (!fbbfiles!) do (
 		%epstool% %etflags% "%%f" "%%f%suffix%"
@@ -85,10 +72,8 @@ if "%1"=="fixbb" (
 		echo fixbb: %%f
 	)
 goto :eof
-)
-
-if "%1"=="pdftopng256" (
-:pdftopng
+) else if "%1"=="pdftopng256" (
+:pdftopng256
 	if "%2" neq "" set pdf2pngfiles=%2 %3 %4 %5 %6 %7 %8 %9
 	for %%f in (!pdf2pngfiles!) do (
 		if not exist "%%~nf.png" (
@@ -97,9 +82,7 @@ if "%1"=="pdftopng256" (
 		)
 	)
 goto :eof	
-)
-
-if "%1"=="pdftotiffg4" (
+) else if "%1"=="pdftotiffg4" (
 :pdftotiffg4
 	if "%2" neq "" set pdf2tiffiles=%2 %3 %4 %5 %6 %7 %8 %9
 	for %%f in (!pdf2tiffiles!) do (
@@ -109,8 +92,6 @@ if "%1"=="pdftotiffg4" (
 		)
 	)
 goto :eof	
+) else (
+	echo Don't know how to make %1
 )
-
-if "%1" neq "" echo Don't know how to make %1
-:end
-shift & goto :start

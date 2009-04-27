@@ -1,4 +1,4 @@
-	@echo off
+@echo off
 
 rem nomake script for LaTeX projects
 rem Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>

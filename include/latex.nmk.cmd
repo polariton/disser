@@ -50,19 +50,12 @@ if "%1"=="" (
 :default
 	call :dvi
 goto :eof
-)
-
-:start
-if "%1"=="" goto :eof
-
-if "%1"=="clean" (
+) else if "%1"=="clean" (
 :clean
 	del /s %clfiles% 2> nul
 	if exist %target%.%arctype% del %target%.%arctype%
 goto :eof
-)
-
-if "%1"=="dvi" (
+) else if "%1"=="dvi" (
 :dvi
 	%latex% %latexflags% %target%.tex
 	if exist %bibfile% (
@@ -73,16 +66,12 @@ if "%1"=="dvi" (
 	)
 	%latex% %latexflags% %target%.tex
 goto :eof
-)
-
-if "%1"=="html" (
+) else if "%1"=="html" (
 :html
 	if not exist %target%.dvi call :dvi
 	%l2h% %l2hflags% %target%.tex
 goto :eof
-)
-
-if "%1"=="pdf" (
+) else if "%1"=="pdf" (
 :pdf
 	%pdflatex% %pdflatexflags% %target%.tex
 	if exist %bibfile% (
@@ -93,104 +82,76 @@ if "%1"=="pdf" (
 	)
 	%pdflatex% %pdflatexflags% %target%.tex
 goto :eof
-)
-
-if "%1"=="pdf_2on1" (
+) else if "%1"=="pdf_2on1" (
 :pdf2on1
 	if not exist %target%_2on1.ps call :ps2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
 	-c save pop -f %target%_2on1.ps
 goto :eof
-)
-
-if "%1"=="pdf_book" (
+) else if "%1"=="pdf_book" (
 :pdfbook
 	if not exist %target%_book.ps call :psbook
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_booklet.pdf ^
 	-c save pop -f %target%_book.ps
 goto :eof
-)
-
-if "%1"=="ps" (
+) else if "%1"=="ps" (
 :ps
 	if not exist %target%.dvi call :dvi
 	%dvips% -o %target%.ps %target%.dvi
 goto :eof
-)
-
-if "%1"=="ps_2on1" (
+) else if "%1"=="ps_2on1" (
 :ps2on1
 	if not exist %target%.ps call :ps
 	%psnup% %psnupflags% %target%.ps > %target%_2on1.ps
 goto :eof
-)
-
-if "%1"=="ps_book" (
+) else if "%1"=="ps_book" (
 :psbook
 	if not exist %target%.ps call :ps
 	%psbook% %target%.ps | %psnup% -2 > %target%_book.ps
 goto :eof
-)
-
-if "%1"=="rtf" (
+) else if "%1"=="rtf" (
 	call :dvi
 	%l2rtf% %l2rtfflags% -a %target%.aux -b %target%.bbl %target%.tex
-)
-
-if "%1"=="srcdist" (
+) else if "%1"=="srcdist" (
 :srcdist
 	call :clean
 	%arch% %archflags% %archive% %srcfiles%
 goto :eof
-)
-
-if "%1"=="epstoeps" (
+) else if "%1"=="epstoeps" (
 :epstoeps
 	cd fig & call nomake.cmd epstoeps & cd ..
 goto :eof	
-)
-
-if "%1"=="epstopdf" (
+) else if "%1"=="epstopdf" (
 :epstopdf
 	cd fig & call nomake.cmd epstopdf & cd ..
 goto :eof	
-)
-
-if "%1"=="fixbb" (
+) else if "%1"=="fixbb" (
 :fixbb
 	cd fig & call nomake.cmd fixbb & cd ..
 goto :eof
-)
-
-if "%1"=="pdftopng256" (
+) else if "%1"=="pdftopng256" (
 :pdftopng256
 	cd fig & call nomake.cmd pdftopng256 & cd ..
 goto :eof
-)
-
-if "%1"=="pdftotiffg4" (
+) else if "%1"=="pdftotiffg4" (
 :pdftotiffg4
 	cd fig & call nomake.cmd pdftotiffg4 & cd ..
 goto :eof
-)
-
-if "%1"=="help" (
+) else if "%1"=="help" (
 :help
-	echo   dvi        ^(default^) build DVI
-	echo   clean      remove output files
-	echo   help       show description of targets
-	echo   html       convert DVI to HTML
-	echo   pdf        build PDF
-	echo   pdf_2on1   build PDF with two A5 pages on one A4 ordered by number
-	echo   pdf_book   build PDF booklet ^(two A5 on A4^)
-	echo   ps         build PS
-	echo   ps_2on1    build PS with two A5 pages on A4 ordered by number
-	echo   ps_book    build PS booklet ^(two A5 on A4^)
-	echo   rtf        convert DVI to RTF
-	echo   srcdist    build source distribution
+	echo   dvi       ^(default^) build DVI
+	echo   clean     remove output files
+	echo   help      show description of targets
+	echo   html      convert DVI to HTML
+	echo   pdf       build PDF
+	echo   pdf_2on1  build PDF with two A5 pages on one A4 ordered by number
+	echo   pdf_book  build PDF booklet ^(two A5 on A4^)
+	echo   ps        build PS
+	echo   ps_2on1   build PS with two A5 pages on A4 ordered by number
+	echo   ps_book   build PS booklet ^(two A5 on A4^)
+	echo   rtf       convert DVI to RTF
+	echo   srcdist   build source distribution
 goto :eof
+) else (
+	echo Don't know how to make %1
 )
-
-if "%1" neq "" echo Don't know how to make %1
-:end
-shift & goto :start
