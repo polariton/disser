@@ -80,6 +80,7 @@ if "%1"=="dvi" (
 	%latex% %latexflags% %target%.dtx
 	%mi% %miflags% %target%
 	%latex% %latexflags% %target%.dtx
+	%latex% %latexflags% %target%.dtx
 	%latex% %latexflags% %subclass%.dtx
 	%latex% %latexflags% %subclass%.dtx
 	%latex% %latexflags% %bst%.dtx
@@ -93,6 +94,7 @@ if "%1"=="pdf" (
 :pdf
 	%pdflatex% %pdflatexflags% %target%.dtx
 	%mi% %miflags% %target%
+	%pdflatex% %pdflatexflags% %target%.dtx
 	%pdflatex% %pdflatexflags% %target%.dtx
 	%pdflatex% %pdflatexflags% %subclass%.dtx
 	%pdflatex% %pdflatexflags% %subclass%.dtx
@@ -142,12 +144,12 @@ goto :eof
 if "%1"=="help" (
 :help
 	echo   all        ^(default^) build package and documentation
-	echo   package    build package and documentation
 	echo   clean      remove output files
 	echo   doc        build documentation
 	echo   dvi        build DVI version of documentation
 	echo   help       show description of targets
 	echo   install    install package and documentation
+	echo   package    build package and documentation
 	echo   pdf        build PDF version of documentation
 	echo   reinstall  reinstall package and documentation
 	echo   uninstall  remove package and documentation from TeX tree

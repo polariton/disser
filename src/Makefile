@@ -73,6 +73,13 @@ disser.dvi: disser.dtx
 	$(LATEX) $(LATEXFLAGS) $<
 	$(MI) -r $(TARGET)
 	$(LATEX) $(LATEXFLAGS) $<
+	$(LATEX) $(LATEXFLAGS) $<
+
+disser.pdf: disser.dtx
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+	$(MI) -r $(TARGET)
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 %.dvi: %.dtx
 	$(LATEX) $(LATEXFLAGS) $<
@@ -81,11 +88,6 @@ disser.dvi: disser.dtx
 %.dvi: %.tex
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
-
-disser.pdf: disser.dtx
-	$(LATEX) $(LATEXFLAGS) $<
-	$(MI) -r $(TARGET)
-	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 %.pdf: %.dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
