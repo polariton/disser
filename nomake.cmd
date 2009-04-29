@@ -24,97 +24,71 @@ if "%1"=="" (
 	call :package
 	call :doc
 goto :eof
-)
-
-:start
-if "%1"=="" goto :eof
-
-if "%1"=="all" (
+) else if "%1"=="templates" (
+:templates
+	cd templates & call nomake & cd ..
+goto :eof
+) else if "%1"=="all" (
 :all
 	call :default
 	call :templates
 goto :eof
-)
-
-if "%1"=="package" (
+) else if "%1"=="package" (
 :package
 	cd src & call nomake & cd ..
 goto :eof
-)
-
-if "%1"=="doc" (
+) else if "%1"=="doc" (
 :doc
 	cd src & call nomake %1 & cd ..
 goto :eof
-)
-
-if "%1"=="templates" (
-:templates
-	cd templates & call nomake & cd ..
-goto :eof
-)
-
-if "%1"=="clean" (
+) else if "%1"=="clean" (
 :clean
 	cd src & call nomake clean & cd ..
 	cd templates & call nomake clean & cd ..
 goto :eof
-)
-
-if "%1"=="install" (
+) else if "%1"=="install" (
 :install
 	cd src & call nomake install & cd ..
 	cd templates & call nomake install & cd ..
 goto :eof
-)
-
-if "%1"=="reinstall" (
+) else if "%1"=="reinstall" (
 :uninstall
 	cd src & call nomake reinstall & cd ..
 	cd templates & call nomake reinstall & cd ..
 goto :eof
-)
-
-if "%1"=="uninstall" (
+) else if "%1"=="uninstall" (
 :uninstall
 	cd src & call nomake uninstall & cd ..
 	cd templates & call nomake uninstall & cd ..
 goto :eof
-)
-
-if "%1"=="srcdist" (
+) else if "%1"=="srcdist" (
 :srcdist
 	if exist %archive% del /q %archive%
 	%hg% archive -X .hgignore -X .hg_archival.txt -X .hgtags -t %archext% %target%.%archext%
 	if exist %target%.%archext% move %target%.%archext% %archive%
 goto :eof
-)
-
-if "%1"=="tds" (
+) else if "%1"=="tds" (
 :tds
 	if not exist %tdsdir% md "%tdsdir%"
 	set texmf=..\%tdsdir%
 	call :install
 	7z a -t%archext% -mx=9 %tdsarchive% %tdsdir%\*
 goto :eof
-)
-
-if "%1"=="help" (
+) else if "%1"=="help" (
 :help
 	echo   all        build classes, documentation and templates
-	echo   package    ^(default^) build package and documentation
 	echo   clean      remove output files
 	echo   doc        build DVI and PDF versions of documentation
 	echo   help       show description of targets
 	echo   install    install package and documentation
+	echo   package    ^(default^) build package and documentation
 	echo   reinstall  reinstall package and documentation
 	echo   srcdist    create source distribution
 	echo   tds        create TDS archive
 	echo   templates  build all templates
 	echo   uninstall  uninstall package and documentation
 goto :eof
+) else (
+	echo Don't know how to make %1
 )
 
-if "%1" neq "" echo Don't know how to make %1
-:end
-shift & goto :start

@@ -22,25 +22,19 @@ if "%1"=="help" (
 	echo   uninstall  uninstall templates
 	echo   reinstall  reinstall templates
 goto :eof
-)
-
-if "%1"=="install" (
+) else if "%1"=="install" (
 :install
 	if not exist "%docdir%" md "%docdir%"
 	xcopy /y /e /i /f ..\templates "%docdir%\templates"
 	xcopy /y /e /i /f ..\include "%docdir%\include"
 goto :eof
-)
-
-if "%1"=="uninstall" (
+) else if "%1"=="uninstall" (
 :uninstall
 	rmdir /s /q %docdir%\templates
 	rmdir /s /q %docdir%\include
 	rmdir %docdir%
 goto :eof
-)
-
-if "%1"=="reinstall" (
+) else if "%1"=="reinstall" (
 :reinstall
 	call :uninstall
 	call :install
