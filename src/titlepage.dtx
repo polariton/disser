@@ -10,6 +10,11 @@
 %    \begin{macrocode}
 \newcommand\today{}
 
+%    \end{macrocode}
+% Подключение констант и команд, используемых для верстки титульного листа.
+%    \begin{macrocode}
+\input{titledefs\substyle@ext}
+
 \if@titlepage
 %    \end{macrocode}
 %
@@ -30,7 +35,6 @@
 %    \begin{macrocode}
   \newcommand\cdsep{~-- }
 
-  \input{titledefs\substyle@ext}
 %    \end{macrocode}
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
@@ -77,32 +81,6 @@
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
   \newcommand\maketitle{%
-    \par
-    \begingroup
-      \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
-      \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
-      \long\def\@makefntext##1{%
-        \parindent 1em\noindent
-        \hb@xt@1.8em{\hss\@textsuperscript{\normalfont\@thefnmark}}##1%
-      }%
-      \if@twocolumn
-        \ifnum \col@number=\@ne
-          \@maketitle
-        \else
-          \twocolumn[\@maketitle]%
-        \fi
-      \else
-        \newpage
-%    \end{macrocode}
-% Предотвращает размещение плавающих объектов вверху страницы.
-%    \begin{macrocode}
-          \global\@topnum\z@
-        \@maketitle
-      \fi
-      \thispagestyle{plain}
-    \endgroup
-    \setcounter{footnote}{0}%
-
     \global\let\thanks\relax
     \global\let\maketitle\relax
     \global\let\@maketitle\relax
