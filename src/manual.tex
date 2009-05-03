@@ -94,9 +94,8 @@
 \documentclass{disser}
 \end{verbatim}
 
-Зависимости от пакетов: |amsfonts|, |amsmath|, |amssymb|, |caption|, |cmap|, |graphicx|, |ifpdf|, |natbib|.
-
-Дополнительные пакеты: |hyperref|, |hypcap|, |hypernat|, |pscyr| или |cyrtimes|, |txfonts| или |mtpro|, |subfig|.
+Зависимости класса и шаблонов от сторонних пакетов:
+|amsfonts|, |amsmath|, |amssymb|, |caption|, |cmap|, |graphicx|, |hyperref|, |hypcap|, |hypernat|, |ifpdf|, |multibib|, |natbib|, |pscyr| или |cyrtimes|, |txfonts| или |mtpro|, |subfig|.
 
 \section{Опции класса}
 
@@ -201,11 +200,12 @@
 \pagestyle{headcenter}
 \chapterpagestyle{headcenter}\end{verbatim}
 
-\section{Кроссплатформенная система сборки}
+\section{Кроссплатформенная система сборки документов}
 
-Для автоматизации сборки и установки пакета были созданы две системы скриптов, имеющих одинаковый набор целей (targets): |Makefile| в формате GNU Make и файлы |nomake.cmd|, написанные на языке командного интерпретатора |cmd.exe| ОС Windows 2000 и выше.
-Использование в Unix-подобных окружениях: |make <цель1> <цель2> ...|.
-В Windows: |nomake <цель>|.
+В состав пакета входят две системы скриптов для автоматизации сборки и установки: файлы |Makefile|, совместимые с GNU Make, и файлы |nomake.cmd|, написанные на языке командного интерпретатора |cmd.exe| ОС Windows 2000 и выше.
+Скрипты поддерживают одинаковый набор целей (targets).
+Использование в Unix-подобных окружениях: |make <target1> <target2> ...|
+В Windows: |nomake <target>|.
 Необходимо подчеркнуть, что в отличие от |make|, скрипты |nomake| за один запуск обрабатывают только одну цель.
 
 Далее приведены описания целей в зависимости от каталога, в котором производится сборка.
