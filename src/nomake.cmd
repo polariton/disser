@@ -45,37 +45,24 @@ if "%1"=="" (
 :default
 	call :all
 goto :eof
-)
-
-:start
-if "%1"=="" goto :eof
-
-if "%1"=="all" (
+) else if "%1"=="all" (
 :all
 	call :package
 	call :doc
 goto :eof
-)
-
-if "%1"=="package" (
+) else if "%1"=="package" (
 :package
     %latex% %target%.ins
 goto :eof
-)
-
-if "%1"=="clean" (
+) else if "%1"=="clean" (
 :clean
 	del %clfiles%
 goto :eof
-)
-
-if "%1"=="doc" (
+) else if "%1"=="doc" (
 :doc
 	call :pdf
 goto :eof
-)
-
-if "%1"=="dvi" (
+) else if "%1"=="dvi" (
 :dvi
 	%latex% %latexflags% %target%.dtx
 	%mi% %miflags% %target%
@@ -88,9 +75,7 @@ if "%1"=="dvi" (
 	%latex% %latexflags% %manual%.tex
 	%latex% %latexflags% %manual%.tex
 goto :eof
-)
-
-if "%1"=="pdf" (
+) else if "%1"=="pdf" (
 :pdf
 	%pdflatex% %pdflatexflags% %target%.dtx
 	%mi% %miflags% %target%
@@ -103,9 +88,7 @@ if "%1"=="pdf" (
 	%pdflatex% %pdflatexflags% %manual%.tex
 	%pdflatex% %pdflatexflags% %manual%.tex
 goto :eof
-)
-
-if "%1"=="install" (
+) else if "%1"=="install" (
 :install
 	if not exist %target%.cls call :all
 	if not exist "%clsdir%" md "%clsdir%"
@@ -118,16 +101,12 @@ if "%1"=="install" (
 	for %%f in (%bstfiles%)  do xcopy /y /f %%f "%bstdir%"
 	for %%f in (%srcfiles%)  do xcopy /y /f %%f "%srcdir%"
 goto :eof
-)
-
-if "%1"=="reinstall" (
+) else if "%1"=="reinstall" (
 :reinstall
 	call :uninstall
 	call :install
 goto :eof
-)
-
-if "%1"=="uninstall" (
+) else if "%1"=="uninstall" (
 :uninstall
 	for %%f in (%clsfiles%)  do del "%clsdir%\%%~nxf"
 	for %%f in (%docfiles%)  do del "%docdir%\%%~nxf"
@@ -139,9 +118,7 @@ if "%1"=="uninstall" (
 	rmdir "%bstdir%"
 	rmdir "%srcdir%"
 goto :eof
-)
-
-if "%1"=="help" (
+) else if "%1"=="help" (
 :help
 	echo   all        ^(default^) build package and documentation
 	echo   clean      remove output files
@@ -154,8 +131,6 @@ if "%1"=="help" (
 	echo   reinstall  reinstall package and documentation
 	echo   uninstall  remove package and documentation from TeX tree
 goto :eof
+) else (
+	echo Don't know how to make %1
 )
-
-if "%1" neq "" echo Don't know how to make %1
-:end
-shift & goto :start
