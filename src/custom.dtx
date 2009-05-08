@@ -119,34 +119,41 @@
   \fi
 }
 %    \end{macrocode}
-% Команда для создания ненумеруемых глав, которые будут включены в
-% Содержание и PDF-закладки. Для того, чтобы закладка указывала именно на
-% заголовок, а не на первый абзац под ним, нужно поместить |\metaphantom{chapter}|
-% и |\addcontentsline| внутри аргумента |\chapter*|. Честно говоря, мне это
-% не нравится. Надо придумать что-то более простое и изящное.
+% Команды для создания ненумеруемых глав и секций, которые включаются в
+% Содержание и PDF-закладки.
 % \DescribeMacro{\nchapter}\index{Макросы!\verb*+\nchapter+}
 % \DescribeMacro{\nsection}\index{Макросы!\verb*+\nsection+}
 % \DescribeMacro{\nsubsection}\index{Макросы!\verb*+\nsubsection+}
 % \DescribeMacro{\nsubsubsection}\index{Макросы!\verb*+\nsubsubsection+}
 %    \begin{macrocode}
 \newcommand\nchapter[1]{%
-  \chapter*{%
-    \metaphantom{chapter}\addcontentsline{toc}{chapter}{#1}%
-    #1%
-    \@mkboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
-  }
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{\@chapterpagestyle}%
+  \global\@topnum\z@
+  \metaphantom{chapter}
+  {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
+  \@afterindentfalse
+  \@schapter{#1}
 }
+
 \newcommand\nsection[1]{%
-  \section*{\metaphantom{section}%
-  \addcontentsline{toc}{section}{#1}#1}
+  \metaphantom{section}%
+  \addcontentsline{toc}{section}{#1}
+  \section*{#1}
 }
 \newcommand\nsubsection[1]{%
-  \subsection*{\metaphantom{subsection}%
-  \addcontentsline{toc}{subsection}{#1}#1}
+  \metaphantom{subsection}%
+  \addcontentsline{toc}{subsection}{#1}
+  \subsection*{#1}
 }
 \newcommand\nsubsubsection[1]{%
-  \subsection*{\metaphantom{subsubsection}%
-  \addcontentsline{toc}{subsubsection}{#1}#1}
+  \metaphantom{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{#1}
+  \subsection*{#1}
 }
 %    \end{macrocode}
 % Переопределение для включения ссылки на список литературы в Содержание.

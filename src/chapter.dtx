@@ -106,10 +106,8 @@
 %    \begin{macrocode}
 \def\@makechapterhead#1{%
   {%
-%    \end{macrocode}
-% Установка нулевого абзацного отступа.
-%    \begin{macrocode}
-    \parindent \z@ \raggedright \normalfont
+    \parindent\z@
+    \raggedright\normalfont
 %    \end{macrocode}
 % Постоянная часть заголовка.
 %    \begin{macrocode}
@@ -142,8 +140,9 @@
 %    \begin{macrocode}
 \def\@makeschapterhead#1{%
   {%
-    \parindent \z@ \raggedright
-    \normalfont\interlinepenalty\@M
+    \parindent\z@
+    \raggedright\normalfont
+    \interlinepenalty\@M
     \chapteralign{\chapterfont\beforechapter #1\afterchapter}
   }
 }
