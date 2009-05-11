@@ -17,6 +17,13 @@
 %    \begin{macrocode}
 \lccode`\-=`\-
 \defaulthyphenchar=127
+
+\AtBeginDocument{
+\DeclareRobustCommand{\English}{%
+  \expandafter\set@hyphenmins\englishhyphenmins
+  \language\l@english}%
+\let\Eng=\English
+}
 %    \end{macrocode}
 % Опция |intlimits| включает расстановку пределов интегрирования сверху и снизу.
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
