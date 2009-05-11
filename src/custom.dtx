@@ -7,7 +7,7 @@
 
 %<*custom>
 %    \end{macrocode}
-% \subsection{Подключение и настройка сторонних пакетов}
+% \subsection{Исправления, связанные с российскими стандартами}
 % Отступ в первой строке первого абзаца.
 %    \begin{macrocode}
 \let\@afterindentfalse\@afterindenttrue
@@ -18,6 +18,10 @@
 \lccode`\-=`\-
 \defaulthyphenchar=127
 
+%    \end{macrocode}
+% Исправление символа переноса в кодировке OT1 для шрифта Times из пакетов
+% |pscyr| и |cyrtimes|.
+%    \begin{macrocode}
 \ifDis@times
 \AtBeginDocument{
   \DeclareRobustCommand{\English}{%
@@ -28,6 +32,7 @@
 \fi
 
 %    \end{macrocode}
+% \subsection{Подключение и настройка сторонних пакетов}
 % Опция |intlimits| включает расстановку пределов интегрирования сверху и снизу.
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
@@ -118,8 +123,7 @@
 \usepackage[square, comma, sort&compress, numbers]{natbib}
 %    \end{macrocode}
 % \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
-% Команда для исправления PDF-закладок, указывающих на ненумеруемые разделы
-% (|\chapter*|, |\section*| и т. п.).
+% Команда, создающая цель на ненумеруемые разделы для |hyperref|.
 %    \begin{macrocode}
 \def\metaphantom#1{%
   \ifDis@href
