@@ -1,5 +1,5 @@
 #
-# Makefile for LaTeX packages
+# Makefile for disser package
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 # 
 

@@ -123,15 +123,9 @@
 \renewcommand\tocpostthechapter{\@postskip}
 \renewcommand\chapteralign{\raggedright}
 \renewcommand\thechapterfont{\Large\bfseries}
-\renewcommand\prethechapter{\newpage}
+\renewcommand\prethechapter{}
 \renewcommand\postthechapter{\@postskip}
 \renewcommand\afterchapter{\vskip 16\p@}
-
-\renewcommand\tocposttheappendix{\@postskip}
-\renewcommand\appendixalign{\raggedright}
-\renewcommand\theappendixfont{\Large\bfseries}
-\renewcommand\posttheappendix{\@postskip}
-\renewcommand\afterappendix{\vskip 16\p@}
 
 \renewcommand\postthesection{\@postskip}
 \renewcommand\tocpostthesection{\@postskip}
@@ -157,6 +151,7 @@
 \cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyro\cyrv\cyra\cyrn\cyrn\cyrery\cyrh\ %
 \cyri\cyrs\cyrt\cyro\cyrch\cyrn\cyri\cyrk\cyro\cyrv}
 \def\figurename{\cyr\CYRR\cyri\cyrs\cyru\cyrn\cyro\cyrk}
+\def\appendixname{\cyr\CYRP\CYRR\CYRI\CYRL\CYRO\CYRZH\CYRE\CYRN\CYRI\CYRE}
 }}
 
 \renewcommand\bibsection{%
@@ -211,7 +206,7 @@
 %    \end{macrocode}
 %
 % \subsection{Сноска}
-% 
+%
 %    \begin{macrocode}
 \renewcommand\postthefootnote{)}
 \renewcommand\prefootnotetext{~}
