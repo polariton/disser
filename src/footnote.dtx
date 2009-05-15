@@ -10,16 +10,53 @@
 %
 % \subsection{Сноска}
 %
+%    \end{macrocode}
+% \DescribeMacro{\thefootnote}\index{Макросы!\verb+\thefootnote+}
+% Формат счетчика сносок.
+%    \begin{macrocode}
+\def\thefootnote{\@arabic\c@footnote}
+
+%    \end{macrocode}
+% \DescribeMacro{\thempfootnote}\index{Макросы!\verb+\thempfootnote+}
+% Формат счетчика сносок внутри окружения |minipage|.
+%    \begin{macrocode}
+\def\thempfootnote{{\itshape\@alph\c@mpfootnote}}
+
+%    \end{macrocode}
 % \DescribeMacro{\footnoterule}\index{Макросы!\verb+\footnoterule+}
 % Горизонтальная линия, отделяющая сноску.
 %    \begin{macrocode}
-\renewcommand\footnoterule{%
+\def\footnoterule{%
   \kern-3\p@\hrule\@width.4\columnwidth\kern2.6\p@
 }
+
+%    \end{macrocode}
+% \DescribeMacro{\prethefootnote}\index{Макросы!\verb+\prethefootnote+}
+% \DescribeMacro{\postthefootnote}\index{Макросы!\verb+\postthefootnote+}
+% \DescribeMacro{\prefootnotetext}\index{Макросы!\verb+\prefootnotetext+}
+% Дополнительный текст до и после номера сноски, перед текстом сноски.
+%    \begin{macrocode}
+\providecommand\prethefootnote{}
+\providecommand\postthefootnote{}
+\providecommand\prefootnotetext{}
+
+%    \end{macrocode}
+% \DescribeMacro{\@makefnmark}\index{Макросы!\verb+\@makefnmark+}
+% Формат метки сноски.
+%    \begin{macrocode}
+\def\@makefnmark{\hbox{\prethefootnote%
+\@textsuperscript{\normalfont\@thefnmark}%
+\postthefootnote}}
+
+%    \end{macrocode}
+% \DescribeMacro{\@makefntext}\index{Макросы!\verb+\@makefntext+}
+% Команда, создающая текст сноски.
+%    \begin{macrocode}
 \newcommand\@makefntext[1]{%
   \parindent 1em%
   \noindent
-  \hb@xt@1.8em{\hss\@makefnmark}#1
+  \hb@xt@1.8em{\hss\@makefnmark\prefootnotetext}#1
 }
+
 %</footnote>
 %    \end{macrocode}
