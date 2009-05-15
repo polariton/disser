@@ -149,14 +149,14 @@
 \renewcommand\tocpostthesubparagraph{\@postskip}
 
 %    \end{macrocode}
-% Изменение заголовка библиографии на <<Список литературы>>.
+% Изменение заголовков библиографии и рисунка.
 %    \begin{macrocode}
-\AtBeginDocument{%
-\addto\captionsrussian{%
+\AtBeginDocument{\addto\captionsrussian{%
 \def\bibname{%
 \cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
 \cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyro\cyrv\cyra\cyrn\cyrn\cyrery\cyrh\ %
 \cyri\cyrs\cyrt\cyro\cyrch\cyrn\cyri\cyrk\cyro\cyrv}
+\def\figurename{\cyr\CYRR\cyri\cyrs\cyru\cyrn\cyro\cyrk}
 }}
 
 \renewcommand\bibsection{%
@@ -201,5 +201,22 @@
 \renewcommand\labelitemiv {\textperiodcentered}
 
 %    \end{macrocode}
+%
+% \subsection{Подписи к плавающим объектам}
+%    \begin{macrocode}
+\captionsetup{format=plain,justification=centering,labelsep=endash}
+\captionsetup[longtable]{justification=raggedright,singlelinecheck=false}
+\captionsetup[table]{justification=raggedright,singlelinecheck=false}
+
+%    \end{macrocode}
+%
+% \subsection{Сноска}
+% 
+%    \begin{macrocode}
+\renewcommand\postthefootnote{)}
+\renewcommand\prefootnotetext{~}
+
+%    \end{macrocode}
+%
 % \Finale
 \endinput
