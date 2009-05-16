@@ -49,6 +49,7 @@
 \providecommand\chapterfont{\Large\bfseries}
 \providecommand\beforechapter{}
 \providecommand\afterchapter{\par\nobreak\vskip 20\p@}
+\providecommand\chapterindent{0pt}
 
 %    \end{macrocode}
 %
@@ -87,9 +88,6 @@
     {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
   \fi
   \chaptermark{#1}%
-%    \end{macrocode}
-% Добавление вертикальных разделителей в списки рисунков и таблиц.
-%    \begin{macrocode}
   \addtocontents{lof}{\protect\addvspace{10\p@}}%
   \addtocontents{lot}{\protect\addvspace{10\p@}}%
   \if@twocolumn
@@ -104,20 +102,15 @@
 % \DescribeMacro{\@makechapterhead}\index{Макросы!\verb+"\"@makechapterhead+}
 % Формат нумеруемого заголовка.
 %    \begin{macrocode}
-\def\@makechapterhead#1{%
-  {%
-    \parindent\z@
-    \normalfont
-%    \end{macrocode}
-% Постоянная часть заголовка.
-%    \begin{macrocode}
-      \ifnum \c@secnumdepth >\m@ne
-        {\thechapterfont\thechapteralign\@seccntformat{chapter}}
-      \fi
-      \interlinepenalty\@M
-      \chapterfont\chapteralign\beforechapter #1\afterchapter
-  }
-}
+\def\@makechapterhead#1{{%
+  \parindent\z@
+  \normalfont\hskip\chapterindent%
+  \ifnum \c@secnumdepth >\m@ne
+    {\thechapterfont\thechapteralign\@seccntformat{chapter}}
+  \fi
+  \interlinepenalty\@M
+  \chapterfont\chapteralign\beforechapter #1\afterchapter
+}}
 
 %    \end{macrocode}
 %
@@ -138,14 +131,12 @@
 % \DescribeMacro{\@makeschapterhead}\index{Макросы!\verb+"\"@makeschapterhead+}
 % Формат ненумеруемого заголовка.
 %    \begin{macrocode}
-\def\@makeschapterhead#1{%
-  {%
-    \parindent\z@
-    \normalfont
-    \interlinepenalty\@M
-    \chapteralign{\chapterfont\beforechapter #1\afterchapter}
-  }
-}
+\def\@makeschapterhead#1{{%
+  \parindent\z@
+  \normalfont\hskip\chapterindent%
+  \interlinepenalty\@M
+  \chapteralign\chapterfont\beforechapter #1\afterchapter
+}}
 %    \end{macrocode}
 %
 % \DescribeMacro{\l@chapter}\index{Макросы!\verb+"\l"@chapter+}
@@ -212,6 +203,7 @@
 \providecommand\appendixfont{\Large\bfseries}
 \providecommand\beforeappendix{}
 \providecommand\afterappendix{\par\nobreak\vskip 20\p@}
+\providecommand\appendixindent{0pt}
 %    \end{macrocode}
 %
 % \DescribeMacro{\appendix}\index{Макросы!\verb*+\appendix+}
@@ -241,6 +233,7 @@
 
   \let\oldchapteralign=\chapteralign
   \let\oldchapterfont=\chapterfont
+  \let\oldchapterindent=\chapterindent
   \let\oldbeforechapter=\afterchapter
   \let\oldafterchapter=\afterchapter
   \let\oldthechapter=\thechapter
@@ -265,6 +258,7 @@
   \renewcommand\chapterfont{\appendixfont}
   \renewcommand\beforechapter{\beforeappendix}
   \renewcommand\afterchapter{\afterappendix}
+  \renewcommand\chapterindent{\appendixindent}
 
   \gdef\thechapter{\theappendix}
 }
