@@ -100,10 +100,8 @@
 % регламентирующие структуру и правила оформления диссертаций. Наиболее
 % подходящим среди существующих стандартов следует считать ГОСТ 7.32-2001
 % <<Отчет о научно-исследовательской работе>>, реализованный в настоящем
-% классе. С другой стороны, количество кода, использованное для создания
-% этого подкласса является демонстрацией эффективности высокоуровневых
-% макросов класса |disser|.
-%
+% классе.
+% 
 %  \section{Исходный текст}\parindent=0pt
 %
 %    \begin{macrocode}
@@ -121,7 +119,7 @@
 %    \begin{macrocode}
 \renewcommand\tocprethechapter{}
 \renewcommand\tocpostthechapter{\@postskip}
-\renewcommand\chapteralign{\raggedright}
+\renewcommand\chapteralign{\centering}
 \renewcommand\thechapterfont{\Large\bfseries}
 \renewcommand\prethechapter{}
 \renewcommand\postthechapter{\@postskip}
@@ -129,12 +127,15 @@
 
 \renewcommand\postthesection{\@postskip}
 \renewcommand\tocpostthesection{\@postskip}
+\renewcommand\sectionindent{1cm}
 
 \renewcommand\postthesubsection{\@postskip}
 \renewcommand\tocpostthesubsection{\@postskip}
+\renewcommand\subsectionindent{1cm}
 
 \renewcommand\postthesubsubsection{\@postskip}
 \renewcommand\tocpostthesubsubsection{\@postskip}
+\renewcommand\subsubsectionindent{1cm}
 
 \renewcommand\posttheparagraph{\@postskip}
 \renewcommand\tocposttheparagraph{\@postskip}
@@ -143,7 +144,7 @@
 \renewcommand\tocpostthesubparagraph{\@postskip}
 
 %    \end{macrocode}
-% Изменение заголовков библиографии и рисунка.
+% Изменение стандартных заголовков.
 %    \begin{macrocode}
 \AtBeginDocument{\addto\captionsrussian{%
 \def\bibname{%
@@ -152,10 +153,31 @@
 \cyri\cyrs\cyrt\cyro\cyrch\cyrn\cyri\cyrk\cyro\cyrv}
 \def\figurename{\cyr\CYRR\cyri\cyrs\cyru\cyrn\cyro\cyrk}
 \def\appendixname{\cyr\CYRP\CYRR\CYRI\CYRL\CYRO\CYRZH\CYRE\CYRN\CYRI\CYRE}
+\def\contentsname{\cyr\CYRS\CYRO\CYRD\CYRE\CYRR\CYRZH\CYRA\CYRN\CYRI\CYRE}
 }}
 
+%    \end{macrocode}
+% Обозначения и сокращения.
+%    \begin{macrocode}
+\renewcommand\defsname{%
+\cyr\CYRO\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrya\ %
+\cyri\ \cyrs\cyro\cyrk\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrya
+}
+
+\renewcommand\defs{%
+  \nchapter{\MakeUppercase{\defsname}}
+}
 \renewcommand\bibsection{%
-  \nchapter{\bibname}
+  \nchapter{\MakeUppercase{\bibname}}
+}
+\renewcommand\intro{%
+  \nchapter{\MakeUppercase{\introname}}
+}
+\renewcommand\review{%
+  \nchapter{\MakeUppercase{\reviewname}}
+}
+\renewcommand\conclusion{%
+  \nchapter{\MakeUppercase{\conclusionname}}
 }
 %    \end{macrocode}
 % \subsection{Списки}
