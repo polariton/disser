@@ -101,7 +101,7 @@
 % подходящим среди существующих стандартов следует считать ГОСТ 7.32-2001
 % <<Отчет о научно-исследовательской работе>>, реализованный в настоящем
 % классе.
-% 
+%
 %  \section{Исходный текст}\parindent=0pt
 %
 %    \begin{macrocode}
@@ -148,9 +148,9 @@
 %    \begin{macrocode}
 \AtBeginDocument{\addto\captionsrussian{%
 \def\bibname{%
-\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
-\cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyro\cyrv\cyra\cyrn\cyrn\cyrery\cyrh\ %
-\cyri\cyrs\cyrt\cyro\cyrch\cyrn\cyri\cyrk\cyro\cyrv}
+\cyr\CYRS\CYRP\CYRI\CYRS\CYRO\CYRK\ %
+\CYRI\CYRS\CYRP\CYRO\CYRL\CYRSFTSN\CYRZ\CYRO\CYRV\CYRA\CYRN\CYRN\CYRERY\CYRH\ %
+\CYRI\CYRS\CYRT\CYRO\CYRCH\CYRN\CYRI\CYRK\CYRO\CYRV}
 \def\figurename{\cyr\CYRR\cyri\cyrs\cyru\cyrn\cyro\cyrk}
 \def\appendixname{\cyr\CYRP\CYRR\CYRI\CYRL\CYRO\CYRZH\CYRE\CYRN\CYRI\CYRE}
 \def\contentsname{\cyr\CYRS\CYRO\CYRD\CYRE\CYRR\CYRZH\CYRA\CYRN\CYRI\CYRE}
@@ -160,24 +160,25 @@
 % Обозначения и сокращения.
 %    \begin{macrocode}
 \renewcommand\defsname{%
-\cyr\CYRO\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrya\ %
-\cyri\ \cyrs\cyro\cyrk\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrya
+\cyr\CYRO\CYRB\CYRO\CYRZ\CYRN\CYRA\CYRCH\CYRE\CYRN\CYRI\CYRYA\ %
+\CYRI\ \CYRS\CYRO\CYRK\CYRR\CYRA\CYRSHCH\CYRE\CYRN\CYRI\CYRYA
 }
 
 \renewcommand\defs{%
-  \nchapter{\MakeUppercase{\defsname}}
+  \nchapter{\defsname}
 }
 \renewcommand\bibsection{%
-  \nchapter{\MakeUppercase{\bibname}}
+  \nchapter{\bibname}
 }
-\renewcommand\intro{%
-  \nchapter{\MakeUppercase{\introname}}
+\renewcommand\introname{%
+\cyr\CYRV\CYRV\CYRE\CYRD\CYRE\CYRN\CYRI\CYRE
 }
-\renewcommand\review{%
-  \nchapter{\MakeUppercase{\reviewname}}
+\renewcommand\reviewname{%
+\cyr\CYRO\CYRB\CYRZ\CYRO\CYRR\ %
+\CYRL\CYRI\CYRT\CYRE\CYRR\CYRA\CYRT\CYRU\CYRR\CYRERY
 }
-\renewcommand\conclusion{%
-  \nchapter{\MakeUppercase{\conclusionname}}
+\renewcommand\conclusionname{%
+\cyr\CYRZ\CYRA\CYRK\CYRL\CYRYU\CYRCH\CYRE\CYRN\CYRI\CYRE
 }
 %    \end{macrocode}
 % \subsection{Списки}
