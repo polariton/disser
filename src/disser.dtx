@@ -452,8 +452,6 @@
 % \subsection{Настройка шрифтов}
 % \subsubsection{Определение размеров}
 %
-% Эти вещи должны быть в стандартных классах.
-% Ради таких незначительных отличий не стоило городить |extarticle|, |extreport|, |extbook|.
 %    \begin{macrocode}
 \def\EC@family#1#2#3#4#5{%
   \DeclareFontShape{#1}{#2}{#3}{#4}%
@@ -517,8 +515,6 @@
 %
 % \subsubsection{Старые команды изменения начертания шрифтов (без NFSS)}
 %
-% Опять же, не ясно, почему все это вынесено в классы, а не входит в ядро.
-%
 % Изменение начертания в текстовом режиме.
 %    \begin{macrocode}
 \DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
@@ -540,14 +536,14 @@
 %
 % \DescribeMacro{\lineskip}\index{Расстояния!\verb*+\lineskip+}
 % \DescribeMacro{\normallineskip}\index{Расстояния!\verb*+\normallineskip+}
-% Вертикальный интервал между строками. Упоминаемый здесь и далее макрос 
-% |\p@| определяет стандартную единицу длины. По умолчанию она равна 
+% Вертикальный интервал между строками. Упоминаемый здесь и далее макрос
+% |\p@| определяет стандартную единицу длины. По умолчанию она равна
 % английскому пункту (pt).
 %    \begin{macrocode}
 \setlength\lineskip{1\p@}
 \setlength\normallineskip{1\p@}
+
 %    \end{macrocode}
-%
 % \DescribeMacro{\singlespacing}\index{Макросы!\verb*+\singlespacing+}
 % \DescribeMacro{\onehalfspacing}\index{Макросы!\verb*+\onehalfspacing+}
 % \DescribeMacro{\doublespacing}\index{Макросы!\verb*+\doublespacing+}
@@ -579,6 +575,7 @@
 % \DescribeMacro{\columnsep}\index{Расстояния!\verb*+\columnsep+}
 %    \begin{macrocode}
 \setlength\columnsep{10\p@}
+
 %    \end{macrocode}
 %
 % Ширина разделителя (линии) между колонками текста (по умолчанию его нет).

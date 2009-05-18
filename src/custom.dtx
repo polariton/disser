@@ -7,7 +7,7 @@
 
 %<*custom>
 %    \end{macrocode}
-% \subsection{Исправления, связанные с российскими стандартами}
+% \subsection{Подключение и настройка сторонних пакетов}
 % Отступ в первой строке первого абзаца.
 %    \begin{macrocode}
 \let\@afterindentfalse\@afterindenttrue
@@ -19,21 +19,8 @@
 \defaulthyphenchar=127
 
 %    \end{macrocode}
-% Исправление символа переноса в кодировке OT1 для шрифта Times из пакетов
-% |pscyr| и |cyrtimes|.
-%    \begin{macrocode}
-\ifDis@times
-\AtBeginDocument{
-  \DeclareRobustCommand{\English}{%
-    \expandafter\set@hyphenmins\englishhyphenmins
-    \language\l@english}%
-  \let\Eng=\English
-}
-\fi
-
-%    \end{macrocode}
-% \subsection{Подключение и настройка сторонних пакетов}
-% Опция |intlimits| включает расстановку пределов интегрирования сверху и снизу.
+% \subsubsection{Шрифты}
+%
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
 % \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
@@ -42,10 +29,21 @@
   \usepackage[intlimits]{amsmath}
   \usepackage{amssymb,amsfonts}
 \fi
+
 %    \end{macrocode}
-% Использование шрифта Times вместо Computer Modern Roman.
+% Подключение шрифта Times вместо Computer Modern Roman.
 %    \begin{macrocode}
 \ifDis@times
+%    \end{macrocode}
+% Исправление символа переноса в кодировке OT1 для шрифта |ftm| из пакетов
+% |pscyr| и |cyrtimes|.
+%    \begin{macrocode}
+  \AtBeginDocument{
+    \DeclareRobustCommand{\English}{%
+      \expandafter\set@hyphenmins\englishhyphenmins
+      \language\l@english}%
+    \let\Eng=\English
+  }
   \ifDis@mtpro
   \AtBeginDocument{%
 %    \end{macrocode}
@@ -89,6 +87,7 @@
     }
   }
 \fi
+
 %    \end{macrocode}
 % Более естественные символы интегралов из шрифтов семейства Euler.
 %    \begin{macrocode}
@@ -116,59 +115,13 @@
     \renewcommand{\idotsint}{\DOTSI\protect\MultiIntegral{0}}
   }{}
 \fi
+
 %    \end{macrocode}
+% \subsubsection{Оформление библиографических ссылок}
 % \DescribePackage{natbib}\index{Пакеты!\verb*+natbib+}
-% Пакет для оформления библиографических ссылок.
 %    \begin{macrocode}
 \usepackage[square, comma, sort&compress, numbers]{natbib}
-%    \end{macrocode}
-% \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
-% Команда, создающая цель на ненумеруемые разделы для |hyperref|.
-%    \begin{macrocode}
-\def\metaphantom#1{%
-  \ifDis@href
-    \Hy@GlobalStepCount\Hy@linkcounter
-    \xdef\@currentHref{#1*.\the\Hy@linkcounter}%
-    \Hy@raisedlink{\hyper@anchorstart{\@currentHref}\hyper@anchorend}%
-  \fi
-}
-%    \end{macrocode}
-% Команды для создания ненумеруемых глав и секций, которые включаются в
-% Содержание и PDF-закладки.
-% \DescribeMacro{\nchapter}\index{Макросы!\verb*+\nchapter+}
-% \DescribeMacro{\nsection}\index{Макросы!\verb*+\nsection+}
-% \DescribeMacro{\nsubsection}\index{Макросы!\verb*+\nsubsection+}
-% \DescribeMacro{\nsubsubsection}\index{Макросы!\verb*+\nsubsubsection+}
-%    \begin{macrocode}
-\newcommand\nchapter[1]{%
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
-  \thispagestyle{\@chapterpagestyle}%
-  \global\@topnum\z@
-  \metaphantom{chapter}
-  {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
-  \@afterindentfalse
-  \@schapter{#1}
-}
 
-\newcommand\nsection[1]{%
-  \metaphantom{section}%
-  \addcontentsline{toc}{section}{#1}
-  \section*{#1}
-}
-\newcommand\nsubsection[1]{%
-  \metaphantom{subsection}%
-  \addcontentsline{toc}{subsection}{#1}
-  \subsection*{#1}
-}
-\newcommand\nsubsubsection[1]{%
-  \metaphantom{subsubsection}%
-  \addcontentsline{toc}{subsubsection}{#1}
-  \subsubsection*{#1}
-}
 %    \end{macrocode}
 % Переопределение для включения ссылки на список литературы в Содержание.
 % \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
@@ -204,7 +157,11 @@
   \def\@noitemerr{\PackageWarning{natbib}{Empty `thebibliography' environment}}
   \endlist\vskip-\lastskip%
 }
+
 %    \end{macrocode}
+% \subsubsection{Плавающие объекты}
+% 
+% \DescribePackage{wrapfig}\index{Пакеты!\verb*+wrapfig+}
 % Плавающие рисунки ``в оборку''.
 %    \begin{macrocode}
 \usepackage{wrapfig}
@@ -227,9 +184,9 @@
   \providecommand\thefigsubsep{,~}
   \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
 \fi
+
 %    \end{macrocode}
-%
-% Подключение и настройка параметров пакета |hyperref|:
+% \subsubsection{Гиперссылки}
 %    \begin{macrocode}
 \ifpdf
 %    \end{macrocode}
@@ -282,5 +239,55 @@
   \usepackage{hypernat}
   \usepackage[all]{hypcap}
 \fi
+
+%    \end{macrocode}
+% \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
+% Команда, создающая цель на ненумеруемые разделы для |hyperref|.
+%    \begin{macrocode}
+\def\metaphantom#1{%
+  \ifDis@href
+    \Hy@GlobalStepCount\Hy@linkcounter
+    \xdef\@currentHref{#1*.\the\Hy@linkcounter}%
+    \Hy@raisedlink{\hyper@anchorstart{\@currentHref}\hyper@anchorend}%
+  \fi
+}
+
+%    \end{macrocode}
+% Команды для создания ненумеруемых глав и секций, которые включаются в
+% Содержание и PDF-закладки.
+% \DescribeMacro{\nchapter}\index{Макросы!\verb*+\nchapter+}
+% \DescribeMacro{\nsection}\index{Макросы!\verb*+\nsection+}
+% \DescribeMacro{\nsubsection}\index{Макросы!\verb*+\nsubsection+}
+% \DescribeMacro{\nsubsubsection}\index{Макросы!\verb*+\nsubsubsection+}
+%    \begin{macrocode}
+\newcommand\nchapter[1]{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{\@chapterpagestyle}%
+  \global\@topnum\z@
+  \metaphantom{chapter}
+  {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
+  \@afterindentfalse
+  \@schapter{#1}
+}
+\newcommand\nsection[1]{%
+  \metaphantom{section}%
+  \addcontentsline{toc}{section}{#1}
+  \section*{#1}
+}
+\newcommand\nsubsection[1]{%
+  \metaphantom{subsection}%
+  \addcontentsline{toc}{subsection}{#1}
+  \subsection*{#1}
+}
+\newcommand\nsubsubsection[1]{%
+  \metaphantom{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{#1}
+  \subsubsection*{#1}
+}
+
 %</custom>
 %    \end{macrocode}
