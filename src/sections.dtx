@@ -267,8 +267,51 @@
 %    \end{macrocode}
 % \subsubsection{Низкоуровневые команды}
 %
+% \DescribeMacro{\@startsection}\index{Макросы!\verb+"\"@startsection+}
+% Команда, создающая заголовки секций.
+%    \begin{macrocode}
+\def\@startsection#1#2{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \@tempskipa \csname before#1\endcsname\relax
+  \@afterindenttrue
+  \ifdim \@tempskipa <\z@
+    \@tempskipa -\@tempskipa \@afterindentfalse
+  \fi
+  \if@nobreak
+    \everypar{}%
+  \else
+    \addpenalty\@secpenalty\addvspace\@tempskipa
+  \fi
+  \@ifstar
+    {\@ssect{\csname #1indent\endcsname}%
+            {\csname before#1\endcsname}{\csname after#1\endcsname}%
+            {\csname #1font\endcsname\csname #1align\endcsname}}%
+    {\@dblarg{\@sect{#1}{#2}{\csname #1indent\endcsname}%
+            {\csname before#1\endcsname}{\csname after#1\endcsname}%
+            {\csname #1font\endcsname\csname #1align\endcsname}}}%
+}
+
+%    \end{macrocode}
+% \DescribeMacro{\@ssect}\index{Макросы!\verb+"\"@ssect+}
+% Для ненумеруемых секций.
+%    \begin{macrocode}
+\def\@ssect#1#2#3#4#5{%
+  \@tempskipa #3\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #4{%
+        \@hangfrom{\hskip #1}%
+          \interlinepenalty \@M #5\@@par}%
+    \endgroup
+  \else
+    \def\@svsechd{#4{\hskip #1\relax #5}}%
+  \fi
+  \@xsect{#3}}
+
+%    \end{macrocode}
 % \DescribeMacro{\@sect}\index{Макросы!\verb+"\"@sect+}
-% Обобщенная версия команды, создающей заголовки секций.
+% Для нумеруемых секций.
 %    \begin{macrocode}
 \def\@sect#1#2#3#4#5#6[#7]#8{%
   \ifnum #2>\c@secnumdepth
@@ -303,24 +346,27 @@
   \fi
   \@xsect{#5}%
 }
+
 %    \end{macrocode}
 %
 % \DescribeMacro{\@tocline}\index{Макросы!\verb+"\"@tocline+}
 % Обобщенная версия команды, добавляющей запись в Содержание.
 %    \begin{macrocode}
-\def\@tocline#1#2#3#4#5#6{%
+\def\@tocline#1#2#3#4{%
   \ifnum #2>\c@tocdepth \else
     \vskip \z@ \@plus.2\p@
-    {\leftskip #3\relax \rightskip \@tocrmarg \parfillskip -\rightskip
-     \parindent #3\relax\@afterindenttrue
+    {\leftskip \csname toc#1indent\endcsname\relax%
+     \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent \csname toc#1indent\endcsname\relax%
+     \@afterindenttrue
      \interlinepenalty\@M
      \leavevmode
-     \@tempdima #4\relax
+     \@tempdima \csname toc#1nameindent\endcsname\relax
      \csname toc#1font\endcsname
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-     {#5}\nobreak
+     {#3}\nobreak
      \csname toc#1fillfont\endcsname \csname toc#1fill\endcsname\hfill
-     \nobreak\hb@xt@\@pnumwidth{\hfil\csname toc#1numfont\endcsname #6}%
+     \nobreak\hb@xt@\@pnumwidth{\hfil\csname toc#1numfont\endcsname #4}%
      \par%
     }%
   \fi
@@ -328,43 +374,40 @@
 
 %    \end{macrocode}
 %
+% Команда, создающие секции в тексте и в Содержании.
 % \DescribeMacro{\section}\index{Макросы!\verb+\section+}
-% \DescribeMacro{\subsection}\index{Макросы!\verb+\subsection+}
-% \DescribeMacro{\subsubsection}\index{Макросы!\verb+\subsubsection+}
-% \DescribeMacro{\paragraph}\index{Макросы!\verb+\paragraph+}
-% \DescribeMacro{\subparagraph}\index{Макросы!\verb+\subparagraph+}
-% Интерфейс для создания секций.
+% \DescribeMacro{\l@section}\index{Макросы!\verb+\l@section+}
 %    \begin{macrocode}
+\newcommand\section{\@startsection{section}{1}}
+\newcommand*\l@section{\@tocline{section}{1}}
 
-\newcommand\section{\@startsection{section}{1}
-  {\sectionindent}{\beforesection}%
-  {\aftersection}{\sectionfont\sectionalign}}
-\newcommand*\l@section{\@tocline{section}{1}{\tocsectionindent}%
-{\tocsectionnameindent}}
+%    \end{macrocode}
+% \DescribeMacro{\subsection}\index{Макросы!\verb+\subsection+}
+% \DescribeMacro{\l@subsection}\index{Макросы!\verb+\l@subsection+}
+%    \begin{macrocode}
+\newcommand\subsection{\@startsection{subsection}{2}}
+\newcommand*\l@subsection{\@tocline{subsection}{2}}
 
-\newcommand\subsection{\@startsection{subsection}{2}
-  {\subsectionindent}{\beforesubsection}%
-  {\aftersubsection}{\subsectionfont\subsectionalign}}
-\newcommand*\l@subsection{\@tocline{subsection}{2}{\tocsubsectionindent}%
-{\tocsubsectionnameindent}}
+%    \end{macrocode}
+% \DescribeMacro{\subsubsection}\index{Макросы!\verb+\subsubsection+}
+% \DescribeMacro{\l@subsubsection}\index{Макросы!\verb+\l@subsubsection+}
+%    \begin{macrocode}
+\newcommand\subsubsection{\@startsection{subsubsection}{3}}
+\newcommand*\l@subsubsection{\@tocline{subsubsection}{3}}
 
-\newcommand\subsubsection{\@startsection{subsubsection}{3}
-  {\subsubsectionindent}{\beforesubsubsection}%
-  {\aftersubsubsection}{\subsubsectionfont\subsubsectionalign}}
-\newcommand*\l@subsubsection{\@tocline{subsubsection}{3}{\tocsubsubsectionindent}%
-{\tocsubsubsectionnameindent}}
+%    \end{macrocode}
+% \DescribeMacro{\paragraph}\index{Макросы!\verb+\paragraph+}
+% \DescribeMacro{\l@paragraph}\index{Макросы!\verb+\l@paragraph+}
+%    \begin{macrocode}
+\newcommand\paragraph{\@startsection{paragraph}{4}}
+\newcommand*\l@paragraph{\@tocline{paragraph}{4}}
 
-\newcommand\paragraph{\@startsection{paragraph}{4}
-  {\paragraphindent}{\beforeparagraph}%
-  {\afterparagraph}{\paragraphfont\paragraphalign}}
-\newcommand*\l@paragraph{\@tocline{paragraph}{4}{\tocparagraphindent}%
-{\tocparagraphnameindent}}
-
-\newcommand\subparagraph{\@startsection{subparagraph}{5}
-  {\subparagraphindent}{\beforesubparagraph}%
-  {\aftersubparagraph}{\subparagraphfont\subparagraphalign}}
-\newcommand*\l@subparagraph{\@tocline{subparagraph}{5}{\tocsubparagraphindent}%
-{\tocsubparagraphnameindent}}
+%    \end{macrocode}
+% \DescribeMacro{\subparagraph}\index{Макросы!\verb+\subparagraph+}
+% \DescribeMacro{\l@subparagraph}\index{Макросы!\verb+\l@subparagraph+}
+%    \begin{macrocode}
+\newcommand\subparagraph{\@startsection{subparagraph}{5}}
+\newcommand*\l@subparagraph{\@tocline{subparagraph}{5}}
 
 %</sections>
 %    \end{macrocode}
