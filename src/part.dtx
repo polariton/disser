@@ -9,14 +9,6 @@
 %    \end{macrocode}
 % \subsection{Часть}
 %
-% Как уже говорилось во Введении, одной из основных проблем \LaTeX{} является
-% отсутствие простого способа настройки формата заголовков и соответствующих
-% им записей в Содержании. Любое изменение приходится вносить путем
-% переопределения громоздких низкоуровневых макросов. Класс |disser|
-% устраняет эту проблему путем введения высокоуровневых макросов для всех
-% основных параметров формата заголовков и записей в автоматически формируемых
-% списках.
-%
 % \subsubsection{Параметры формата записи в Содержании}
 %
 % \DescribeMacro{\tocprethepart}\index{Макросы!\verb*+\tocprethepart+}
@@ -85,6 +77,29 @@
 %
 % \subsubsection{Низкоуровневые команды}
 %
+% Описание структуры заголовков.
+% \begin{itemize}
+% \item в тексте,
+% \DescribeMacro{\@seccntformat}\index{Макросы!\verb*+"\"@seccntformat+}
+%    \begin{macrocode}
+\def\@seccntformat#1{%
+  \csname prethe#1\endcsname%
+  \csname the#1\endcsname%
+  \csname postthe#1\endcsname%
+}
+
+%    \end{macrocode}
+% \item в Содержании.
+% \DescribeMacro{\@tocseccntformat}\index{Макросы!\verb*+"\"@tocseccntformat+}
+%    \begin{macrocode}
+\def\@tocseccntformat#1{%
+  \csname tocprethe#1\endcsname%
+  \csname tocthe#1\endcsname%
+  \csname tocpostthe#1\endcsname%
+}
+
+%    \end{macrocode}
+% \end{itemize}
 % \DescribeMacro{\part}\index{Макросы!\verb*+\part+}
 % Интерфейс.
 %    \begin{macrocode}
@@ -167,8 +182,7 @@
 % \DescribeMacro{\l@part}
 % Низкоуровневая команда, создающая запись в Содержании.
 %    \begin{macrocode}
-\newcommand*\l@part[2]
-{%
+\newcommand*\l@part[2]{%
   \ifnum \c@tocdepth >-2\relax
     \addpenalty{-\@highpenalty}%
     \addvspace{2.25em \@plus\p@}%

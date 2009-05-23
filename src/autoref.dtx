@@ -8,11 +8,11 @@
 %
 % Вертикальные интервалы между элементами титульного листа.
 %    \begin{macrocode}
-\def\firstskip{\vskip1cm}
-\def\secondskip{\vskip2cm}
-\def\thirdskip{\vskip1cm}
-\def\fourthskip{\vskip1cm}
-\def\fifthskip{\vskip1cm}
+\deflength\firstskip{1cm}
+\deflength\secondskip{2cm}
+\deflength\thirdskip{1cm}
+\deflength\fourthskip{1cm}
+\deflength\fifthskip{1cm}
 
 \def\titlefont{\normalsize}
 \def\topicfont{\Large\bfseries}
@@ -24,7 +24,7 @@
 %    \end{macrocode}
 % На правах рукописи
 %    \begin{macrocode}
-  \firstskip
+  \vskip\firstskip
   \asmanuscriptname\\
   \ifDis@facsimile\facsimile\fi
 \end{flushright}
@@ -32,22 +32,22 @@
 %    \end{macrocode}
 % Автор
 %    \begin{macrocode}
-  \secondskip
+  \vskip\secondskip
   {\authorfont\@author}
 %    \end{macrocode}
 % Название диссертации
 %    \begin{macrocode}
-  \thirdskip
+  \vskip\thirdskip
   {\topicfont\@topic\par}
 %    \end{macrocode}
 % Шифр и наименование специальности
 %    \begin{macrocode}
-  \fourthskip
+  \vskip\fourthskip
   {\specfont\@specnum~--\;\@spec}
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
 %    \begin{macrocode}
-  \fifthskip
+  \vskip\fifthskip
   {\titlefont\@title}
 \end{center}
 %</autoref>

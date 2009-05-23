@@ -24,7 +24,7 @@
 
 %    \end{macrocode}
 % \DescribeMacro{\footnoterule}\index{Макросы!\verb+\footnoterule+}
-% Горизонтальная линия, отделяющая сноску.
+% Команда, рисующая линию.
 %    \begin{macrocode}
 \def\footnoterule{%
   \kern-3\p@\hrule\@width.4\columnwidth\kern2.6\p@
@@ -38,7 +38,11 @@
 %    \begin{macrocode}
 \providecommand\prethefootnote{}
 \providecommand\postthefootnote{}
-\providecommand\prefootnotetext{}
+\providecommand\prefootnote{\hskip0.25em}
+%    \end{macrocode}
+% \DescribeMacro{\footnoteindent}\index{Расстояния!\verb+\footnoteindent+}
+%    \begin{macrocode}
+\deflength{\footnoteindent}{1em}
 
 %    \end{macrocode}
 % \DescribeMacro{\@makefnmark}\index{Макросы!\verb+\@makefnmark+}
@@ -53,9 +57,8 @@
 % Команда, создающая текст сноски.
 %    \begin{macrocode}
 \newcommand\@makefntext[1]{%
-  \parindent 1em%
-  \noindent
-  \hb@xt@1.8em{\hss\@makefnmark\prefootnotetext}#1
+  \noindent\hspace{\footnoteindent}%
+  \@makefnmark\prefootnote #1
 }
 
 %</footnote>

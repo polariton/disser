@@ -531,6 +531,12 @@
 \DeclareRobustCommand*\mit{\@fontswitch\relax\mathnormal}
 
 %    \end{macrocode}
+% Команда, объединяющая |\newlength| и |\setlength|.
+% \DescribeMacro{\deflength}\index{Макросы!\verb*+\deflength+}
+%    \begin{macrocode}
+\providecommand\deflength[2]{\newlength{#1}\setlength{#1}{#2}}
+
+%    \end{macrocode}
 %
 % \subsection{Параметры основного текста}
 %
@@ -584,29 +590,6 @@
 \setlength\columnseprule{0\p@}
 
 %    \end{macrocode}
-% Описание структуры заголовков.
-% \begin{itemize}
-% \item в тексте,
-% \DescribeMacro{\@seccntformat}\index{Макросы!\verb*+"\"@seccntformat+}
-%    \begin{macrocode}
-\def\@seccntformat#1{%
-  \csname prethe#1\endcsname%
-  \csname the#1\endcsname%
-  \csname postthe#1\endcsname%
-}
-
-%    \end{macrocode}
-% \item в Содержании.
-% \DescribeMacro{\@tocseccntformat}\index{Макросы!\verb*+"\"@tocseccntformat+}
-%    \begin{macrocode}
-\def\@tocseccntformat#1{%
-  \csname tocprethe#1\endcsname%
-  \csname tocthe#1\endcsname%
-  \csname tocpostthe#1\endcsname%
-}
-
-%    \end{macrocode}
-% \end{itemize}
 % Характерные величины штрафов. Штраф --- мера <<красоты>> разбиения
 % абзаца на строки. Чем больше величина, тем менее красиво.
 %    \begin{macrocode}

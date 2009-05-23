@@ -8,6 +8,8 @@
 %<*custom>
 %    \end{macrocode}
 % \subsection{Подключение и настройка сторонних пакетов}
+%
+% \subsubsection{Текст и шрифты}
 % Отступ в первой строке первого абзаца.
 %    \begin{macrocode}
 \let\@afterindentfalse\@afterindenttrue
@@ -19,8 +21,6 @@
 \defaulthyphenchar=127
 
 %    \end{macrocode}
-% \subsubsection{Шрифты}
-%
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
 % \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
@@ -35,8 +35,11 @@
 %    \begin{macrocode}
 \ifDis@times
 %    \end{macrocode}
-% Исправление символа переноса в кодировке OT1 для шрифта |ftm| из пакетов
+% Команды |\English| и |\Eng| без переключения кодировок шрифта.
+% Необходимы для исправления символа переноса при использовании пакетов
 % |pscyr| и |cyrtimes|.
+% \DescribeMacro{\English}\index{Макросы!\verb*+\English+}
+% \DescribeMacro{\Eng}\index{Макросы!\verb*+\Eng+}
 %    \begin{macrocode}
   \AtBeginDocument{
     \DeclareRobustCommand{\English}{%
@@ -150,7 +153,7 @@
   \let\shortcite\cite
   \let\citeasnoun\cite
 %    \end{macrocode}
-% Убираем интервал между библиографическими ссылками для автореферата.
+% Убираем вертикальный интервал между библиографическими ссылками для автореферата.
 %    \begin{macrocode}
   \ifDis@autoref\setlength\bibsep{0pt}\fi
 }{%
@@ -160,7 +163,7 @@
 
 %    \end{macrocode}
 % \subsubsection{Плавающие объекты}
-% 
+%
 % \DescribePackage{wrapfig}\index{Пакеты!\verb*+wrapfig+}
 % Плавающие рисунки ``в оборку''.
 %    \begin{macrocode}
@@ -189,10 +192,6 @@
 % \subsubsection{Гиперссылки}
 %    \begin{macrocode}
 \ifpdf
-%    \end{macrocode}
-% \begin{itemize}
-% \item для pdf\LaTeX{}
-%    \begin{macrocode}
   \ifDis@href
 %    \end{macrocode}
 % \DescribePackage{hyperref}\index{Пакеты!\verb*+hyperref+}
@@ -215,10 +214,6 @@
   \usepackage[pdftex]{graphicx}
   \usepackage{cmap}
 \else
-%    \end{macrocode}
-% \item для \LaTeX{}
-% \end{itemize}
-%    \begin{macrocode}
   \ifDis@href
 %    \end{macrocode}
 % \DescribePackage{hyperref}\index{Пакеты!\verb*+hyperref+}
@@ -242,7 +237,7 @@
 
 %    \end{macrocode}
 % \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
-% Команда, создающая цель на ненумеруемые разделы для |hyperref|.
+% Команда, создающая цель для |hyperref| над заголовками ненумеруемых разделов.
 %    \begin{macrocode}
 \def\metaphantom#1{%
   \ifDis@href

@@ -14,20 +14,15 @@
 % \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
 %    \begin{macrocode}
 \newlength\firstskip
-\newlength\secondskip
-\newlength\thirdskip
-\newlength\fourthskip
-\newlength\fifthskip
-
 \ifDis@libcat
   \setlength\firstskip{1ex}
 \else
   \setlength\firstskip{4ex}
 \fi
-\setlength\secondskip{3cm}
-\setlength\thirdskip{1cm}
-\setlength\fourthskip{1cm}
-\setlength\fifthskip{1cm}
+\deflength\secondskip{3cm}
+\deflength\thirdskip{1cm}
+\deflength\fourthskip{1cm}
+\deflength\fifthskip{1cm}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.

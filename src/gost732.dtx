@@ -66,7 +66,6 @@
     \renewcommand\rmdefault{ftm}
   }{}
 }
-\IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
 
 \MakeShortVerb{\|}
 
@@ -232,7 +231,8 @@
 %
 %    \begin{macrocode}
 \renewcommand\postthefootnote{)}
-\renewcommand\prefootnotetext{~}
+\renewcommand\prefootnote{\hskip0.5em}
+\setlength{\footnoteindent}{\parindent}
 
 %    \end{macrocode}
 %
