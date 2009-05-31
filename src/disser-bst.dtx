@@ -22,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %<*driver>
-\ProvidesFile{disser-bst.drv}[2008/12/01 1.0.0 Bibliography style for dissertations.]
+\ProvidesFile{disser-bst.drv}[2008/06/01 1.1.2 Bibliography style for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper, includeheadfoot, nohead, mag=1000,
@@ -781,6 +781,7 @@ FUNCTION {output.bibitem}
   "\bibitem[" write$
   "\BibPrefix" write$
   label write$
+  "\BibPostfix" write$
   "]{" write$
   cite$ write$
   "}" write$
@@ -1629,7 +1630,8 @@ ITERATE {longest.label.pass}
 FUNCTION {begin.bib}
 {
   "\ifx\undefined\BibPrefix\def\BibPrefix{}\else\fi"          write$ newline$
-  "\begin{thebibliography}{\BibPrefix" longest.label  * "}" * write$ newline$
+  "\ifx\undefined\BibPostfix\def\BibPostfix{}\else\fi"        write$ newline$
+  "\begin{thebibliography}{\BibPrefix" longest.label  * "\BibPostfix}" * write$ newline$
   "\def\selectlanguageifdefined#1{"                           write$ newline$
   "\expandafter\ifx\csname date#1\endcsname\relax"            write$ newline$
   "\else\language\csname l@#1\endcsname\fi}"                  write$ newline$
