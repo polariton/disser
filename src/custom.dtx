@@ -9,18 +9,6 @@
 %    \end{macrocode}
 % \subsection{Подключение и настройка сторонних пакетов}
 %
-% \subsubsection{Текст и шрифты}
-% Отступ в первой строке первого абзаца.
-%    \begin{macrocode}
-\let\@afterindentfalse\@afterindenttrue
-\@afterindenttrue
-%    \end{macrocode}
-% Перенос в словах с дефисом.
-%    \begin{macrocode}
-\lccode`\-=`\-
-\defaulthyphenchar=127
-
-%    \end{macrocode}
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
 % \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
@@ -35,9 +23,9 @@
 %    \begin{macrocode}
 \ifDis@times
 %    \end{macrocode}
-% Команды |\English| и |\Eng| без переключения кодировок шрифта.
-% Необходимы для исправления символа переноса при использовании пакетов
-% |pscyr| и |cyrtimes|.
+% Реализация команд |\English| и |\Eng| без переключения кодировок шрифта.
+% Это необходимо для корректного отображения символа переноса строки при 
+% использовании пакетов |pscyr| и |cyrtimes|.
 % \DescribeMacro{\English}\index{Макросы!\verb*+\English+}
 % \DescribeMacro{\Eng}\index{Макросы!\verb*+\Eng+}
 %    \begin{macrocode}
@@ -70,20 +58,18 @@
     \IfFileExists{pscyr.sty}{
 %    \end{macrocode}
 % \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
-%    \begin{macrocode}
-      \usepackage{pscyr}
-%    \end{macrocode}
 % Установка Times как шрифта по умолчанию.
-%    \begin{macrocode}
-      \renewcommand\rmdefault{ftm}
-%    \end{macrocode}
 % Выбор стандартного моноширинного шрифта.
 %    \begin{macrocode}
+      \usepackage{pscyr}
+      \renewcommand\rmdefault{ftm}
       \renewcommand\ttdefault{cmtt}
     }{
       \IfFileExists{cyrtimes.sty}{
 %    \end{macrocode}
 % \DescribePackage{cyrtimes}\index{Пакеты!\verb*+cyrtimes+}
+% Вместо |pscyr| может быть использован пакет |cyrtimes|, входящий в состав 
+% дистрибутива \TeX Live.
 %    \begin{macrocode}
         \usepackage{cyrtimes}
       }{\PackageWarning{disser}{Unable to find pscyr or cyrtimes package. Font is unchanged.}}
@@ -120,7 +106,7 @@
 \fi
 
 %    \end{macrocode}
-% \subsubsection{Оформление библиографических ссылок}
+% \subsubsection{Библиографические ссылки}
 % \DescribePackage{natbib}\index{Пакеты!\verb*+natbib+}
 %    \begin{macrocode}
 \usepackage[square, comma, sort&compress, numbers]{natbib}
@@ -189,7 +175,7 @@
 \fi
 
 %    \end{macrocode}
-% \subsubsection{Гиперссылки}
+% \subsubsection{Hyperref}
 %    \begin{macrocode}
 \ifpdf
   \ifDis@href

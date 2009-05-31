@@ -538,7 +538,7 @@
 
 %    \end{macrocode}
 %
-% \subsection{Параметры основного текста}
+% \subsection{Параметры текста}
 %
 % \DescribeMacro{\lineskip}\index{Расстояния!\verb*+\lineskip+}
 % \DescribeMacro{\normallineskip}\index{Расстояния!\verb*+\normallineskip+}
@@ -596,5 +596,18 @@
 \@lowpenalty   51
 \@medpenalty  151
 \@highpenalty 301
+
+%    \end{macrocode}
+% Всегда ставить отступ в первой строке первого абзаца.
+%    \begin{macrocode}
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+
+%    \end{macrocode}
+% Перенос в словах с дефисом.
+%    \begin{macrocode}
+\lccode`\-=`\-
+\defaulthyphenchar=127
+
 %</disser>
 %    \end{macrocode}
