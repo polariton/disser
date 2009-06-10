@@ -1,15 +1,15 @@
-\documentclass[14pt,autoref,href
+\documentclass[14pt,autoref,href,facsimile
 %,fixint=false
-,facsimile
+%,times
 ]{disser}
 
-\usepackage[a4paper, nohead, includefoot, mag=1000,
-            margin=2cm, footskip=1cm]{geometry}
+\usepackage[a4paper,nohead,includefoot,mag=1000,
+            margin=2cm,footskip=1cm]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{tabularx}
-\usepackage{epstopdf}
+\ifpdf\usepackage{epstopdf}\fi
 
 % Поддержка нескольких списков литературы в одном документе
 \usepackage{multibib}
