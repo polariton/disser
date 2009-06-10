@@ -364,13 +364,13 @@
 % Поле для записи даты. Для отображения произвольного года нужно
 % присвоить значение необязательному аргументу.
 %    \begin{macrocode}
-\newcommand\datefield[1][\number\year]{<<\rule[0pt]{1cm}{.5pt}\,>>%
+\providecommand\datefield[1][\number\year]{<<\rule[0pt]{1cm}{.5pt}>>\ %
 \rule[0pt]{3cm}{0.5pt}\ #1~\yearname}
 %    \end{macrocode}
 % \DescribeMacro{\mkcommonsect}\index{Макросы!\verb*+\mkcommonsect+}
 % Генератор команд для общего текста диссертации и автореферата.
 %    \begin{macrocode}
-\newcommand\mkcommonsect[3]{%
+\providecommand\mkcommonsect[3]{%
   \@namedef{#1head}{#2}
   \@namedef{#1section}{\commonsect{\expandafter\csname #1head\endcsname}\postcommonsect}
   \@namedef{#1text}{#3}
@@ -381,7 +381,7 @@
 % \DescribeMacro{\facsimile}\index{Макросы!\verb*+\facsimile+}
 % Команда для включения графического файла с подписью диссертанта.
 %    \begin{macrocode}
-\newcommand\facsimile{\vskip 6pt\includegraphics[width=3cm]{facsimile}}
+\providecommand\facsimile{\vskip 6pt\includegraphics[width=3cm]{facsimile}}
 
 %</titledefs>
 %    \end{macrocode}

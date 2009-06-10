@@ -2,7 +2,7 @@ disser changelog
 Copyright (C) 2004-2009 Stanislav Kruchinin
 -------------------------------------------
 
-Summary of changes in version 1.1.2 (2009-05-31):
+Summary of changes in version 1.1.2 (2009-06-10):
 
 Classes:
 * Class gost732 now satisfies the latest edition of GOST 7.32-2001.
@@ -18,6 +18,9 @@ Makefiles:
 + Added "reinstall" and "uninstall" targets.
 * Fixed commandline processing in nomake scripts.
 * Rename "class" target to "package".
+
+Templates:
+* Fixed problem with "-commands.
 
 
 Summary of changes in version 1.1.1 (2009-04-01):
