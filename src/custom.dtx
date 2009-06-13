@@ -24,7 +24,7 @@
 \ifDis@times
 %    \end{macrocode}
 % Реализация команд |\English| и |\Eng| без переключения кодировок шрифта.
-% Это необходимо для корректного отображения символа переноса строки при 
+% Это необходимо для корректного отображения символа переноса строки при
 % использовании пакетов |pscyr| и |cyrtimes|.
 % \DescribeMacro{\English}\index{Макросы!\verb*+\English+}
 % \DescribeMacro{\Eng}\index{Макросы!\verb*+\Eng+}
@@ -42,7 +42,10 @@
 %    \begin{macrocode}
     \IfFileExists{mtpro.sty}{
       \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
-    }{\PackageWarning{disser}{Unable to find mtpro package. Font is unchanged.}}
+    }{
+      \PackageWarning{disser}%
+        {Unable to find mtpro package. Font is unchanged.}
+    }
   }
   \else
 %    \end{macrocode}
@@ -51,7 +54,10 @@
   \AtEndOfPackage{%
     \IfFileExists{txfonts.sty}{
       \usepackage{txfonts}
-    }{\PackageWarning{disser}{Unable to find txfonts package. Font is unchanged.}}
+    }{
+      \PackageWarning{disser}%
+        {Unable to find txfonts package. Font is unchanged.}
+    }
   }
   \fi
   \AtEndOfPackage{%
@@ -68,11 +74,14 @@
       \IfFileExists{cyrtimes.sty}{
 %    \end{macrocode}
 % \DescribePackage{cyrtimes}\index{Пакеты!\verb*+cyrtimes+}
-% Вместо |pscyr| может быть использован пакет |cyrtimes|, входящий в состав 
+% Вместо |pscyr| может быть использован пакет |cyrtimes|, входящий в состав
 % дистрибутива \TeX Live.
 %    \begin{macrocode}
         \usepackage{cyrtimes}
-      }{\PackageWarning{disser}{Unable to find pscyr or cyrtimes package. Font is unchanged.}}
+      }{
+        \PackageWarning{disser}%
+          {Unable to find pscyr or cyrtimes package. Font is unchanged.}
+      }
     }
   }
 \fi

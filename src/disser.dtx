@@ -19,7 +19,7 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*driver>
-\ProvidesFile{disser.drv}[2009/04/23 1.1.1 Document class for dissertations.]
+\ProvidesFile{disser.drv}[2009/06/11 1.1.2 Document class for dissertations]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper, includeheadfoot, nohead, mag=1000,
@@ -32,6 +32,7 @@
 \ifpdf
   \usepackage[pdftex,hyperindex,unicode]{hyperref}
   \usepackage{cmap}
+  \usepackage{hypdestopt}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
@@ -49,8 +50,6 @@
   citecolor  = darkblue, filecolor  = darkblue,
   menucolor  = darkblue, urlcolor   = darkblue
 }
-
-\ifpdf\usepackage{hypdestopt}\fi
 
 \IfFileExists{pscyr.sty}{%
   \usepackage{pscyr}
@@ -137,14 +136,13 @@
 %
 %  Документация пакета |disser| состоит из следующих файлов:
 %
-%  \begingroup
 %  \begin{deflist}{README, README.ru}
-%  \item[\href{file:manual.pdf}{Manual.pdf}] Руководство пользователя.
+%  \item[\href{file:manual.pdf}{manual.pdf}] Руководство пользователя.
 %  \item[README, README.ru] Информация о сборке и установке пакета
 %  (текстовые файлы).
 %  \item[ChangeLog] История версий (текстовый файл).
 %  \end{deflist}
-%  \endgroup
+%
 %  Документированные исходные тексты:
 %  \begin{deflist}{disser-bst.dtx}
 %  \item[\href{file:disser.pdf}{disser.dtx}] Исходный текст класса |disser|
@@ -153,8 +151,7 @@
 %    Исходный текст класса класса |gost732| для оформления документов в
 %    соответствии с ГОСТ 7.32-2001.
 %  \item[\href{file:disser-bst.pdf}{disser-bst.dtx}]
-%    Исходный текст стилей библиографических ссылок |disser.bst| и
-%    |disser-s.bst|.
+%    Исходный текст стилей библиографии |disser.bst| и |disser-s.bst|.
 %  \end{deflist}
 %
 %  \clearpage
@@ -166,10 +163,10 @@
 
 %<*disser>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{disser}[2008/04/08 1.1.1 Document class for dissertations.]
+\ProvidesClass{disser}[2009/06/11 1.1.2 Document class for dissertations]
 
 %    \end{macrocode}
-% Расширение включаемых в |disser.cls| файлов.
+% Расширение файлов, включаемых в |disser.cls|.
 %    \begin{macrocode}
 \def\substyle@ext{.rtx}
 
@@ -180,6 +177,7 @@
 % \DescribePackage{ifpdf}\index{Пакеты!\verb*+ifpdf+}
 %    \begin{macrocode}
 \RequirePackage{ifpdf}
+
 %    \end{macrocode}
 % \item Разрешено оставлять одну колонку при двухколонном наборе.
 %    \begin{macrocode}
@@ -228,6 +226,7 @@
 % \item Поддержка математических шрифтов MathTime Pro (отключено).
 %    \begin{macrocode}
 \newif\ifDis@mtpro\Dis@mtprofalse
+
 %    \end{macrocode}
 % \end{itemize}
 %
@@ -236,7 +235,6 @@
 % Подключение пакета |kvoptions| для обработки опций в формате
 % |ключ = значение|.
 %    \begin{macrocode}
-
 \RequirePackage{kvoptions}[2006/08/17]
 
 %    \end{macrocode}
@@ -550,9 +548,9 @@
 \setlength\normallineskip{1\p@}
 
 %    \end{macrocode}
-% \DescribeMacro{\singlespacing}\index{Макросы!\verb*+\singlespacing+}
+% \DescribeMacro{\singlespacing} \index{Макросы!\verb*+\singlespacing+}
 % \DescribeMacro{\onehalfspacing}\index{Макросы!\verb*+\onehalfspacing+}
-% \DescribeMacro{\doublespacing}\index{Макросы!\verb*+\doublespacing+}
+% \DescribeMacro{\doublespacing} \index{Макросы!\verb*+\doublespacing+}
 % Характерные величины межстрочнах интервалов.
 %    \begin{macrocode}
 \newcommand\singlespacing {\renewcommand\baselinestretch{1}\normalsize}
