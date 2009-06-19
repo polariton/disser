@@ -139,18 +139,18 @@ goto :eof
 goto :eof
 ) else if "%1"=="help" (
 :help
-	echo   dvi       ^(default^) build DVI
-	echo   clean     remove output files
-	echo   help      show description of targets
-	echo   html      convert DVI to HTML
-	echo   pdf       build PDF
-	echo   pdf_2on1  build PDF with two A5 pages on one A4 ordered by number
-	echo   pdf_book  build PDF booklet ^(two A5 on A4^)
-	echo   ps        build PS
-	echo   ps_2on1   build PS with two A5 pages on A4 ordered by number
-	echo   ps_book   build PS booklet ^(two A5 on A4^)
-	echo   rtf       convert DVI to RTF
-	echo   srcdist   build source distribution
+	echo   dvi        ^(default^) build DVI
+	echo   clean      remove output files
+	echo   help       show description of targets
+	echo   html       convert DVI to HTML
+	echo   pdf        build PDF
+	echo   pdf_2on1   build PDF with two A5 pages on one A4 ordered by number
+	echo   pdf_book   build PDF booklet ^(two A5 on A4^)
+	echo   ps         build PS
+	echo   ps_2on1    build PS with two A5 pages on A4 ordered by number
+	echo   ps_book    build PS booklet ^(two A5 on A4^)
+	echo   rtf        convert DVI to RTF
+	echo   srcdist    build source distribution
 goto :eof
 ) else (
 	echo Don't know how to make %1
