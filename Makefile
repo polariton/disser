@@ -10,7 +10,7 @@ HG?=hg
 ARCHEXT?=zip
 ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
 TDSDIR?=../disser-tds
-TDSARCHIVE=$(TARGET).tds.$(ARCHEXT)
+TDSARCHIVE=$(TARGET)-$(VER).tds.$(ARCHEXT)
 
 package:
 	@$(MAKE) -i -C src

@@ -15,7 +15,7 @@ set hg=hg
 set archext=zip
 set archive=%target%-%ver%.%archext%
 set tdsdir=..\disser-tds
-set tdsarchive=%target%.tds.%archext%
+set tdsarchive=%target%-%ver%.tds.%archext%
 
 setlocal enabledelayedexpansion
 
