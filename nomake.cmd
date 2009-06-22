@@ -10,7 +10,7 @@ if "%CMDEXTVERSION%"=="" (
 
 set target=disser
 
-if "%ver%"=="" set ver=1.1.1
+if "%ver%"=="" set ver=1.1.2
 set hg=hg
 set archext=zip
 set archive=%target%-%ver%.%archext%
