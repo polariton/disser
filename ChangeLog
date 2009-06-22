@@ -2,7 +2,7 @@ disser changelog
 Copyright (C) 2004-2009 Stanislav Kruchinin
 -------------------------------------------
 
-Summary of changes in version 1.1.2 (2009-06-10):
+Summary of changes in version 1.1.2 (2009-06-22):
 
 Classes:
 * Class gost732 now satisfies the latest edition of GOST 7.32-2001.
