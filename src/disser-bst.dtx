@@ -87,7 +87,7 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% \title{Стили библиографии: \texttt{disser} и \texttt{disser-s}}
+% \title{Стили для оформления библиографии\\\texttt{disser} и \texttt{disser-s}}
 % \date{Версия \fileversion\\[6pt]\filedate}
 % \author{Станислав Кручинин\\[6pt]
 % \normalsize E-mail:
@@ -611,7 +611,7 @@ FUNCTION {bbl.phdthesis}
   curlanguage "english" =
   {"Ph.D. thesis"}
     { curlanguage "russian" =
-      {"{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}"}
+      {"{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\ \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}"}
       {"language is not defined: " language  "Ph.D. thesis" * * warning$ "P."}
     if$}
   if$
@@ -1560,22 +1560,22 @@ FUNCTION {author.sort}
 FUNCTION {author.title.sort}
 { author empty$
     { title empty$
-        { key empty$
-            { "to sort, need author, title, or key in " cite$ * warning$
-              ""
-            }
-            { key sortify }
-          if$
+      { key empty$
+        { "to sort, need author, title, or key in " cite$ * warning$
+          ""
         }
-        { title sort.format.title }
+        { key sortify }
       if$
+      }
+      { title sort.format.title }
+    if$
     }
     {
       author num.names$ #4 <
-        {author sort.format.names }
-        {title sort.format.title}
+        { author sort.format.names }
+        { title sort.format.title }
       if$
-     }  	
+    }
   if$
 }
 
