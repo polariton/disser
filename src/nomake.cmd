@@ -122,11 +122,11 @@ goto :eof
 :help
 	echo   all        ^(default^) build package and documentation
 	echo   clean      remove output files
-	echo   doc        build documentation
-	echo   dvi        build DVI version of documentation
+	echo   doc        build documentation in DVI and PDF formats
+	echo   dvi        build documentation in DVI format
 	echo   help       show description of targets
 	echo   install    install package and documentation
-	echo   package    build package and documentation
+	echo   package    build package
 	echo   pdf        build PDF version of documentation
 	echo   reinstall  reinstall package and documentation
 	echo   uninstall  remove package and documentation from TeX tree

@@ -99,12 +99,12 @@ disser.pdf: disser.dtx
 
 help:
 	@echo "  all        (default) build package files and documentation"
-	@echo "  package    build package"
 	@echo "  clean      remove output files"
-	@echo "  doc        build DVI and PDF versions of documentation"
-	@echo "  dvi        build DVI version of documentation"
+	@echo "  doc        build documentation in DVI and PDF formats"
+	@echo "  dvi        build documentation in DVI format"
 	@echo "  help       show description of targets"
 	@echo "  install    install package and documentation"
-	@echo "  pdf        build PDF version of documentation"
+	@echo "  package    build package"
+	@echo "  pdf        build documentation in PDF format"
 	@echo "  reinstall  reinstall package and documentation"
 	@echo "  uninstall  uninstall package and documentation"
