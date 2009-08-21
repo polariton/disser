@@ -139,8 +139,8 @@ goto :eof
 goto :eof
 ) else if "%1"=="help" (
 :help
-	echo   dvi        ^(default^) build DVI
 	echo   clean      remove output files
+	echo   dvi        ^(default^) build DVI
 	echo   help       show description of targets
 	echo   html       convert DVI to HTML
 	echo   pdf        build PDF

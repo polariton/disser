@@ -108,8 +108,8 @@ $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
 help:
-	@echo "  dvi       (default) build DVI"
 	@echo "  clean     remove output files"
+	@echo "  dvi       (default) build DVI"
 	@echo "  help      show description of targets"
 	@echo "  html      convert DVI to HTML"
 	@echo "  pdf       build PDF"
