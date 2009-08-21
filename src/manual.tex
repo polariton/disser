@@ -370,10 +370,10 @@
 
 Последовательность команд, используемая для полной сборки документа с библиографией, имеет следующий вид:
 \begin{verbatim}
-  latex <tex_file>
-  bibtex8 -H -c <csf_file> <tex_file_basename>
-  latex <tex_file>
-  latex <tex_file>
+latex <tex_file>
+bibtex8 -H -c <csf_file> <tex_file_basename>
+latex <tex_file>
+latex <tex_file>
 \end{verbatim}
 Здесь |<tex_file>| "--- файл документа, |<csf_file>| "--- файл описания кодовой страницы, |<tex_file_basename>| "--- имя файла документа без расширения.
 
@@ -384,9 +384,10 @@
 
 Пример:
 \begin{verbatim}
-  \def\BibPrefix{A}
-  \bibliographystyle{disser}
-  \bibliography{thesis}\end{verbatim}
+\def\BibPrefix{A}
+\bibliographystyle{disser}
+\bibliography{thesis}
+\end{verbatim}
 В данном случае ссылки будут иметь вид [A$n$], где $n$ "--- номер.
 
 К сожалению, пакет |natbib| не <<сжимает>> ссылки с нецифровыми символами, т.\,е. ссылки вида [A1, A2, A3, A4] не преобразуются к более компактной форме [A1--A4].
@@ -421,7 +422,8 @@ latex autoref
 bibtex8 -H -c cp1251 autoref
 bibtex8 -H -c cp1251 my
 latex autoref
-latex autoref\end{verbatim}
+latex autoref
+\end{verbatim}
 Данные операции выполняются автоматически при сборке с помощью скриптов |Makefile| и |nomake.cmd|.
 Сборка автореферата в Windows:
 \begin{verbatim}
