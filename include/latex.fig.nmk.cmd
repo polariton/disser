@@ -8,6 +8,7 @@ if "%CMDEXTVERSION%"=="" (
 	goto :eof
 )
 
+if "%bmtoeps%"=="" set bmtoeps=sam2p
 if "%e2e%"=="" set e2e=eps2eps
 if "%epstool%"=="" set epstool=epstool
 if "%epstopdf%"=="" set epstopdf=epstopdf
@@ -17,12 +18,13 @@ if "%e2eflags%"=="" set e2eflags=-dSAFER
 if "%etflags%"=="" set etflags=--quiet --copy --bbox
 if "%res%"=="" set res=600
 
+if "%bmtoepsfiles%"=="" set bmtoepsfiles==*.jpg *.png *.tif
 if "%e2efiles%"=="" set e2efiles=*.eps
 if "%e2pfiles%"=="" set e2pfiles=*.eps
 if "%pdf2pngfiles%"=="" set pdf2pngfiles=*.pdf
 if "%pdf2tiffiles%"=="" set pdf2tiffiles=*.pdf
 if "%fbbfiles%"=="" set fbbfiles=*.eps
-if "%figclfiles%"=="" set figclfiles=*.pdf *.png *.tif
+if "%figclfiles%"=="" set figclfiles=*.pdf *.jpg *.png *.tif
 if "%suffix%"=="" set suffix=~
 
 rem end of configuration
@@ -35,7 +37,8 @@ if "%1"=="" (
 goto :eof
 ) else if "%1"=="help" (
 :help
-	echo   clean        clean PDF, PNG and TIFF files
+	echo   bmtoeps      convert bitmap images to EPS format
+	echo   clean        clean converted files
 	echo   epstoeps     optimize EPS files using Ghostscript
 	echo   epstopdf     convert EPS to PDF
 	echo   fixbb        fix BoundingBox of EPS files
@@ -43,6 +46,16 @@ goto :eof
 	echo   pdftopng256  convert PDF to PNG ^(256-color^)
 	echo   pdftotiffg4  convert PDF to TIFF ^(b/w CCITT Group 4^)
 goto :eof
+) else if "%1"=="bmtoeps" (
+:bmtoeps
+	for %%f in (!bmtoepsfiles!) do (
+		if not exist "%%~nf.eps" (
+			%bmtoeps% %bmtoepsflags% "%%f" "%%~nf.eps" > nul 2>&1
+			echo bmtoeps: %%f
+		)
+	)
+
+goto :eof	
 ) else if "%1"=="clean" (
 :clean
 	del /s %figclfiles%
