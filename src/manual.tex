@@ -5,6 +5,7 @@
 
 % Hyperref
 \definecolor{darkblue}{rgb}{0,0,.6}
+
 \ifpdf
   \usepackage[%
     pdftex,
@@ -18,17 +19,17 @@
     bookmarksopen,
     bookmarksnumbered,
     bookmarksopenlevel = 2,
-    pdfusetitle,
-    unicode]{hyperref}
+    pdfusetitle,unicode]{hyperref}
   \usepackage{cmap}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
 
 \hypersetup{
-  colorlinks = true,     linkcolor = darkblue,
-  citecolor  = darkblue, filecolor = darkblue,
-  menucolor  = darkblue, urlcolor  = darkblue
+  colorlinks = true,
+  linkcolor = darkblue, citecolor = darkblue,
+  filecolor = darkblue, menucolor = darkblue,
+  urlcolor = darkblue
 }
 
 % Use Times font if available
@@ -62,8 +63,7 @@
 
 \begin{document}
 \sloppy
-\title{Пакет для оформления диссертаций |disser|:\\
-руководство пользователя
+\title{Пакет |disser|: руководство пользователя
 }
 \date{Версия \fileversion}
 \author{Станислав Кручинин\\[6pt]
@@ -139,18 +139,17 @@
   отступом.
 \\\hline
   noams &
-  Не подключать пакеты |amsmath|, |amssymb| и |amsfonts|.
+  Не подключать пакеты |amsmath|, |amssymb| и |amsfonts| из класса.
 \\\hline
   subf &
-  Использовать пакет |subfig| для ведения вложенной нумерации рисунков.
+  Подключение пакета |subfig| для ведения вложенной нумерации рисунков.
 \\\hline
   href &
-  Использовать пакет |hyperref|.
+  Подключение пакета |hyperref| для создания гиперссылок.
 \\\hline
   times &
   Включает использование гарнитуры Times в тексте и формулах.
-  Для использования опции необходимо установить пакеты |pscyr| (или |cyrtimes|) и
-  |txfonts| (или |mtpro|).
+  Для использования опции необходимо установить пакеты |pscyr| (или |cyrtimes|) и |txfonts| (или |mtpro|).
 \\\hline
   autoref, bachelor, master, \textbf{candidate}, doctor &
   Тип документа.
@@ -163,13 +162,12 @@
   Включает вывод номера УДК на титульном листе.
 \\\hline
   facsimile &
-  Включает отображение подписей диссертанта и ученого секретаря на
-  титульных листах автореферата и диссертации (только для кандидатских и докторских).
+  Включает отображение подписей диссертанта и ученого секретаря на титульных листах автореферата и диссертации (только для кандидатских и докторских).
   По умолчанию включена только в шаблоне автореферата.
 \\\hline
   mtpro &
-  Поддержка шрифтов MathTime Pro. При наличии опции |times| вместо
-  пакета |txfonts| подключается пакет |mtpro|.
+  Подключение математических шрифтов MathTime Pro.
+  При наличии опции |times| вместо пакета |txfonts| подключается пакет |mtpro|.
 \\\hline\hline
 \end{tabularx}
 
@@ -179,13 +177,13 @@
 Стиль колонтитулов обычных страниц документа задается в преамбуле командой |\pagestyle{<style>}|, а стиль страниц, с которых начинается новая глава "--- командой |\chapterpagestyle{<style>}|.
 Здесь |<style>| может принимать следующие значения:
 \begin{deflist}{headcenter}
-\item[footleft] Номер внизу и слева.
+\item[footleft]   Номер внизу и слева.
 \item[footcenter] Номер внизу и по середине.
-\item[footright] Номер внизу и справа.
-\item[headleft] Номер вверху и слева.
+\item[footright]  Номер внизу и справа.
+\item[headleft]   Номер вверху и слева.
 \item[headcenter] Номер вверху и по середине.
-\item[headright] Номер вверху и справа.
-\item[plain] Совпадает с |footcenter|.
+\item[headright]  Номер вверху и справа.
+\item[plain]      Совпадает с |footcenter|.
 \end{deflist}
 
 Для односторонних документов шрифт надписей в верхнем и нижнем колонтитулах можно задать путем переопределения команд |\headfont| и |\footfont|.
@@ -197,19 +195,26 @@
 \pagestyle{headcenter}
 \chapterpagestyle{headcenter}\end{verbatim}
 
-\section{Система сборки документов}
+\section{Системы сборки документов}
 
 В состав пакета входят две системы скриптов для автоматизации сборки и установки: файлы |Makefile|, совместимые с GNU Make, и файлы |nomake.cmd|, написанные на языке командного интерпретатора |cmd.exe| ОС Windows 2000 и выше.
 Скрипты поддерживают одинаковый набор целей (targets).
 Использование в Unix-подобных окружениях: |make <target1> <target2> ...|
 В Windows: |nomake <target>|.
-Необходимо отметить, что в отличие от |make|, скрипты |nomake| за один запуск обрабатывают только один параметр, что обусловлено ограничениями синтаксиса.
+
+Особенности реализации скриптов |nomake|:
+\begin{itemize}
+\item За один запуск обрабатывается только одна цель, что обусловлено ограничениями синтаксиса cmd-файлов.
+\item Не реализовано отслеживание даты изменения исходных файлов.
+\item Скрипты для обработки изображений\footnote{См.~|include/latex.fig.nmk.cmd|.} не перезаписывают существующие файлы во избежание потерь информации.
+    Для пересборки необходимо удалять файлы вручную.
+\end{itemize}
 
 Далее приведены описания целей в зависимости от каталога, в котором производится сборка.
 
 \subsection{Каталог \texttt{disser/}}
 
-\begin{deflist}{123456789}
+\begin{deflist}{uninstall  }
 \item[all]
   Сборка классов и шаблонов.
 \item[clean]
@@ -243,7 +248,7 @@
 
 \subsection{Каталог \texttt{disser/src/}}
 
-\begin{deflist}{123456789}
+\begin{deflist}{uninstall  }
 \item[all]
   Сборка пакета и PDF-версии документации.
   Цель по умолчанию.
@@ -271,7 +276,7 @@
 \subsection{Каталоги \texttt{disser/templates} и
   \texttt{disser/templates/<тип-диссертации>/}}
 
-\begin{deflist}{123456789}
+\begin{deflist}{uninstall  }
 \item[dvi]
   Сборка DVI-файла. Цель по умолчанию.
 \item[clean]
@@ -280,7 +285,7 @@
   Справка по целям сборки.
 \item[html]
   Конвертация DVI в HTML-файл с рисунками.
-  Для работы необходимо установить программу \href{http://www.latex2html.org/}{latex2html}.
+  Используемая программа: \href{http://www.latex2html.org/}{\texttt{latex2html}}.
 \item[pdf]
   Сборка PDF-файла.
 \item[pdf\_2on1]
@@ -304,7 +309,7 @@
 \end{deflist}
 
 Помимо вышеуказанных целей, в каталоге \texttt{disser/templates} доступны следующие:
-\begin{deflist}{123456789}
+\begin{deflist}{uninstall  }
 \item[install]
   Копирование шаблонов в дерево каталогов \TeX{}.
 \item[reinstall]
@@ -325,27 +330,42 @@
 \subsection{Каталог \texttt{disser/templates/<тип-диссертации>/fig/}}
 
 \begin{deflist}{pdftotiffg44}
+\item[bmtoeps]
+  Конвертация растровых изображений в EPS.
+  Используемая программа: \href{http://code.google.com/p/sam2p/}{\texttt{sam2p}}.
+  Список файлов определяется переменной |BMTOEPSFILES|.
+  По умолчанию обрабатываются все файлы с расширениями jpg, png, tif.
 \item[clean]
-  Удаление файлов с расширениями pdf, png и tif.
-  Список определяется переменной |CLFILES|.
+  Удаление файлов, определенных в переменной |FIGCLFILES|.
+  По умолчанию обрабатываются все файлы с расширениями pdf, jpg, png и tif.
 \item[epstoeps]
-  Оптимизация EPS с помощью Ghostscript.
-  Следует использовать только для документов с контурными шрифтами.
+  Оптимизация EPS-файлов.
+  Следует применять только к изображениям с контурными шрифтами (outline fonts).
+  Используемая программа: |eps2eps| из пакета Ghostscript.
   Список файлов определяется переменной |E2EFILES|.
+  По умолчанию обрабатываются все файлы с расширением eps.
 \item[epstopdf]
   Конвертация EPS в PDF.
+  Используемая программа: |epstopdf| (входит в состав MiK\TeX{} и \TeX{}Live).
   Список файлов определяется переменной |E2PFILES|.
+  По умолчанию обрабатываются все файлы с расширением eps.
 \item[fixbb]
   Исправление BoundingBox в EPS-файлах.
+  Используемая программа: \href{http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm}{\texttt{epstool}}.
   Список файлов определяется переменной |FBBFILES|.
+  По умолчанию обрабатываются все файлы с расширением eps.
 \item[help]
   Справка по целям сборки. Цель по умолчанию.
 \item[pdftopng256]
   Конвертация PDF в 256-цветный PNG.
+  Используемая программа: пакет Ghostscript.
   Список файлов определяется переменной |PDF2PNGFILES|.
+  По умолчанию обрабатываются все файлы с расширением pdf.
 \item[pdftotiffg4]
   Конвертация PDF в черно-белый TIFF (алгоритм сжатия CCITT Group 4).
+  Используемая программа: пакет Ghostscript.
   Список файлов определяется переменной |PDF2TIFFILES|.
+  По умолчанию обрабатываются все файлы с расширением pdf.
 \end{deflist}
 
 \section{Оформление библиографии}
@@ -361,7 +381,7 @@
 \item Авторы, независимо от их количества, всегда печатаются перед названием источника.
 \item Имена авторов не преобразуются в инициалы.
 \item Отсутствует поддержка украинского языка.
-\item Поддерживается настраиваемые префикс и постфикс номера библиографической ссылки для оформления списка работ диссертанта в автореферате.
+\item Настраиваемые префикс и постфикс номера библиографической ссылки для оформления списка работ диссертанта в автореферате.
 \end{enumerate}
 
 Для работы с русскоязычными библиографическими ссылками необходима версия \BibTeX{} с поддержкой 8-битных символов, |bibtex8|.
@@ -424,7 +444,7 @@ bibtex8 -H -c cp1251 my
 latex autoref
 latex autoref
 \end{verbatim}
-Данные операции выполняются автоматически при сборке с помощью скриптов |Makefile| и |nomake.cmd|.
+Данные операции выполняются автоматически при использовании скриптов |Makefile| и |nomake.cmd|.
 Сборка автореферата в Windows:
 \begin{verbatim}
 set target=autoref
@@ -432,6 +452,7 @@ nomake\end{verbatim}
 В Unix-like окружениях:
 \begin{verbatim}
 env TARGET=autoref make\end{verbatim}
+Для возврата к сборке диссертации следует присвоить переменной |TARGET| значение |thesis|.
 
 \subsection{Подписи диссертанта и ученого секретаря}
 
