@@ -3,17 +3,17 @@
 rem nomake script for LaTeX projects
 rem Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 
+if "%CMDEXTVERSION%"=="" (
+	echo This script requires command interpreter from Windows 2000 or above.
+	goto :eof
+)
+
 setlocal enabledelayedexpansion
 
 set target=thesis
 if "!texmf!"=="" set texmf=%programfiles%\miktex
 if "!docdir!"=="" set docdir=!texmf!\doc\latex\disser
 if "!subdirs!"=="" set subdirs=bachelor ..\master ..\candidate ..\doctor
-
-if "%CMDEXTVERSION%"=="" (
-	echo Error: This script requires command interpreter from Windows 2000 or above.
-	goto :eof
-)
 
 if "%1"=="help" (
 :help
@@ -39,6 +39,6 @@ goto :eof
 	call :uninstall
 	call :install
 goto :eof
+) else (
+	for %%i in (%subdirs%) do @cd %%i & call nomake %*
 )
-
-for %%i in (%subdirs%) do @cd %%i & call nomake %*

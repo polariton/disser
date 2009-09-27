@@ -1,4 +1,9 @@
-TARGET=thesis
+#
+# Makefile for documents and templates
+# Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
+#
+
+TARGET?=thesis
 TEXMF?=/usr/share/texmf
 DOCDIR?=$(TEXMF)/doc/latex/disser
 
