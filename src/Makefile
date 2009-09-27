@@ -1,21 +1,20 @@
 #
 # Makefile for disser package
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
-# 
+#
 
 TARGET=disser
 SUBCLASS=gost732
 BST=disser-bst
 MANUAL=manual
 
-CLSFILES=$(TARGET).cls *.rtx $(SUBCLASS).cls
+CLSFILES=*.cls *.rtx
 BSTFILES=$(TARGET).bst $(TARGET)-s.bst
 DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf $(MANUAL).pdf
 TEXTFILES=../README ../README.ru ../ChangeLog
 SRCFILES=*.dtx *.ins $(MANUAL).tex
 
 TEXMF?=/usr/share/texmf
-
 CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
 DOCDIR?=$(TEXMF)/doc/latex/$(TARGET)
 BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
@@ -30,6 +29,7 @@ MI?=makeindex
 
 LATEXFLAGS?=
 PDFLATEXFLAGS?=
+
 
 all: package doc
 
@@ -98,13 +98,13 @@ disser.pdf: disser.dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 help:
-	@echo "  all        (default) build package files and documentation"
-	@echo "  clean      remove output files"
-	@echo "  doc        build documentation in DVI and PDF formats"
-	@echo "  dvi        build documentation in DVI format"
-	@echo "  help       show description of targets"
-	@echo "  install    install package and documentation"
-	@echo "  package    build package"
-	@echo "  pdf        build documentation in PDF format"
-	@echo "  reinstall  reinstall package and documentation"
-	@echo "  uninstall  uninstall package and documentation"
+	@echo "  all        (default) build package files and documentation" ;\
+	 echo "  clean      remove output files" ;\
+	 echo "  doc        build documentation in DVI and PDF formats" ;\
+	 echo "  dvi        build documentation in DVI format" ;\
+	 echo "  help       show description of targets" ;\
+	 echo "  install    install package and documentation" ;\
+	 echo "  package    build package" ;\
+	 echo "  pdf        build documentation in PDF format" ;\
+	 echo "  reinstall  reinstall package and documentation" ;\
+	 echo "  uninstall  uninstall package and documentation"

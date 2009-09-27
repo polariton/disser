@@ -8,12 +8,13 @@ TARGET=disser
 VER?=1.1.2
 HG?=hg
 ARCHEXT?=zip
-ARCHIVE?=$(TARGET)-$(VER).$(ARCHEXT)
+ARCHIVE=$(TARGET)-$(VER).$(ARCHEXT)
 TDSDIR?=../disser-tds
 TDSARCHIVE=$(TARGET)-$(VER).tds.$(ARCHEXT)
 
+
 package:
-	@$(MAKE) -i -C src
+	@$(MAKE) -i -C package
 
 templates:
 	@$(MAKE) -i -C templates
@@ -28,33 +29,30 @@ clean install uninstall reinstall:
 	@$(MAKE) -i -C templates $@
 
 srcdist:
-	@if [ -f $(ARCHIVE) ];\
-	then \
+	@if [ -f $(ARCHIVE) ] ;	then \
 		rm -f $(ARCHIVE);\
-	fi
-
+	fi ;\
 	$(HG) archive -X .hgignore -X .hg_archival.txt -X .hgtags -t $(ARCHEXT) \
-		$(TARGET).$(ARCHEXT)
-	@if [ -f $(TARGET).$(ARCHEXT) ];\
-	then \
+		$(TARGET).$(ARCHEXT) ;\
+	if [ -f $(TARGET).$(ARCHEXT) ] ; then \
 		mv $(TARGET).$(ARCHEXT) $(ARCHIVE);\
 	fi
 
 tds:
-	mkdir -p $(TDSDIR)
-	@env TEXMF=../$(TDSDIR) $(MAKE) -i -C src install
-	@env TEXMF=../$(TDSDIR) $(MAKE) -i -C templates install
+	@mkdir -p $(TDSDIR) ;\
+	env TEXMF=../$(TDSDIR) $(MAKE) -i -C src install ;\
+	env TEXMF=../$(TDSDIR) $(MAKE) -i -C templates install ;\
 	7z a -t$(ARCHEXT) -mx=9 $(TDSARCHIVE) $(TDSDIR)/*
 
 help:
-	@echo "  all        build classes, documentation and templates"
-	@echo "  clean      remove output files"
-	@echo "  doc        build DVI and PDF versions of documentation"
-	@echo "  help       show description of targets"
-	@echo "  install    install package and documentation"
-	@echo "  package    (default) build package and documentation"
-	@echo "  reinstall  reinstall package and documentation"
-	@echo "  srcdist    create source distribution"
-	@echo "  tds        create TDS archive with compiled sources"
-	@echo "  template   build templates"
-	@echo "  uninstall  uninstall package and documentation"
+	@echo "  all        build classes, documentation and templates" ;\
+	 echo "  clean      remove output files" ;\
+	 echo "  doc        build DVI and PDF versions of documentation" ;\
+	 echo "  help       show description of targets" ;\
+	 echo "  install    install package and documentation" ;\
+	 echo "  package    (default) build package and documentation" ;\
+	 echo "  reinstall  reinstall package and documentation" ;\
+	 echo "  srcdist    create source distribution" ;\
+	 echo "  tds        create TDS archive with compiled sources" ;\
+	 echo "  template   build templates" ;\
+	 echo "  uninstall  uninstall package and documentation"
