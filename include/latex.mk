@@ -29,22 +29,21 @@ PS2PDFFLAGS?=-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -g4960x7016 -r600 \
   -dCompatibilityLevel=1.2
 PSNUPFLAGS?=-2 -pA4
 PDFLATEXFLAGS?=--shell-escape
-LATEXFLAGS?=-src-specials
+LATEXFLAGS?=--src-specials
 
 CLEXT?=*.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
   *.bbl *.blg *.bak *.dvi *.ps *.pdf
 CLFILES?=$(CLEXT) $(ARCHIVE)
 SRCFILES?=*
 
-# end of configuration
 
 dvi: $(TARGET).dvi
 
 clean:
-	rm -f $(CLFILES)
+	rm -f $(CLFILES) ;\
 	@$(MAKE) -C fig $@
 
-epstoeps epstopdf fixbb pdftopng256 pdftotiffg4:
+bmtoeps epstoeps epstopdf fixbb pdftopng256 pdftotiffg4:
 	@$(MAKE) -C fig $@
 
 html: $(TARGET).dvi
@@ -68,13 +67,13 @@ srcdist: clean
 	$(ARCH) $(ARCHFLAGS) $(ARCHIVE) $(SRCFILES)
 
 $(TARGET).dvi: $(TARGET).tex
-	$(LATEX) $(TEXFLAGS) $^
+	$(LATEX) $(TEXFLAGS) $^ ;\
 	@if [ -f $(BIBFILE) ]; then \
 		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f; done ;\
 		$(LATEX) $(TEXFLAGS) $^ ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
-	fi
+	fi ;\
 	$(LATEX) $(TEXFLAGS) $^
 
 $(TARGET).ps: $(TARGET).dvi
@@ -88,14 +87,14 @@ $(TARGET)_book.ps: $(TARGET).ps
 	$(PSBOOK) $^ | $(PSNUP) -2 > $@
 
 $(TARGET).pdf: $(TARGET).tex
-	$(PDFLATEX) $(PDFLATEXFLAGS) $^
+	$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
 	@if [ -f $(BIBFILE) ];\
 	then \
 		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
 		$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
-	fi
+	fi ;\
 	$(PDFLATEX) $(PDFLATEXFLAGS) $^
 
 $(TARGET)_2on1.pdf: $(TARGET)_2on1.ps
@@ -108,15 +107,16 @@ $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
 help:
-	@echo "  clean     remove output files"
-	@echo "  dvi       (default) build DVI"
-	@echo "  help      show description of targets"
-	@echo "  html      convert DVI to HTML"
-	@echo "  pdf       build PDF"
-	@echo "  pdf_2on1  build PDF with two A5 pages on one A4 ordered by number"
-	@echo "  pdf_book  build PDF booklet (two A5 on A4)"
-	@echo "  ps        build PS"
-	@echo "  ps_2on1   build PS with two A5 pages on one A4 ordered by number"
-	@echo "  ps_book   build PS booklet (two A5 on A4)"
-	@echo "  rtf       convert DVI to RTF"
-	@echo "  srcdist   build source distribution"
+	@echo "  clean     remove output files" ;\
+	 echo "  dvi       (default) build DVI" ;\
+	 echo "  help      show description of targets" ;\
+	 echo "  html      convert DVI to HTML" ;\
+	 echo "  pdf       build PDF" ;\
+	 echo "  pdf_2on1  build PDF with two A5 pages on one A4 ordered by number" ;\
+	 echo "  pdf_book  build PDF booklet (two A5 on A4)" ;\
+	 echo "  ps        build PS" ;\
+	 echo "  ps_2on1   build PS with two A5 pages on one A4 ordered by number" ;\
+	 echo "  ps_book   build PS booklet (two A5 on A4)" ;\
+	 echo "  rtf       convert DVI to RTF" ;\
+	 echo "  srcdist   build source distribution"
+

@@ -4,7 +4,7 @@ rem nomake script for LaTeX projects
 rem Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 
 if "%CMDEXTVERSION%"=="" (
-	echo Error: This script requires command interpreter from Windows 2000 or above.
+	echo This script requires command interpreter from Windows 2000 or above.
 	goto :eof
 )
 
@@ -44,18 +44,20 @@ set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log *.dvi *.tmp *.pdf *.ps
 if "%clfiles%"==""  set clfiles=%clext% %archive%
 if "%srcfiles%"=="" set srcfiles=*
 
-rem end of configuration
 
 if "%1"=="" (
-:default
 	call :dvi
-goto :eof
-) else if "%1"=="clean" (
+) else (
+	for %%f in (%*) do call :%%f
+)
+
+exit /b
+
 :clean
 	del /s %clfiles% 2> nul
 	if exist %target%.%arctype% del %target%.%arctype%
 goto :eof
-) else if "%1"=="dvi" (
+
 :dvi
 	%latex% %latexflags% %target%.tex
 	if exist %bibfile% (
@@ -66,12 +68,12 @@ goto :eof
 	)
 	%latex% %latexflags% %target%.tex
 goto :eof
-) else if "%1"=="html" (
+
 :html
 	if not exist %target%.dvi call :dvi
 	%l2h% %l2hflags% %target%.tex
 goto :eof
-) else if "%1"=="pdf" (
+
 :pdf
 	%pdflatex% %pdflatexflags% %target%.tex
 	if exist %bibfile% (
@@ -82,62 +84,64 @@ goto :eof
 	)
 	%pdflatex% %pdflatexflags% %target%.tex
 goto :eof
-) else if "%1"=="pdf_2on1" (
+
 :pdf2on1
 	if not exist %target%_2on1.ps call :ps2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
 	-c save pop -f %target%_2on1.ps
 goto :eof
-) else if "%1"=="pdf_book" (
+
 :pdfbook
 	if not exist %target%_book.ps call :psbook
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_booklet.pdf ^
 	-c save pop -f %target%_book.ps
 goto :eof
-) else if "%1"=="ps" (
+
 :ps
 	if not exist %target%.dvi call :dvi
 	%dvips% -o %target%.ps %target%.dvi
 goto :eof
-) else if "%1"=="ps_2on1" (
+
 :ps2on1
 	if not exist %target%.ps call :ps
 	%psnup% %psnupflags% %target%.ps > %target%_2on1.ps
 goto :eof
-) else if "%1"=="ps_book" (
+
 :psbook
 	if not exist %target%.ps call :ps
 	%psbook% %target%.ps | %psnup% -2 > %target%_book.ps
 goto :eof
-) else if "%1"=="rtf" (
+
+:rtf
 	call :dvi
 	%l2rtf% %l2rtfflags% -a %target%.aux -b %target%.bbl %target%.tex
-) else if "%1"=="srcdist" (
+goto :eof
+
 :srcdist
 	call :clean
 	%arch% %archflags% %archive% %srcfiles%
 goto :eof
-) else if "%1"=="epstoeps" (
+
 :epstoeps
 	cd fig & call nomake.cmd epstoeps & cd ..
-goto :eof	
-) else if "%1"=="epstopdf" (
+goto :eof
+
 :epstopdf
 	cd fig & call nomake.cmd epstopdf & cd ..
-goto :eof	
-) else if "%1"=="fixbb" (
+goto :eof
+
 :fixbb
 	cd fig & call nomake.cmd fixbb & cd ..
 goto :eof
-) else if "%1"=="pdftopng256" (
+
 :pdftopng256
 	cd fig & call nomake.cmd pdftopng256 & cd ..
 goto :eof
-) else if "%1"=="pdftotiffg4" (
+
 :pdftotiffg4
 	cd fig & call nomake.cmd pdftotiffg4 & cd ..
 goto :eof
-) else if "%1"=="help" (
+
 :help
 	echo   clean      remove output files
 	echo   dvi        ^(default^) build DVI
@@ -152,6 +156,4 @@ goto :eof
 	echo   rtf        convert DVI to RTF
 	echo   srcdist    build source distribution
 goto :eof
-) else (
-	echo Don't know how to make %1
-)
+
