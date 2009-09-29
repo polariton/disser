@@ -69,6 +69,22 @@ goto :eof
 	%latex% %latexflags% %target%.tex
 goto :eof
 
+:help
+	call ..\..\include\latex.fig.nmk.cmd
+	echo   dvi          ^(default^) build DVI
+	echo   figclean     clean output files in figures directory
+	echo   help         show description of targets
+	echo   html         convert DVI to HTML
+	echo   pdf          build PDF
+	echo   pdf_2on1     build PDF with two A5 pages on one A4 ordered by number
+	echo   pdf_book     build PDF booklet ^(two A5 on A4^)
+	echo   ps           build PS
+	echo   ps_2on1      build PS with two A5 pages on A4 ordered by number
+	echo   ps_book      build PS booklet ^(two A5 on A4^)
+	echo   rtf          convert DVI to RTF
+	echo   srcdist      build source distribution
+goto :eof
+
 :html
 	if not exist %target%.dvi call :dvi
 	%l2h% %l2hflags% %target%.tex
@@ -122,12 +138,20 @@ goto :eof
 	%arch% %archflags% %archive% %srcfiles%
 goto :eof
 
+:bmtoeps
+	cd fig & call nomake.cmd bmtoeps & cd ..
+goto :eof
+
 :epstoeps
 	cd fig & call nomake.cmd epstoeps & cd ..
 goto :eof
 
 :epstopdf
 	cd fig & call nomake.cmd epstopdf & cd ..
+goto :eof
+
+:figclean
+	cd fig & call nomake.cmd clean & cd ..
 goto :eof
 
 :fixbb
@@ -140,20 +164,5 @@ goto :eof
 
 :pdftotiffg4
 	cd fig & call nomake.cmd pdftotiffg4 & cd ..
-goto :eof
-
-:help
-	echo   clean      remove output files
-	echo   dvi        ^(default^) build DVI
-	echo   help       show description of targets
-	echo   html       convert DVI to HTML
-	echo   pdf        build PDF
-	echo   pdf_2on1   build PDF with two A5 pages on one A4 ordered by number
-	echo   pdf_book   build PDF booklet ^(two A5 on A4^)
-	echo   ps         build PS
-	echo   ps_2on1    build PS with two A5 pages on A4 ordered by number
-	echo   ps_book    build PS booklet ^(two A5 on A4^)
-	echo   rtf        convert DVI to RTF
-	echo   srcdist    build source distribution
 goto :eof
 

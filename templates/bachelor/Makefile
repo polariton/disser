@@ -5,8 +5,10 @@
 
 TARGET?=thesis
 
-include ../../include/latex.mk
-
 all: dvi
 
 allpdf: pdf
+
+%:
+	@$(MAKE) -f ../../include/latex.mk $@
+

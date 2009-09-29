@@ -16,29 +16,40 @@ if "!docdir!"=="" set docdir=!texmf!\doc\latex\disser
 if "!subdirs!"=="" set subdirs=bachelor ..\master ..\candidate ..\doctor
 
 if "%1"=="help" (
+	call :%1
+) else if "%1"=="install" (
+	call :%1
+) else if "%1"=="uninstall" (
+	call :%1
+) else if "%1"=="reinstall" (
+	call :%1
+) else (
+	for %%i in (%subdirs%) do @cd %%i & call nomake %%f
+)
+
+exit /b
+
 :help
-	cd bachelor & call nomake help & cd ..
+	cd candidate & call nomake help & cd ..
 	echo   install    install templates to TeX tree
 	echo   uninstall  uninstall templates
 	echo   reinstall  reinstall templates
 goto :eof
-) else if "%1"=="install" (
+
 :install
 	if not exist "%docdir%" md "%docdir%"
 	xcopy /y /e /i /f ..\templates "%docdir%\templates"
 	xcopy /y /e /i /f ..\include "%docdir%\include"
 goto :eof
-) else if "%1"=="uninstall" (
+
 :uninstall
 	rmdir /s /q %docdir%\templates
 	rmdir /s /q %docdir%\include
 	rmdir %docdir%
 goto :eof
-) else if "%1"=="reinstall" (
+
 :reinstall
 	call :uninstall
 	call :install
 goto :eof
-) else (
-	for %%i in (%subdirs%) do @cd %%i & call nomake %*
-)
+

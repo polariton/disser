@@ -40,7 +40,7 @@ exit /b
 
 :help
 	echo   bmtoeps      convert bitmap images to EPS format
-	echo   clean        clean converted files
+	echo   clean        remove output files
 	echo   epstoeps     optimize EPS files using Ghostscript
 	echo   epstopdf     convert EPS to PDF
 	echo   fixbb        fix BoundingBox of EPS files

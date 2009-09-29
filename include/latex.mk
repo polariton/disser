@@ -40,11 +40,21 @@ SRCFILES?=*
 dvi: $(TARGET).dvi
 
 clean:
-	rm -f $(CLFILES) ;\
-	@$(MAKE) -C fig $@
+	rm -f $(CLFILES)
 
-bmtoeps epstoeps epstopdf fixbb pdftopng256 pdftotiffg4:
-	@$(MAKE) -C fig $@
+help:
+	$(MAKE) -s -C fig $@ ;\
+	echo "  dvi          (default) build DVI" ;\
+	echo "  figclean     clean output files in figures directory" ;\
+	echo "  html         convert DVI to HTML" ;\
+	echo "  pdf          build PDF" ;\
+	echo "  pdf_2on1     build PDF with two A5 pages on one A4 ordered by number" ;\
+	echo "  pdf_book     build PDF booklet (two A5 on A4)" ;\
+	echo "  ps           build PS" ;\
+	echo "  ps_2on1      build PS with two A5 pages on one A4 ordered by number" ;\
+	echo "  ps_book      build PS booklet (two A5 on A4)" ;\
+	echo "  rtf          convert DVI to RTF" ;\
+	echo "  srcdist      build source distribution" ;\
 
 html: $(TARGET).dvi
 	$(L2H) $(L2HFLAGS) $(TARGET).tex
@@ -63,12 +73,12 @@ ps_book: $(TARGET)_book.ps
 
 rtf: $(TARGET).rtf
 
-srcdist: clean
+srcdist: clean figclean
 	$(ARCH) $(ARCHFLAGS) $(ARCHIVE) $(SRCFILES)
 
 $(TARGET).dvi: $(TARGET).tex
-	$(LATEX) $(TEXFLAGS) $^ ;\
-	@if [ -f $(BIBFILE) ]; then \
+	@$(LATEX) $(TEXFLAGS) $^ ;\
+	if [ -f $(BIBFILE) ] ; then \
 		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f; done ;\
 		$(LATEX) $(TEXFLAGS) $^ ;\
 	else \
@@ -87,10 +97,9 @@ $(TARGET)_book.ps: $(TARGET).ps
 	$(PSBOOK) $^ | $(PSNUP) -2 > $@
 
 $(TARGET).pdf: $(TARGET).tex
-	$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
-	@if [ -f $(BIBFILE) ];\
-	then \
-		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
+	@$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
+	if [ -f $(BIBFILE) ] ; then \
+		for f in *.aux ; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
 		$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
@@ -106,17 +115,9 @@ $(TARGET)_book.pdf: $(TARGET)_book.ps
 $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
-help:
-	@echo "  clean     remove output files" ;\
-	 echo "  dvi       (default) build DVI" ;\
-	 echo "  help      show description of targets" ;\
-	 echo "  html      convert DVI to HTML" ;\
-	 echo "  pdf       build PDF" ;\
-	 echo "  pdf_2on1  build PDF with two A5 pages on one A4 ordered by number" ;\
-	 echo "  pdf_book  build PDF booklet (two A5 on A4)" ;\
-	 echo "  ps        build PS" ;\
-	 echo "  ps_2on1   build PS with two A5 pages on one A4 ordered by number" ;\
-	 echo "  ps_book   build PS booklet (two A5 on A4)" ;\
-	 echo "  rtf       convert DVI to RTF" ;\
-	 echo "  srcdist   build source distribution"
+bmtoeps epstoeps epstopdf fixbb pdftopng256 pdftotiffg4:
+	@$(MAKE) -C fig $@
+
+figclean:
+	@$(MAKE) -C fig clean
 

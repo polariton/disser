@@ -26,11 +26,11 @@ PREFIX?=~
 
 help:
 	@echo "  bmtoeps      convert bitmap images to EPS format" ;\
-	 echo "  clean        clean converted files" ;\
+	 echo "  clean        remove output files" ;\
 	 echo "  epstoeps     optimize EPS files using Ghostscript" ;\
 	 echo "  epstopdf     convert EPS to PDF" ;\
 	 echo "  fixbb        fix BoundingBox of EPS files" ;\
-	 echo "  help         (default) show description of targets" ;\
+	 echo "  help         show description of targets" ;\
 	 echo "  pdftopng256  convert PDF to PNG (256-color)" ;\
 	 echo "  pdftotiffg4  convert PDF to TIFF (b/w CCITT Group 4)"
 
@@ -73,18 +73,18 @@ pdftotiffg4: $(patsubst %.pdf, %.tif, $(wildcard $(PDF2TIFFILES)))
 
 %.pdf: %.eps
 	@echo -n "epstopdf: $^..." ;\
-	@$(EPSTOPDF) "$^" ;\
-	@echo "done"
+	$(EPSTOPDF) "$^" ;\
+	echo "done"
 
 %.png: %.pdf
 	@echo -n "pdftopng256: $^..." ;\
-	@$(GS) -sDEVICE=png256 -r$(RES) -q -sOutputFile=$(^:.pdf=.png) \
+	$(GS) -sDEVICE=png256 -r$(RES) -q -sOutputFile=$(^:.pdf=.png) \
 		-dNOPAUSE -dBATCH -dSAFER "$^" ;\
-	@echo "done"
+	echo "done"
 
 %.tif: %.pdf
 	@echo -n "pdftotiffg4: $^..." ;\
-	@$(GS) -sDEVICE=tiffg4 -r$(RES) -q -sOutputFile=$(^:.pdf=.tif) \
+	$(GS) -sDEVICE=tiffg4 -r$(RES) -q -sOutputFile=$(^:.pdf=.tif) \
 		-dNOPAUSE -dBATCH -dSAFER "$^" ;\
-	@echo "done"
+	echo "done"
 
