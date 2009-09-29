@@ -1,9 +1,7 @@
-\documentclass{article}
+\documentclass[a4paper,10pt]{article}
 \usepackage[a4paper,includehead,includefoot,mag=1000,
             left=3cm,right=2cm,top=1cm,bottom=2cm]{geometry}
 \usepackage{doc,ifpdf,indentfirst,tabularx,color}
-
-% Hyperref
 \definecolor{darkblue}{rgb}{0,0,.6}
 
 \ifpdf
@@ -32,7 +30,6 @@
   urlcolor = darkblue
 }
 
-% Use Times font if available
 \IfFileExists{pscyr.sty}{%
   \usepackage{pscyr}
   \renewcommand\ttdefault{cmtt}
@@ -275,7 +272,10 @@ nomake <target1> <target2> ...\end{verbatim}
 \item[dvi]
   Сборка DVI-файла. Цель по умолчанию.
 \item[clean]
-  Удаление файлов, указанных в переменной |CLFILES|.
+  Удаление файлов, полученных при сборке документа.
+  Список файлов определяется переменной |CLFILES|.
+\item[figclean]
+  Эквивалентно цели |clean| в каталоге |fig|.
 \item[help]
   Справка по целям сборки.
 \item[html]
@@ -319,7 +319,7 @@ nomake <target1> <target2> ...\end{verbatim}
 1) Файлы |nomake.cmd| в подкаталогах шаблонов зависят от |include/latex.nmk.cmd| и |include/latex.fig.nmk.cmd|.
 Файлы |Makefile| зависят от |include/latex.mk| и |include/latex.fig.mk|.
 
-2) |Makefile/nomake.cmd| в подкаталогах шаблонов могут использовать цели из каталога |fig|.
+2) |Makefile| и |nomake.cmd| могут использовать цели из каталога |fig|.
 \end{flushleft}
 
 \subsection{Каталог \texttt{disser/templates/<тип-диссертации>/fig/}}
