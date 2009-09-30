@@ -42,8 +42,8 @@ dvi: $(TARGET).dvi
 clean:
 	rm -f $(CLFILES)
 
-help:
-	$(MAKE) -s -C fig $@ ;\
+.help:
+	@$(MAKE) -s -C fig help ;\
 	echo "  dvi          (default) build DVI" ;\
 	echo "  figclean     clean output files in figures directory" ;\
 	echo "  html         convert DVI to HTML" ;\

@@ -5,10 +5,14 @@
 
 TARGET?=thesis
 
+
+include ../../include/latex.mk
+
 all: dvi
 
 allpdf: pdf
 
-%:
-	@$(MAKE) -f ../../include/latex.mk $@
+help: .help
+	@echo "  all          alias for dvi target" ;\
+	 echo "  allpdf       alias for pdf target" ;\
 

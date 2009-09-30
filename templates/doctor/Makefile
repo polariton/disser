@@ -5,9 +5,12 @@
 
 TARGET?=thesis
 
+
+include ../../include/latex.mk
+
 all:
-	@env TARGET=thesis $(MAKE) ;\
-	 env TARGET=autoref $(MAKE) ;\
+	@env TARGET=thesis $(MAKE) dvi ;\
+	 env TARGET=autoref $(MAKE) dvi ;\
 	 eval unset TARGET
 
 allpdf:
@@ -15,10 +18,7 @@ allpdf:
 	 env TARGET=autoref $(MAKE) pdf ;\
 	 eval unset TARGET
 
-help:
+help: .help
 	@echo "  all          build DVI of autoref and thesis" ;\
 	 echo "  allpdf       build PDF of autoref and thesis" ;\
-	 $(MAKE) -s -f ../../include/latex.mk help
 
-%:
-	@$(MAKE) -f ../../include/latex.mk $@
