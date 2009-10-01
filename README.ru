@@ -48,11 +48,11 @@ ZIP-архив с готовыми файлами и документацией, которые размещены в
 1. Установка из исходных текстов
 
 В Unix-like ОС:
-  env TEXMF=/путь/к/texmf make install
+  env DESTDIR=/путь/к/texmf make install
   mktexlsr
 
 В Windows:
-  set TEXMF=/путь/к/texmf
+  set DESTDIR=/путь/к/texmf
   nomake install
   mktexlsr
 

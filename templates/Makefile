@@ -4,8 +4,8 @@
 #
 
 TARGET?=thesis
-TEXMF?=/usr/share/texmf
-DOCDIR?=$(TEXMF)/doc/latex/disser
+DESTDIR?=$(TEXMF)
+DOCDIR?=$(DESTDIR)/doc/latex/disser
 
 dvi clean figclean bmtoeps epstopdf fixbb pdftopng256 pdftotiffg4 ps ps_2on1 pdf pdf_2on1 html srcdist all allpdf:
 	@$(MAKE) -i -C bachelor $@

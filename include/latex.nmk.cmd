@@ -8,6 +8,8 @@ if "%CMDEXTVERSION%"=="" (
 	goto :eof
 )
 
+setlocal enabledelayedexpansion
+
 if "%target%"=="" set target=thesis
 set bibfile=thesis.bib
 
@@ -38,10 +40,10 @@ if "%ps2pdfflags%"=="" (
 )
 if "%psnupflags%"==""    set psnupflags=-2 -pA4
 if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape
-if "%latexflags%"==""    set latexflags=-src-specials
+if "%latexflags%"==""    set latexflags=--src-specials
 
-set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log *.dvi *.tmp *.pdf *.ps
-if "%clfiles%"==""  set clfiles=%clext% %archive%
+if "%clext%"=="" set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log *.dvi *.tmp *.pdf *.ps
+if "%clfiles%"==""  set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
 
 

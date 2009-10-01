@@ -21,24 +21,24 @@ set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
 set srcfiles=*.dtx *.ins %manual%.tex Makefile nomake.cmd
 
-if "!texmf!"=="" set texmf=%programfiles%\miktex
-
-if "!clsdir!"=="" set clsdir=!texmf!\tex\latex\%target%
-if "!bstdir!"=="" set bstdir=!texmf!\bibtex\bst\%target%
-if "!docdir!"=="" set docdir=!texmf!\doc\latex\%target%
-if "!srcdir!"=="" set srcdir=!texmf!\source\latex\%target%
+if "!texmf!"==""   set texmf=%programfiles%\miktex
+if "!destdir!"=="" set destdir=!texmf!
+if "!clsdir!"==""  set clsdir=!destdir!\tex\latex\%target%
+if "!bstdir!"==""  set bstdir=!destdir!\bibtex\bst\%target%
+if "!docdir!"==""  set docdir=!destdir!\doc\latex\%target%
+if "!srcdir!"==""  set srcdir=!destdir!\source\latex\%target%
 
 if "!clext!"=="" set clext=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo ^
 *.toc *.bak *.bbl *.blg *.sav
-if "!clfiles!"=="" set clfiles=%clsfiles% %bstfiles% %docfiles% %clext%
+if "!clfiles!"=="" set clfiles=%clsfiles% %bstfiles% %docfiles% !clext!
 
-if "!latex!"=="" set latex=latex
+if "!latex!"==""    set latex=latex
 if "!pdflatex!"=="" set pdflatex=pdflatex
-if "!mi!"=="" set mi=makeindex
+if "!mi!"==""       set mi=makeindex
 
-if "!latexflags!"=="" set latexflags=-src-specials
-if "!pdflatexflags!"=="" set pdflatexflags=""
-if "!miflags!"=="" set miflags="-r"
+if "!latexflags!"==""    set latexflags=--src-specials
+if "!pdflatexflags!"=="" set pdflatexflags=--shell-escape
+if "!miflags!"==""       set miflags=-r
 
 
 if "%1"=="" (

@@ -11,8 +11,9 @@ if "%CMDEXTVERSION%"=="" (
 setlocal enabledelayedexpansion
 
 set target=thesis
-if "!texmf!"=="" set texmf=%programfiles%\miktex
-if "!docdir!"=="" set docdir=!texmf!\doc\latex\disser
+if "!texmf!"==""   set texmf=%programfiles%\miktex
+if "!destdir!"=="" set destdir=!texmf!
+if "!docdir!"==""  set docdir=!destdir!\doc\latex\disser
 if "!subdirs!"=="" set subdirs=bachelor ..\master ..\candidate ..\doctor
 
 if "%1"=="help" (

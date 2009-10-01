@@ -15,10 +15,11 @@ TEXTFILES=../README ../README.ru ../ChangeLog
 SRCFILES=*.dtx *.ins $(MANUAL).tex
 
 TEXMF?=/usr/share/texmf
-CLSDIR?=$(TEXMF)/tex/latex/$(TARGET)
-DOCDIR?=$(TEXMF)/doc/latex/$(TARGET)
-BSTDIR?=$(TEXMF)/bibtex/bst/$(TARGET)
-SRCDIR?=$(TEXMF)/source/latex/$(TARGET)
+DESTDIR?=$(TEXMF)
+CLSDIR?=$(DESTDIR)/tex/latex/$(TARGET)
+DOCDIR?=$(DESTDIR)/doc/latex/$(TARGET)
+BSTDIR?=$(DESTDIR)/bibtex/bst/$(TARGET)
+SRCDIR?=$(DESTDIR)/source/latex/$(TARGET)
 
 CLEXT?=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
 CLFILES?=$(CLSFILES) $(BSTFILE) $(DOCFILES) $(CLEXT)

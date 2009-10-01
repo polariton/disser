@@ -50,11 +50,11 @@ Installation
 1. Installation from sources using GNU Make or nomake.cmd scripts
 
 In Unix-like environment:
-  env TEXMF=/path/to/texmf make install
+  env DESTDIR=/path/to/texmf make install
   mktexlsr
 
 In Windows:
-  set TEXMF=\path\to\texmf
+  set DESTDIR=\path\to\texmf
   nomake install
   mktexlsr
 
