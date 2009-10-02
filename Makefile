@@ -3,45 +3,38 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 # 
 
-TARGET=disser
+TARGET := disser
 
-VER?=1.1.2
-HG?=hg
-ARCHEXT?=zip
-ARCHIVE=$(TARGET)-$(VER).$(ARCHEXT)
-TDSDIR?=../disser-tds
-TDSARCHIVE=$(TARGET)-$(VER).tds.$(ARCHEXT)
+VER ?= 1.1.2
+HG ?= hg
+ARCHEXT ?= zip
+ARCHIVE := $(TARGET)-$(VER).$(ARCHEXT)
+TDSDIR ?= ../$(TARGET)-tds
+TDSARCHIVE := $(TARGET)-$(VER).tds.$(ARCHEXT)
 
 
-package:
-	@$(MAKE) -i -C package
+package doc:
+	@$(MAKE) -i -C src $@
 
 templates:
 	@$(MAKE) -i -C templates
 
 all: package templates
 
-doc:
-	@$(MAKE) -i -C src $@
-
 clean install uninstall reinstall:
 	@$(MAKE) -i -C src $@
 	@$(MAKE) -i -C templates $@
 
 srcdist:
-	@if [ -f $(ARCHIVE) ] ;	then \
-		rm -f $(ARCHIVE);\
-	fi ;\
+	@[ -f $(ARCHIVE) ] && rm -f $(ARCHIVE) ;\
 	$(HG) archive -X .hgignore -X .hg_archival.txt -X .hgtags -t $(ARCHEXT) \
 		$(TARGET).$(ARCHEXT) ;\
-	if [ -f $(TARGET).$(ARCHEXT) ] ; then \
-		mv $(TARGET).$(ARCHEXT) $(ARCHIVE);\
-	fi
+	[ -f $(TARGET).$(ARCHEXT) ] && mv $(TARGET).$(ARCHEXT) $(ARCHIVE)
 
 tds:
 	@mkdir -p $(TDSDIR) ;\
-	env TEXMF=../$(TDSDIR) $(MAKE) -i -C src install ;\
-	env TEXMF=../$(TDSDIR) $(MAKE) -i -C templates install ;\
+	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C src install ;\
+	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C templates install ;\
 	7z a -t$(ARCHEXT) -mx=9 $(TDSARCHIVE) $(TDSDIR)/*
 
 help:

@@ -3,25 +3,25 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 #
 
-BMTOEPS?=sam2p
-E2E?=eps2eps
-EPSTOOL?=epstool
-EPSTOPDF?=epstopdf
-GS?=gs
+BMTOEPS ?= sam2p
+E2E ?= eps2eps
+EPSTOOL ?= epstool
+EPSTOPDF ?= epstopdf
+GS ?= gs
 
-BMTOEPSFLAGS?=
-E2EFLAGS?=-dSAFER -dNOCACHE
-ETFLAGS?=--quiet --copy --bbox
-RES?=600
+BMTOEPSFLAGS ?=
+E2EFLAGS ?= -dSAFER -dNOCACHE
+ETFLAGS ?= --quiet --copy --bbox
+RES ?= 600
 
-BMTOEPSFILES?=$(wildcard *.jpg *.png *.tif)
-E2EFILES?=*.eps
-E2PFILES?=*.eps
-FBBFILES?=*.eps
-FIGCLFILES?=*.pdf *.jpg *.png *.tif
-PDF2PNGFILES?=*.pdf
-PDF2TIFFILES?=*.pdf
-PREFIX?=~
+BMTOEPSFILES ?= $(wildcard *.jpg *.png *.tif)
+E2EFILES ?= *.eps
+E2PFILES ?= *.eps
+FBBFILES ?= *.eps
+FIGCLFILES ?= *.pdf *.jpg *.png *.tif
+PDF2PNGFILES ?= *.pdf
+PDF2TIFFILES ?= *.pdf
+PREFIX ?= ~
 
 
 help:

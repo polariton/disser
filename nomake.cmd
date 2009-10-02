@@ -8,18 +8,17 @@ if "%CMDEXTVERSION%"=="" (
 	goto :eof
 )
 
+setlocal enabledelayedexpansion
+
 set target=disser
 
-if "%ver%"=="" set ver=1.1.2
+if "!ver!"=="" set ver=1.1.2
 set hg=hg
 set archext=zip
-set archive=%target%-%ver%.%archext%
-set tdsdir=..\disser-tds
-set tdsarchive=%target%-%ver%.tds.%archext%
+set archive=%target%-!ver!.%archext%
+set tdsdir=..\%target%-tds
+set tdsarchive=%target%-!ver!.tds.%archext%
 
-rem end of configuration
-
-setlocal enabledelayedexpansion
 
 if "%1"=="" (
 	call :package
@@ -70,13 +69,13 @@ goto :eof
 :srcdist
 	if exist %archive% del /q %archive%
 	%hg% archive -X .hgignore -X .hg_archival.txt -X .hgtags -t %archext% ^
-	  %target%.%archext%
+	  %archive%
 	if exist %target%.%archext% move %target%.%archext% %archive%
 goto :eof
 
 :tds
 	if not exist %tdsdir% md "%tdsdir%"
-	set texmf=..\%tdsdir%
+	set destdir=..\%tdsdir%
 	call :install
 	7z a -t%archext% -mx=9 %tdsarchive% %tdsdir%\*
 goto :eof

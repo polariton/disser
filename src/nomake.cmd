@@ -29,7 +29,7 @@ if "!docdir!"==""  set docdir=!destdir!\doc\latex\%target%
 if "!srcdir!"==""  set srcdir=!destdir!\source\latex\%target%
 
 if "!clext!"=="" set clext=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo ^
-*.toc *.bak *.bbl *.blg *.sav
+*.toc *.bak *.bbl *.blg *.bst *.sav
 if "!clfiles!"=="" set clfiles=%clsfiles% %bstfiles% %docfiles% !clext!
 
 if "!latex!"==""    set latex=latex

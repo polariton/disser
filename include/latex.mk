@@ -3,44 +3,44 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 #
 
-TARGET?=thesis
-BIBFILE?=thesis.bib
+TARGET ?= thesis
+BIBFILE ?= thesis.bib
 
-ARCH?=7z
-BIBTEX?=bibtex8
-DVIPS?=dvips
-L2H?=latex2html
-L2RTF?=latex2rtf
-LATEX?=latex
-PDFLATEX?=pdflatex
-PS2PDF?=gs
-PSBOOK?=psbook
-PSNUP?=psnup
+ARCH ?= 7z
+BIBTEX ?= bibtex8
+DVIPS ?= dvips
+L2H ?= latex2html
+L2RTF ?= latex2rtf
+LATEX ?= latex
+PDFLATEX ?= pdflatex
+PS2PDF ?= gs
+PSBOOK ?= psbook
+PSNUP ?= psnup
 
-ARCHEXT?=zip
-ARCHFLAGS?=a -t$(ARCHEXT)
-ARCHIVE?=$(TARGET).$(ARCHEXT)
-BIBTEXFLAGS?=-H -c cp1251
+ARCHEXT ?= zip
+ARCHFLAGS ?= a -t$(ARCHEXT)
+ARCHIVE := $(TARGET).$(ARCHEXT)
+BIBTEXFLAGS ?= -H -c cp1251
 
-L2HFLAGS?=-dir html -iso_language RU.RU -split 3 -short_index \
+L2HFLAGS ?= -dir html -iso_language RU.RU -split 3 -short_index \
   -numbered_footnotes -white -antialias -html_version 4.0
-L2RTFFLAGS?=-F -M12 -i russian
-PS2PDFFLAGS?=-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -g4960x7016 -r600 \
+L2RTFFLAGS ?= -F -M12 -i russian
+LATEXFLAGS ?= --src-specials
+PS2PDFFLAGS ?= -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -g4960x7016 -r600 \
   -dCompatibilityLevel=1.2
-PSNUPFLAGS?=-2 -pA4
-PDFLATEXFLAGS?=--shell-escape
-LATEXFLAGS?=--src-specials
+PSNUPFLAGS ?= -2 -pA4
+PDFLATEXFLAGS ?= --shell-escape
 
-CLEXT?=*.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
+CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
   *.bbl *.blg *.bak *.dvi *.ps *.pdf
-CLFILES?=$(CLEXT) $(ARCHIVE)
-SRCFILES?=*
+CLFILES ?= $(CLEXT) $(ARCHIVE)
+SRCFILES ?= *
 
 
 dvi: $(TARGET).dvi
 
 clean:
-	rm -f $(CLFILES)
+	-rm -f $(CLFILES)
 
 .help:
 	@$(MAKE) -s -C fig help ;\

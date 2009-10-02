@@ -3,84 +3,87 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 #
 
-TARGET=disser
-SUBCLASS=gost732
-BST=disser-bst
-MANUAL=manual
+TARGET := disser
+MAINDTX := disser gost732 disser-bst
+MANUAL := manual
 
-CLSFILES=*.cls *.rtx
-BSTFILES=$(TARGET).bst $(TARGET)-s.bst
-DOCFILES=$(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf $(MANUAL).pdf
-TEXTFILES=../README ../README.ru ../ChangeLog
-SRCFILES=*.dtx *.ins $(MANUAL).tex
+CLSFILES := *.cls *.rtx
+BSTFILES := $(TARGET).bst $(TARGET)-s.bst
+DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
+TEXTFILES := ../README ../README.ru ../ChangeLog
+SRCFILES := *.dtx $(TARGET).ins $(MANUAL).tex Makefile nomake.cmd
 
-TEXMF?=/usr/share/texmf
-DESTDIR?=$(TEXMF)
-CLSDIR?=$(DESTDIR)/tex/latex/$(TARGET)
-DOCDIR?=$(DESTDIR)/doc/latex/$(TARGET)
-BSTDIR?=$(DESTDIR)/bibtex/bst/$(TARGET)
-SRCDIR?=$(DESTDIR)/source/latex/$(TARGET)
+TEXMF ?= /usr/share/texmf
+DESTDIR ?= $(TEXMF)
+CLSDIR ?= $(DESTDIR)/tex/latex/$(TARGET)
+DOCDIR ?= $(DESTDIR)/doc/latex/$(TARGET)
+BSTDIR ?= $(DESTDIR)/bibtex/bst/$(TARGET)
+SRCDIR ?= $(DESTDIR)/source/latex/$(TARGET)
 
-CLEXT?=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo *.toc *.bak *.bbl *.blg *.sav
-CLFILES?=$(CLSFILES) $(BSTFILE) $(DOCFILES) $(CLEXT)
+CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
+  *.bbl *.blg *.bak *.dvi *.ps *.pdf
+CLFILES ?= $(CLSFILES) $(CLEXT)
 
-LATEX?=latex
-PDFLATEX?=pdflatex
-MI?=makeindex
+LATEX ?= latex
+PDFLATEX ?= pdflatex
+MI ?= makeindex
 
-LATEXFLAGS?=
-PDFLATEXFLAGS?=
+LATEXFLAGS ?= --src-specials
+PDFLATEXFLAGS ?= --shell-escape
+MIFLAGS ?= -r
 
 
 all: package doc
 
-package: $(TARGET).ins
-	$(LATEX) $^
+package: $(TARGET).cls
 
 doc: pdf
 
-dvi: $(TARGET).dvi $(SUBCLASS).dvi $(BST).dvi $(MANUAL).dvi
+dvi: $(addsuffix .dvi, $(MAINDTX) $(MANUAL))
 
-pdf: $(TARGET).pdf $(SUBCLASS).pdf $(BST).pdf $(MANUAL).pdf
+pdf: $(DOCFILES)
+
+clean:
+	-rm -f $(CLFILES)
 
 install: all
-	mkdir -p $(CLSDIR)
-	mkdir -p $(BSTDIR)
-	mkdir -p $(DOCDIR)
-	mkdir -p $(SRCDIR)
-	cp $(CLSFILES)  $(CLSDIR)
-	cp $(BSTFILES)  $(BSTDIR)
-	cp $(DOCFILES)  $(DOCDIR)
-	cp $(TEXTFILES) $(DOCDIR)
+	mkdir -p $(CLSDIR) ;\
+	mkdir -p $(BSTDIR) ;\
+	mkdir -p $(DOCDIR) ;\
+	mkdir -p $(SRCDIR) ;\
+	cp $(CLSFILES)  $(CLSDIR) ;\
+	cp $(BSTFILES)  $(BSTDIR) ;\
+	cp $(DOCFILES)  $(DOCDIR) ;\
+	cp $(TEXTFILES) $(DOCDIR) ;\
 	cp $(SRCFILES)  $(SRCDIR)
 
 uninstall:
-	rm $(addprefix $(CLSDIR)/, $(CLSFILES))
-	rm $(addprefix $(BSTDIR)/, $(BSTFILES))
-	rm $(addprefix $(DOCDIR)/, $(DOCFILES))
-	rm $(addprefix $(DOCDIR)/, $(notdir $(TEXTFILES)))
-	rm $(addprefix $(SRCDIR)/, $(SRCFILES))
-	rmdir $(CLSDIR)
-	rmdir $(BSTDIR)
-	rmdir $(DOCDIR)
-	rmdir $(SRCDIR)
+	-rm $(addprefix $(CLSDIR)/, $(CLSFILES))
+	-rm $(addprefix $(BSTDIR)/, $(BSTFILES))
+	-rm $(addprefix $(DOCDIR)/, $(DOCFILES))
+	-rm $(addprefix $(DOCDIR)/, $(notdir $(TEXTFILES)))
+	-rm $(addprefix $(SRCDIR)/, $(SRCFILES))
+	-rmdir $(CLSDIR)
+	-rmdir $(BSTDIR)
+	-rmdir $(DOCDIR)
+	-rmdir $(SRCDIR)
 
 reinstall: uninstall install
 
-clean:
-	rm -f $(CLFILES)
-
-disser.dvi: disser.dtx
+$(TARGET).dvi: $(TARGET).dtx
 	$(LATEX) $(LATEXFLAGS) $<
 	$(MI) -r $(TARGET)
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
 
-disser.pdf: disser.dtx
+$(TARGET).pdf: $(TARGET).dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
-	$(MI) -r $(TARGET)
+	$(MI) $(MIFLAGS) $(TARGET)
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+
+%.cls: %.ins
+	$(LATEX) $^
 
 %.dvi: %.dtx
 	$(LATEX) $(LATEXFLAGS) $<
@@ -101,7 +104,7 @@ disser.pdf: disser.dtx
 help:
 	@echo "  all        (default) build package files and documentation" ;\
 	 echo "  clean      remove output files" ;\
-	 echo "  doc        build documentation in DVI and PDF formats" ;\
+	 echo "  doc        alias for pdf target" ;\
 	 echo "  dvi        build documentation in DVI format" ;\
 	 echo "  help       show description of targets" ;\
 	 echo "  install    install package and documentation" ;\
