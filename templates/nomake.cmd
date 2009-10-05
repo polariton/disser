@@ -38,15 +38,13 @@ exit /b
 goto :eof
 
 :install
-	if not exist "%docdir%" md "%docdir%"
-	xcopy /y /e /i /f ..\templates "%docdir%\templates"
-	xcopy /y /e /i /f ..\include "%docdir%\include"
+	if not exist "!docdir!" mkdir "!docdir!"
+	xcopy /y /e /i /f ..\templates "!docdir!\templates"
+	xcopy /y /e /i /f ..\include "!docdir!\include"
 goto :eof
 
 :uninstall
-	rmdir /s /q %docdir%\templates
-	rmdir /s /q %docdir%\include
-	rmdir %docdir%
+	rmdir /s /q "!docdir!"
 goto :eof
 
 :reinstall

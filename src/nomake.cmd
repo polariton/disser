@@ -28,9 +28,9 @@ if "!bstdir!"==""  set bstdir=!destdir!\bibtex\bst\%target%
 if "!docdir!"==""  set docdir=!destdir!\doc\latex\%target%
 if "!srcdir!"==""  set srcdir=!destdir!\source\latex\%target%
 
-if "!clext!"=="" set clext=*.log *.out *.aux *.dvi *.idx *.ilg *.ind *.glo ^
-*.toc *.bak *.bbl *.blg *.bst *.sav
-if "!clfiles!"=="" set clfiles=%clsfiles% %bstfiles% %docfiles% !clext!
+if "!clext!"=="" set clext=*.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof ^
+*.lot *.lol *.bbl *.blg *.bak *.dvi *.ps *.pdf
+if "!clfiles!"=="" set clfiles=!clext! %clsfiles% %bstfiles%
 
 if "!latex!"==""    set latex=latex
 if "!pdflatex!"=="" set pdflatex=pdflatex
@@ -55,7 +55,7 @@ exit /b
 goto :eof
 
 :clean
-	del %clfiles%
+	del !clfiles!
 goto :eof
 
 :doc
@@ -63,42 +63,42 @@ goto :eof
 goto :eof
 
 :dvi
-	%latex% %latexflags% %target%.dtx
-	%mi% %miflags% %target%
-	%latex% %latexflags% %target%.dtx
-	%latex% %latexflags% %target%.dtx
-	%latex% %latexflags% %subclass%.dtx
-	%latex% %latexflags% %subclass%.dtx
-	%latex% %latexflags% %bst%.dtx
-	%latex% %latexflags% %bst%.dtx
-	%latex% %latexflags% %manual%.tex
-	%latex% %latexflags% %manual%.tex
+	!latex! !latexflags! %target%.dtx
+	!mi! !miflags! %target%
+	!latex! !latexflags! %target%.dtx
+	!latex! !latexflags! %target%.dtx
+	!latex! !latexflags! %subclass%.dtx
+	!latex! !latexflags! %subclass%.dtx
+	!latex! !latexflags! %bst%.dtx
+	!latex! !latexflags! %bst%.dtx
+	!latex! !latexflags! %manual%.tex
+	!latex! !latexflags! %manual%.tex
 goto :eof
 
 :help
 	echo   all        ^(default^) build package and documentation
 	echo   clean      remove output files
-	echo   doc        build documentation in DVI and PDF formats
+	echo   doc        alias for pdf target
 	echo   dvi        build documentation in DVI format
 	echo   help       show description of targets
 	echo   install    install package and documentation
 	echo   package    build package
-	echo   pdf        build PDF version of documentation
+	echo   pdf        build documentation in PDF format
 	echo   reinstall  reinstall package and documentation
-	echo   uninstall  remove package and documentation from TeX tree
+	echo   uninstall  uninstall package and documentation
 goto :eof
 
 :install
 	if not exist %target%.cls call :all
-	if not exist "%clsdir%" md "%clsdir%"
-	if not exist "%docdir%" md "%docdir%"
-	if not exist "%bstdir%" md "%bstdir%"
-	if not exist "%srcdir%" md "%srcdir%"
-	for %%f in (%clsfiles%)  do xcopy /y /f %%f "%clsdir%"
-	for %%f in (%docfiles%)  do xcopy /y /f %%f "%docdir%"
-	for %%f in (%textfiles%) do xcopy /y /f %%f "%docdir%"
-	for %%f in (%bstfiles%)  do xcopy /y /f %%f "%bstdir%"
-	for %%f in (%srcfiles%)  do xcopy /y /f %%f "%srcdir%"
+	if not exist "!clsdir!" mkdir "!clsdir!"
+	if not exist "!bstdir!" mkdir "!bstdir!"
+	if not exist "!docdir!" mkdir "!docdir!"
+	if not exist "!srcdir!" mkdir "!srcdir!"
+	for %%f in (%clsfiles%)  do xcopy /y /i /f %%f "!clsdir!"
+	for %%f in (%bstfiles%)  do xcopy /y /i /f %%f "!bstdir!"
+	for %%f in (%docfiles%)  do xcopy /y /i /f %%f "!docdir!"
+	for %%f in (%textfiles%) do xcopy /y /i /f %%f "!docdir!"
+	for %%f in (%srcfiles%)  do xcopy /y /i /f %%f "!srcdir!"
 goto :eof
 
 :package
@@ -106,16 +106,16 @@ goto :eof
 goto :eof
 
 :pdf
-	%pdflatex% %pdflatexflags% %target%.dtx
-	%mi% %miflags% %target%
-	%pdflatex% %pdflatexflags% %target%.dtx
-	%pdflatex% %pdflatexflags% %target%.dtx
-	%pdflatex% %pdflatexflags% %subclass%.dtx
-	%pdflatex% %pdflatexflags% %subclass%.dtx
-	%pdflatex% %pdflatexflags% %bst%.dtx
-	%pdflatex% %pdflatexflags% %bst%.dtx
-	%pdflatex% %pdflatexflags% %manual%.tex
-	%pdflatex% %pdflatexflags% %manual%.tex
+	!pdflatex! !pdflatexflags! %target%.dtx
+	!mi! !miflags! %target%
+	!pdflatex! !pdflatexflags! %target%.dtx
+	!pdflatex! !pdflatexflags! %target%.dtx
+	!pdflatex! !pdflatexflags! %subclass%.dtx
+	!pdflatex! !pdflatexflags! %subclass%.dtx
+	!pdflatex! !pdflatexflags! %bst%.dtx
+	!pdflatex! !pdflatexflags! %bst%.dtx
+	!pdflatex! !pdflatexflags! %manual%.tex
+	!pdflatex! !pdflatexflags! %manual%.tex
 goto :eof
 
 :reinstall
@@ -124,13 +124,8 @@ goto :eof
 goto :eof
 
 :uninstall
-	for %%f in (%clsfiles%)  do del "%clsdir%\%%~nxf"
-	for %%f in (%docfiles%)  do del "%docdir%\%%~nxf"
-	for %%f in (%textfiles%) do del "%docdir%\%%~nxf"
-	for %%f in (%bstfiles%)  do del "%bstdir%\%%~nxf"
-	for %%f in (%srcfiles%)  do del "%srcdir%\%%~nxf"
-	rmdir "%clsdir%"
-	rmdir "%docdir%"
-	rmdir "%bstdir%"
-	rmdir "%srcdir%"
+	rmdir /s /q "!clsdir!"
+	rmdir /s /q "!bstdir!"
+	rmdir /s /q "!docdir!"
+	rmdir /s /q "!srcdir!"
 goto :eof
