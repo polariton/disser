@@ -22,7 +22,7 @@ SRCDIR ?= $(DESTDIR)/source/latex/$(TARGET)
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
   *.bbl *.blg *.bak *.dvi *.ps *.pdf
-CLFILES ?= $(CLSFILES) $(CLEXT)
+CLFILES ?= $(CLEXT) $(CLSFILES) $(BSTFILES)
 
 LATEX ?= latex
 PDFLATEX ?= pdflatex
@@ -102,7 +102,7 @@ $(TARGET).pdf: $(TARGET).dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
 help:
-	@echo "  all        (default) build package files and documentation" ;\
+	@echo "  all        (default) build package and documentation" ;\
 	 echo "  clean      remove output files" ;\
 	 echo "  doc        alias for pdf target" ;\
 	 echo "  dvi        build documentation in DVI format" ;\
