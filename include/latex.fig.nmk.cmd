@@ -41,10 +41,11 @@ exit /b
 :help
 	echo   bmtoeps      convert bitmap images to EPS format
 	echo   clean        remove output files
-	echo   epstoeps     optimize EPS files using Ghostscript
+	echo   epstoeps     alias for optimize target
 	echo   epstopdf     convert EPS to PDF
 	echo   fixbb        fix BoundingBox of EPS files
 	echo   help         ^(default^) show description of targets
+	echo   optimize     optimize EPS files ^(implies fixbb^)
 	echo   pdftopng256  convert PDF to PNG ^(256-color^)
 	echo   pdftotiffg4  convert PDF to TIFF ^(b/w CCITT Group 4^)
 goto :eof
@@ -64,17 +65,7 @@ goto :eof
 goto :eof
 
 :epstoeps
-	for %%f in (!e2efiles!) do (
-		%e2e% %e2eflags% "%%f" "%prefix%%%f"
-		call :cmpsizes "%%f" "%prefix%%%f"
-		if !_csres!==1 (
-			move "%prefix%%%f" "%%f" > nul
-			echo epstoeps: %%f
-		) else (
-			del /q "%prefix%%%f"
-			echo epstoeps: %%f skipped
-		)
-	)
+	call :optimize
 goto :eof
 
 :epstopdf
@@ -92,6 +83,22 @@ goto :eof
 		%epstool% %etflags% "%%f" "%prefix%%%f"
 		move "%prefix%%%f" "%%f" > nul
 		echo fixbb: %%f
+	)
+goto :eof
+
+:optimize
+	for %%f in (!e2efiles!) do (
+		%e2e% %e2eflags% "%%f" "%prefix%%%f"
+		%epstool% %etflags% "%prefix%%%f" "%prefix%1%%f"
+		move "%prefix%1%%f" "%prefix%%%f" > nul
+		call :cmpsizes "%%f" "%prefix%%%f"
+		if !_csres!==1 (
+			move "%prefix%%%f" "%%f" > nul
+			echo optimize: %%f
+		) else (
+			del /q "%prefix%%%f"
+			echo optimize: %%f skipped
+		)
 	)
 goto :eof
 
