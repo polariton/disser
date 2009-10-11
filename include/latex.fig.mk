@@ -15,10 +15,10 @@ ETFLAGS ?= --quiet --copy --bbox
 RES ?= 600
 
 BMTOEPSFILES ?= $(wildcard *.jpg *.png *.tif)
-E2EFILES ?= *.eps
 E2PFILES ?= *.eps
 FBBFILES ?= *.eps
 FIGCLFILES ?= *.pdf *.jpg *.png *.tif
+OPTFILES ?= *.eps
 PDF2PNGFILES ?= *.pdf
 PDF2TIFFILES ?= *.pdf
 PREFIX ?= ~
@@ -57,7 +57,7 @@ fixbb: $(FBBFILES)
 		echo "done" ;\
 	done
 
-optimize: $(E2EFILES)
+optimize: $(OPTFILES)
 	@for f in $^ ; do \
 		echo -n "optimize: $$f..." ;\
 		$(E2E) $(E2EFLAGS) "$$f" "$(PREFIX)$$f" ;\

@@ -10,8 +10,8 @@ if "%CMDEXTVERSION%"=="" (
 
 setlocal enabledelayedexpansion
 
-if "%target%"=="" set target=thesis
-set bibfile=thesis.bib
+if "%target%"==""  set target=thesis
+if "%bibfile%"=="" set bibfile=thesis.bib
 
 if "%arch%"==""     set arch=7z
 if "%bibtex%"==""   set bibtex=bibtex8
@@ -31,18 +31,19 @@ if "%archive%"==""     set archive=%target%.%archext%
 if "%bibtexflags%"=="" set bibtexflags=-H -c cp1251
 if "%l2hflags%"=="" (
 	set l2hflags=-dir html -iso_language RU.RU -split 3 -short_index ^
-    -numbered_footnotes -white -antialias -html_version 4.0
+		-numbered_footnotes -white -antialias -html_version 4.0
 )
-if "%l2rtfflags%"=="" set l2rtfflags=-F -M12 -i russian
+if "%l2rtfflags%"==""  set l2rtfflags=-F -M12 -i russian
+if "%latexflags%"==""  set latexflags=--src-specials
 if "%ps2pdfflags%"=="" (
 	set ps2pdfflags=-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -g4960x7016 -r600 ^
-	  -dCompatibilityLevel#1.2
+		-dCompatibilityLevel#1.2
 )
 if "%psnupflags%"==""    set psnupflags=-2 -pA4
 if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape
-if "%latexflags%"==""    set latexflags=--src-specials
 
-if "%clext%"=="" set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log *.dvi *.tmp *.pdf *.ps
+if "%clext%"==""    set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log ^
+	*.dvi *.tmp *.pdf *.ps
 if "%clfiles%"==""  set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
 

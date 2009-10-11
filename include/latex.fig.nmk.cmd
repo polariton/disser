@@ -8,24 +8,26 @@ if "%CMDEXTVERSION%"=="" (
 	goto :eof
 )
 
-if "%bmtoeps%"=="" set bmtoeps=sam2p
-if "%e2e%"=="" set e2e=eps2eps
-if "%epstool%"=="" set epstool=epstool
+setlocal enabledelayedexpansion
+
+if "%bmtoeps%"==""  set bmtoeps=sam2p
+if "%e2e%"==""      set e2e=eps2eps
+if "%epstool%"==""  set epstool=epstool
 if "%epstopdf%"=="" set epstopdf=epstopdf
-if "%gs%"=="" set gs=gswin32c
+if "%gs%"==""       set gs=gswin32c
 
 if "%e2eflags%"=="" set e2eflags=-dSAFER -dNOCACHE
-if "%etflags%"=="" set etflags=--quiet --copy --bbox
-if "%res%"=="" set res=600
+if "%etflags%"==""  set etflags=--quiet --copy --bbox
+if "%res%"==""      set res=600
 
 if "%bmtoepsfiles%"=="" set bmtoepsfiles==*.jpg *.png *.tif
-if "%e2efiles%"=="" set e2efiles=*.eps
-if "%e2pfiles%"=="" set e2pfiles=*.eps
-if "%fbbfiles%"=="" set fbbfiles=*.eps
-if "%figclfiles%"=="" set figclfiles=*.pdf *.jpg *.png *.tif
+if "%e2pfiles%"==""     set e2pfiles=*.eps
+if "%fbbfiles%"==""     set fbbfiles=*.eps
+if "%figclfiles%"==""   set figclfiles=*.pdf *.jpg *.png *.tif
+if "%optfiles%"==""     set optfiles=*.eps
 if "%pdf2pngfiles%"=="" set pdf2pngfiles=*.pdf
 if "%pdf2tiffiles%"=="" set pdf2tiffiles=*.pdf
-if "%prefix%"=="" set prefix=~
+if "%prefix%"==""       set prefix=~
 
 
 setlocal enabledelayedexpansion
@@ -87,7 +89,7 @@ goto :eof
 goto :eof
 
 :optimize
-	for %%f in (!e2efiles!) do (
+	for %%f in (!optfiles!) do (
 		%e2e% %e2eflags% "%%f" "%prefix%%%f"
 		%epstool% %etflags% "%prefix%%%f" "%prefix%1%%f"
 		move "%prefix%1%%f" "%prefix%%%f" > nul
