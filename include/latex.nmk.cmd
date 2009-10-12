@@ -29,6 +29,7 @@ if "%archext%"==""     set archext=zip
 if "%archflags%"==""   set archflags=a -t%archext%
 if "%archive%"==""     set archive=%target%.%archext%
 if "%bibtexflags%"=="" set bibtexflags=-H -c cp1251
+if "%dvipsflags%"==""  set dvipsflags=-P pdf -t A4 -z
 if "%l2hflags%"=="" (
 	set l2hflags=-dir html -iso_language RU.RU -split 3 -short_index ^
 		-numbered_footnotes -white -antialias -html_version 4.0
@@ -107,18 +108,18 @@ goto :eof
 :pdf2on1
 	if not exist %target%_2on1.ps call :ps2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
-	-c save pop -f %target%_2on1.ps
+		-c save pop -f %target%_2on1.ps
 goto :eof
 
 :pdfbook
 	if not exist %target%_book.ps call :psbook
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_booklet.pdf ^
-	-c save pop -f %target%_book.ps
+		-c save pop -f %target%_book.ps
 goto :eof
 
 :ps
 	if not exist %target%.dvi call :dvi
-	%dvips% -o %target%.ps %target%.dvi
+	%dvips% %dvipsflags% %target%.dvi
 goto :eof
 
 :ps2on1

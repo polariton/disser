@@ -21,7 +21,7 @@ ARCHEXT ?= zip
 ARCHFLAGS ?= a -t$(ARCHEXT)
 ARCHIVE := $(TARGET).$(ARCHEXT)
 BIBTEXFLAGS ?= -H -c cp1251
-
+DVIPSFLAGS ?= -P pdf -t A4 -z
 L2HFLAGS ?= -dir html -iso_language RU.RU -split 3 -short_index \
   -numbered_footnotes -white -antialias -html_version 4.0
 L2RTFFLAGS ?= -F -M12 -i russian
@@ -87,7 +87,7 @@ $(TARGET).dvi: $(TARGET).tex
 	$(LATEX) $(TEXFLAGS) $^
 
 $(TARGET).ps: $(TARGET).dvi
-	$(DVIPS) -o $@ $^
+	$(DVIPS) $(DVIPSFLAGS) $^
 
 $(TARGET)_2on1.ps: $(TARGET).ps
 	$(PSNUP) $(PSNUPFLAGS) $^ > $@
