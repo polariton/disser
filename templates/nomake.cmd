@@ -16,6 +16,7 @@ if "!destdir!"=="" set destdir=!texmf!
 if "!docdir!"==""  set docdir=!destdir!\doc\latex\disser
 if "!subdirs!"=="" set subdirs=bachelor ..\master ..\candidate ..\doctor
 
+
 if "%1"=="help" (
 	call :%1
 ) else if "%1"=="install" (
@@ -25,7 +26,7 @@ if "%1"=="help" (
 ) else if "%1"=="reinstall" (
 	call :%1
 ) else (
-	for %%i in (%subdirs%) do @cd %%i & call nomake %%f
+	for %%i in (%subdirs%) do @cd %%i & call nomake %*
 )
 
 exit /b
