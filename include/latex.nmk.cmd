@@ -113,7 +113,7 @@ goto :eof
 
 :pdfbook
 	if not exist %target%_book.ps call :psbook
-	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_booklet.pdf ^
+	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_book.pdf ^
 		-c save pop -f %target%_book.ps
 goto :eof
 
@@ -133,7 +133,7 @@ goto :eof
 goto :eof
 
 :rtf
-	call :dvi
+	if not exist %target%.dvi call :dvi
 	%l2rtf% %l2rtfflags% -a %target%.aux -b %target%.bbl %target%.tex
 goto :eof
 

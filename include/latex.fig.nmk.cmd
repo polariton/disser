@@ -30,8 +30,6 @@ if "%pdf2tiffiles%"=="" set pdf2tiffiles=*.pdf
 if "%prefix%"==""       set prefix=~
 
 
-setlocal enabledelayedexpansion
-
 if "%1"=="" (
 	call :help
 ) else (
@@ -59,11 +57,10 @@ goto :eof
 			echo bmtoeps: %%f
 		)
 	)
-
 goto :eof
 
 :clean
-	del /s %figclfiles%
+	del /s !figclfiles!
 goto :eof
 
 :epstoeps

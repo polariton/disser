@@ -54,7 +54,7 @@ clean:
 	echo "  ps_2on1      build PS with two A5 pages on one A4 ordered by number" ;\
 	echo "  ps_book      build PS booklet (two A5 on A4)" ;\
 	echo "  rtf          convert DVI to RTF" ;\
-	echo "  srcdist      build source distribution" ;\
+	echo "  srcdist      build source distribution"
 
 html: $(TARGET).dvi
 	$(L2H) $(L2HFLAGS) $(TARGET).tex
@@ -93,7 +93,7 @@ $(TARGET)_2on1.ps: $(TARGET).ps
 	$(PSNUP) $(PSNUPFLAGS) $^ > $@
 
 $(TARGET)_book.ps: $(TARGET).ps
-	$(PSNUP) $(PSNUPFLAGS) $^ > $@
+	$(PSNUP) $(PSNUPFLAGS) $^ > $@ ;\
 	$(PSBOOK) $^ | $(PSNUP) -2 > $@
 
 $(TARGET).pdf: $(TARGET).tex
@@ -102,7 +102,7 @@ $(TARGET).pdf: $(TARGET).tex
 		for f in *.aux ; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
 		$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
 	else \
-		echo Warning: Bibliography file does not exist ;\
+		echo "Warning: Bibliography file does not exist" ;\
 	fi ;\
 	$(PDFLATEX) $(PDFLATEXFLAGS) $^
 

@@ -43,7 +43,7 @@ bmtoeps: $(BMTOEPSFILES)
 	done
 
 clean:
-	rm -f $(FIGCLFILES)
+	-rm -f $(FIGCLFILES)
 
 epstoeps: optimize
 
