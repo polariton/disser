@@ -11,7 +11,7 @@ CLSFILES := *.cls *.rtx
 BSTFILES := $(TARGET).bst $(TARGET)-s.bst
 DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
 TEXTFILES := ../README ../README.ru ../ChangeLog
-SRCFILES := *.dtx $(TARGET).ins $(MANUAL).tex Makefile nomake.cmd
+SRCFILES := *.dtx $(TARGET).ins $(TARGET).ist $(MANUAL).tex Makefile nomake.cmd
 
 TEXMF ?= /usr/share/texmf
 DESTDIR ?= $(TEXMF)

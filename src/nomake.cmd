@@ -19,7 +19,7 @@ set clsfiles=*.cls *.rtx
 set bstfiles=%target%.bst %target%-s.bst
 set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
-set srcfiles=*.dtx *.ins %manual%.tex Makefile nomake.cmd
+set srcfiles=*.dtx %target%.ins %target%.ist %manual%.tex Makefile nomake.cmd
 
 if "!texmf!"==""   set texmf=%programfiles%\miktex
 if "!destdir!"=="" set destdir=!texmf!
