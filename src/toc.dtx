@@ -8,15 +8,16 @@
 %<*toc>
 %    \end{macrocode}
 %
-% \subsection{Автоматически генерируемые списки (содержание, индекс и т.\,д.)}
-% \subsubsection{Параметры}
+% \subsection{Автоматически генерируемые списки (оглавление, предметный указатель и т.\,д.)}
 %
-% Горизонтальный пробел между постоянной и переменной частями заголовков
+% \subsubsection{Общие параметры}
+%
+% Горизонтальный пробел между постоянной и переменной частями заголовков.
 % \DescribeMacro{\@postskip}\index{Макросы!\verb+"\"@postskip+}
 %    \begin{macrocode}
 \def\@postskip{\hskip1em}
 %    \end{macrocode}
-% Длина пробела между заполнителем и номером страницы.
+% Длина пробела между заполнителем строки и номером страницы.
 % \DescribeMacro{\@pnumwidth}\index{Макросы!\verb+"\"@pnumwidth+}
 %    \begin{macrocode}
 \newcommand\@pnumwidth{1.55em}
@@ -35,14 +36,90 @@
 % Команда для заполнения промежутка между названием и номером страницы.
 % \DescribeMacro{\tocfill}\index{Макросы!\verb*+\tocfill+}
 %    \begin{macrocode}
-\def\tocfill#1{
-  \leaders\hbox{$\m@th\mkern\@dotsep mu\hbox{#1}\mkern\@dotsep mu$}
+\def\tocfill#1{%
+  \leaders\hbox{$\m@th\mkern\@dotsep mu\hbox{#1}\mkern\@dotsep mu$}%
+}
+
+%    \end{macrocode}
+% \subsubsection{Оглавление (table of contents)}
+%
+% \DescribeMacro{\tocsection}\index{Макросы!\verb*+\tocsection+}
+%    \begin{macrocode}
+\newcommand\tocsection{\chapter*{\contentsname}}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\tableofcontents}\index{Макросы!\verb*+\tableofcontents+}
+%    \begin{macrocode}
+\newcommand\tableofcontents{%
+  \if@twocolumn\@restonecoltrue\onecolumn%
+  \else\@restonecolfalse\fi%
+  \tocsection%
+  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+  \@starttoc{toc}%
+  \if@restonecol\twocolumn\fi
+  \clearpage
 }
 %    \end{macrocode}
-% Вертикальный пробел между элементами предметного указателя.
-% \DescribeMacro{\indexspace}\index{Макросы!\verb*+\indexspace+}
+%
+% \subsubsection{Список иллюстраций}
+%
+% \DescribeMacro{\lofsection}\index{Макросы!\verb*+\lofsection+}
 %    \begin{macrocode}
-\newcommand\indexspace{\par \vskip 10\p@ \@plus5\p@ \@minus3\p@\relax}
+\newcommand\lofsection{\nchapter{\listfigurename}}
+
+%    \end{macrocode}
+%
+% \DescribeMacro{\listoffigures}\index{Макросы!\verb*+\listoffigures+}
+%    \begin{macrocode}
+\newcommand\listoffigures{%
+  \if@twocolumn\@restonecoltrue\onecolumn%
+  \else\@restonecolfalse\fi%
+  \lofsection%
+  \@mkboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}%
+  \@starttoc{lof}%
+  \if@restonecol\twocolumn\fi
+}
+
+%    \end{macrocode}
+% Формат элемента списка иллюстраций.
+%    \begin{macrocode}
+\newcommand*\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
+
+%    \end{macrocode}
+%
+% \subsubsection{Список таблиц}
+%
+% \DescribeMacro{\lotsection}\index{Макросы!\verb*+\lotsection+}
+%    \begin{macrocode}
+\newcommand\lotsection{\nchapter{\listtablename}}
+
+%    \end{macrocode}
+% \DescribeMacro{\listoftables}\index{Макросы!\verb*+\listoftables+}
+%    \begin{macrocode}
+\newcommand\listoftables{%
+  \if@twocolumn\@restonecoltrue\onecolumn%
+  \else\@restonecolfalse\fi%
+  \lotsection%
+  \@mkboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}%
+  \@starttoc{lot}%
+  \if@restonecol\twocolumn\fi
+}
+
+%    \end{macrocode}
+% Формат элемента списка таблиц.
+%    \begin{macrocode}
+\let\l@table\l@figure
+
+%    \end{macrocode}
+%
+% \subsubsection{Библиография}
+%
+% Окружение будет переопределено в пакете |natbib|.
+% \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
+%    \begin{macrocode}
+\newenvironment{thebibliography}[1]{}{}
+
 %    \end{macrocode}
 % Величина отступа для элементов списка литературы.
 % \DescribeMacro{\bibindent}\index{Расстояния!\verb*+\bibindent+}
@@ -58,90 +135,22 @@
 
 %    \end{macrocode}
 %
-% \DescribeMacro{\tableofcontents}\index{Макросы!\verb*+\tableofcontents+}
-%    \begin{macrocode}
-\newcommand\tableofcontents{%
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-  \if@twocolumn
-    \@restonecoltrue\onecolumn
-  \else
-    \@restonecolfalse
-  \fi
-  \chapter*{\contentsname%
-    \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}
-  }%
-  \@starttoc{toc}%
-  \if@restonecol\twocolumn\fi
-  \clearpage
-}
-%    \end{macrocode}
-%
-% \subsubsection{Список иллюстраций}
-%
-% \DescribeMacro{\listoffigures}\index{Макросы!\verb*+\listoffigures+}
-%    \begin{macrocode}
-\newcommand\listoffigures{%
-  \if@twocolumn\@restonecoltrue\onecolumn
-  \else\@restonecolfalse\fi
-%    \end{macrocode}
-% Вместо стандартной команды |\chapter*| используется |\nchapter|, чтобы список
-% отображался в Содержании.
-%
-%    \begin{macrocode}
-  \nchapter{%
-    \listfigurename%
-    \@mkboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}%
-  }%
-  \@starttoc{lof}%
-  \if@restonecol\twocolumn\fi
-}
-%    \end{macrocode}
-% Формат элемента списка иллюстраций.
-%    \begin{macrocode}
-\newcommand*\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
-%    \end{macrocode}
-%
-% \subsubsection{Список таблиц}
-%    \begin{macrocode}
-\newcommand\listoftables{%
-  \if@twocolumn
-    \@restonecoltrue\onecolumn
-  \else
-    \@restonecolfalse
-  \fi
-  \nchapter{%
-    \listtablename%
-    \@mkboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}%
-  }%
-  \@starttoc{lot}%
-  \if@restonecol\twocolumn\fi
-}
-%    \end{macrocode}
-% Формат элемента списка таблиц.
-%    \begin{macrocode}
-\let\l@table\l@figure
-
-%    \end{macrocode}
-%
-% \subsubsection{Библиография}
-% Данное окружение будет переопределено в пакете |natbib|.
-% \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
-%    \begin{macrocode}
-\newenvironment{thebibliography}[1]{}{}
-
-%    \end{macrocode}
-%
 % \subsubsection{Предметный указатель}
+%
+% \DescribeMacro{\indexsection}\index{Макросы!\verb*+\indexsection+}
+%    \begin{macrocode}
+\providecommand\indexsection{\twocolumn[\@makeschapterhead{\indexname}]}
+
+%    \end{macrocode}
+% 
 % \DescribeEnv{theindex}\index{Окружения!\verb*+theindex+}
 %    \begin{macrocode}
-\newenvironment{theindex}{
-  \if@twocolumn\@restonecolfalse
-  \else\@restonecoltrue\fi
+\newenvironment{theindex}{%
+  \if@twocolumn\@restonecolfalse%
+  \else\@restonecoltrue\fi%
   \columnseprule \z@
   \columnsep 35\p@
-  \twocolumn[\@makeschapterhead{\indexname}]%
+  \indexsection%
   \@mkboth{\MakeUppercase\indexname}{\MakeUppercase\indexname}%
   \thispagestyle{plain}
   \parindent\z@
@@ -149,7 +158,7 @@
   \let\item\@idxitem%
 }{\if@restonecol\onecolumn\else\clearpage\fi}
 %    \end{macrocode}
-% Формат элемента.
+% Формат элементов.
 % \DescribeMacro{\@idxitem}\index{Макросы!\verb+"\"@idxitem+}
 % \DescribeMacro{\subitem}\index{Макросы!\verb*+\subitem+}
 % \DescribeMacro{\subsubitem}\index{Макросы!\verb*+\subsubitem+}
@@ -157,5 +166,10 @@
 \newcommand\@idxitem{\par\hangindent 40\p@}
 \newcommand\subitem{\@idxitem \hspace*{20\p@}}
 \newcommand\subsubitem{\@idxitem \hspace*{30\p@}}
+%    \end{macrocode}
+% Вертикальный пробел между элементами предметного указателя.
+% \DescribeMacro{\indexspace}\index{Макросы!\verb*+\indexspace+}
+%    \begin{macrocode}
+\newcommand\indexspace{\par \vskip 10\p@ \@plus5\p@ \@minus3\p@\relax}
 %</toc>
 %    \end{macrocode}

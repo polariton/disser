@@ -59,8 +59,9 @@
 % Пустое определение колонтитула главы.
 %    \begin{macrocode}
 \newcommand*\chaptermark[1]{}
+
 %    \end{macrocode}
-% \DescribeMacro{\chapter}\index{Макросы!\verb*+\chapter+}
+% \DescribeMacro{\chapter}\index{Макросы!\verb*+"\chapter+}
 % Интерфейс.
 %    \begin{macrocode}
 \newcommand\chapter{%
@@ -167,12 +168,14 @@
 %
 % \subsubsection{Параметры формата записи в Содержании}
 % \DescribeMacro{\tocpretheappendix}\index{Макросы!\verb*+\tocpretheappendix+}
-% \DescribeMacro{\tocposttheappendix}\index{Макросы!\verb*+\tocposttheappendix+}
+% \DescribeMacro{\tocposttheappendix}
+%   \index{Макросы!\verb*+\tocposttheappendix+}
 % \DescribeMacro{\tocappendixfill}\index{Макросы!\verb*+\tocappendixfill+}
-%
 % \DescribeMacro{\tocappendixfont}\index{Макросы!\verb*+\tocappendixfont+}
-% \DescribeMacro{\tocappendixfillfont}\index{Макросы!\verb*+\tocappendixfillfont+}
-% \DescribeMacro{\tocappendixnumfont}\index{Макросы!\verb*+\tocappendixnumfont+}
+% \DescribeMacro{\tocappendixfillfont}
+%   \index{Макросы!\verb*+\tocappendixfillfont+}
+% \DescribeMacro{\tocappendixnumfont}
+%   \index{Макросы!\verb*+\tocappendixnumfont+}
 %    \begin{macrocode}
 \providecommand\tocpretheappendix{\protect\appendixname~}
 \providecommand\tocposttheappendix{.\@postskip}

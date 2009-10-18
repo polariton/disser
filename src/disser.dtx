@@ -80,18 +80,31 @@
 
 \let\DescribePackage=\DescribeEnv
 
-\makeindex
-
-\setlength\hfuzz{20pt}
-\hbadness=10000
-
 \makeatletter
+  \def\IndexParms{%
+    \parindent \z@
+    \columnsep 15pt
+    \parskip 0pt plus 1pt
+    \rightskip 15pt
+    \mathsurround \z@
+    \parfillskip=-15pt
+    \small
+    \def\@idxitem{\normalfont\par\hangindent 30pt\bfseries}%
+    \def\subitem{\normalfont\par\hangindent 30pt}%
+    \def\subsubitem{\normalfont\par\hangindent 30pt\hspace*{15pt}}%
+    \def\indexspace{\par\vspace{10pt plus 2pt minus 3pt}}%
+  }
   \def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
     \columnseprule \z@  \columnsep 35\p@
     \twocolumn[\index@prologue]%
     \IndexParms \let\item\@idxitem \ignorespaces}
   \def\endtheindex{\if@restonecol\onecolumn\else\clearpage\fi}
 \makeatother
+
+\setlength\hfuzz{20pt}
+\hbadness=10000
+
+\makeindex
 
 \begin{document}
 \sloppy

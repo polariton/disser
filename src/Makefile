@@ -30,7 +30,7 @@ MI ?= makeindex
 
 LATEXFLAGS ?= --src-specials
 PDFLATEXFLAGS ?= --shell-escape
-MIFLAGS ?= -r
+MIFLAGS ?= -r -s disser.ist
 
 
 all: package doc

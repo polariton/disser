@@ -38,7 +38,7 @@ if "!mi!"==""       set mi=makeindex
 
 if "!latexflags!"==""    set latexflags=--src-specials
 if "!pdflatexflags!"=="" set pdflatexflags=--shell-escape
-if "!miflags!"==""       set miflags=-r
+if "!miflags!"==""       set miflags=-r -s disser.ist
 
 
 if "%1"=="" (

@@ -222,22 +222,24 @@
 % \DescribeMacro{\tocprethesubparagraph}\index{Макросы!\verb*+\tocprethesubparagraph+}
 % \DescribeMacro{\tocpostthesubparagraph}\index{Макросы!\verb*+\tocpostthesubparagraph+}
 % \DescribeMacro{\tocsubparagraphfill}\index{Макросы!\verb*+\tocsubparagraphfill+}
-%
-% \DescribeMacro{\tocsubparagraphfont}\index{Макросы!\verb*+\tocsubparagraphfont+}
-% \DescribeMacro{\tocsubparagraphfillfont}\index{Макросы!\verb*+\tocsubparagraphfillfont+}
-% \DescribeMacro{\tocsubparagraphnumfont}\index{Макросы!\verb*+\tocsubparagraphnumfont+}
-%
-% \DescribeMacro{\tocsubparagraphindent}\index{Макросы!\verb*+\tocsubparagraphindent+}
-% \DescribeMacro{\tocsubparagraphnameindent}\index{Макросы!\verb*+\tocsubparagraphnameindent+}
 %    \begin{macrocode}
 \providecommand\tocprethesubparagraph{}
 \providecommand\tocpostthesubparagraph{.\@postskip}
 \providecommand\tocsubparagraphfill{\tocfill{.}}
 
+%    \end{macrocode}
+% \DescribeMacro{\tocsubparagraphfont}\index{Макросы!\verb*+\tocsubparagraphfont+}
+% \DescribeMacro{\tocsubparagraphfillfont}\index{Макросы!\verb*+\tocsubparagraphfillfont+}
+% \DescribeMacro{\tocsubparagraphnumfont}\index{Макросы!\verb*+\tocsubparagraphnumfont+}
+%    \begin{macrocode}
 \providecommand\tocsubparagraphfont{\normalfont}
 \providecommand\tocsubparagraphfillfont{}
 \providecommand\tocsubparagraphnumfont{}
 
+%    \end{macrocode}
+% \DescribeMacro{\tocsubparagraphindent}\index{Макросы!\verb*+\tocsubparagraphindent+}
+% \DescribeMacro{\tocsubparagraphnameindent}\index{Макросы!\verb*+\tocsubparagraphnameindent+}
+%    \begin{macrocode}
 \providecommand\tocsubparagraphindent{12em}
 \providecommand\tocsubparagraphnameindent{6em}
 
@@ -267,7 +269,7 @@
 %    \end{macrocode}
 % \subsubsection{Низкоуровневые команды}
 %
-% \DescribeMacro{\@startsection}\index{Макросы!\verb+"\"@startsection+}
+% \DescribeMacro{\@startsection}\index{Макросы!\verb*+"\"@startsection+}
 % Команда, создающая заголовки секций.
 %    \begin{macrocode}
 \def\@startsection#1#2{%
@@ -293,7 +295,7 @@
 }
 
 %    \end{macrocode}
-% \DescribeMacro{\@ssect}\index{Макросы!\verb+"\"@ssect+}
+% \DescribeMacro{\@ssect}\index{Макросы!\verb*+"\"@ssect+}
 % Для ненумеруемых секций.
 %    \begin{macrocode}
 \def\@ssect#1#2#3#4#5{%
@@ -311,7 +313,7 @@
 }
 
 %    \end{macrocode}
-% \DescribeMacro{\@sect}\index{Макросы!\verb+"\"@sect+}
+% \DescribeMacro{\@sect}\index{Макросы!\verb*+"\"@sect+}
 % Для нумеруемых секций.
 %    \begin{macrocode}
 \def\@sect#1#2#3#4#5#6[#7]#8{%
@@ -350,7 +352,7 @@
 
 %    \end{macrocode}
 %
-% \DescribeMacro{\@tocline}\index{Макросы!\verb+"\"@tocline+}
+% \DescribeMacro{\@tocline}\index{Макросы!\verb*+"\"@tocline+}
 % Обобщенная версия команды, добавляющей запись в Содержание.
 %    \begin{macrocode}
 \def\@tocline#1#2#3#4{%
@@ -376,36 +378,36 @@
 %    \end{macrocode}
 %
 % Команда, создающие секции в тексте и в Содержании.
-% \DescribeMacro{\section}\index{Макросы!\verb+\section+}
-% \DescribeMacro{\l@section}\index{Макросы!\verb+\l@section+}
+% \DescribeMacro{\section}\index{Макросы!\verb*+\section+}
+% \DescribeMacro{\l@section}\index{Макросы!\verb*+\l@section+}
 %    \begin{macrocode}
 \newcommand\section{\@startsection{section}{1}}
 \newcommand*\l@section{\@tocline{section}{1}}
 
 %    \end{macrocode}
-% \DescribeMacro{\subsection}\index{Макросы!\verb+\subsection+}
-% \DescribeMacro{\l@subsection}\index{Макросы!\verb+\l@subsection+}
+% \DescribeMacro{\subsection}\index{Макросы!\verb*+\subsection+}
+% \DescribeMacro{\l@subsection}\index{Макросы!\verb*+\l@subsection+}
 %    \begin{macrocode}
 \newcommand\subsection{\@startsection{subsection}{2}}
 \newcommand*\l@subsection{\@tocline{subsection}{2}}
 
 %    \end{macrocode}
-% \DescribeMacro{\subsubsection}\index{Макросы!\verb+\subsubsection+}
-% \DescribeMacro{\l@subsubsection}\index{Макросы!\verb+\l@subsubsection+}
+% \DescribeMacro{\subsubsection}\index{Макросы!\verb*+\subsubsection+}
+% \DescribeMacro{\l@subsubsection}\index{Макросы!\verb*+\l@subsubsection+}
 %    \begin{macrocode}
 \newcommand\subsubsection{\@startsection{subsubsection}{3}}
 \newcommand*\l@subsubsection{\@tocline{subsubsection}{3}}
 
 %    \end{macrocode}
-% \DescribeMacro{\paragraph}\index{Макросы!\verb+\paragraph+}
-% \DescribeMacro{\l@paragraph}\index{Макросы!\verb+\l@paragraph+}
+% \DescribeMacro{\paragraph}\index{Макросы!\verb*+\paragraph+}
+% \DescribeMacro{\l@paragraph}\index{Макросы!\verb*+\l@paragraph+}
 %    \begin{macrocode}
 \newcommand\paragraph{\@startsection{paragraph}{4}}
 \newcommand*\l@paragraph{\@tocline{paragraph}{4}}
 
 %    \end{macrocode}
-% \DescribeMacro{\subparagraph}\index{Макросы!\verb+\subparagraph+}
-% \DescribeMacro{\l@subparagraph}\index{Макросы!\verb+\l@subparagraph+}
+% \DescribeMacro{\subparagraph}\index{Макросы!\verb*+\subparagraph+}
+% \DescribeMacro{\l@subparagraph}\index{Макросы!\verb*+\l@subparagraph+}
 %    \begin{macrocode}
 \newcommand\subparagraph{\@startsection{subparagraph}{5}}
 \newcommand*\l@subparagraph{\@tocline{subparagraph}{5}}
