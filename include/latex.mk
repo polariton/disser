@@ -115,7 +115,7 @@ $(TARGET)_book.pdf: $(TARGET)_book.ps
 $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
-bmtoeps epstoeps epstopdf fixbb pdftopng256 pdftotiffg4:
+bmtoeps epstoeps epstopdf fixbb optimize pdftopng256 pdftotiffg4:
 	@$(MAKE) -C fig $@
 
 figclean:

@@ -162,6 +162,10 @@ goto :eof
 	cd fig & call nomake.cmd fixbb & cd ..
 goto :eof
 
+:optimize
+	cd fig & call nomake.cmd optimize & cd ..
+goto :eof
+
 :pdftopng256
 	cd fig & call nomake.cmd pdftopng256 & cd ..
 goto :eof
