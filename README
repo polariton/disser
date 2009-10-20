@@ -1,19 +1,18 @@
 Overview
 --------
 
-disser is a LaTeX document class and set of templates for creating
-dissertations and author's abstracts that would satisfy requirements of
-dissertation counsils and High Certification Commission of Russian Federation.
+Disser is a set of classes and styles for typesetting dissertations and 
+author's abstracts that would satisfy requirements of dissertation counsils 
+and High Certification Commission of Russian Federation.
 
 
 Dependencies
 ------------
 
-This class uses third party packages. It is recommended to install all of
-the following:
-amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib, oberdiek,
-hyperref, hypernat, pscyr or cyrtimes, txfonts or mtpro, subfig, wrapfig,
-packages for russian language support in LaTeX.
+The document classes included in this package use the following third party
+packages: amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib, 
+oberdiek, hyperref, hypernat, pscyr or cyrtimes, txfonts or mtpro, subfig, 
+wrapfig, and packages for russian language support in LaTeX.
 
 
 Downloads and updates
@@ -58,7 +57,7 @@ In Windows:
   nomake install
   mktexlsr
 
-/path/to/texmf is the full path to your TeX distribution.
+/path/to/texmf is the full path to TeX directory tree.
 
 2. Installation with ZIP file in TDS format
 

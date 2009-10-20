@@ -8,11 +8,11 @@
 Зависимости
 -----------
 
-Класс использует стронние пакеты. Для корректной сборки всех шаблонов
-следует установить всё нижеперечисленное:
+Для корректной сборки документов следует установить следующие пакеты:
 amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib,
-oberdiek, hyperref, hypernat, pscyr или cyrtimes, txfonts или mtpro, subfig,
-wrapfig, пакеты для поддержки русского языка.
+oberdiek, hyperref, hypernat, subfig, wrapfig, а также пакеты для поддержки русского языка.
+Для использования гарнитуры Times рекомендуется установить пакеты 
+pscyr или cyrtimes, txfonts или mtpro.
 
 Получение последней версии
 --------------------------
