@@ -10,7 +10,7 @@
 %
 % \subsection{Глава}
 %
-% \subsubsection{Параметры формата записи в Содержании}
+% \subsubsection{Параметры формата записи в оглавлении}
 %
 % \DescribeMacro{\tocprethechapter}\index{Макросы!\verb*+\tocprethechapter+}
 % \DescribeMacro{\tocpostthechapter}\index{Макросы!\verb*+\tocpostthechapter+}
@@ -141,7 +141,7 @@
 %    \end{macrocode}
 %
 % \DescribeMacro{\l@chapter}\index{Макросы!\verb+"\l"@chapter+}
-% Команда, создающая запись в Содержании.
+% Команда, создающая запись в оглавлении.
 %    \begin{macrocode}
 \newcommand*\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
@@ -166,7 +166,7 @@
 %
 % \subsection{Приложение}
 %
-% \subsubsection{Параметры формата записи в Содержании}
+% \subsubsection{Параметры формата записи в оглавлении}
 % \DescribeMacro{\tocpretheappendix}\index{Макросы!\verb*+\tocpretheappendix+}
 % \DescribeMacro{\tocposttheappendix}
 %   \index{Макросы!\verb*+\tocposttheappendix+}
@@ -210,7 +210,7 @@
 %    \end{macrocode}
 %
 % \DescribeMacro{\appendix}\index{Макросы!\verb*+\appendix+}
-% Команда для создания глав Приложения. Сохранение и восстановление
+% Команда для создания глав приложений. Сохранение и восстановление
 % значений параметров формата глав делаются для случая, когда
 % приложения идут до списка литературы.
 %    \begin{macrocode}

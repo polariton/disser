@@ -9,44 +9,44 @@
 %    \end{macrocode}
 % \subsection{Часть}
 %
-% \subsubsection{Параметры формата записи в Содержании}
+% \subsubsection{Параметры формата записи в оглавлении}
 %
 % \DescribeMacro{\tocprethepart}\index{Макросы!\verb*+\tocprethepart+}
-% Постоянный текст до номера.
+% Префикс номера.
 %    \begin{macrocode}
 \providecommand\tocprethepart{\partname~}
 %    \end{macrocode}
 % \DescribeMacro{\tocpostthepart}\index{Макросы!\verb*+\tocpostthepart+}
-% Постоянный текст после номера.
+% Постфикс номера.
 %    \begin{macrocode}
 \providecommand\tocpostthepart{.\@postskip}
 %    \end{macrocode}
 % \DescribeMacro{\tocpartfill}\index{Макросы!\verb*+\tocpartfill+}
 % Заполнитель между названием и номером страницы. Для части по умолчанию
-% отсутствует. Чтобы заполнить какими-либо символами, |\tocpartfill| нужно
-% присвоить значение |\tocfill{символ}|. Для примера см. далее определение
-% |\tocsectionfill|.
+% отсутствует. Чтобы заполнить какими-либо символами, нужно присвоить
+% |\tocpartfill| значение |\tocfill{символ}|. Для примера см. далее
+% определение |\tocsectionfill|.
 %    \begin{macrocode}
 \providecommand\tocpartfill{}
 %    \end{macrocode}
 % \DescribeMacro{\tocpartfont}\index{Макросы!\verb*+\tocpartfont+}
-% Шрифт заголовка в Содержании.
+% Шрифт заголовка записи.
 %    \begin{macrocode}
 \providecommand\tocpartfont{\bfseries}
 %    \end{macrocode}
 % \DescribeMacro{\tocpartfillfont}\index{Макросы!\verb*+\tocpartfillfont+}
-% Шрифт заполнителя.
+% Шрифт заполнителя в оглавлении.
 %    \begin{macrocode}
 \providecommand\tocpartfillfont{\normalfont}
 %    \end{macrocode}
 % \DescribeMacro{\tocpartnumfont}\index{Макросы!\verb*+\tocpartnumfont+}
-% Шрифт номера.
+% Шрифт номера в оглавлении.
 %    \begin{macrocode}
 \providecommand\tocpartnumfont{\normalfont}
 
 %    \end{macrocode}
 %
-% \subsubsection{Параметры формата в тексте}
+% \subsubsection{Параметры формата заголовка в тексте}
 % \DescribeMacro{\thepartalign}\index{Макросы!\verb*+\thepartalign+}
 % \DescribeMacro{\thepartfont}\index{Макросы!\verb*+\thepartfont+}
 % \DescribeMacro{\prethepart}\index{Макросы!\verb*+\prethepart+}
