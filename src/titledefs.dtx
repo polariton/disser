@@ -72,7 +72,8 @@
 % \DescribeMacro{\speclabel}\index{Макросы!\verb+\speclabel+}
 % Специальность
 %    \begin{macrocode}
-\def\specname{\cyr\CYRS\cyrp\cyre\cyrc\cyri\cyra\cyrl\cyrsftsn\cyrn\cyro\cyrs\cyrt\cyrsftsn}
+\def\specname{%
+\cyr\CYRS\cyrp\cyre\cyrc\cyri\cyra\cyrl\cyrsftsn\cyrn\cyro\cyrs\cyrt\cyrsftsn}
 \def\specsep{:}
 \def\speclabel{\specname\specsep}
 %    \end{macrocode}
@@ -130,7 +131,8 @@
 % \DescribeMacro{\consultname}\index{Макросы!\verb+\consultname+}
 % Консультанты
 %    \begin{macrocode}
-\def\consultname{\cyr\CYRK\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt\cyrery:}
+\def\consultname{%
+\cyr\CYRK\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt\cyrery:}
 %    \end{macrocode}
 %
 % \subsection{Интерфейс для определения элементов титульного листа}
@@ -328,6 +330,7 @@
 \newcommand\reviewname{\cyr\CYRO\cyrb\cyrz\cyro\cyrr\ %
 \cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
 \newcommand\review{\nchapter{\reviewname}}
+
 %    \end{macrocode}
 %
 % \subsubsection{Поля титульного листа}
