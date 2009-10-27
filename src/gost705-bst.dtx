@@ -704,28 +704,28 @@ FUNCTION {format.bookauthors}
 FUNCTION {format.authors.after}
 { author empty$
     { "" }
-    { author format.names.rev }
+    { author format.names }
   if$
 }
 
 FUNCTION {format.bookauthors.after}
 { bookauthor empty$
     { "" }
-    { bookauthor format.names.rev }
+    { bookauthor format.names }
   if$
 }
 
 FUNCTION {format.editors.after}
 { editor empty$
     { "" }
-    { bbl.edby editor format.names.rev * }
+    { bbl.edby editor format.names * }
   if$
 }
 
 FUNCTION { format.compiler.after }
 { compiler empty$
     { "" }
-    { bbl.cmplr compiler format.names.rev * }
+    { bbl.cmplr compiler format.names * }
   if$
 }
 
