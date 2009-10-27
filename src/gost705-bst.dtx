@@ -22,11 +22,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %<*driver>
-\ProvidesFile{disser-bst.drv}[2009/06/19 1.1.2 Bibliography style for dissertations.]
+\ProvidesFile{gost705-bst.drv}[2009/10/27 1.1.3 Bibliography style for dissertations.]
 
 \documentclass{ltxdoc}
-\usepackage[a4paper, includeheadfoot, nohead, mag=1000,
-            left=5cm, right=1cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage[a4paper,includeheadfoot,nohead,mag=1000,
+            left=5cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{ifpdf,indentfirst,color}
 \definecolor{darkblue}{rgb}{0,0,.6}
 \ifpdf
@@ -34,7 +34,7 @@
     pdftex,
     colorlinks,
     plainpages=false,
-    pdftitle     = {User manual for disser},
+    pdftitle     = {Documented source code of the disser package},
     pdfauthor    = {Stanislav Kruchinin},
     pdfsubject   = {disser},
     pdfstartview = {FitH},
@@ -75,19 +75,19 @@
 \setlength\hfuzz{20pt}
 \hbadness=10000
 
-\GetFileInfo{disser-bst.drv}
+\GetFileInfo{gost705-bst.drv}
 \begin{document}
   \sloppy
   \PrintChanges
-  \DocInput{disser-bst.dtx}
+  \DocInput{gost705-bst.dtx}
 \end{document}
 %</driver>
 % \fi
-% \GetFileInfo{disser-bst.drv}
+% \GetFileInfo{gost705-bst.drv}
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% \title{Стили для оформления библиографии\\\texttt{disser} и \texttt{disser-s}}
+% \title{Стили для оформления библиографии\\\texttt{gost705} и \texttt{gost705s}}
 % \date{Версия \fileversion\\[6pt]\filedate}
 % \author{Станислав Кручинин\\[6pt]
 % \normalsize E-mail:
@@ -101,7 +101,7 @@
 %  \section{Исходный текст}\parindent=0pt
 %    \begin{macrocode}
 
-%<*disser-bst|disser-s-bst>
+%<*gost705-bst|gost705s-bst>
 
 %    \end{macrocode}
 % \subsection{Поля, используемые в bib-файлах}
@@ -183,10 +183,9 @@ FUNCTION {output.nonnull}
 %%%{ 's :=
 { swap$
   output.state mid.sentence =
-    { ", " * write$ }
+    { ". " * write$ }
     { output.state after.block =
-        { add.period$ write$
-          " " quote$ "--- " * *  write$
+        { add.period$ " " * write$
           newline$
           "\newblock " write$
         }
@@ -622,7 +621,7 @@ FUNCTION {format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{ff~}{vv~}{ll}{, jj}" format.name$ 't :=
+      "{vv~}{ll}{~f.}{, jj}" format.name$ 't :=
       nameptr #1 >
         {
           nameptr #4 =
@@ -1488,7 +1487,7 @@ READ
 %    \end{macrocode}
 % \subsection{Функции для сортировки списка литературы по названиям}
 %    \begin{macrocode}
-%<*disser-s-bst>
+%<*gost705s-bst>
 
 FUNCTION {sortify}
 { purify$
@@ -1602,7 +1601,7 @@ ITERATE {presort}
 
 SORT
 
-%</disser-s-bst>
+%</gost705s-bst>
 
 %    \end{macrocode}
 % \subsection{Вычисление длины табуляции между номером и текстом}
@@ -1638,6 +1637,7 @@ ITERATE {longest.label.pass}
 %    \begin{macrocode}
 FUNCTION {begin.bib}
 {
+  "\makeatletter\renewcommand{\@biblabel}[1]{#1.}\makeatother" write$ newline$
   "\ifx\undefined\BibPrefix\def\BibPrefix{}\else\fi"          write$ newline$
   "\ifx\undefined\BibPostfix\def\BibPostfix{}\else\fi"        write$ newline$
   "\begin{thebibliography}{\BibPrefix" longest.label  * "\BibPostfix}" * write$ newline$
@@ -1647,7 +1647,7 @@ FUNCTION {begin.bib}
   "\ifx\undefined\url\def\url#1{{\small #1}}\else\fi"         write$ newline$
   "\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi"      write$ newline$
   "\ifx\undefined\BibAnnote\long\def\BibAnnote#1{}\else\fi"   write$ newline$
-  "\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi"   write$ newline$
+  "\ifx\undefined\BibEmph\def\BibEmph#1{#1}\else\fi"   write$ newline$
   preamble$ empty$
     'skip$
     { preamble$ write$ newline$ }
@@ -1673,5 +1673,5 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 
-%</disser-bst|disser-s-bst>
+%</gost705-bst|gost705s-bst>
 %    \end{macrocode}

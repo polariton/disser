@@ -12,11 +12,11 @@ setlocal enabledelayedexpansion
 
 set target=disser
 set subclass=gost732
-set bst=disser-bst
+set bst=gost705-bst
 set manual=manual
 
 set clsfiles=*.cls *.rtx
-set bstfiles=%target%.bst %target%-s.bst
+set bstfiles=gost705.bst gost705s.bst
 set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
 set srcfiles=*.dtx %target%.ins %target%.ist %manual%.tex Makefile nomake.cmd
