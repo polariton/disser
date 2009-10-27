@@ -136,6 +136,7 @@ ENTRY
     language
     booklanguage
     url
+    urldate
   }
   {}
   { label }
@@ -183,7 +184,7 @@ FUNCTION {output.nonnull}
 %%%{ 's :=
 { swap$
   output.state mid.sentence =
-    { ". " * write$ }
+    { ", " * write$ }
     { output.state after.block =
         { add.period$ " " * write$
           newline$
@@ -1095,7 +1096,13 @@ FUNCTION {format.url}
 { url empty$
     { "" }
     { after.sentence 'output.state :=
-      "\BibUrl{ " url * "}" *
+      "\BibUrl{" url * "}" *
+      urldate empty$
+        { "" }
+        { before.all 'output.state :=
+          "\ \BibUrlDate{" urldate * "}" *
+        }
+      if$
     }
   if$
 }
@@ -1103,9 +1110,9 @@ FUNCTION {format.url}
 FUNCTION {format.annote}
 { annote empty$
     { "" }
-{ after.sentence 'output.state :=
-  "\BibAnnote{" annote add.period$ * "}" *
-}
+    { after.sentence 'output.state :=
+      "\BibAnnote{" annote add.period$ * "}" *
+    }
   if$
 }
 
@@ -1317,10 +1324,10 @@ FUNCTION {mastersthesis}
 
 FUNCTION {misc}
 { output.bibitem
-  format.authors output
-  title howpublished new.sentence.checkb
-  format.title output
-  howpublished new.block.checka
+  format.authors "author" output.check
+  new.block
+  format.title "title" output.check
+  new.block
   howpublished output
   new.block
   format.date output
@@ -1550,10 +1557,7 @@ FUNCTION {author.sort}
       if$
     }
     {
-      author num.names$ #4 <
-        {author sort.format.names }
-        {title sort.format.title}
-      if$
+      author sort.format.names}
     }
   if$
 }
@@ -1572,14 +1576,10 @@ FUNCTION {author.title.sort}
     if$
     }
     {
-      author num.names$ #4 <
-        { author sort.format.names }
-        { title sort.format.title }
-      if$
+      author sort.format.names
     }
   if$
 }
-
 
 FUNCTION {presort}
 {
@@ -1644,10 +1644,11 @@ FUNCTION {begin.bib}
   "\def\selectlanguageifdefined#1{"                           write$ newline$
   "\expandafter\ifx\csname date#1\endcsname\relax"            write$ newline$
   "\else\language\csname l@#1\endcsname\fi}"                  write$ newline$
-  "\ifx\undefined\url\def\url#1{{\small #1}}\else\fi"         write$ newline$
-  "\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi"      write$ newline$
-  "\ifx\undefined\BibAnnote\long\def\BibAnnote#1{}\else\fi"   write$ newline$
-  "\ifx\undefined\BibEmph\def\BibEmph#1{#1}\else\fi"   write$ newline$
+  "\ifx\undefined\BibEmph\def\BibEmph#1{#1}\else\fi"          write$ newline$
+  "\ifx\undefined\url\def\url#1{\texttt{#1}}\else\fi"         write$ newline$
+  "\ifx\undefined\BibUrl\def\BibUrl#1{URL: \url{#1}}\else\fi" write$ newline$
+  "\ifx\undefined\BibUrlDate\long\def\BibUrlDate#1{({\cyr\cyrd\cyra\cyrt\cyra\ \cyro\cyrb\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrya}: #1)}\else\fi" write$ newline$
+  "\ifx\undefined\BibAnnote\long\def\BibAnnote#1{#1}\else\fi"   write$ newline$
   preamble$ empty$
     'skip$
     { preamble$ write$ newline$ }
