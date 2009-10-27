@@ -14,6 +14,9 @@ packages: amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib,
 oberdiek, hyperref, hypernat, pscyr or cyrtimes, txfonts or mtpro, subfig, 
 wrapfig, and packages for russian language support in LaTeX.
 
+For processing of figures with Makefile and nomake.cmd scipts you should
+install Ghostscript, epstool, and sam2p.
+
 
 Downloads and updates
 ---------------------

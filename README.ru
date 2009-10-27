@@ -14,6 +14,10 @@ oberdiek, hyperref, hypernat, subfig, wrapfig, а также пакеты для поддержки русс
 Для использования гарнитуры Times рекомендуется установить пакеты 
 pscyr или cyrtimes, txfonts или mtpro.
 
+Для обработки рисунков с помощью скриптов Makefile и nomake.cmd
+рекомендуется установить Ghostscript, epstool и sam2p.
+
+
 Получение последней версии
 --------------------------
 
