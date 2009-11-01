@@ -69,7 +69,7 @@ goto :eof
 
 :epstopdf
 	for %%f in (!e2pfiles!) do (
-		call :cmptimes "%%f" "%%~nf.pdf"
+		call :cmptimes %%~nf.pdf %%f
 		if !_ctres!==1 (
 			%epstopdf% "%%f"
 			echo epstopdf: %%f
@@ -96,14 +96,14 @@ goto :eof
 			echo optimize: %%f
 		) else (
 			del /q "%prefix%%%f"
-			echo optimize: %%f skipped
+			echo optimize: %%f does not need optimization
 		)
 	)
 goto :eof
 
 :pdftopng256
 	for %%f in (!pdf2pngfiles!) do (
-		call :cmptimes "%%f" "%%~nf.png"
+		call :cmptimes "%%~nf.png" "%%f"
 		if !_ctres!==1 (
 			%gs% -sDEVICE=png256 -r%res% -q -sOutputFile=%%~nf.png -dNOPAUSE ^
 				-dBATCH -dSAFER "%%f"
@@ -114,7 +114,7 @@ goto :eof
 
 :pdftotiffg4
 	for %%f in (!pdf2tiffiles!) do (
-		call :cmptimes "%%f" "%%~nf.tif"
+		call :cmptimes "%%~nf.tif" "%%f"
 		if !_ctres!==1 (
 			%gs% -sDEVICE=tiffg4 -r%res% -q -sOutputFile=%%~nf.tif -dNOPAUSE ^
 				-dBATCH -dSAFER "%%f"
@@ -124,19 +124,22 @@ goto :eof
 goto :eof
 
 :cmptimes
-	if not exist "%2" (
+	set _ctfiles=%*
+	set _ctoutf=%~1
+	if not exist %_ctoutf% (
 		set _ctres=1
 		goto :eof
 	)
-	set time=%~t1
-	for /f "tokens=1-5 delims=.: " %%a in ("%time%") do set time1="%%c%%b%%a%%d%%e"
-	set time=%~t2
-	for /f "tokens=1-5 delims=.: " %%a in ("%time%") do set time2="%%c%%b%%a%%d%%e"
+	for /f "usebackq" %%f in (`dir /b /t:w /o:-d %_ctfiles%`) do (
+		set _ctnewest=%%f
+		goto :_ctbreak
+	)
+	:_ctbreak
 
-	if %time1% GEQ %time2% (
-		set _ctres=1
-	) else (
+	if "%_ctoutf%"=="%_ctnewest%" (
 		set _ctres=0
+	) else (
+		set _ctres=1
 	)
 goto :eof
 

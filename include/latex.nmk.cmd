@@ -63,6 +63,11 @@ exit /b
 goto :eof
 
 :dvi
+	call :cmptimes %target%.dvi *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'dvi'.
+		goto :eof
+	)
 	%latex% %latexflags% %target%.tex
 	if exist %bibfile% (
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
@@ -90,11 +95,16 @@ goto :eof
 goto :eof
 
 :html
-	if not exist %target%.dvi call :dvi
+	call :dvi
 	%l2h% %l2hflags% %target%.tex
 goto :eof
 
 :pdf
+	call :cmptimes %target%.pdf *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'pdf'.
+		goto :eof
+	)
 	%pdflatex% %pdflatexflags% %target%.tex
 	if exist %bibfile% (
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
@@ -106,34 +116,34 @@ goto :eof
 goto :eof
 
 :pdf2on1
-	if not exist %target%_2on1.ps call :ps2on1
+	call :ps2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
 		-c save pop -f %target%_2on1.ps
 goto :eof
 
 :pdfbook
-	if not exist %target%_book.ps call :psbook
+	call :psbook
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_book.pdf ^
 		-c save pop -f %target%_book.ps
 goto :eof
 
 :ps
-	if not exist %target%.dvi call :dvi
+	call :dvi
 	%dvips% %dvipsflags% %target%.dvi
 goto :eof
 
 :ps2on1
-	if not exist %target%.ps call :ps
+	call :ps
 	%psnup% %psnupflags% %target%.ps > %target%_2on1.ps
 goto :eof
 
 :psbook
-	if not exist %target%.ps call :ps
+	call :ps
 	%psbook% %target%.ps | %psnup% -2 > %target%_book.ps
 goto :eof
 
 :rtf
-	if not exist %target%.dvi call :dvi
+	call :dvi
 	%l2rtf% %l2rtfflags% -a %target%.aux -b %target%.bbl %target%.tex
 goto :eof
 
@@ -174,3 +184,22 @@ goto :eof
 	cd fig & call nomake.cmd pdftotiffg4 & cd ..
 goto :eof
 
+:cmptimes
+	set _ctfiles=%*
+	set _ctoutf=%~1
+	if not exist %_ctoutf% (
+		set _ctres=1
+		goto :eof
+	)
+	for /f "usebackq" %%f in (`dir /b /t:w /o:-d %_ctfiles%`) do (
+		set _ctnewest=%%f
+		goto :_ctbreak
+	)
+	:_ctbreak
+
+	if "%_ctoutf%"=="%_ctnewest%" (
+		set _ctres=0
+	) else (
+		set _ctres=1
+	)
+goto :eof
