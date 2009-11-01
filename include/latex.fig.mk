@@ -68,7 +68,7 @@ optimize: $(OPTFILES)
 			echo "done" ;\
 		else \
 			rm "$(PREFIX)$$f" ;\
-			echo "skipped" ;\
+			echo "does not need optimization" ;\
 		fi ;\
 	done
 

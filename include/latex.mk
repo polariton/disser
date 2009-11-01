@@ -76,15 +76,15 @@ rtf: $(TARGET).rtf
 srcdist: clean figclean
 	$(ARCH) $(ARCHFLAGS) $(ARCHIVE) $(SRCFILES)
 
-$(TARGET).dvi: $(TARGET).tex
-	@$(LATEX) $(TEXFLAGS) $^ ;\
+$(TARGET).dvi: *.tex *.bib
+	@$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	if [ -f $(BIBFILE) ] ; then \
 		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f; done ;\
-		$(LATEX) $(TEXFLAGS) $^ ;\
+		$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
 	fi ;\
-	$(LATEX) $(TEXFLAGS) $^
+	$(LATEX) $(TEXFLAGS) $(TARGET).tex
 
 $(TARGET).ps: $(TARGET).dvi
 	$(DVIPS) $(DVIPSFLAGS) $^
@@ -96,15 +96,15 @@ $(TARGET)_book.ps: $(TARGET).ps
 	$(PSNUP) $(PSNUPFLAGS) $^ > $@ ;\
 	$(PSBOOK) $^ | $(PSNUP) -2 > $@
 
-$(TARGET).pdf: $(TARGET).tex
-	@$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
+$(TARGET).pdf: *.tex *.bib
+	@$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	if [ -f $(BIBFILE) ] ; then \
 		for f in *.aux ; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
-		$(PDFLATEX) $(PDFLATEXFLAGS) $^ ;\
+		$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	else \
 		echo "Warning: Bibliography file does not exist" ;\
 	fi ;\
-	$(PDFLATEX) $(PDFLATEXFLAGS) $^
+	$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex
 
 $(TARGET)_2on1.pdf: $(TARGET)_2on1.ps
 	$(PS2PDF) $(PS2PDFFLAGS) -sOutputFile=$@ -c save pop -f $^
