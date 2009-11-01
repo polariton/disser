@@ -68,6 +68,10 @@
 
 \MakeShortVerb{\|}
 
+\def\file#1{\texttt{#1}}
+\def\pkg#1{\textsf{#1}}
+\def\cmd#1{\texttt{#1}}
+
 \def\deflabel#1{\ttfamily #1\hfill}
 \newenvironment{deflist}[1]{%
   \begin{list}{}{%
@@ -135,7 +139,7 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  \title{|disser| "--- пакет для оформления диссертаций}
+%  \title{\pkg{disser} "--- пакет для оформления диссертаций}
 %  \date{Версия \fileversion\\[6pt]\filedate}
 %  \author{Станислав Кручинин\\[6pt]
 %  \normalsize E-mail:
@@ -146,24 +150,26 @@
 %
 %  \section*{Обзор документации}
 %
-%  Документация пакета |disser| состоит из следующих файлов:
-%
+%  Документация пакета \pkg{disser} состоит из следующих файлов:
 %  \begin{deflist}{README, README.ru }
-%  \item[\href{file:manual.pdf}{manual.pdf}] Руководство пользователя.
-%  \item[README, README.ru] Информация о сборке и установке пакета
-%  (текстовые файлы).
-%  \item[ChangeLog] История версий (текстовый файл).
+%  \item[\href{file:manual.pdf}{manual.pdf}]
+%    Руководство пользователя.
+%  \item[README, README.ru]
+%    Информация о сборке и установке пакета (текстовые файлы).
+%  \item[ChangeLog]
+%    История версий (текстовый файл).
 %  \end{deflist}
 %
 %  Документированные исходные тексты:
 %  \begin{deflist}{README, README.ru }
-%  \item[\href{file:disser.pdf}{disser.dtx}] Исходный текст класса |disser|
-%  (данный файл).
+%  \item[\href{file:disser.pdf}{disser.dtx}]
+%    Исходный текст класса \pkg{disser} (данный файл).
 %  \item[\href{file:gost732.pdf}{gost732.dtx}]
-%    Исходный текст класса класса |gost732| для оформления документов в
+%    Исходный текст класса класса \pkg{gost732} для оформления документов в
 %    соответствии с ГОСТ 7.32-2001.
-%  \item[\href{file:disser-bst.pdf}{disser-bst.dtx}]
-%    Исходный текст стилей библиографии |disser.bst| и |disser-s.bst|.
+%  \item[\href{file:gost705-bst.pdf}{gost705-bst.dtx}]
+%    Исходный текст стилей библиографии \pkg{gost705.bst} и
+%    \pkg{gost705s.bst}.
 %  \end{deflist}
 %
 %  \clearpage
@@ -185,7 +191,7 @@
 %    \end{macrocode}
 % Определение операторов условного выполнения.
 % \begin{itemize}
-% \item подключение пакета, определяющего |\ifpdf|.
+% \item подключение пакета \pkg{ifpdf}, определяющего команду |\ifpdf|.
 % \DescribePackage{ifpdf}\index{Пакеты!\verb*+ifpdf+}
 %    \begin{macrocode}
 \RequirePackage{ifpdf}
@@ -219,15 +225,16 @@
 %    \begin{macrocode}
 \newif\ifDis@facsimile\Dis@facsimilefalse
 %    \end{macrocode}
-% \item Подключение пакетов |amsmath|, |amsfonts|, |amssymb| (включено).
+% \item Подключение пакетов \pkg{amsmath}, \pkg{amsfonts}, \pkg{amssymb}
+% (включено).
 %    \begin{macrocode}
 \newif\ifDis@ams\Dis@amstrue
 %    \end{macrocode}
-% \item Подключение |hyperref| (отключено).
+% \item Подключение \pkg{hyperref} (отключено).
 %    \begin{macrocode}
 \newif\ifDis@href\Dis@hreffalse
 %    \end{macrocode}
-% \item Подключение |subfig| (отключено).
+% \item Подключение \pkg{subfig} (отключено).
 %    \begin{macrocode}
 \newif\ifDis@subf\Dis@subffalse
 %    \end{macrocode}
@@ -244,17 +251,18 @@
 %
 % \subsection{Опции класса}
 %
-% Подключение пакета |kvoptions| для обработки опций в формате
-% |ключ = значение|.
+% Подключение пакета \pkg{kvoptions} для обработки опций в формате
+% <<ключ = значение>>.
+% \DescribePackage{kvoptions}\index{Пакеты!\verb*+kvoptions+}
 %    \begin{macrocode}
 \RequirePackage{kvoptions}[2006/08/17]
 
 %    \end{macrocode}
-% Подключение пакета |hyperref| и необходимых настроек.
+% Подключение пакета \pkg{hyperref} и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{href}{\Dis@hreftrue}
 %    \end{macrocode}
-% Подключение пакета |subfig| и необходимых настроек.
+% Подключение пакета \pkg{subfig} и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{subf}{\Dis@subftrue}
 %    \end{macrocode}
@@ -266,7 +274,7 @@
 %    \begin{macrocode}
 \DeclareOption{facsimile}{\Dis@facsimiletrue}
 %    \end{macrocode}
-% Не подключать пакеты |amsmath|, |amsfonts|, |amssymb|.
+% Не подключать пакеты \pkg{amsmath}, \pkg{amsfonts}, \pkg{amssymb}.
 %    \begin{macrocode}
 \DeclareOption{noams}{\Dis@amsfalse}
 

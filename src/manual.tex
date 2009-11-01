@@ -60,7 +60,7 @@
   \let\makelabel\deflabel}
 }{\end{list}}
 
-\def\fileversion{1.1.2}
+\def\fileversion{1.1.3}
 
 \begin{document}
 \sloppy
@@ -77,7 +77,8 @@
 \begin{abstract}\noindent
 Данный документ содержит руководство по использованию пакета |disser|.
 Инструкции по установке и обновлению смотрите в файлах |README| и |README.ru|.
-Описание исходных текстов содержится в файлах \href{file:disser.pdf}{\file{disser.pdf}}, \href{file:disser-bst.pdf}{\file{disser-bst.pdf}} и \href{file:gost732.pdf}{\file{gost732.pdf}}.
+Описание исходных текстов содержится в файлах \href{file:disser.pdf}{\file{disser.pdf}}, \href{file:gost732.pdf}{\file{gost732.pdf}} и
+\href{file:gost705-bst.pdf}{\file{gost705-bst.pdf}}.
 \end{abstract}
 
 \tableofcontents
@@ -157,7 +158,7 @@
 \\\hline
   fixint = \{\textbf{true}$\,\vert\,$false\} &
   Замена стандартных знаков интегралов на прямые (из математического шрифта
-  |euler|).
+  \pkg{euler}).
 \\\hline
   libcat &
   Включает вывод номера УДК на титульном листе.
@@ -185,9 +186,11 @@ nomake <target1> <target2> ...\end{verbatim}
 
 Далее приведены описания целей в зависимости от каталога, в котором производится сборка.
 
+\def\longestlabel{pdftotiffg44}
+
 \subsection{Каталог \file{disser}}
 
-\begin{deflist}{uninstall  }
+\begin{deflist}{\longestlabel}
 \item[all]
   Сборка классов и шаблонов.
 \item[clean]
@@ -205,12 +208,11 @@ nomake <target1> <target2> ...\end{verbatim}
   Цель по умолчанию.
 \item[reinstall]
   Переустановка пакета.
-  Соответствует цели \cmd{reinstall} в каталоге \file{disser/src}.
+  Соответствует цели \cmd{reinstall} в каталогах \file{disser/src} и \file{disser/templates}.
 \item[srcdist]
-  Создание архива, содержащего исходные тексты пакета.
-  Эквивалентно команде \cmd{hg archive}.
+  Создание архива исходных текстов пакета с помощью команды \cmd{hg archive}.
 \item[tds]
-  Создание TDS-архива, содержащего скомпилированные файлы пакета и шаблонов.
+  Создание архива скомпилированных файлов пакета и шаблонов.
 \item[templates]
   Сборка всех шаблонов.
   Соответствует цели по умолчанию в каталоге \file{disser/templates}.
@@ -221,7 +223,7 @@ nomake <target1> <target2> ...\end{verbatim}
 
 \subsection{Каталог \texttt{disser/src}}
 
-\begin{deflist}{uninstall  }
+\begin{deflist}{\longestlabel}
 \item[all]
   Сборка пакета и PDF-версии документации.
   Цель по умолчанию.
@@ -248,7 +250,7 @@ nomake <target1> <target2> ...\end{verbatim}
 \subsection{Каталоги \file{disser/templates} и
  \file{disser/templates/<тип-диссертации>}}
 
-\begin{deflist}{uninstall  }
+\begin{deflist}{\longestlabel}
 \item[dvi]
   Сборка DVI-файла. Цель по умолчанию.
 \item[clean]
@@ -280,7 +282,7 @@ nomake <target1> <target2> ...\end{verbatim}
 \end{deflist}
 
 Помимо указанных выше целей, в каталоге \file{disser/templates} доступны следующие:
-\begin{deflist}{uninstall  }
+\begin{deflist}{\longestlabel}
 \item[install]
   Копирование шаблонов в дерево каталогов \TeX{}.
 \item[reinstall]
@@ -300,7 +302,7 @@ nomake <target1> <target2> ...\end{verbatim}
 
 \subsection{Каталог \file{disser/templates/<тип-диссертации>/fig}}
 
-\begin{deflist}{pdftotiffg44}
+\begin{deflist}{\longestlabel}
 \item[bmtoeps]
   Конвертация растровых изображений в EPS.
   Используемая программа: \href{http://code.google.com/p/sam2p/}{\cmd{sam2p}}.

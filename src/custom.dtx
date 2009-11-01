@@ -25,7 +25,7 @@
 %    \end{macrocode}
 % Реализация команд |\English| и |\Eng| без переключения кодировок шрифта.
 % Это необходимо для корректного отображения символа переноса строки при
-% использовании пакетов |pscyr| и |cyrtimes|.
+% использовании пакетов \pkg{pscyr} и \pkg{cyrtimes}.
 % \DescribeMacro{\English}\index{Макросы!\verb*+\English+}
 % \DescribeMacro{\Eng}\index{Макросы!\verb*+\Eng+}
 %    \begin{macrocode}
@@ -64,8 +64,8 @@
     \IfFileExists{pscyr.sty}{
 %    \end{macrocode}
 % \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
-% Установка Times как шрифта по умолчанию.
-% Выбор стандартного моноширинного шрифта.
+% Установка Times как шрифта по умолчанию, выбор стандартного моноширинного
+% шрифта.
 %    \begin{macrocode}
       \usepackage{pscyr}
       \renewcommand\rmdefault{ftm}
@@ -74,8 +74,8 @@
       \IfFileExists{cyrtimes.sty}{
 %    \end{macrocode}
 % \DescribePackage{cyrtimes}\index{Пакеты!\verb*+cyrtimes+}
-% Вместо |pscyr| может быть использован пакет |cyrtimes|, входящий в состав
-% дистрибутива \TeX Live.
+% Вместо \pkg{pscyr} может быть использован пакет \pkg{cyrtimes}, входящий в
+% состав дистрибутива \TeX Live.
 %    \begin{macrocode}
         \usepackage{cyrtimes}
       }{
@@ -118,7 +118,7 @@
 % \subsubsection{Библиографические ссылки}
 % \DescribePackage{natbib}\index{Пакеты!\verb*+natbib+}
 %    \begin{macrocode}
-\usepackage[square, comma, sort&compress, numbers]{natbib}
+\usepackage[square,comma,sort&compress,numbers]{natbib}
 
 %    \end{macrocode}
 % Переопределение |\bibsection| для включения ссылки на список литературы в оглавление.
@@ -160,11 +160,12 @@
 % \subsubsection{Плавающие объекты}
 %
 % \DescribePackage{wrapfig}\index{Пакеты!\verb*+wrapfig+}
-% Плавающие рисунки ``в оборку''.
+% Плавающие рисунки <<в оборку>>.
 %    \begin{macrocode}
 \usepackage{wrapfig}
 %    \end{macrocode}
-% Пакет для вложенной нумерации плавающих объектов.
+% Пакеты \pkg{caption} и \pkg{subfig} для вложенной нумерации плавающих
+% объектов.
 % \DescribePackage{caption}\index{Пакеты!\verb*+caption+}
 % \DescribePackage{subfig}\index{Пакеты!\verb*+subfig+}
 %    \begin{macrocode}
@@ -221,7 +222,7 @@
   \usepackage{graphicx}
 \fi
 %    \end{macrocode}
-% Пакеты для исправления ошибок |hyperref|.
+% Пакеты для исправления ошибок \pkg{hyperref}.
 % \DescribePackage{hypernat}\index{Пакеты!\verb*+hypernat+}
 % \DescribePackage{hypcap}\index{Пакеты!\verb*+hypcap+}
 %    \begin{macrocode}
@@ -232,7 +233,7 @@
 
 %    \end{macrocode}
 % \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
-% Команда, создающая цель для |hyperref| над заголовками ненумеруемых разделов.
+% Команда, создающая цель для гиперссылок над заголовками ненумеруемых разделов.
 %    \begin{macrocode}
 \def\metaphantom#1{%
   \ifDis@href
