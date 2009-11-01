@@ -4,11 +4,11 @@
 #
 
 TARGET := disser
-MAINDTX := disser gost732 disser-bst
+MAINDTX := disser gost732 gost705-bst
 MANUAL := manual
 
 CLSFILES := *.cls *.rtx
-BSTFILES := $(TARGET).bst $(TARGET)-s.bst
+BSTFILES := gost705.bst gost705s.bst
 DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
 TEXTFILES := ../README ../README.ru ../ChangeLog
 SRCFILES := *.dtx $(TARGET).ins $(TARGET).ist $(MANUAL).tex Makefile nomake.cmd
