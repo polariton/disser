@@ -2,6 +2,22 @@ disser changelog
 Copyright (C) 2004-2009 Stanislav Kruchinin
 -------------------------------------------
 
+Summary of changes in version 1.1.3 (2009-11-01):
+
+Classes and styles:
++ Added new bibliography styles "gost705" and "gost705s" for compliance with
+  GOST R 7.0.5-2008.
+- Removed disser and disser-s bibliography styles.
++ Added index style for documentation.
+
+Makefiles:
++ Added support of DESTDIR environment variable.
++ Added "bmtoeps" and "optimize" targets.
++ Nomake files now support processing of multiple targets and compare
+  modification times of input and output files.
+* Merged commands in Makefiles to improve execution speed.
+
+
 Summary of changes in version 1.1.2 (2009-06-22):
 
 Classes:
@@ -10,14 +26,14 @@ Classes:
 * Compatibility fix for natbib package.
 * Fixed compilation errors, arising at "notitlepage" option usage.
 * Fixed theorem counter style.
-+ New bibliography style disser-s.bst to produce alphabetically 
++ New bibliography style disser-s.bst to produce alphabetically
   sorted bibliographies.
 + New implementation of \nchapter-like commands.
 
 Makefiles:
 + Added "reinstall" and "uninstall" targets.
 * Fixed commandline processing in nomake scripts.
-* Rename "class" target to "package".
+* Renamed "class" target to "package".
 
 Templates:
 * Fixed problem with "-commands.
@@ -52,10 +68,10 @@ Class:
 
 Templates:
 + Major improvements in candidate and doctor templates.
-+ Author's abstract now supports two separate bibliographies using 
++ Author's abstract now supports two separate bibliographies using
   "multibib" package.
 + Support for applicant's and secretary's facsimile.
-+ New Makefile commands "all" and "allpdf" that perform consecutive build of 
++ New Makefile commands "all" and "allpdf" that perform consecutive build of
   thesis.tex and autoref.tex.
 * Major fixes in Makefile's.
 
@@ -67,12 +83,12 @@ Class:
 + Support for wrapfig package instead of obsolete floatflt.
 + Many improvements and bugfixes in makefiles.
 + Documentation: added index of commands and lots of new descriptions.
-+ New make targets: pdf_book and ps_book, that provides 
++ New make targets: pdf_book and ps_book, that provides
   booklet makeup (useful for abstracts).
 * Fixed bug with star versions of \section-like commands.
 
 Templates:
-- No more srcltx by default because it is not included to the base TeX Live 
+- No more srcltx by default because it is not included to the base TeX Live
   Debian packages.
 * Bachelor: added support for wrapfig package.
 
@@ -124,7 +140,7 @@ Class:
 + Added class gost732.
 + Added parametrization of format for appendices.
 * Fixed parametrization of section headers.
-* Many other small fixes (see logs at 
+* Many other small fixes (see logs at
   http://disser.svn.sourceforge.net/viewvc/disser/).
 
 Templates:
