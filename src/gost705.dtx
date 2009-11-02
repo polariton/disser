@@ -22,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %<*driver>
-\ProvidesFile{gost705-bst.drv}[2009/10/27 1.1.3 Bibliography style for dissertations.]
+\ProvidesFile{gost705.drv}[2009/10/27 1.1.3 Bibliography style for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -79,20 +79,20 @@
 \setlength\hfuzz{20pt}
 \hbadness=10000
 
-\GetFileInfo{gost705-bst.drv}
+\GetFileInfo{gost705.drv}
 \begin{document}
   \sloppy
   \PrintChanges
-  \DocInput{gost705-bst.dtx}
+  \DocInput{gost705.dtx}
 \end{document}
 %</driver>
 % \fi
-% \GetFileInfo{gost705-bst.drv}
+% \GetFileInfo{gost705.drv}
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % \title{\pkg{gost705} и \pkg{gost705s} "--- стили оформления библиографии
-% по ГОСТ Р 7.0.5-2008}
+% в соответствии с ГОСТ Р 7.0.5-2008}
 % \date{Версия \fileversion\\[6pt]\filedate}
 % \author{Станислав Кручинин\\[6pt]
 % \normalsize E-mail:
@@ -106,7 +106,7 @@
 %  \section{Исходный текст}\parindent=0pt
 %    \begin{macrocode}
 
-%<*gost705-bst|gost705s-bst>
+%<*gost705|gost705s>
 
 %    \end{macrocode}
 % \subsection{Поля, используемые в bib-файлах}
@@ -1524,7 +1524,7 @@ READ
 %    \end{macrocode}
 % \subsection{Функции для сортировки списка литературы по именам авторов и названиям}
 %    \begin{macrocode}
-%<*gost705s-bst>
+%<*gost705s>
 FUNCTION {sortify}
 { purify$
   "l" change.case$
@@ -1630,7 +1630,7 @@ ITERATE {presort}
 
 SORT
 
-%</gost705s-bst>
+%</gost705s>
 
 %    \end{macrocode}
 % \subsection{Вычисление длины табуляции между номером и текстом}
@@ -1720,5 +1720,5 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 
-%</gost705-bst|gost705s-bst>
+%</gost705|gost705s>
 %    \end{macrocode}

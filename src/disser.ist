@@ -1,5 +1,5 @@
 item_0  "\n \\vskip12pt \\item"
 item_x1 "\n \\vskip6pt \\subitem"
 delim_0 "\\hfill"
-delim_1 "\\hfill"
-delim_2 "\\hfill"
+delim_1 "\\leaders\\hbox to 1em{\\hss.\\hss}\\hfill"
+delim_2 "\\leaders\\hbox to 1em{\\hss.\\hss}\\hfill"

@@ -4,7 +4,7 @@
 #
 
 TARGET := disser
-MAINDTX := disser gost732 gost705-bst
+MAINDTX := disser gost732 gost705
 MANUAL := manual
 
 CLSFILES := *.cls *.rtx

@@ -12,7 +12,7 @@ setlocal enabledelayedexpansion
 
 set target=disser
 set subclass=gost732
-set bst=gost705-bst
+set bst=gost705
 set manual=manual
 
 set clsfiles=*.cls *.rtx

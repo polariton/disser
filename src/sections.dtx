@@ -353,7 +353,7 @@
 %    \end{macrocode}
 %
 % \DescribeMacro{\@tocline}\index{Макросы!\verb*+"\"@tocline+}
-% Обобщенная версия команды, добавляющей запись в оглавление.
+% Обобщенная версия стандартной команды, добавляющей запись в оглавление.
 %    \begin{macrocode}
 \def\@tocline#1#2#3#4{%
   \ifnum #2>\c@tocdepth \else
@@ -377,37 +377,37 @@
 
 %    \end{macrocode}
 %
-% Команда, создающие секции в тексте и в оглавлении.
+% Команды, создающие заголовки секций в тексте и записи в оглавлении.
 % \DescribeMacro{\section}\index{Макросы!\verb*+\section+}
-% \DescribeMacro{\l@section}\index{Макросы!\verb*+\l@section+}
+% \DescribeMacro{\l@section}\index{Макросы!\verb*+"\l"@section+}
 %    \begin{macrocode}
 \newcommand\section{\@startsection{section}{1}}
 \newcommand*\l@section{\@tocline{section}{1}}
 
 %    \end{macrocode}
 % \DescribeMacro{\subsection}\index{Макросы!\verb*+\subsection+}
-% \DescribeMacro{\l@subsection}\index{Макросы!\verb*+\l@subsection+}
+% \DescribeMacro{\l@subsection}\index{Макросы!\verb*+"\l"@subsection+}
 %    \begin{macrocode}
 \newcommand\subsection{\@startsection{subsection}{2}}
 \newcommand*\l@subsection{\@tocline{subsection}{2}}
 
 %    \end{macrocode}
 % \DescribeMacro{\subsubsection}\index{Макросы!\verb*+\subsubsection+}
-% \DescribeMacro{\l@subsubsection}\index{Макросы!\verb*+\l@subsubsection+}
+% \DescribeMacro{\l@subsubsection}\index{Макросы!\verb*+"\l"@subsubsection+}
 %    \begin{macrocode}
 \newcommand\subsubsection{\@startsection{subsubsection}{3}}
 \newcommand*\l@subsubsection{\@tocline{subsubsection}{3}}
 
 %    \end{macrocode}
 % \DescribeMacro{\paragraph}\index{Макросы!\verb*+\paragraph+}
-% \DescribeMacro{\l@paragraph}\index{Макросы!\verb*+\l@paragraph+}
+% \DescribeMacro{\l@paragraph}\index{Макросы!\verb*+"\l"@paragraph+}
 %    \begin{macrocode}
 \newcommand\paragraph{\@startsection{paragraph}{4}}
 \newcommand*\l@paragraph{\@tocline{paragraph}{4}}
 
 %    \end{macrocode}
 % \DescribeMacro{\subparagraph}\index{Макросы!\verb*+\subparagraph+}
-% \DescribeMacro{\l@subparagraph}\index{Макросы!\verb*+\l@subparagraph+}
+% \DescribeMacro{\l@subparagraph}\index{Макросы!\verb*+"\l"@subparagraph+}
 %    \begin{macrocode}
 \newcommand\subparagraph{\@startsection{subparagraph}{5}}
 \newcommand*\l@subparagraph{\@tocline{subparagraph}{5}}
