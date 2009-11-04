@@ -201,24 +201,24 @@ nomake <target1> <target2> ...\end{verbatim}
   Справка по целям сборки.
 \item[install]
   Копирование пакета, документации и шаблонов в дерево каталогов \TeX{}.
-  Соответствует цели \cmd{install} в каталогах \file{disser/src} и \file{disser/templates}.
+  Соответствует цели \cmd{install} в подкаталогах \file{src} и \file{templates}.
 \item[package]
   Сборка пакета.
-  Соответствует цели \cmd{package} в каталоге \file{disser/src}.
+  Соответствует цели \cmd{package} в каталоге \file{src}.
   Цель по умолчанию.
 \item[reinstall]
   Переустановка пакета.
-  Соответствует цели \cmd{reinstall} в каталогах \file{disser/src} и \file{disser/templates}.
+  Соответствует цели \cmd{reinstall} в каталогах \file{src} и \file{templates}.
 \item[srcdist]
   Создание архива исходных текстов пакета с помощью команды \cmd{hg archive}.
 \item[tds]
   Создание архива скомпилированных файлов пакета и шаблонов.
 \item[templates]
   Сборка всех шаблонов.
-  Соответствует цели по умолчанию в каталоге \file{disser/templates}.
+  Соответствует цели по умолчанию в подкаталоге \file{templates}.
 \item[uninstall]
   Удаление файлов пакета из дерева каталогов \TeX{}.
-  Соответствует целям \cmd{uninstall} в каталогах \file{disser/src} и \file{disser/templates}.
+  Соответствует целям \cmd{uninstall} в подкаталогах \file{src} и \file{templates}.
 \end{deflist}
 
 \subsection{Каталог \texttt{disser/src}}
@@ -395,7 +395,7 @@ bibtex8 -H -c <csf-file> <tex-file-basename>
 latex <tex-file>
 latex <tex-file>
 \end{verbatim}
-Здесь |<tex-file>| "--- файл документа, |<csf-file>| "--- файл описания кодовой страницы, |<tex-file-basename>| "--- имя файла документа без расширения.
+Здесь |<tex-file>| "--- файл документа, |<tex-file-basename>| "--- имя файла документа без расширения, |<csf-file>| "--- файл описания кодовой страницы.
 
 Стили позволяют менять префикс и постфикс номеров ссылок, т.\,е. использовать ссылки вида [A1] или [1a].
 Это необходимо для того, чтобы в автореферате различались ссылки на работы соискателя и на внешние источники.
