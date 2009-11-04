@@ -374,7 +374,7 @@ FUNCTION {bbl.edby} % { "\bbledby{}" }
   curlanguage "english" =
   { "Ed. by " }
     { curlanguage "russian" =
-        { "{\cyr\CYRP\cyro\cyrd\;\cyrr\cyre\cyrd.\;}" }
+        { "{\cyr\CYRP\cyro\cyrd\ \cyrr\cyre\cyrd.\ }" }
         { "language is not defined: " language  "edited by" * * warning$ "edited by" }
       if$
     }
@@ -386,7 +386,7 @@ FUNCTION {bbl.cmplr}
   curlanguage "english" =
   { "Compiler " }
     { curlanguage "russian" =
-      { "{\cyr\CYRS\cyro\cyrs\cyrt.\;}" }
+      { "{\cyr\CYRS\cyro\cyrs\cyrt.\ }" }
       { "language is not defined: " language  "compiler" * * warning$ "compiler" }
     if$
     }
@@ -602,7 +602,7 @@ FUNCTION {bbl.techrep}
   curlanguage "english" =
     { "Tech. Rep." }
     { curlanguage "russian" =
-        { "{\cyr\CYRT\cyre\cyrh.\;\cyrd\cyro\cyrk\cyrl\cyra\cyrd.}" }
+        { "{\cyr\CYRT\cyre\cyrh.\ \cyrd\cyro\cyrk\cyrl\cyra\cyrd.}" }
         { "language is not defined: " language  "Tech. Rep." * * warning$ "P." }
       if$
     }
@@ -614,7 +614,7 @@ FUNCTION {bbl.mthesis}
   curlanguage "english" =
     { "Master's thesis" }
     { curlanguage "russian" =
-        { "{\cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\;\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" }
+        { "{\cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\ \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" }
         { "language is not defined: " language  "Master's thesis" * * warning$ "P." }
       if$
     }
@@ -626,9 +626,10 @@ FUNCTION {bbl.phdthesis}
   curlanguage "english" =
     { "Ph.D. thesis" }
     { curlanguage "russian" =
-      { "{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\;\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" }
-      { "language is not defined: " language  "Ph.D. thesis" * * warning$ "P." }
-    if$}
+        { "{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\ \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" }
+        { "language is not defined: " language  "Ph.D. thesis" * * warning$ "P." }
+      if$
+    }
   if$
 }
 
