@@ -6,16 +6,20 @@ Summary of changes in version 1.1.3 (2009-11-01):
 
 Classes and styles:
 + Added new bibliography styles "gost705" and "gost705s" for compliance with
-  GOST R 7.0.5-2008.
-- Removed disser and disser-s bibliography styles.
-+ Added index style for documentation.
+  new GOST R 7.0.5-2008.
+- Removed "disser" and "disser-s" bibliography styles.
++ Added index style for documented source code.
 
 Makefiles:
-+ Added support of DESTDIR environment variable.
-+ Added "bmtoeps" and "optimize" targets.
 + Nomake files now support processing of multiple targets and compare
   modification times of input and output files.
-* Merged commands in Makefiles to improve execution speed.
++ Added support for DESTDIR environment variable.
++ Added "bmtoeps" and "optimize" targets.
++ Added comparison of initial and optimized EPS file sizes.
+
+Templates:
++ Added some bibliography entries for testing purposes.
+* Set "gost705" as default bibliography style.
 
 
 Summary of changes in version 1.1.2 (2009-06-22):
