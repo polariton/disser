@@ -11,7 +11,7 @@ Classes and styles:
 + Added index style for documented source code.
 
 Makefiles:
-+ Nomake files now support processing of multiple targets and compare
++ Nomake.cmd scripts now support processing of multiple targets and compare
   modification times of input and output files.
 + Added support for DESTDIR environment variable.
 + Added "bmtoeps" and "optimize" targets.
