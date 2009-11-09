@@ -4,7 +4,8 @@
 #
 
 TARGET := disser
-MAINDTX := disser gost732 gost705
+BST := gost705
+MAINDTX := disser gost732 $(BST)
 MANUAL := manual
 
 CLSFILES := *.cls *.rtx
@@ -72,13 +73,25 @@ reinstall: uninstall install
 
 $(TARGET).dvi: $(TARGET).dtx
 	$(LATEX) $(LATEXFLAGS) $<
-	$(MI) -r $(TARGET)
+	$(MI) $(MIFLAGS) $(TARGET)
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
 
 $(TARGET).pdf: $(TARGET).dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 	$(MI) $(MIFLAGS) $(TARGET)
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+
+$(BST).dvi: $(BST).dtx
+	$(LATEX) $(LATEXFLAGS) $<
+	$(MI) $(MIFLAGS) $(BST)
+	$(LATEX) $(LATEXFLAGS) $<
+	$(LATEX) $(LATEXFLAGS) $<
+
+$(BST).pdf: $(BST).dtx
+	$(PDFLATEX) $(PDFLATEXFLAGS) $<
+	$(MI) $(MIFLAGS) $(BST)
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 

@@ -67,10 +67,15 @@ goto :eof
 	!mi! !miflags! %target%
 	!latex! !latexflags! %target%.dtx
 	!latex! !latexflags! %target%.dtx
+
 	!latex! !latexflags! %subclass%.dtx
 	!latex! !latexflags! %subclass%.dtx
+
+	!latex! !latexflags! %bst%.dtx
+	!mi! !miflags! %bst%
 	!latex! !latexflags! %bst%.dtx
 	!latex! !latexflags! %bst%.dtx
+
 	!latex! !latexflags! %manual%.tex
 	!latex! !latexflags! %manual%.tex
 goto :eof
@@ -110,10 +115,15 @@ goto :eof
 	!mi! !miflags! %target%
 	!pdflatex! !pdflatexflags! %target%.dtx
 	!pdflatex! !pdflatexflags! %target%.dtx
+
 	!pdflatex! !pdflatexflags! %subclass%.dtx
 	!pdflatex! !pdflatexflags! %subclass%.dtx
+
+	!pdflatex! !pdflatexflags! %bst%.dtx
+	!mi! !miflags! %bst%
 	!pdflatex! !pdflatexflags! %bst%.dtx
 	!pdflatex! !pdflatexflags! %bst%.dtx
+
 	!pdflatex! !pdflatexflags! %manual%.tex
 	!pdflatex! !pdflatexflags! %manual%.tex
 goto :eof
