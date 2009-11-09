@@ -115,14 +115,14 @@ goto :eof
 	%pdflatex% %pdflatexflags% %target%.tex
 goto :eof
 
-:pdf2on1
+:pdf_2on1
 	call :ps2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
 		-c save pop -f %target%_2on1.ps
 goto :eof
 
-:pdfbook
-	call :psbook
+:pdf_book
+	call :ps_book
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_book.pdf ^
 		-c save pop -f %target%_book.ps
 goto :eof
@@ -132,12 +132,12 @@ goto :eof
 	%dvips% %dvipsflags% %target%.dvi
 goto :eof
 
-:ps2on1
+:ps_2on1
 	call :ps
 	%psnup% %psnupflags% %target%.ps > %target%_2on1.ps
 goto :eof
 
-:psbook
+:ps_book
 	call :ps
 	%psbook% %target%.ps | %psnup% -2 > %target%_book.ps
 goto :eof
