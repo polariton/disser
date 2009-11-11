@@ -74,7 +74,12 @@ goto :eof
 goto :eof
 
 :tds
-	if not exist %tdsdir% md "%tdsdir%"
+	if exist %tdsarchive% del /q %tdsarchive%
+	if not exist %tdsdir% (
+		mkdir "%tdsdir%"
+	) else (
+		rmdir /q /s "%tdsdir%"
+	)
 	set destdir=..\%tdsdir%
 	call :install
 	7z a -t%archext% -mx=9 %tdsarchive% %tdsdir%\*

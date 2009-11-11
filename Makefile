@@ -32,7 +32,9 @@ srcdist:
 	[ -f $(TARGET).$(ARCHEXT) ] && mv $(TARGET).$(ARCHEXT) $(ARCHIVE)
 
 tds:
-	@mkdir -p $(TDSDIR) ;\
+	@[ -f $(TDSARCHIVE) ] && rm -f $(TDSARCHIVE) ;\
+	[ -d $(TDSDIR) ] && rm -rf $(TDSDIR) ;\
+	mkdir -p $(TDSDIR) ;\
 	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C src install ;\
 	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C templates install ;\
 	7z a -t$(ARCHEXT) -mx=9 $(TDSARCHIVE) $(TDSDIR)/*
