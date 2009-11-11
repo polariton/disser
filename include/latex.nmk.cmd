@@ -116,7 +116,7 @@ goto :eof
 goto :eof
 
 :pdf_2on1
-	call :ps2on1
+	call :ps_2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
 		-c save pop -f %target%_2on1.ps
 goto :eof
