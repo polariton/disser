@@ -95,6 +95,11 @@ goto :eof
 goto :eof
 
 :html
+	call :cmptimes %target%.html *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'html'.
+		goto :eof
+	)
 	call :dvi
 	%l2h% %l2hflags% %target%.tex
 goto :eof
@@ -116,33 +121,63 @@ goto :eof
 goto :eof
 
 :pdf_2on1
+	call :cmptimes %target%_2on1.pdf *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'pdf_2on1'.
+		goto :eof
+	)
 	call :ps_2on1
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_2on1.pdf ^
 		-c save pop -f %target%_2on1.ps
 goto :eof
 
 :pdf_book
+	call :cmptimes %target%_book.pdf *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'pdf_book'.
+		goto :eof
+	)
 	call :ps_book
 	%ps2pdf% %ps2pdfflags% -sOutputFile=%target%_book.pdf ^
 		-c save pop -f %target%_book.ps
 goto :eof
 
 :ps
+	call :cmptimes %target%.ps *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'ps'.
+		goto :eof
+	)
 	call :dvi
 	%dvips% %dvipsflags% %target%.dvi
 goto :eof
 
 :ps_2on1
+	call :cmptimes %target%_2on1.ps *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'ps_2on1'.
+		goto :eof
+	)
 	call :ps
 	%psnup% %psnupflags% %target%.ps > %target%_2on1.ps
 goto :eof
 
 :ps_book
+	call :cmptimes %target%_book.ps *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'ps_book'.
+		goto :eof
+	)
 	call :ps
 	%psbook% %target%.ps | %psnup% -2 > %target%_book.ps
 goto :eof
 
 :rtf
+	call :cmptimes %target%.rtf *.tex *.bib
+	if !_ctres!==0 (
+		echo nomake: Nothing to be done for 'rtf'.
+		goto :eof
+	)
 	call :dvi
 	%l2rtf% %l2rtfflags% -a %target%.aux -b %target%.bbl %target%.tex
 goto :eof
