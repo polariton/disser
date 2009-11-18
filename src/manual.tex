@@ -9,7 +9,7 @@
     pdftex,
     colorlinks,
     plainpages   = false,
-    pdftitle     = {User manual for disser},
+    pdftitle     = {User manual for disser package},
     pdfauthor    = {Stanislav Kruchinin},
     pdfsubject   = {disser},
     pdfstartview = {FitH},
@@ -90,8 +90,8 @@
 Поскольку дипломы и диссертации имеют фиксированную структуру, в пакет также включены их шаблоны (каталог \file{templates}), которые рекомендуется использовать для создания своих документов.
 
 Одной из основных целей создания \pkg{disser} являлось устранение общего недостатка стандартных классов: отсутствия возможности настройки формата элементов титульного листа, заголовков и записей в автоматически генерируемых списках.
-Для этого была переопределена значительная часть команд, входящих в ядро \LaTeX{}, и введен ряд глобальных переменных, которые описаны в комментариях к исходным текстам.
-Это позволило значительно упростить разработку пользовательских классов, которые удовлетворяют специфическим требованиями тех или иных учебных заведений.
+Для достижения этой цели была переопределена значительная часть команд, входящих в ядро \LaTeX{}, и введен ряд глобальных переменных, которые описаны в комментариях к исходным текстам.
+Это позволило значительно упростить разработку пользовательских классов, которые удовлетворяют специфическим требованиями учебных заведений и диссертационных советов.
 Примером реализации этого подхода является класс \pkg{gost732}.
 
 \section{Опции класса}
@@ -179,10 +179,12 @@
 Скрипты поддерживают одинаковый набор целей (targets).
 Использование в Unix-подобных окружениях:
 \begin{verbatim}
-make <target1> <target2> ...\end{verbatim}
+make <target1> <target2> ...
+\end{verbatim}
 В Windows:
 \begin{verbatim}
-nomake <target1> <target2> ...\end{verbatim}
+nomake <target1> <target2> ...
+\end{verbatim}
 
 Далее приведены описания целей в зависимости от каталога, в котором производится сборка.
 
@@ -217,11 +219,11 @@ nomake <target1> <target2> ...\end{verbatim}
   Сборка всех шаблонов.
   Соответствует цели по умолчанию в каталоге \file{templates}.
 \item[uninstall]
-  Удаление файлов пакета из дерева каталогов \TeX{}.
+  Удаление пакета из каталога \TeX{}.
   Соответствует целям \cmd{uninstall} в каталогах \file{src} и \file{templates}.
 \end{deflist}
 
-\subsection{Каталог \texttt{src}}
+\subsection{Подкаталог \texttt{src}}
 
 \begin{deflist}{\longestlabel}
 \item[all]
@@ -244,10 +246,10 @@ nomake <target1> <target2> ...\end{verbatim}
 \item[reinstall]
   Переустановка пакета.
 \item[uninstall]
-  Удаление пакета каталогов \TeX{}.
+  Удаление пакета из каталога \TeX{}.
 \end{deflist}
 
-\subsection{Каталоги \file{templates} и
+\subsection{Подкаталоги \file{templates} и
  \file{templates/<тип-диссертации>}}
 
 \begin{deflist}{\longestlabel}
@@ -300,7 +302,7 @@ nomake <target1> <target2> ...\end{verbatim}
 2) \file{Makefile} и \file{nomake.cmd} могут использовать цели из каталога \file{fig}.
 \end{flushleft}
 
-\subsection{Каталог \file{templates/<тип-диссертации>/fig}}
+\subsection{Подкаталоги \file{templates/<тип-диссертации>/fig}}
 
 \begin{deflist}{\longestlabel}
 \item[bmtoeps]
@@ -349,7 +351,7 @@ nomake <target1> <target2> ...\end{verbatim}
 Поскольку в российских диссертациях обычно не используются колонтитулы, содержащие название текущей главы документа, то стили, реализованные в данном классе, влияют лишь на положение номера страницы.
 Стиль колонтитулов обычных страниц документа задается в преамбуле командой |\pagestyle{<style>}|, а стиль страниц, с которых начинается новая глава "--- командой |\chapterpagestyle{<style>}|.
 Здесь |<style>| может принимать следующие значения:
-\begin{deflist}{headcenter}
+\begin{deflist}{headcenter }
 \item[footleft]   Номер внизу и слева.
 \item[footcenter] Номер внизу и по середине.
 \item[footright]  Номер внизу и справа.
@@ -366,7 +368,8 @@ nomake <target1> <target2> ...\end{verbatim}
 \begin{verbatim}
 \def\headfont{\small}
 \pagestyle{headcenter}
-\chapterpagestyle{headcenter}\end{verbatim}
+\chapterpagestyle{headcenter}
+\end{verbatim}
 
 \section{Оформление библиографии}
 
@@ -411,7 +414,6 @@ nomake <target1> <target2> ...\end{verbatim}
   language = {russian}
 }
 \end{verbatim}
-
 Для указания даты обращения к Интернет-ресурсам следует использовать поле |urldate|. Пример:
 \begin{verbatim}
 @INCOLLECTION{InP,
@@ -471,10 +473,12 @@ latex autoref
 Сборка автореферата в Windows:
 \begin{verbatim}
 set target=autoref
-nomake\end{verbatim}
-В Unix-like окружениях:
+nomake
+\end{verbatim}
+В Unix-подобных окружениях:
 \begin{verbatim}
-env TARGET=autoref make\end{verbatim}
+env TARGET=autoref make
+\end{verbatim}
 Для возврата к сборке диссертации следует присвоить переменной |TARGET| значение |thesis|.
 
 \subsection{Подписи диссертанта и ученого секретаря}
