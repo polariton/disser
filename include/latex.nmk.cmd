@@ -47,6 +47,7 @@ if "%clext%"==""    set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log ^
 	*.dvi *.tmp *.pdf *.ps
 if "%clfiles%"==""  set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
+if "%prereq%"=="" set prereq=*.tex *.bib
 
 
 if "%1"=="" (
@@ -63,7 +64,7 @@ exit /b
 goto :eof
 
 :dvi
-	call :cmptimes %target%.dvi *.tex *.bib
+	call :cmptimes %target%.dvi %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'dvi'.
 		goto :eof
@@ -95,7 +96,7 @@ goto :eof
 goto :eof
 
 :html
-	call :cmptimes %target%.html *.tex *.bib
+	call :cmptimes %target%.html %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'html'.
 		goto :eof
@@ -105,7 +106,7 @@ goto :eof
 goto :eof
 
 :pdf
-	call :cmptimes %target%.pdf *.tex *.bib
+	call :cmptimes %target%.pdf %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'pdf'.
 		goto :eof
@@ -121,7 +122,7 @@ goto :eof
 goto :eof
 
 :pdf_2on1
-	call :cmptimes %target%_2on1.pdf *.tex *.bib
+	call :cmptimes %target%_2on1.pdf %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'pdf_2on1'.
 		goto :eof
@@ -132,7 +133,7 @@ goto :eof
 goto :eof
 
 :pdf_book
-	call :cmptimes %target%_book.pdf *.tex *.bib
+	call :cmptimes %target%_book.pdf %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'pdf_book'.
 		goto :eof
@@ -143,7 +144,7 @@ goto :eof
 goto :eof
 
 :ps
-	call :cmptimes %target%.ps *.tex *.bib
+	call :cmptimes %target%.ps %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'ps'.
 		goto :eof
@@ -153,7 +154,7 @@ goto :eof
 goto :eof
 
 :ps_2on1
-	call :cmptimes %target%_2on1.ps *.tex *.bib
+	call :cmptimes %target%_2on1.ps %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'ps_2on1'.
 		goto :eof
@@ -163,7 +164,7 @@ goto :eof
 goto :eof
 
 :ps_book
-	call :cmptimes %target%_book.ps *.tex *.bib
+	call :cmptimes %target%_book.ps %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'ps_book'.
 		goto :eof
@@ -173,7 +174,7 @@ goto :eof
 goto :eof
 
 :rtf
-	call :cmptimes %target%.rtf *.tex *.bib
+	call :cmptimes %target%.rtf %prereq%
 	if !_ctres!==0 (
 		echo nomake: Nothing to be done for 'rtf'.
 		goto :eof
