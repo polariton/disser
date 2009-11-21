@@ -37,9 +37,8 @@ help:
 
 bmtoeps: $(BMTOEPSFILES)
 	@for f in $^ ; do \
-		echo -n "bmtoeps: $$f..." ;\
+		echo "bmtoeps: $$f" ;\
 		$(BMTOEPS) $(BMTOEPSFLAGS) "$$f" "$${f%.*}.eps" > /dev/null 2>&1 ;\
-		echo "done" ;\
 	done
 
 clean:
@@ -51,24 +50,23 @@ epstopdf: $(patsubst %.eps, %.pdf, $(wildcard $(E2PFILES)))
 
 fixbb: $(FBBFILES)
 	@for f in $^ ; do \
-		echo -n "fixbb: $$f..." ;\
+		echo "fixbb: $$f" ;\
 		$(EPSTOOL) $(ETFLAGS) "$$f" "$(PREFIX)$$f" ;\
 		mv "$(PREFIX)$$f" "$$f" ;\
-		echo "done" ;\
 	done
 
 optimize: $(OPTFILES)
 	@for f in $^ ; do \
-		echo -n "optimize: $$f..." ;\
+		echo -n "optimize: $$f" ;\
 		$(E2E) $(E2EFLAGS) "$$f" "$(PREFIX)$$f" ;\
 		$(EPSTOOL) $(ETFLAGS) "$(PREFIX)$$f" "$(PREFIX)1$$f" ;\
 		mv "$(PREFIX)1$$f" "$(PREFIX)$$f" ;\
 		if [ `stat -c%s $$f` -gt `stat -c%s $(PREFIX)$$f` ] ; then \
 			mv "$(PREFIX)$$f" "$$f" ;\
-			echo "done" ;\
+			echo -en "\n" ;\
 		else \
 			rm "$(PREFIX)$$f" ;\
-			echo "does not need optimization" ;\
+			echo " does not need optimization" ;\
 		fi ;\
 	done
 
@@ -77,19 +75,16 @@ pdftopng256: $(patsubst %.pdf, %.png, $(wildcard $(PDF2PNGFILES)))
 pdftotiffg4: $(patsubst %.pdf, %.tif, $(wildcard $(PDF2TIFFILES)))
 
 %.pdf: %.eps
-	@echo -n "epstopdf: $^..." ;\
-	$(EPSTOPDF) "$^" ;\
-	echo "done"
+	@echo "epstopdf: $^" ;\
+	$(EPSTOPDF) "$^"
 
 %.png: %.pdf
-	@echo -n "pdftopng256: $^..." ;\
+	@echo "pdftopng: $^" ;\
 	$(GS) -sDEVICE=png256 -r$(RES) -q -sOutputFile=$(^:.pdf=.png) \
-		-dNOPAUSE -dBATCH -dSAFER "$^" ;\
-	echo "done"
+		-dNOPAUSE -dBATCH -dSAFER "$^"
 
 %.tif: %.pdf
-	@echo -n "pdftotiffg4: $^..." ;\
+	@echo "pdftotiffg4: $^" ;\
 	$(GS) -sDEVICE=tiffg4 -r$(RES) -q -sOutputFile=$(^:.pdf=.tif) \
-		-dNOPAUSE -dBATCH -dSAFER "$^" ;\
-	echo "done"
+		-dNOPAUSE -dBATCH -dSAFER "$^"
 
