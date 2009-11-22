@@ -367,14 +367,14 @@ FUNCTION {new.sentence}
 %    \end{macrocode}
 % \DescribeBSTFunction{add.blank}
 %    \begin{macrocode}
-FUNCTION {add.blank}
-{ " " * before.all 'output.state := }
+FUNCTION {add.blank} { " " * before.all 'output.state := }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{not}
 %    \begin{macrocode}
 FUNCTION {not}
-{   { #0 }
+{
+    { #0 }
     { #1 }
   if$
 }
@@ -384,7 +384,7 @@ FUNCTION {not}
 %    \begin{macrocode}
 FUNCTION {and}
 {
-   'skip$
+    'skip$
     { pop$ #0 }
   if$
 }
@@ -884,7 +884,8 @@ FUNCTION {format.bookauthors.after}
 % \DescribeBSTFunction{format.editors.after}
 %    \begin{macrocode}
 FUNCTION {format.editors.after}
-{ editor empty$
+{
+  editor empty$
     { "" }
     { bbl.edby editor format.names.rev * }
   if$
