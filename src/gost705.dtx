@@ -22,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %<*driver>
-\ProvidesFile{gost705.drv}[2009/10/27 1.1.3 Bibliography style for dissertations.]
+\ProvidesFile{gost705.drv}[2009/11/20 1.1.4 Bibliography style for dissertations.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -188,7 +188,8 @@ after.dblslash after.slash after.column after.semicolumn }
 % \DescribeBSTFunction{init.state.consts}
 %    \begin{macrocode}
 FUNCTION {init.state.consts}
-{ #0 'before.all :=
+{
+  #0 'before.all :=
   #1 'mid.sentence :=
   #2 'after.sentence :=
   #3 'after.block :=
@@ -207,13 +208,14 @@ STRINGS { curlanguage }
 % \DescribeBSTFunction{change.language}
 %    \begin{macrocode}
 FUNCTION {change.language}
-{ booklanguage empty$
-  { "" }
-  { booklanguage  'curlanguage :=
-    "\selectlanguageifdefined{"
-    curlanguage *
-    "}" *
-  }
+{
+  booklanguage empty$
+    { "" }
+    { booklanguage  'curlanguage :=
+      "\selectlanguageifdefined{"
+      curlanguage *
+      "}" *
+    }
   if$
 }
 
@@ -222,12 +224,12 @@ FUNCTION {change.language}
 % \DescribeBSTFunction{output.nonnull}
 %    \begin{macrocode}
 FUNCTION {output.nonnull}
-{ swap$
+{
+  swap$
   output.state mid.sentence =
     { ", " * write$ }
     { output.state after.block =
-        { add.period$ write$
-          " " write$
+        { add.period$ " " * write$
           newline$
           "\newblock " write$
         }
@@ -262,7 +264,8 @@ FUNCTION {output.nonnull}
 % \DescribeBSTFunction{output}
 %    \begin{macrocode}
 FUNCTION {output}
-{ duplicate$ empty$
+{
+  duplicate$ empty$
     'pop$
     'output.nonnull
   if$
@@ -272,7 +275,8 @@ FUNCTION {output}
 % \DescribeBSTFunction{output.check}
 %    \begin{macrocode}
 FUNCTION {output.check}
-{ 't :=
+{
+  't :=
   duplicate$ empty$
     { pop$ "empty " t * " in " * cite$ * warning$ }
     'output.nonnull
@@ -284,7 +288,8 @@ FUNCTION {output.check}
 % \DescribeBSTFunction{fin.entry}
 %    \begin{macrocode}
 FUNCTION {fin.entry}
-{ add.period$
+{
+  add.period$
   write$
   newline$
 }
@@ -293,7 +298,8 @@ FUNCTION {fin.entry}
 % \DescribeBSTFunction{new.block}
 %    \begin{macrocode}
 FUNCTION {new.block}
-{ output.state before.all =
+{
+  output.state before.all =
     'skip$
     { after.block 'output.state := }
   if$
@@ -303,7 +309,8 @@ FUNCTION {new.block}
 % \DescribeBSTFunction{new.dblslash}
 %    \begin{macrocode}
 FUNCTION {new.dblslash}
-{ output.state before.all =
+{
+  output.state before.all =
     'skip$
     { after.dblslash 'output.state := }
   if$
@@ -313,7 +320,8 @@ FUNCTION {new.dblslash}
 % \DescribeBSTFunction{new.slash}
 %    \begin{macrocode}
 FUNCTION {new.slash}
-{ output.state before.all =
+{
+  output.state before.all =
     'skip$
     { after.slash 'output.state := }
   if$
@@ -323,7 +331,8 @@ FUNCTION {new.slash}
 % \DescribeBSTFunction{new.column}
 %    \begin{macrocode}
 FUNCTION {new.column}
-{ output.state before.all =
+{
+  output.state before.all =
     'skip$
     { after.column 'output.state := }
   if$
@@ -333,7 +342,8 @@ FUNCTION {new.column}
 % \DescribeBSTFunction{new.semicolumn}
 %    \begin{macrocode}
 FUNCTION {new.semicolumn}
-{ output.state before.all =
+{
+  output.state before.all =
     'skip$
     { after.semicolumn 'output.state := }
   if$
@@ -343,7 +353,8 @@ FUNCTION {new.semicolumn}
 % \DescribeBSTFunction{new.sentence}
 %    \begin{macrocode}
 FUNCTION {new.sentence}
-{ output.state after.block =
+{
+  output.state after.block =
     'skip$
     { output.state before.all =
         'skip$
@@ -372,7 +383,8 @@ FUNCTION {not}
 % \DescribeBSTFunction{and}
 %    \begin{macrocode}
 FUNCTION {and}
-{   'skip$
+{
+   'skip$
     { pop$ #0 }
   if$
 }
@@ -381,7 +393,8 @@ FUNCTION {and}
 % \DescribeBSTFunction{or}
 %    \begin{macrocode}
 FUNCTION {or}
-{   { pop$ #1 }
+{
+    { pop$ #1 }
     'skip$
   if$
 }
@@ -390,7 +403,8 @@ FUNCTION {or}
 % \DescribeBSTFunction{non.stop}
 %    \begin{macrocode}
 FUNCTION {non.stop}
-{ duplicate$
+{
+  duplicate$
   "}" * add.period$
   #-1 #1 substring$ "." =
 }
@@ -399,7 +413,8 @@ FUNCTION {non.stop}
 % \DescribeBSTFunction{new.block.checka}
 %    \begin{macrocode}
 FUNCTION {new.block.checka}
-{ empty$
+{
+  empty$
     'skip$
     'new.block
   if$
@@ -409,7 +424,8 @@ FUNCTION {new.block.checka}
 % \DescribeBSTFunction{new.block.checkb}
 %    \begin{macrocode}
 FUNCTION {new.block.checkb}
-{ empty$
+{
+  empty$
   swap$ empty$
   and
     'skip$
@@ -421,7 +437,8 @@ FUNCTION {new.block.checkb}
 % \DescribeBSTFunction{new.sentence.checka}
 %    \begin{macrocode}
 FUNCTION {new.sentence.checka}
-{ empty$
+{
+  empty$
     'skip$
     'new.sentence
   if$
@@ -431,7 +448,8 @@ FUNCTION {new.sentence.checka}
 % \DescribeBSTFunction{new.sentence.checkb}
 %    \begin{macrocode}
 FUNCTION {new.sentence.checkb}
-{ empty$
+{
+  empty$
   swap$ empty$
   and
     'skip$
@@ -443,7 +461,8 @@ FUNCTION {new.sentence.checkb}
 % \DescribeBSTFunction{field.or.null}
 %    \begin{macrocode}
 FUNCTION {field.or.null}
-{ duplicate$ empty$
+{
+  duplicate$ empty$
     { pop$ "" }
     'skip$
   if$
@@ -453,7 +472,8 @@ FUNCTION {field.or.null}
 % \DescribeBSTFunction{emphasize}
 %    \begin{macrocode}
 FUNCTION {emphasize}
-{ duplicate$ empty$
+{
+  duplicate$ empty$
     { pop$ "" }
     { "\BibEmph{" swap$ * "}" * }
   if$
@@ -462,8 +482,7 @@ FUNCTION {emphasize}
 %    \end{macrocode}
 % \DescribeBSTFunction{space.word}
 %    \begin{macrocode}
-FUNCTION {space.word}
-{ " " swap$ * " " * }
+FUNCTION {space.word} { " " swap$ * " " * }
 
 %    \end{macrocode}
 % \subsection{Общепринятые сокращения}
@@ -497,8 +516,8 @@ FUNCTION {bbl.edition} % { "\bbledition{}" }
   curlanguage "english" =
     { "edition" }
     { curlanguage "russian" =
-       {"{\cyr\cyri\cyrz\cyrd.}"}
-       {"language is not defined: " language  "edition" * * warning$ "edition"}
+       { "{\cyr\cyri\cyrz\cyrd.}" }
+       { "language is not defined: " language  "edition" * * warning$ "edition" }
      if$
     }
   if$
@@ -509,8 +528,8 @@ FUNCTION {bbl.vvolume} % { "\bblVolume{}" }
   curlanguage "english" =
     { "Volume" }
     { curlanguage "russian" =
-      {"\CYRT\cyro\cyrm"}
-      {"language is not defined: " language  "Volume" * * warning$ "Volume"}
+      { "{\cyr\CYRT\cyro\cyrm}" }
+      { "language is not defined: " language  "Volume" * * warning$ "Volume" }
     if$
     }
   if$
@@ -521,7 +540,7 @@ FUNCTION {bbl.vvol} % { "\bblVol{}" }
   curlanguage "english" =
     { "Vol." }
     { curlanguage "russian" =
-        { "\CYRT." }
+        { "{\cyr\CYRT.}" }
         { "language is not defined: " language  "Vol." * * warning$ "Vol." }
       if$
     }
@@ -533,8 +552,8 @@ FUNCTION {bbl.iissue} % { "\bblIssue{}" }
   curlanguage "english" =
     { "Issue" }
     { curlanguage "russian" =
-        {"\CYRV\cyrery\cyrp\cyru\cyrs\cyrk"}
-        {"language is not defined: " language * warning$ "Issue"}
+        { "{\cyr\CYRV\cyrery\cyrp\cyru\cyrs\cyrk}" }
+        { "language is not defined: " language * warning$ "Issue" }
       if$
     }
   if$
@@ -545,8 +564,8 @@ FUNCTION {bbl.iiss} % { "\bblIss{}" }
   curlanguage "english" =
     {"Iss."}
     { curlanguage "russian" =
-        {"\CYRV\cyrery\cyrp."}
-        {"language is not defined: " language * warning$ "Issue"}
+        { "{\cyr\CYRV\cyrery\cyrp.}" }
+        { "language is not defined: " language * warning$ "Issue" }
       if$
     }
   if$
@@ -557,8 +576,8 @@ FUNCTION {bbl.of} % { "\bblof{}" }
   curlanguage "english" =
     {"of"}
     { curlanguage "russian" =
-        {"{\cyr\cyri\cyrz}"}
-        {"language is not defined: " language "of" *  * warning$ "of"}
+        { "{\cyr\cyri\cyrz}" }
+        { "language is not defined: " language "of" *  * warning$ "of" }
       if$
     }
   if$
@@ -581,7 +600,7 @@ FUNCTION {bbl.nnumber} % { "\bblNumber{}" }
   curlanguage "english" =
     { "Number" }
     { curlanguage "russian" =
-        { "\CYRN\cyro\cyrm\cyre\cyrr"}
+        { "{\cyr\CYRN\cyro\cyrm\cyre\cyrr}" }
         { "language is not defined: " language  "Number" * * warning$ "Number" }
       if$
     }
@@ -593,7 +612,7 @@ FUNCTION {bbl.number} % { "\bblnumber{}" }
   curlanguage "english" =
     { "number" }
     { curlanguage "russian" =
-        { "{\cyr\cyrn\cyro\cyrm\cyre\cyrr}"}
+        { "{\cyr\cyrn\cyro\cyrm\cyre\cyrr}" }
         { "language is not defined: " language  "number" * * warning$ "number" }
       if$
     }
@@ -641,7 +660,7 @@ FUNCTION {bbl.iin} % { "\bblIn{}" }
   curlanguage "english" =
   { "In" }
     { curlanguage "russian" =
-        { "\CYRV" }
+        { "{\cyr\CYRV}" }
         { "language is not defined: " language  "In" * * warning$ "In" }
       if$
     }
@@ -732,14 +751,17 @@ FUNCTION {bbl.phdthesis}
   if$
 }
 
+%    \end{macrocode}
+% \subsection{Формат элементов библиографических ссылок}
+%    \begin{macrocode}
 INTEGERS { nameptr namesleft numnames }
 
 %    \end{macrocode}
-% \subsection{Формат элементов библиографических ссылок}
 % \DescribeBSTFunction{format.names}
 %    \begin{macrocode}
 FUNCTION {format.names}
-{ 's :=
+{
+  's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
@@ -778,7 +800,8 @@ FUNCTION {format.names}
 % \DescribeBSTFunction{format.names.rev}
 %    \begin{macrocode}
 FUNCTION {format.names.rev}
-{ 's :=
+{
+  's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
@@ -817,7 +840,8 @@ FUNCTION {format.names.rev}
 % \DescribeBSTFunction{format.authors}
 %    \begin{macrocode}
 FUNCTION {format.authors}
-{ author empty$
+{
+  author empty$
     { "" }
     { author format.names emphasize }
   if$
@@ -827,7 +851,8 @@ FUNCTION {format.authors}
 % \DescribeBSTFunction{format.bookauthors}
 %    \begin{macrocode}
 FUNCTION {format.bookauthors}
-{ bookauthor empty$
+{
+  bookauthor empty$
     { "" }
     { bookauthor format.names }
   if$
@@ -837,7 +862,8 @@ FUNCTION {format.bookauthors}
 % \DescribeBSTFunction{format.authors.after}
 %    \begin{macrocode}
 FUNCTION {format.authors.after}
-{ author empty$
+{
+  author empty$
     { "" }
     { author format.names.rev }
   if$
@@ -847,7 +873,8 @@ FUNCTION {format.authors.after}
 % \DescribeBSTFunction{format.bookauthors.after}
 %    \begin{macrocode}
 FUNCTION {format.bookauthors.after}
-{ bookauthor empty$
+{
+  bookauthor empty$
     { "" }
     { bookauthor format.names.rev }
   if$
@@ -867,7 +894,8 @@ FUNCTION {format.editors.after}
 % \DescribeBSTFunction{format.compiler.after}
 %    \begin{macrocode}
 FUNCTION {format.compiler.after}
-{ compiler empty$
+{
+  compiler empty$
     { "" }
     { bbl.cmplr compiler format.names.rev * }
   if$
@@ -877,7 +905,8 @@ FUNCTION {format.compiler.after}
 % \DescribeBSTFunction{format.title}
 %    \begin{macrocode}
 FUNCTION {format.title}
-{ title empty$
+{
+  title empty$
     { "" }
     { title }
   if$
@@ -887,7 +916,8 @@ FUNCTION {format.title}
 % \DescribeBSTFunction{format.date}
 %    \begin{macrocode}
 FUNCTION {format.date}
-{ year empty$
+{
+  year empty$
     { month empty$
         { "" }
         { "there's a month but no year in " cite$ * warning$
@@ -907,7 +937,8 @@ FUNCTION {format.date}
 % \DescribeBSTFunction{output.address.publisher.date}
 %    \begin{macrocode}
 FUNCTION {output.address.publisher.date}
-{ address empty$
+{
+  address empty$
     'skip$
     { address output
       publisher empty$
@@ -924,7 +955,8 @@ FUNCTION {output.address.publisher.date}
 % \DescribeBSTFunction{output.bibitem}
 %    \begin{macrocode}
 FUNCTION {output.bibitem}
-{ newline$
+{
+  newline$
   "\bibitem[" write$
   "\BibPrefix" write$
   label write$
@@ -948,7 +980,8 @@ FUNCTION {output.bibitem}
 % \DescribeBSTFunction{n.dashify}
 %    \begin{macrocode}
 FUNCTION {n.dashify}
-{ 't :=
+{
+  't :=
   ""
     { t empty$ not }
     { t #1 #1 substring$ "-" =
@@ -975,21 +1008,19 @@ FUNCTION {n.dashify}
 %    \end{macrocode}
 % \DescribeBSTFunction{word.in}
 %    \begin{macrocode}
-FUNCTION {word.in}
-{ bbl.iin
-  " " * }
+FUNCTION {word.in} { bbl.iin " " * }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{format.btitle}
 %    \begin{macrocode}
-FUNCTION {format.btitle}
-{ title }
+FUNCTION {format.btitle} { title }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{tie.or.space.connect}
 %    \begin{macrocode}
 FUNCTION {tie.or.space.connect}
-{ duplicate$ text.length$ #3 <
+{
+  duplicate$ text.length$ #3 <
     { "~" }
     { " " }
   if$
@@ -999,16 +1030,14 @@ FUNCTION {tie.or.space.connect}
 %    \end{macrocode}
 % \DescribeBSTFunction{tie.connect}
 %    \begin{macrocode}
-FUNCTION {tie.connect}
-{"~"
-swap$ * *
-}
+FUNCTION {tie.connect} { "~" swap$ * * }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{either.or.check}
 %    \begin{macrocode}
 FUNCTION {either.or.check}
-{ empty$
+{
+  empty$
     'pop$
     { "can't use both " swap$ * " fields in " * cite$ * warning$ }
   if$
@@ -1018,7 +1047,8 @@ FUNCTION {either.or.check}
 % \DescribeBSTFunction{format.bvolume}
 %    \begin{macrocode}
 FUNCTION {format.bvolume}
-{ volume empty$
+{
+  volume empty$
     { "" }
     { bbl.vvol volume tie.connect
       series empty$
@@ -1034,7 +1064,8 @@ FUNCTION {format.bvolume}
 % \DescribeBSTFunction{format.number.series}
 %    \begin{macrocode}
 FUNCTION {format.number.series}
-{ volume empty$
+{
+  volume empty$
     { number empty$
         { series field.or.null }
         { series empty$
@@ -1059,7 +1090,8 @@ FUNCTION {format.number.series}
 % \DescribeBSTFunction{is.num}
 %    \begin{macrocode}
 FUNCTION {is.num}
-{ chr.to.int$
+{
+  chr.to.int$
   duplicate$ "0" chr.to.int$ < not
   swap$ "9" chr.to.int$ > not and
 }
@@ -1068,7 +1100,8 @@ FUNCTION {is.num}
 % \DescribeBSTFunction{extract.num}
 %    \begin{macrocode}
 FUNCTION {extract.num}
-{ duplicate$ 't :=
+{
+  duplicate$ 't :=
   "" 's :=
     { t empty$ not }
     { t #1 #1 substring$
@@ -1088,14 +1121,14 @@ FUNCTION {extract.num}
 %    \end{macrocode}
 % \DescribeBSTFunction{convert.edition}
 %    \begin{macrocode}
-FUNCTION {convert.edition}
-{ edition }
+FUNCTION {convert.edition} { edition }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{format.edition}
 %    \begin{macrocode}
 FUNCTION {format.edition}
-{ edition empty$
+{
+  edition empty$
     { "" }
     { output.state mid.sentence =
         { convert.edition "l" change.case$ " " * bbl.edition * }
@@ -1111,7 +1144,8 @@ INTEGERS { multiresult }
 % \DescribeBSTFunction{multi.page.check}
 %    \begin{macrocode}
 FUNCTION {multi.page.check}
-{ 't :=
+{
+  't :=
   #0 'multiresult :=
     { multiresult not
       t empty$ not
@@ -1134,7 +1168,8 @@ FUNCTION {multi.page.check}
 % \DescribeBSTFunction{format.pages}
 %    \begin{macrocode}
 FUNCTION {format.pages}
-{ pages empty$
+{
+  pages empty$
     { "" }
     { pages multi.page.check
         { bbl.ppages pages n.dashify tie.connect }
@@ -1148,7 +1183,8 @@ FUNCTION {format.pages}
 % \DescribeBSTFunction{format.pages.page}
 %    \begin{macrocode}
 FUNCTION {format.pages.page}
-{ pages empty$
+{
+  pages empty$
     { numpages empty$
         { "" }
         { numpages bbl.pages tie.connect }
@@ -1162,7 +1198,8 @@ FUNCTION {format.pages.page}
 % \DescribeBSTFunction{format.vol.num.pages}
 %    \begin{macrocode}
 FUNCTION {format.vol.num.pages}
-{ volume field.or.null
+{
+  volume field.or.null
   number empty$
     'skip$
     {
@@ -1187,7 +1224,8 @@ FUNCTION {format.vol.num.pages}
 % \DescribeBSTFunction{format.volume}
 %    \begin{macrocode}
 FUNCTION {format.volume}
-{ volume empty$
+{
+  volume empty$
     { "" }
     { bbl.vvol volume tie.or.space.connect }
   if$
@@ -1197,7 +1235,8 @@ FUNCTION {format.volume}
 % \DescribeBSTFunction{format.number}
 %    \begin{macrocode}
 FUNCTION {format.number}
-{ number empty$
+{
+  number empty$
     { "" }
     { bbl.nr number tie.or.space.connect }
   if$
@@ -1207,7 +1246,8 @@ FUNCTION {format.number}
 % \DescribeBSTFunction{empty.misc.check}
 %    \begin{macrocode}
 FUNCTION {empty.misc.check}
-{ author empty$ title empty$ howpublished empty$
+{
+  author empty$ title empty$ howpublished empty$
   month empty$ year empty$ note empty$
   and and and and and
   key empty$ not and
@@ -1220,7 +1260,8 @@ FUNCTION {empty.misc.check}
 % \DescribeBSTFunction{format.thesis.type}
 %    \begin{macrocode}
 FUNCTION {format.thesis.type}
-{ type empty$
+{
+  type empty$
     'skip$
     { pop$
       type "t" change.case$
@@ -1232,7 +1273,8 @@ FUNCTION {format.thesis.type}
 % \DescribeBSTFunction{format.tr.number}
 %    \begin{macrocode}
 FUNCTION {format.tr.number}
-{ type empty$
+{
+  type empty$
     { bbl.techrep }
     'type
   if$
@@ -1246,7 +1288,8 @@ FUNCTION {format.tr.number}
 % \DescribeBSTFunction{author.before}
 %    \begin{macrocode}
 FUNCTION {author.before}
-{ author empty$
+{
+  author empty$
     'skip$
     {
       format.authors output
@@ -1259,7 +1302,8 @@ FUNCTION {author.before}
 % \DescribeBSTFunction{bookauthor.before}
 %    \begin{macrocode}
 FUNCTION {bookauthor.before}
-{ bookauthor empty$
+{
+  bookauthor empty$
     'skip$
     {
       format.bookauthors output
@@ -1272,7 +1316,8 @@ FUNCTION {bookauthor.before}
 % \DescribeBSTFunction{author.after}
 %    \begin{macrocode}
 FUNCTION {author.after}
-{ author empty$
+{
+  author empty$
     'skip$
     { author num.names$ #3 >
       { format.authors.after output
@@ -1288,7 +1333,8 @@ FUNCTION {author.after}
 % \DescribeBSTFunction{bookauthor.after}
 %    \begin{macrocode}
 FUNCTION {bookauthor.after}
-{ bookauthor empty$
+{
+  bookauthor empty$
     'skip$
     { bookauthor num.names$ #3 >
       { format.bookauthors.after output
@@ -1304,7 +1350,8 @@ FUNCTION {bookauthor.after}
 % \DescribeBSTFunction{editor.organization.after}
 %    \begin{macrocode}
 FUNCTION {editor.organization.after}
-{ compiler empty$
+{
+  compiler empty$
     'skip$
     { format.compiler.after output
       new.semicolumn
@@ -1328,7 +1375,8 @@ FUNCTION {editor.organization.after}
 % \DescribeBSTFunction{format.url}
 %    \begin{macrocode}
 FUNCTION {format.url}
-{ url empty$
+{
+  url empty$
     { "" }
     { "\BibUrl{" url * "}" * }
   if$
@@ -1338,7 +1386,8 @@ FUNCTION {format.url}
 % \DescribeBSTFunction{format.urldate}
 %    \begin{macrocode}
 FUNCTION {format.urldate}
-{ urldate empty$
+{
+  urldate empty$
     { "" }
     { add.blank
       "\BibUrlDate{" urldate * "}" *
@@ -1350,7 +1399,8 @@ FUNCTION {format.urldate}
 % \DescribeBSTFunction{output.url}
 %    \begin{macrocode}
 FUNCTION {output.url}
-{ url empty$
+{
+  url empty$
     'skip$
     { format.url output
       format.urldate output
@@ -1362,7 +1412,8 @@ FUNCTION {output.url}
 % \DescribeBSTFunction{format.annote}
 %    \begin{macrocode}
 FUNCTION {format.annote}
-{ annote empty$
+{
+  annote empty$
     { "" }
     { after.sentence 'output.state :=
       "\BibAnnote{" annote add.period$ * "}" *
@@ -1375,7 +1426,8 @@ FUNCTION {format.annote}
 % \DescribeBSTFunction{article}
 %    \begin{macrocode}
 FUNCTION {article}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   format.title "title" output.check
   new.dblslash
@@ -1399,7 +1451,8 @@ FUNCTION {article}
 % \DescribeBSTFunction{book}
 %    \begin{macrocode}
 FUNCTION {book}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   format.btitle "title" output.check
   editor.organization.after
@@ -1425,7 +1478,8 @@ FUNCTION {book}
 % \DescribeBSTFunction{booklet}
 %    \begin{macrocode}
 FUNCTION {booklet}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   format.title "title" output.check
   editor.organization.after
@@ -1445,7 +1499,8 @@ FUNCTION {booklet}
 % \DescribeBSTFunction{inbook}
 %    \begin{macrocode}
 FUNCTION {inbook}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   format.btitle "title" output.check
   new.dblslash
@@ -1474,7 +1529,8 @@ FUNCTION {inbook}
 % \DescribeBSTFunction{incollection}
 %    \begin{macrocode}
 FUNCTION {incollection}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   new.sentence
   format.title "title" output.check
@@ -1501,7 +1557,8 @@ FUNCTION {incollection}
 % \DescribeBSTFunction{inproceedings}
 %    \begin{macrocode}
 FUNCTION {inproceedings}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   new.sentence
   format.title "title" output.check
@@ -1542,7 +1599,8 @@ FUNCTION {conference} { inproceedings }
 % \DescribeBSTFunction{manual}
 %    \begin{macrocode}
 FUNCTION {manual}
-{ output.bibitem
+{
+  output.bibitem
   author empty$
     { organization empty$
         'skip$
@@ -1583,7 +1641,8 @@ FUNCTION {manual}
 % \DescribeBSTFunction{mastersthesis}
 %    \begin{macrocode}
 FUNCTION {mastersthesis}
-{ output.bibitem
+{
+  output.bibitem
   format.authors "author" output.check
   new.block
   format.btitle "title" output.check
@@ -1604,7 +1663,8 @@ FUNCTION {mastersthesis}
 % \DescribeBSTFunction{phdthesis}
 %    \begin{macrocode}
 FUNCTION {misc}
-{ output.bibitem
+{
+  output.bibitem
   format.authors "author" output.check
   new.block
   format.title "title" output.check
@@ -1624,7 +1684,8 @@ FUNCTION {misc}
 % \DescribeBSTFunction{phdthesis}
 %    \begin{macrocode}
 FUNCTION {phdthesis}
-{ output.bibitem
+{
+  output.bibitem
   format.authors "author" output.check
   new.sentence
   format.btitle "title" output.check
@@ -1647,7 +1708,8 @@ FUNCTION {phdthesis}
 % \DescribeBSTFunction{proceedings}
 %    \begin{macrocode}
 FUNCTION {proceedings}
-{ output.bibitem
+{
+  output.bibitem
   format.btitle "title" output.check
   new.slash
   editor.organization.after
@@ -1676,7 +1738,8 @@ FUNCTION {proceedings}
 % \DescribeBSTFunction{techreport}
 %    \begin{macrocode}
 FUNCTION {techreport}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   new.sentence
   format.title "title" output.check
@@ -1700,7 +1763,8 @@ FUNCTION {techreport}
 % \DescribeBSTFunction{unpublished}
 %    \begin{macrocode}
 FUNCTION {unpublished}
-{ output.bibitem
+{
+  output.bibitem
   author.before
   format.btitle "title" output.check
   editor.organization.after
@@ -1795,7 +1859,8 @@ READ
 % \DescribeBSTFunction{sortify}
 %    \begin{macrocode}
 FUNCTION {sortify}
-{ purify$
+{
+  purify$
   "l" change.case$
 }
 
@@ -1805,7 +1870,8 @@ INTEGERS { len }
 % \DescribeBSTFunction{chop.word}
 %    \begin{macrocode}
 FUNCTION {chop.word}
-{ 's :=
+{
+  's :=
   'len :=
   s #1 len substring$ =
     { s len #1 + global.max$ substring$ }
@@ -1817,7 +1883,8 @@ FUNCTION {chop.word}
 % \DescribeBSTFunction{sort.format.names}
 %    \begin{macrocode}
 FUNCTION {sort.format.names}
-{ 's :=
+{
+  's :=
   #1 'nameptr :=
   ""
   s num.names$ 'numnames :=
@@ -1844,7 +1911,8 @@ FUNCTION {sort.format.names}
 % \DescribeBSTFunction{sort.format.title}
 %    \begin{macrocode}
 FUNCTION {sort.format.title}
-{ 't :=
+{
+  't :=
   "A " #2
     "An " #3
       "The " #4 t chop.word
@@ -1858,7 +1926,8 @@ FUNCTION {sort.format.title}
 % \DescribeBSTFunction{author.sort}
 %    \begin{macrocode}
 FUNCTION {author.sort}
-{ author empty$
+{
+  author empty$
     { key empty$
         { "to sort, need author or key in " cite$ * warning$
           ""
@@ -1876,7 +1945,8 @@ FUNCTION {author.sort}
 % \DescribeBSTFunction{author.title.sort}
 %    \begin{macrocode}
 FUNCTION {author.title.sort}
-{ author empty$
+{
+  author empty$
     { title empty$
       { key empty$
         { "to sort, need author, title, or key in " cite$ * warning$
@@ -1930,7 +2000,8 @@ INTEGERS { number.label longest.label.width }
 % \DescribeBSTFunction{initialize.longest.label}
 %    \begin{macrocode}
 FUNCTION {initialize.longest.label}
-{ "" 'longest.label :=
+{
+  "" 'longest.label :=
   #1 'number.label :=
   #0 'longest.label.width :=
 }
@@ -1939,7 +2010,8 @@ FUNCTION {initialize.longest.label}
 % \DescribeBSTFunction{longest.label.pass}
 %    \begin{macrocode}
 FUNCTION {longest.label.pass}
-{ number.label int.to.str$ 'label :=
+{
+  number.label int.to.str$ 'label :=
   number.label #1 + 'number.label :=
   label width$ longest.label.width >
     { label 'longest.label :=
@@ -1959,7 +2031,8 @@ ITERATE {longest.label.pass}
 % \DescribeBSTFunction{begin.bib}
 %    \begin{macrocode}
 FUNCTION {begin.bib}
-{ preamble$ empty$
+{
+  preamble$ empty$
     'skip$
     { preamble$ write$ newline$ }
   if$
@@ -2009,7 +2082,8 @@ ITERATE {call.type$}
 % \DescribeBSTFunction{end.bib}
 %    \begin{macrocode}
 FUNCTION {end.bib}
-{ newline$
+{
+  newline$
   "\end{thebibliography}" write$ newline$
 }
 
