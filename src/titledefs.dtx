@@ -384,13 +384,16 @@
 %    \end{macrocode}
 % \DescribeMacro{\copynum}\index{Макросы!\verb*+\copynum+}
 % Номер копии.
-% \DescribeMacro{\classified}\index{Макросы!\verb*+\classified+}
+% \DescribeMacro{\classlabel}\index{Макросы!\verb*+\classlabel+}
+% \DescribeMacro{\classify}\index{Макросы!\verb*+\classify+}
 % Гриф секретности.
 %    \begin{macrocode}
 \def\copynum#1{\gdef\@copynum{#1}}\copynum{1}
-\providecommand\classified{
+\def\classlabel#1{\gdef\@classlabel{#1}}
+\classlabel{\cyr\CYRS\cyre\cyrk\cyrr\cyre\cyrt\cyrn\cyro}
+\providecommand\classify{
   \begin{flushright}
-    {\cyr\CYRS\cyre\cyrk\cyrr\cyre\cyrt\cyrn\cyro}\\
+    \@classlabel\\
     {\cyr\CYREREV\cyrk\cyrz.~\textnumero\,\@copynum}
   \end{flushright}
   \vspace{2ex}
