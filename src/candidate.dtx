@@ -26,6 +26,10 @@
 \deflength\fifthskip{1cm}
 \deflength\sixthskip{0pt}
 
+%    \end{macrocode}
+% Горизонтальный отступ перед описанием научного руководителя.
+% \DescribeMacro{\@sahshift}\index{Расстояния!\verb*+"\"@sahshift+}
+%    \begin{macrocode}
 \deflength\@sahshift{8cm}
 
 %    \end{macrocode}
@@ -44,16 +48,21 @@
 \normalfont
 \begin{flushright}
 %    \end{macrocode}
+% Гриф секретности
+%    \begin{macrocode}
+  \ifDis@classified\classified\fi
+%    \end{macrocode}
 % На правах рукописи
 %    \begin{macrocode}
-  \asmanuscriptname\\
+  \asmanuscript
+%    \end{macrocode}
+% Факсимиле
+%    \begin{macrocode}
   \ifDis@facsimile\facsimile\fi
 %    \end{macrocode}
 % Номер УДК
 %    \begin{macrocode}
-  \ifDis@libcat
-    {\libcatname\ \@libcatnum}
-  \fi
+  \ifDis@libcat\libcatname\ \@libcatnum\fi
 \end{flushright}
 \begin{center}
 %    \end{macrocode}

@@ -118,10 +118,10 @@
 \def\conname{\cyr\CYRK\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
 \def\conlabel{\conname\ \cyrp\cyro\ \@conspec}
 %    \end{macrocode}
-% \DescribeMacro{\asmanuscriptname}\index{Макросы!\verb+\asmanuscriptname+}
+% \DescribeMacro{\asmanuscript}\index{Макросы!\verb+\asmanuscript+}
 % На правах рукописи
 %    \begin{macrocode}
-\def\asmanuscriptname{\cyr\CYRN\cyra\ \cyrp\cyrr\cyra\cyrv\cyra\cyrh\ %
+\def\asmanuscript{\cyr\CYRN\cyra\ \cyrp\cyrr\cyra\cyrv\cyra\cyrh\ %
 \cyrr\cyru\cyrk\cyro\cyrp\cyri\cyrs\cyri}
 %    \end{macrocode}
 % \DescribeMacro{\libcatname}\index{Макросы!\verb+\libcatname+}
@@ -380,6 +380,21 @@
   \@namedef{#1text}{#3}
 }
 \let\mkintrosect=\mkcommonsect
+
+%    \end{macrocode}
+% \DescribeMacro{\copynum}\index{Макросы!\verb*+\copynum+}
+% Номер копии.
+% \DescribeMacro{\classified}\index{Макросы!\verb*+\classified+}
+% Гриф секретности.
+%    \begin{macrocode}
+\def\copynum#1{\gdef\@copynum{#1}}\copynum{1}
+\providecommand\classified{
+  \begin{flushright}
+    {\cyr\CYRS\cyre\cyrk\cyrr\cyre\cyrt\cyrn\cyro}\\
+    {\cyr\CYREREV\cyrk\cyrz.~\textnumero\,\@copynum}
+  \end{flushright}
+  \vspace{2ex}
+}
 
 %    \end{macrocode}
 % \DescribeMacro{\facsimile}\index{Макросы!\verb*+\facsimile+}

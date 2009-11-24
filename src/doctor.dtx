@@ -40,16 +40,21 @@
 \normalfont
 \begin{flushright}
 %    \end{macrocode}
+% Гриф секретности
+%    \begin{macrocode}
+  \ifDis@classified\classified\fi
+%    \end{macrocode}
 % На правах рукописи
 %    \begin{macrocode}
-  \asmanuscriptname\\
+  \asmanuscript
+%    \end{macrocode}
+% Факсимиле
+%    \begin{macrocode}
   \ifDis@facsimile\facsimile\fi
 %    \end{macrocode}
 % Номер УДК
 %    \begin{macrocode}
-\ifDis@libcat
-  {\libcatname\ \@libcatnum}
-\fi
+  \ifDis@libcat\libcatname\ \@libcatnum\fi
 \end{flushright}
 \begin{center}
 %    \end{macrocode}
@@ -66,7 +71,7 @@
 % Шифр и наименование специальности
 %    \begin{macrocode}
   \vskip\fourthskip
-  {\specfont\@specnum~--\;\@spec}
+  {\specfont\@specnum~--\ \@spec}
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
 %    \begin{macrocode}

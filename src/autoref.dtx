@@ -19,13 +19,17 @@
 \def\authorfont{\large}
 \def\specfont{\normalsize}
 
+\vskip\firstskip
 \normalfont
 \begin{flushright}
 %    \end{macrocode}
+% Гриф секретности
+%    \begin{macrocode}
+  \ifDis@classified\classified\fi
+%    \end{macrocode}
 % На правах рукописи
 %    \begin{macrocode}
-  \vskip\firstskip
-  \asmanuscriptname\\
+  \asmanuscript
   \ifDis@facsimile\facsimile\fi
 \end{flushright}
 \begin{center}

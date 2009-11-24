@@ -221,6 +221,10 @@
 %    \begin{macrocode}
 \newif\ifDis@libcat\Dis@libcatfalse
 %    \end{macrocode}
+% \item Отображение грифа секретности на титульном листе (отключено).
+%    \begin{macrocode}
+\newif\ifDis@classified\Dis@classifiedfalse
+%%    \end{macrocode}
 % \item Отображение подписей диссертанта и ученого секретаря (отключено).
 %    \begin{macrocode}
 \newif\ifDis@facsimile\Dis@facsimilefalse
@@ -269,6 +273,10 @@
 % Отображение УДК на титульном листе.
 %    \begin{macrocode}
 \DeclareOption{libcat}{\Dis@libcattrue}
+%    \end{macrocode}
+% Отображение грифа секретности.
+%    \begin{macrocode}
+\DeclareOption{classified}{\Dis@classifiedtrue}
 %    \end{macrocode}
 % Отображение подписей диссертанта и ученого секретаря.
 %    \begin{macrocode}
