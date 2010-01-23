@@ -493,7 +493,8 @@ FUNCTION {bbl.edby} % { "\bbledby{}" }
   { "Ed. by " }
     { curlanguage "russian" =
         { "{\cyr\CYRP\cyro\cyrd\ \cyrr\cyre\cyrd.\ }" }
-        { "language is not defined: " language  "edited by" * * warning$ "edited by" }
+        { "language is not defined: " language  "edited by" * *
+          warning$ "edited by" }
       if$
     }
   if$
@@ -732,7 +733,8 @@ FUNCTION {bbl.mthesis}
   curlanguage "english" =
     { "Master's thesis" }
     { curlanguage "russian" =
-        { "{\cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\ \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" }
+        { "{\cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\ "
+          "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
         { "language is not defined: " language  "Master's thesis" * * warning$ "P." }
       if$
     }
@@ -744,7 +746,8 @@ FUNCTION {bbl.phdthesis}
   curlanguage "english" =
     { "Ph.D. thesis" }
     { curlanguage "russian" =
-        { "{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\ \cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" }
+        { "{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\ "
+          "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
         { "language is not defined: " language  "Ph.D. thesis" * * warning$ "P." }
       if$
     }
