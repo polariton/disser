@@ -924,9 +924,7 @@ FUNCTION {format.date}
   year empty$
     { month empty$
         { "" }
-        { "there's a month but no year in " cite$ * warning$
-          month
-        }
+        { "there's a month but no year in " cite$ * warning$ month }
       if$
     }
     { month empty$
@@ -1786,72 +1784,157 @@ FUNCTION {unpublished}
 FUNCTION {default.type} { misc }
 
 %    \end{macrocode}
-% \subsection{Сокращения названий месяцев и журналов}
+% \subsection{Сокращения названий месяцев}
 %    \begin{macrocode}
 MACRO {jan} {"\bbljan{}"}
-
 MACRO {feb} {"\bblfeb{}"}
-
 MACRO {mar} {"\bblmar{}"}
-
 MACRO {apr} {"\bblapr{}"}
-
 MACRO {may} {"\bblmay{}"}
-
 MACRO {jun} {"\bbljun{}"}
-
 MACRO {jul} {"\bbljul{}"}
-
 MACRO {aug} {"\bblaug{}"}
-
 MACRO {sep} {"\bblsep{}"}
-
 MACRO {oct} {"\bbloct{}"}
-
 MACRO {nov} {"\bblnov{}"}
-
 MACRO {dec} {"\bbldec{}"}
 
-MACRO {acmcs} {"ACM Computing Surveys"}
+%    \end{macrocode}
+% \subsection{Сокращения названий журналов}
+% \subsubsection{Физика и астрономия}
+% Код данной секции создан на основе файла \file{physjour.mbs}
+% пакета \pkg{custom-bib}.
+%    \begin{macrocode}
+MACRO {aa}{"Astron. \& Astrophys."}
+MACRO {aasup}{"Astron. \& Astrophys. Suppl. Ser."}
+MACRO {aj} {"Astron. J."}
+MACRO {aph} {"Acta Phys."}
+MACRO {advp} {"Adv. Phys."}
+MACRO {ajp} {"Amer. J. Phys."}
+MACRO {ajm} {"Amer. J. Math."}
+MACRO {amsci} {"Amer. Sci."}
+MACRO {anofd} {"Ann. Fluid Dyn."}
+MACRO {am} {"Ann. Math."}
+MACRO {ap} {"Ann. Phys. (NY)"}
+MACRO {adp} {"Ann. Phys. (Leipzig)"}
+MACRO {ao} {"Appl. Opt."}
+MACRO {apl} {"Appl. Phys. Lett."}
+MACRO {app} {"Astroparticle Phys."}
+MACRO {apj} {"Astrophys. J."}
+MACRO {apjsup} {"Astrophys. J. Suppl."}
+MACRO {apss} {"Astrophys. Space Sci."}
+MACRO {araa} {"Ann. Rev. Astron. Astrophys."}
+MACRO {baas} {"Bull. Amer. Astron. Soc."}
+MACRO {baps} {"Bull. Amer. Phys. Soc."}
+MACRO {cmp} {"Comm. Math. Phys."}
+MACRO {cpam} {"Commun. Pure Appl. Math."}
+MACRO {cppcf} {"Comm. Plasma Phys. \& Controlled Fusion"}
+MACRO {cpc} {"Comp. Phys. Comm."}
+MACRO {cqg} {"Class. Quant. Grav."}
+MACRO {cra} {"C. R. Acad. Sci. A"}
+MACRO {fed} {"Fusion Eng. \& Design"}
+MACRO {ft} {"Fusion Tech."}
+MACRO {grg} {"Gen. Relativ. Gravit."}
+MACRO {ieeens} {"IEEE Trans. Nucl. Sci."}
+MACRO {ieeeps} {"IEEE Trans. Plasma Sci."}
+MACRO {ijimw} {"Interntl. J. Infrared \& Millimeter Waves"}
+MACRO {ip} {"Infrared Phys."}
+MACRO {irp} {"Infrared Phys."}
+MACRO {jap} {"J. Appl. Phys."}
+MACRO {jasa} {"J. Acoust. Soc. America"}
+MACRO {jcp} {"J. Comp. Phys."}
+MACRO {jetp} {"Sov. Phys.--JETP"}
+MACRO {jfe} {"J. Fusion Energy"}
+MACRO {jfm} {"J. Fluid Mech."}
+MACRO {jmp} {"J. Math. Phys."}
+MACRO {jne} {"J. Nucl. Energy"}
+MACRO {jnec} {"J. Nucl. Energy, C: Plasma Phys., Accelerators, Thermonucl. Res."}
+MACRO {jnm} {"J. Nucl. Mat."}
+MACRO {jpc} {"J. Phys. Chem."}
+MACRO {jpp} {"J. Plasma Phys."}
+MACRO {jpsj} {"J. Phys. Soc. Japan"}
+MACRO {jsi} {"J. Sci. Instrum."}
+MACRO {jvst} {"J. Vac. Sci. \& Tech."}
+MACRO {nat} {"Nature"}
+MACRO {nature} {"Nature"}
+MACRO {nedf} {"Nucl. Eng. \& Design/Fusion"}
+MACRO {nf} {"Nucl. Fusion"}
+MACRO {nim} {"Nucl. Inst. \& Meth."}
+MACRO {nimpr} {"Nucl. Inst. \& Meth. in Phys. Res."}
+MACRO {np} {"Nucl. Phys."}
+MACRO {npb} {"Nucl. Phys. B"}
+MACRO {nt/f} {"Nucl. Tech./Fusion"}
+MACRO {npbpc} {"Nucl. Phys. B (Proc. Suppl.)"}
+MACRO {inc} {"Nuovo Cimento"}
+MACRO {nc} {"Nuovo Cimento"}
+MACRO {pf} {"Phys. Fluids"}
+MACRO {pfa} {"Phys. Fluids A: Fluid Dyn."}
+MACRO {pfb} {"Phys. Fluids B: Plasma Phys."}
+MACRO {pl} {"Phys. Lett."}
+MACRO {pla} {"Phys. Lett. A"}
+MACRO {plb} {"Phys. Lett. B"}
+MACRO {prep} {"Phys. Rep."}
+MACRO {pnas} {"Proc. Nat. Acad. Sci. USA"}
+MACRO {pp} {"Phys. Plasmas"}
+MACRO {ppcf} {"Plasma Phys. \& Controlled Fusion"}
+MACRO {phitrsl} {"Philos. Trans. Roy. Soc. London"}
+MACRO {prl} {"Phys. Rev. Lett."}
+MACRO {pr} {"Phys. Rev."}
+MACRO {physrev} {"Phys. Rev."}
+MACRO {pra} {"Phys. Rev. A"}
+MACRO {prb} {"Phys. Rev. B"}
+MACRO {prc} {"Phys. Rev. C"}
+MACRO {prd} {"Phys. Rev. D"}
+MACRO {pre} {"Phys. Rev. E"}
+MACRO {ps} {"Phys. Scripta"}
+MACRO {procrsl} {"Proc. Roy. Soc. London"}
+MACRO {rmp} {"Rev. Mod. Phys."}
+MACRO {rsi} {"Rev. Sci. Inst."}
+MACRO {science} {"Science"}
+MACRO {sciam} {"Sci. Am."}
+MACRO {sam} {"Stud. Appl. Math."}
+MACRO {sjpp} {"Sov. J. Plasma Phys."}
+MACRO {spd} {"Sov. Phys.--Doklady"}
+MACRO {sptp} {"Sov. Phys.--Tech. Phys."}
+MACRO {spu} {"Sov. Phys.--Uspeki"}
+MACRO {st} {"Sky and Telesc."}
 
-MACRO {acta} {"Acta Informatica"}
+%    \end{macrocode}
+% \subsubsection{Оптика}
+% Из файла~\file{photjour.mbs}.
+%    \begin{macrocode}
+MACRO {appopt} {"Appl. Opt."}
+MACRO {bell} {"Bell Syst. Tech. J."}
+MACRO {ell} {"Electron. Lett."}
+MACRO {jasp} {"J. Appl. Spectr."}
+MACRO {jqe} {"IEEE J. Quantum Electron."}
+MACRO {jlwt} {"J. Lightwave Technol."}
+MACRO {jmo} {"J. Mod. Opt."}
+MACRO {josa} {"J. Opt. Soc. America"}
+MACRO {josaa} {"J. Opt. Soc. Amer.~A"}
+MACRO {josab} {"J. Opt. Soc. Amer.~B"}
+MACRO {jdp} {"J. Phys. (Paris)"}
+MACRO {oc} {"Opt. Commun."}
+MACRO {ol} {"Opt. Lett."}
+MACRO {os} {"Opt. Spectrosc."}
+MACRO {phtl} {"IEEE Photon. Technol. Lett."}
+MACRO {pspie} {"Proc. Soc. Photo-Opt. Instrum. Eng."}
+MACRO {sjot} {"Sov. J. Opt. Technol."}
+MACRO {sjqe} {"Sov. J. Quantum Electron."}
+MACRO {sleb} {"Sov. Phys.--Leb. Inst. Rep."}
+MACRO {stph} {"Sov. Phys.--Techn. Phys."}
+MACRO {stphl} {"Sov. Techn. Phys. Lett."}
+MACRO {vr} {"Vision Res."}
+MACRO {zph} {"Z. f. Physik"}
+MACRO {zphb} {"Z. f. Physik~B"}
+MACRO {zphd} {"Z. f. Physik~D"}
 
-MACRO {cacm} {"Communications of the ACM"}
-
-MACRO {ibmjrd} {"IBM Journal of Research and Development"}
-
-MACRO {ibmsj} {"IBM Systems Journal"}
-
-MACRO {ieeese} {"IEEE Transactions on Software Engineering"}
-
-MACRO {ieeetc} {"IEEE Transactions on Computers"}
-
-MACRO {ieeetcad}
- {"IEEE Transactions on Computer-Aided Design of Integrated Circuits"}
-
-MACRO {ipl} {"Information Processing Letters"}
-
-MACRO {jacm} {"Journal of the ACM"}
-
-MACRO {jcss} {"Journal of Computer and System Sciences"}
-
-MACRO {scp} {"Science of Computer Programming"}
-
-MACRO {sicomp} {"SIAM Journal on Computing"}
-
-MACRO {tocs} {"ACM Transactions on Computer Systems"}
-
-MACRO {tods} {"ACM Transactions on Database Systems"}
-
-MACRO {tog} {"ACM Transactions on Graphics"}
-
-MACRO {toms} {"ACM Transactions on Mathematical Software"}
-
-MACRO {toois} {"ACM Transactions on Office Information Systems"}
-
-MACRO {toplas} {"ACM Transactions on Programming Languages and Systems"}
-
-MACRO {tcs} {"Theoretical Computer Science"}
+%    \end{macrocode}
+% \subsubsection{Физика твердого тела}
+%    \begin{macrocode}
+MACRO {sse} {"Solid-State Electron."}
+MACRO {pss} {"Phys. Sol. State"}
+MACRO {sst} {"Semicond. Sci. Tech."}
 
 READ
 
@@ -1933,9 +2016,7 @@ FUNCTION {author.sort}
 {
   author empty$
     { key empty$
-        { "to sort, need author or key in " cite$ * warning$
-          ""
-        }
+        { "to sort, need author or key in " cite$ * warning$ "" }
         { key sortify }
       if$
     }
@@ -1953,9 +2034,7 @@ FUNCTION {author.title.sort}
   author empty$
     { title empty$
       { key empty$
-        { "to sort, need author, title, or key in " cite$ * warning$
-          ""
-        }
+        { "to sort, need author, title, or key in " cite$ * warning$ "" }
         { key sortify }
       if$
       }
