@@ -1545,7 +1545,7 @@ FUNCTION {book}
 {
   output.bibitem
   author.before
-  format.btitle "title" output.check
+  format.btitle add.doi "title" output.check
   editor.organization.after
   new.sentence
   format.number.series output
@@ -1595,7 +1595,7 @@ FUNCTION {inbook}
 {
   output.bibitem
   author.before
-  format.btitle "title" output.check
+  format.btitle add.doi "title" output.check
   new.dblslash
   bookauthor.before
   booktitle "booktitle" output.check
@@ -1628,7 +1628,7 @@ FUNCTION {incollection}
   output.bibitem
   author.before
   new.sentence
-  format.title "title" output.check
+  format.title add.doi "title" output.check
   new.dblslash
   booktitle "booktitle" output.check
   new.slash
@@ -1656,7 +1656,7 @@ FUNCTION {inproceedings}
   output.bibitem
   author.before
   new.sentence
-  format.title "title" output.check
+  format.title add.doi "title" output.check
   new.dblslash
   booktitle "booktitle" output.check
   new.slash
@@ -1740,7 +1740,7 @@ FUNCTION {mastersthesis}
   output.bibitem
   format.authors "author" output.check
   new.block
-  format.btitle "title" output.check
+  format.btitle add.doi "title" output.check
   new.block
   bbl.mthesis format.thesis.type output.nonnull
   school "school" output.check
@@ -1755,7 +1755,7 @@ FUNCTION {mastersthesis}
 }
 
 %    \end{macrocode}
-% \DescribeBSTFunction{phdthesis}
+% \DescribeBSTFunction{misc}
 %    \begin{macrocode}
 FUNCTION {misc}
 {
@@ -1783,7 +1783,7 @@ FUNCTION {phdthesis}
   output.bibitem
   format.authors "author" output.check
   new.sentence
-  format.btitle "title" output.check
+  format.btitle add.doi "title" output.check
   new.column
   bbl.phdthesis format.thesis.type output.nonnull
   new.slash
@@ -1805,7 +1805,7 @@ FUNCTION {phdthesis}
 FUNCTION {proceedings}
 {
   output.bibitem
-  format.btitle "title" output.check
+  format.btitle add.doi "title" output.check
   new.slash
   editor.organization.after
   new.block
@@ -1837,7 +1837,7 @@ FUNCTION {techreport}
   output.bibitem
   author.before
   new.sentence
-  format.title "title" output.check
+  format.title add.doi "title" output.check
   new.column
   format.tr.number output.nonnull
   editor.organization.after
