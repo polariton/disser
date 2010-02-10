@@ -174,6 +174,8 @@ ENTRY
     booklanguage
     url
     urldate
+    isbn
+    doi
   }
   {}
   { label }
@@ -500,6 +502,9 @@ FUNCTION {bbl.edby} % { "\bbledby{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.cmplr}
+%    \begin{macrocode}
 FUNCTION {bbl.cmplr}
 {
   curlanguage "english" =
@@ -512,6 +517,9 @@ FUNCTION {bbl.cmplr}
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.edition}
+%    \begin{macrocode}
 FUNCTION {bbl.edition} % { "\bbledition{}" }
 {
   curlanguage "english" =
@@ -524,6 +532,9 @@ FUNCTION {bbl.edition} % { "\bbledition{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.vvolume}
+%    \begin{macrocode}
 FUNCTION {bbl.vvolume} % { "\bblVolume{}" }
 {
   curlanguage "english" =
@@ -536,6 +547,9 @@ FUNCTION {bbl.vvolume} % { "\bblVolume{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.vvol}
+%    \begin{macrocode}
 FUNCTION {bbl.vvol} % { "\bblVol{}" }
 {
   curlanguage "english" =
@@ -548,6 +562,9 @@ FUNCTION {bbl.vvol} % { "\bblVol{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.iissue}
+%    \begin{macrocode}
 FUNCTION {bbl.iissue} % { "\bblIssue{}" }
 {
   curlanguage "english" =
@@ -560,6 +577,9 @@ FUNCTION {bbl.iissue} % { "\bblIssue{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.iiss}
+%    \begin{macrocode}
 FUNCTION {bbl.iiss} % { "\bblIss{}" }
 {
   curlanguage "english" =
@@ -572,6 +592,9 @@ FUNCTION {bbl.iiss} % { "\bblIss{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.of}
+%    \begin{macrocode}
 FUNCTION {bbl.of} % { "\bblof{}" }
 {
   curlanguage "english" =
@@ -584,6 +607,9 @@ FUNCTION {bbl.of} % { "\bblof{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.etal}
+%    \begin{macrocode}
 FUNCTION {bbl.etal} % { "\bblof{}" }
 {
   curlanguage "english" =
@@ -596,6 +622,9 @@ FUNCTION {bbl.etal} % { "\bblof{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.nnumber}
+%    \begin{macrocode}
 FUNCTION {bbl.nnumber} % { "\bblNumber{}" }
 {
   curlanguage "english" =
@@ -608,6 +637,9 @@ FUNCTION {bbl.nnumber} % { "\bblNumber{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.number}
+%    \begin{macrocode}
 FUNCTION {bbl.number} % { "\bblnumber{}" }
 {
   curlanguage "english" =
@@ -620,6 +652,9 @@ FUNCTION {bbl.number} % { "\bblnumber{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.nr}
+%    \begin{macrocode}
 FUNCTION {bbl.nr} % { "\bblno{}" }
 {
   curlanguage "english" =
@@ -632,6 +667,9 @@ FUNCTION {bbl.nr} % { "\bblno{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.nnr}
+%    \begin{macrocode}
 FUNCTION {bbl.nnr} % { "\bblno{}" }
 {
   curlanguage "english" =
@@ -644,6 +682,9 @@ FUNCTION {bbl.nnr} % { "\bblno{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.in}
+%    \begin{macrocode}
 FUNCTION {bbl.in} % { "\bblin{}" }
 {
   curlanguage "english" =
@@ -656,6 +697,9 @@ FUNCTION {bbl.in} % { "\bblin{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.iin}
+%    \begin{macrocode}
 FUNCTION {bbl.iin} % { "\bblIn{}" }
 {
   curlanguage "english" =
@@ -668,6 +712,9 @@ FUNCTION {bbl.iin} % { "\bblIn{}" }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.pages}
+%    \begin{macrocode}
 FUNCTION {bbl.pages} % { "\bblpp." }
 {
   curlanguage "english" =
@@ -680,6 +727,9 @@ FUNCTION {bbl.pages} % { "\bblpp." }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.page}
+%    \begin{macrocode}
 FUNCTION {bbl.page} % { "\bblp." }
 {
   curlanguage "english" =
@@ -692,6 +742,9 @@ FUNCTION {bbl.page} % { "\bblp." }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.ppages}
+%    \begin{macrocode}
 FUNCTION {bbl.ppages} % { "\bblPp." }
 {
   curlanguage "english" =
@@ -704,6 +757,9 @@ FUNCTION {bbl.ppages} % { "\bblPp." }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.ppage}
+%    \begin{macrocode}
 FUNCTION {bbl.ppage} % { "\bblP." }
 {
   curlanguage "english" =
@@ -716,6 +772,9 @@ FUNCTION {bbl.ppage} % { "\bblP." }
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.techrep}
+%    \begin{macrocode}
 FUNCTION {bbl.techrep}
 {
   curlanguage "english" =
@@ -728,6 +787,9 @@ FUNCTION {bbl.techrep}
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.mthesis}
+%    \begin{macrocode}
 FUNCTION {bbl.mthesis}
 {
   curlanguage "english" =
@@ -741,6 +803,9 @@ FUNCTION {bbl.mthesis}
   if$
 }
 
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.phdthesis}
+%    \begin{macrocode}
 FUNCTION {bbl.phdthesis}
 {
   curlanguage "english" =
@@ -1204,8 +1269,7 @@ FUNCTION {format.vol.num.pages}
   volume field.or.null
   number empty$
     'skip$
-    {
-      ", no." number tie.or.space.connect *
+    { ", no." number tie.or.space.connect *
       volume empty$
         { "there's a number but no volume in " cite$ * warning$ }
         'skip$
@@ -1424,6 +1488,31 @@ FUNCTION {format.annote}
 }
 
 %    \end{macrocode}
+% \DescribeBSTFunction{format.isbn}
+%    \begin{macrocode}
+FUNCTION {format.isbn}
+{
+  isbn empty$
+    { "" }
+    { "ISBN~" isbn * }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{add.doi}
+%    \begin{macrocode}
+FUNCTION {add.doi}
+{ duplicate$ empty$
+    'skip$
+    { doi empty$
+        'skip$
+        { "\href{http://dx.doi.org/" doi * "}{" * swap$ * "}" * }
+      if$
+    }
+  if$
+}
+
+%    \end{macrocode}
 % \subsection{Описание типов библиографических ссылок}
 % \DescribeBSTFunction{article}
 %    \begin{macrocode}
@@ -1433,7 +1522,7 @@ FUNCTION {article}
   author.before
   format.title "title" output.check
   new.dblslash
-  journal emphasize "journal" output.check
+  journal emphasize add.doi "journal" output.check
   new.block
   format.date output
   new.block
@@ -1468,6 +1557,8 @@ FUNCTION {book}
   format.bvolume output
   new.block
   format.pages.page output
+  new.block
+  format.isbn output
   new.block
   note output
   new.sentence
@@ -1519,6 +1610,8 @@ FUNCTION {inbook}
   format.bvolume output
   new.block
   format.pages.page output
+  new.block
+  format.isbn output
   new.block
   note output
   new.sentence
