@@ -23,37 +23,31 @@
 \ProvidesFile{gost732.drv}[2009/11/20 1.1.4 GOST 7.32-2001 implementation]
 
 \documentclass{ltxdoc}
-\usepackage[a4paper, includeheadfoot, nohead, mag=1000,
-            left=5cm, right=1cm, top=1.5cm, bottom=1.5cm]{geometry}
-\usepackage[T2A]{fontenc}
-\usepackage[cp1251]{inputenc}
-\usepackage[english,russian]{babel}
+\usepackage[a4paper,includeheadfoot,nohead,mag=1000,
+            left=5cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{ifpdf,indentfirst,color}
+
 \definecolor{darkblue}{rgb}{0,0,.6}
 \ifpdf
-  \usepackage[%
-    pdftex,
-    colorlinks,
-    plainpages=false,
-    pdftitle     = {User manual for disser},
-    pdfauthor    = {Stanislav Kruchinin},
-    pdfsubject   = {disser},
-    pdfstartview = {FitH},
-    pdfborder    = {0 0 0},
-    bookmarksopen,
-    bookmarksnumbered,
-    bookmarksopenlevel = 2,
-    pdfusetitle,
-    unicode]{hyperref}
+  \usepackage[pdftex,hyperindex,unicode]{hyperref}
   \usepackage{cmap}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
 
 \hypersetup{
-  colorlinks = true,     linkcolor = darkblue,
-  citecolor  = darkblue, filecolor = darkblue,
-  menucolor  = darkblue, urlcolor  = darkblue
+  pdfusetitle,
+  pdftitle           = {Documented source code of disser package},
+  pdfauthor          = {Stanislav Kruchinin},
+  pdfsubject         = {disser},
+  pdfstartview       = {FitH},
+  pdfborder          = {0 0 0},
+  bookmarksopen      = true,
+  bookmarksnumbered  = true,
+  bookmarksopenlevel = 2,
+  colorlinks = true,     linkcolor  = darkblue,
+  citecolor  = darkblue, filecolor  = darkblue,
+  menucolor  = darkblue, urlcolor   = darkblue
 }
 
 \IfFileExists{pscyr.sty}{%
@@ -66,6 +60,11 @@
     \renewcommand\rmdefault{ftm}
   }{}
 }
+\IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
+
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
 
 \MakeShortVerb{\|}
 

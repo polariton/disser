@@ -22,10 +22,9 @@
 \ProvidesFile{disser.drv}[2009/11/20 1.1.4 Document class for dissertations]
 
 \documentclass{ltxdoc}
-\usepackage[a4paper, includeheadfoot, nohead, mag=1000,
-            left=5cm, right=1cm, top=1.5cm, bottom=1.5cm]{geometry}
-\usepackage{ifpdf,indentfirst,tabularx,doc}
-\usepackage{makeidx,longtable,color}
+\usepackage[a4paper,includeheadfoot,nohead,mag=1000,
+            left=5cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{ifpdf,indentfirst,tabularx,doc,makeidx,longtable,color}
 
 \definecolor{darkblue}{rgb}{0,0,.6}
 
@@ -37,6 +36,7 @@
 \fi
 
 \hypersetup{
+  pdfusetitle,
   pdftitle           = {Documented source code of the disser package},
   pdfauthor          = {Stanislav Kruchinin},
   pdfsubject         = {disser},
@@ -109,9 +109,9 @@
 
 \makeindex
 
+\GetFileInfo{disser.drv}
 \begin{document}
-\sloppy
-  \PrintChanges
+  \sloppy
   \DocInput{disser.dtx}
   \DocInput{counters.dtx}
   \DocInput{part.dtx}
@@ -135,7 +135,6 @@
 \end{document}
 %</driver>
 % \fi
-% \GetFileInfo{disser.drv}
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

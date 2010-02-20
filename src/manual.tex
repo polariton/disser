@@ -5,29 +5,25 @@
 \definecolor{darkblue}{rgb}{0,0,.6}
 
 \ifpdf
-  \usepackage[%
-    pdftex,
-    colorlinks,
-    plainpages   = false,
-    pdftitle     = {User manual for disser package},
-    pdfauthor    = {Stanislav Kruchinin},
-    pdfsubject   = {disser},
-    pdfstartview = {FitH},
-    pdfborder    = {0 0 0},
-    bookmarksopen,
-    bookmarksnumbered,
-    bookmarksopenlevel = 2,
-    pdfusetitle,unicode]{hyperref}
+  \usepackage[pdftex,hyperindex,unicode]{hyperref}
   \usepackage{cmap}
 \else
   \usepackage[hypertex]{hyperref}
 \fi
 
 \hypersetup{
-  colorlinks = true,
-  linkcolor = darkblue, citecolor = darkblue,
-  filecolor = darkblue, menucolor = darkblue,
-  urlcolor = darkblue
+  pdfusetitle,
+  pdftitle           = {User manual for disser package},
+  pdfauthor          = {Stanislav Kruchinin},
+  pdfsubject         = {disser},
+  pdfstartview       = {FitH},
+  pdfborder          = {0 0 0},
+  bookmarksopen      = true,
+  bookmarksnumbered  = true,
+  bookmarksopenlevel = 2,
+  colorlinks = true,     linkcolor  = darkblue,
+  citecolor  = darkblue, filecolor  = darkblue,
+  menucolor  = darkblue, urlcolor   = darkblue
 }
 
 \IfFileExists{pscyr.sty}{%
