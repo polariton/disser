@@ -583,7 +583,7 @@ FUNCTION {bbl.iissue} % { "\bblIssue{}" }
 FUNCTION {bbl.iiss} % { "\bblIss{}" }
 {
   curlanguage "english" =
-    {"Iss."}
+    { "Iss." }
     { curlanguage "russian" =
         { "{\cyr\CYRV\cyrery\cyrp.}" }
         { "language is not defined: " language * warning$ "Issue" }
@@ -598,7 +598,7 @@ FUNCTION {bbl.iiss} % { "\bblIss{}" }
 FUNCTION {bbl.of} % { "\bblof{}" }
 {
   curlanguage "english" =
-    {"of"}
+    { "of" }
     { curlanguage "russian" =
         { "{\cyr\cyri\cyrz}" }
         { "language is not defined: " language "of" *  * warning$ "of" }
@@ -733,7 +733,7 @@ FUNCTION {bbl.pages} % { "\bblpp." }
 FUNCTION {bbl.page} % { "\bblp." }
 {
   curlanguage "english" =
-    {"p."}
+    { "p." }
     { curlanguage "russian" =
         { "{\cyr\cyrs.}"}
         { "language is not defined: " language  "p." * * warning$ "p." }
@@ -837,8 +837,7 @@ FUNCTION {format.names}
     { s nameptr
       "{vv~}{ll}{~f.}{, jj}" format.name$ 't :=
       nameptr #1 >
-        {
-          nameptr #4 =
+        { nameptr #4 =
           numnames #4 > and
             { "others" 't :=
               #1 'namesleft := }
@@ -846,8 +845,7 @@ FUNCTION {format.names}
           if$
           namesleft #1 >
             { ", " * t * }
-            {
-              t "others" =
+            { t "others" =
               t "~others" =
               or
                 { " " * bbl.etal * }
@@ -877,8 +875,7 @@ FUNCTION {format.names.rev}
     { s nameptr
       "{f.}{~vv}{~ll}{, jj}" format.name$ 't :=
       nameptr #1 >
-        {
-          nameptr #4 =
+        { nameptr #4 =
           numnames #4 > and
             { "others" 't :=
               #1 'namesleft := }
@@ -886,10 +883,9 @@ FUNCTION {format.names.rev}
           if$
           namesleft #1 >
             { ", " * t * }
-            {
-              t "others" =
-      t "~others" =
-      or
+            { t "others" =
+              t "~others" =
+              or
                 { " " * bbl.etal * }
                 { ", " * t * }
               if$
@@ -1148,7 +1144,7 @@ FUNCTION {format.number.series}
           number tie.or.space.connect
         }
       if$
-    }
+    } 
     { "" }
   if$
 }
@@ -1357,8 +1353,7 @@ FUNCTION {author.before}
 {
   author empty$
     'skip$
-    {
-      format.authors output
+    { format.authors output
       new.sentence
     }
   if$
@@ -1371,8 +1366,7 @@ FUNCTION {bookauthor.before}
 {
   bookauthor empty$
     'skip$
-    {
-      format.bookauthors output
+    { format.bookauthors output
       new.sentence
     }
   if$
@@ -1716,8 +1710,7 @@ FUNCTION {manual}
         'skip$
       if$
     }
-    {
-      organization address new.block.checkb
+    { organization address new.block.checkb
       organization output
       address output
     }
@@ -2113,9 +2106,7 @@ FUNCTION {author.sort}
         { key sortify }
       if$
     }
-    {
-      author sort.format.names
-    }
+    { author sort.format.names }
   if$
 }
 
@@ -2134,9 +2125,7 @@ FUNCTION {author.title.sort}
       { title sort.format.title }
     if$
     }
-    {
-      author sort.format.names
-    }
+    { author sort.format.names }
   if$
 }
 
