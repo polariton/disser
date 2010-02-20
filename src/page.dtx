@@ -49,6 +49,17 @@
 % В диссертациях на русском языке не используются колонтитулы с заголовком текущей главы,
 % поэтому все представленные стили влияют только на положение номера страницы.
 %
+% \paragraph{empty}
+%    \begin{macrocode}
+\def\ps@empty{
+  \let\@mkboth\@gobbletwo
+  \let\@oddhead\@empty
+  \let\@oddfoot\@empty
+  \let\@evenhead\@empty
+  \let\@evenfoot\@empty
+}
+
+%    \end{macrocode}
 % \paragraph{footcenter}
 %    \begin{macrocode}
 \def\ps@footcenter{
