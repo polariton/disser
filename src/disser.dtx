@@ -224,7 +224,7 @@
 % \item Отображение грифа секретности на титульном листе (отключено).
 %    \begin{macrocode}
 \newif\ifDis@classified\Dis@classifiedfalse
-%%    \end{macrocode}
+%    \end{macrocode}
 % \item Отображение подписей диссертанта и ученого секретаря (отключено).
 %    \begin{macrocode}
 \newif\ifDis@facsimile\Dis@facsimilefalse
@@ -299,6 +299,10 @@
 % привычные.
 %    \begin{macrocode}
 \DeclareBoolOption[true]{fixint}
+%    \end{macrocode}
+% Создание цветных ссылок.
+%    \begin{macrocode}
+\DeclareBoolOption[false]{colorlinks}
 
 %    \end{macrocode}
 %

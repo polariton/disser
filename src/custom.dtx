@@ -221,6 +221,16 @@
 %    \begin{macrocode}
   \usepackage{graphicx}
 \fi
+\ifDis@href\ifDis@colorlinks
+  \usepackage{color}
+  \definecolor{darkblue}{rgb}{0,0,.6}
+  \hypersetup{
+    colorlinks = true,     linkcolor  = darkblue,
+    citecolor  = darkblue, filecolor  = darkblue,
+    menucolor  = darkblue, urlcolor   = darkblue
+  }
+\fi\fi
+
 %    \end{macrocode}
 % Пакеты для исправления ошибок \pkg{hyperref}.
 % \DescribePackage{hypernat}\index{Пакеты!\verb*+hypernat+}
