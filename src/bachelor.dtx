@@ -13,7 +13,6 @@
 % \DescribeMacro{\fourthskip}\index{Расстояния!\verb*+\fourthskip+}
 % \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
 %    \begin{macrocode}
-
 \deflength\firstskip{1.5cm}
 \deflength\secondskip{1.5cm}
 \deflength\thirdskip{1ex}
@@ -36,27 +35,39 @@
 %    \begin{macrocode}
 \def\workname{\CYRR\cyra\cyrb\cyro\cyrt\cyra}
 
+\thispagestyle{empty}
+\enlargethispage{2cm}
+\vspace*{-2cm}
+%    \end{macrocode}
+% \paragraph{Название организации}
+%    \begin{macrocode}
+\begin{center}
+\instfont\@institution\par
+\end{center}
+
 %    \end{macrocode}
 % Диссертация допущена к защите
 %    \begin{macrocode}
-\vskip\firstskip
+\vskip\firstskip\normalfont
 \@approved
 \vskip\secondskip
+
 %    \end{macrocode}
 % Заголовок, тема.
 %    \begin{macrocode}
 \begin{center}
   {\titlefont\@title\par}
-  \vskip\thirdskip
-  {\topiclabelfont\topiclabel\;}
+  \vskip\thirdskip\normalfont
+  {\topiclabelfont\topiclabel\ }%
   {\topicfont\@topic\par}
   \vskip\fourthskip\normalfont
   \courselabel\ \@coursenum~--\ \@course
 \end{center}
+
 %    \end{macrocode}
 % Специальность, автор, руководитель.
 %    \begin{macrocode}
-\vskip\fifthskip
+\vskip\fifthskip\normalfont
 \begin{tabbing}
   \studentlabel\ \groupname\ \@group\hspace{2cm}\=
   \makebox[8.5cm][l]{\hrulefill\ \@author}
@@ -66,5 +77,12 @@
 %    \begin{macrocode}
   \field{sa}
 \end{tabbing}
+%    \end{macrocode}
+% \paragraph{Город и год}
+%    \begin{macrocode}
+\vfill
+\begin{center}
+  {\@city\cdsep\@date}
+\end{center}
 %</bachelor>
 %    \end{macrocode}

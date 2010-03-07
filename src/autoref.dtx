@@ -14,13 +14,31 @@
 \deflength\fourthskip{1cm}
 \deflength\fifthskip{1cm}
 
+%    \end{macrocode}
+% Шрифты элементов титульного листа.
+% \DescribeMacro{\titlefont}\index{Макросы!\verb*+\titlefont+}
+% \DescribeMacro{\topicfont}\index{Макросы!\verb*+\topicfont+}
+% \DescribeMacro{\authorfont}\index{Макросы!\verb*+\authorfont+}
+% \DescribeMacro{\specfont}\index{Макросы!\verb*+\specfont+}
+%    \begin{macrocode}
 \def\titlefont{\normalsize}
 \def\topicfont{\Large\bfseries}
 \def\authorfont{\large}
 \def\specfont{\normalsize}
 
+\thispagestyle{empty}
+\enlargethispage{2cm}
+\vspace*{-2cm}
+%    \end{macrocode}
+% \paragraph{Название организации}
+%    \begin{macrocode}
+\begin{center}
+\instfont\@institution\par
+\end{center}
+
 \vskip\firstskip
 \normalfont
+
 \begin{flushright}
 %    \end{macrocode}
 % Гриф секретности
@@ -53,6 +71,11 @@
 %    \begin{macrocode}
   \vskip\fifthskip
   {\titlefont\@title}
+%    \end{macrocode}
+% \paragraph{Город и год}
+%    \begin{macrocode}
+  \vfill
+  {\@city\cdsep\@date}
 \end{center}
 %</autoref>
 %    \end{macrocode}

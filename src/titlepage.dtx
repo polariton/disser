@@ -13,12 +13,11 @@
 %    \end{macrocode}
 % Подключение констант и команд, используемых для верстки титульного листа.
 %    \begin{macrocode}
-\input{titledefs\substyle@ext}
+\input{titledefs.rtx}
 
 \if@titlepage
 %    \end{macrocode}
-%
-% Параметры частей титульного листа
+% Параметры частей титульного листа по умолчанию.
 % \DescribeMacro{\titlefont}\index{Макросы!\verb*+\titlefont+}
 % \DescribeMacro{\topiclabelfont}\index{Макросы!\verb*+\topiclabelfont+}
 % \DescribeMacro{\topicfont}\index{Макросы!\verb*+\topicfont+}
@@ -29,50 +28,19 @@
   \newcommand\topicfont{\large\bfseries}
   \newcommand\instfont{\normalfont}
 %    \end{macrocode}
-%
 % Разделитель между названием города и годом.
 % \DescribeMacro{\cdsep}\index{Макросы!\verb*+\cdsep+}
 %    \begin{macrocode}
   \newcommand\cdsep{~-- }
 
 %    \end{macrocode}
+% \subsubsection{Разметка титульного листа}
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
   \newcommand\maketitle{
-%    \end{macrocode}
-%
-% \subsubsection{Общие элементы титульного листа}
-%    \begin{macrocode}
-      \thispagestyle{empty}
-      \vspace*{-2cm}
-%    \end{macrocode}
-% \paragraph{Название организации}
-%    \begin{macrocode}
-      \begin{center}
-      \instfont\@institution\par
-%    \end{macrocode}
-%  Для решения проблемы с |@| в именах макросов.
-%    \begin{macrocode}
-      \makeatletter
-%    \end{macrocode}
-% \paragraph{Включение того или иного титульного листа в зависимости от типа
-% документа}
-%    \begin{macrocode}
-      \ifDis@bachelor \input{bachelor\substyle@ext}\fi
-      \ifDis@master   \input{master\substyle@ext}\fi
-      \ifDis@candidate\input{candidate\substyle@ext}\fi
-      \ifDis@doctor   \input{doctor\substyle@ext}\fi
-      \ifDis@autoref  \input{autoref\substyle@ext}\fi
-      \enlargethispage{2cm}
-      \vfill
-%    \end{macrocode}
-% \paragraph{Город и год}
-%    \begin{macrocode}
-        {\@city\cdsep\@date}
-      \end{center}
-    \normalsize
-    \clearpage
-    \thispagestyle{empty}
+    \makeatletter
+    \input{\Dis@titlepagefile}
+    \normalfont\clearpage
   } % \newcommand\maketitle
   \setcounter{footnote}{0}
 \else %\if@titlepage
@@ -94,8 +62,8 @@
   }
 %    \end{macrocode}
 % \DescribeMacro{\@maketitle}\index{Макросы!\verb+"\"@maketitle+}
-% Команда для форматирования заголовка документа, который не будет
-% расположен на отдельной странице.
+% Команда для форматирования заголовка документа без отдельного
+% титульного листа (см. описание опции \cmd{notitlepage}).
 %    \begin{macrocode}
   \def\@maketitle{%
     \newpage

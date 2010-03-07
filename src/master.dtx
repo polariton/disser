@@ -29,10 +29,20 @@
 \def\topiclabelfont{\large}
 \def\topicfont{\large\bfseries}
 
+\thispagestyle{empty}
+\enlargethispage{2cm}
+\vspace*{-2cm}
+%    \end{macrocode}
+% \paragraph{Название организации}
+%    \begin{macrocode}
+\begin{center}
+\instfont\@institution\par
+\end{center}
+
 %    \end{macrocode}
 % Диссертация допущена к защите
 %    \begin{macrocode}
-\vskip\firstskip
+\vskip\firstskip\normalfont
 \@approved
 \vskip\secondskip
 \begin{center}
@@ -40,29 +50,26 @@
 % Заголовок.
 %    \begin{macrocode}
   {\titlefont\@title}
-  \vskip\thirdskip
+  \vskip\thirdskip\normalfont
 %    \end{macrocode}
-%
 % Тема
 %    \begin{macrocode}
   {\topiclabelfont\topiclabel}
   {\topicfont\@topic}
 \end{center}
-\vskip\fourthskip
+\vskip\fourthskip\normalfont
 \begin{tabbing}
   \phantom{\masterproglabel}\=\\
 %    \end{macrocode}
-%
 % Направление
 %    \begin{macrocode}
   \courselabel\>\ \@coursenum\ --\ \@course\\
 %    \end{macrocode}
-%
 % Магистерская программа: номер -- название.
 %    \begin{macrocode}
   \masterproglabel\>\ \@masterprognum\ --\ \@masterprog
 \end{tabbing}
-\vskip\fifthskip
+\vskip\fifthskip\normalfont
 \begin{tabbing}
 %    \end{macrocode}
 %
@@ -89,5 +96,12 @@
 %    \begin{macrocode}
   \ifdefined\@con\field{con}\fi
 \end{tabbing}
+%    \end{macrocode}
+% \paragraph{Город и год}
+%    \begin{macrocode}
+\vfill
+\begin{center}
+  {\@city\cdsep\@date}
+\end{center}
 %</master>
 %    \end{macrocode}

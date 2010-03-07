@@ -36,8 +36,17 @@
 \def\authorfont{\large}
 \def\specfont{\normalsize}
 
-\vskip\firstskip
-\normalfont
+\thispagestyle{empty}
+\enlargethispage{2cm}
+\vspace*{-2cm}
+
+%    \end{macrocode}
+% \paragraph{Название организации}
+%    \begin{macrocode}
+\begin{center}
+  \instfont\@institution\par
+\end{center}
+\vskip\firstskip\normalfont
 \begin{flushright}
 %    \end{macrocode}
 % Гриф секретности
@@ -60,23 +69,30 @@
 %    \end{macrocode}
 % Автор
 %    \begin{macrocode}
-  \vskip\secondskip
+  \vskip\secondskip\normalfont
   {\authorfont\@author}
 %    \end{macrocode}
 % Название диссертации
 %    \begin{macrocode}
-  \vskip\thirdskip
+  \vskip\thirdskip\normalfont
   {\topicfont\@topic\par}
 %    \end{macrocode}
 % Шифр и наименование специальности
 %    \begin{macrocode}
-  \vskip\fourthskip
+  \vskip\fourthskip\normalfont
   {\specfont\@specnum~--\ \@spec}
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
 %    \begin{macrocode}
-  \vskip\fifthskip
+  \vskip\fifthskip\normalfont
   {\titlefont\@title}
+\end{center}
+%    \end{macrocode}
+% \paragraph{Город и год}
+%    \begin{macrocode}
+\vfill
+\begin{center}
+  {\@city\cdsep\@date}
 \end{center}
 %</doctor>
 %    \end{macrocode}

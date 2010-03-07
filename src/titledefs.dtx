@@ -302,35 +302,36 @@
 % \DescribeMacro{\introname}\index{Макросы!\verb*+\introname+}
 % \DescribeMacro{\intro}\index{Макросы!\verb*+\intro+}
 %    \begin{macrocode}
-\newcommand\introname{\cyr\CYRV\cyrv\cyre\cyrd\cyre\cyrn\cyri\cyre}
-\newcommand\intro{\nchapter{\introname}}
+\providecommand*\introname{\cyr\CYRV\cyrv\cyre\cyrd\cyre\cyrn\cyri\cyre}
+\providecommand*\intro{\nchapter{\introname}}
 %    \end{macrocode}
 % \item Заключение
 % \DescribeMacro{\conclusionname}\index{Макросы!\verb*+\conclusionname+}
 %    \begin{macrocode}
-\newcommand\conclusionname{%
+\providecommand*\conclusionname{%
 \cyr\CYRZ\cyra\cyrk\cyrl\cyryu\cyrch\cyre\cyrn\cyri\cyre
 }
-\newcommand\conclusion{\nchapter{\conclusionname}}
+\providecommand*\conclusion{\nchapter{\conclusionname}}
 %    \end{macrocode}
 % \item Список используемых обозначений
 % \DescribeMacro{\defsname}\index{Макросы!\verb*+\defsname+}
+% \DescribeMacro{\defs}\index{Макросы!\verb*+\defs+}
 % \end{itemize}
 %    \begin{macrocode}
-\newcommand\defsname{%
+\providecommand*\defsname{%
 {\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
 \cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyru\cyre\cyrm\cyrery\cyrh\ %
 \cyro\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrishrt}
 }
-\newcommand\defs{\nchapter{\defsname}}
+\providecommand*\defs{\nchapter{\defsname}}
 
 %    \end{macrocode}
 % Обзор литературы
 % \DescribeMacro{\reviewname}\index{Макросы!\verb*+\reviewname+}
 %    \begin{macrocode}
-\newcommand\reviewname{\cyr\CYRO\cyrb\cyrz\cyro\cyrr\ %
+\providecommand*\reviewname{\cyr\CYRO\cyrb\cyrz\cyro\cyrr\ %
 \cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
-\newcommand\review{\nchapter{\reviewname}}
+\providecommand*\review{\nchapter{\reviewname}}
 
 %    \end{macrocode}
 %
@@ -339,7 +340,7 @@
 % \DescribeMacro{\field}\index{Макросы!\verb*+\field+}
 % Формат записей для научного руководителя, рецензента и консультанта
 %    \begin{macrocode}
-\def\field#1{%
+\providecommand\field[1]{%
   \csname #1label\endcsname,\\%
   \csname @#1status\endcsname\>
   \makebox[8.5cm][l]{\hrulefill\ \csname @#1\endcsname}
@@ -347,17 +348,13 @@
 %    \end{macrocode}
 %
 % \DescribeMacro{\@approved}\index{Макросы!\verb+"\"@approved+}
-% \makeatother
 % Диссертация допущена к защите
 %    \begin{macrocode}
-\def\@approved{
+\providecommand\@approved{
   \begin{tabbing}
-    \hspace{8cm}\={\approved}
-\\
-    \>\appos
-\\[9pt]
-    \>\makebox[8.5cm][r]{\hrulefill\ \@apname}
-\\[9pt]
+    \hspace{8cm}\={\approved}\\
+    \>\appos\\[9pt]
+    \>\makebox[8.5cm][r]{\hrulefill\ \@apname}\\[9pt]
     \>\makebox[1.5cm][r]{<<\hrulefill>>}
     \makebox[7cm][r]{\hrulefill\ \@date\,\yearname}
   \end{tabbing}
@@ -370,6 +367,7 @@
 %    \begin{macrocode}
 \providecommand\datefield[1][\number\year]{<<\rule[0pt]{1cm}{.5pt}>>\ %
 \rule[0pt]{3cm}{0.5pt}\ #1~\yearname}
+
 %    \end{macrocode}
 % \DescribeMacro{\mkcommonsect}\index{Макросы!\verb*+\mkcommonsect+}
 % Генератор команд для общего текста диссертации и автореферата.
@@ -383,15 +381,16 @@
 
 %    \end{macrocode}
 % \DescribeMacro{\copynum}\index{Макросы!\verb*+\copynum+}
-% Номер копии.
 % \DescribeMacro{\classlabel}\index{Макросы!\verb*+\classlabel+}
 % \DescribeMacro{\classify}\index{Макросы!\verb*+\classify+}
-% Гриф секретности.
+% Номер копии и гриф секретности.
 %    \begin{macrocode}
-\def\copynum#1{\gdef\@copynum{#1}}\copynum{1}
+\def\copynum#1{\gdef\@copynum{#1}}
+\copynum{1}
 \def\classlabel#1{\gdef\@classlabel{#1}}
 \classlabel{\cyr\CYRS\cyre\cyrk\cyrr\cyre\cyrt\cyrn\cyro}
-\providecommand\classify{
+
+\def\classify{
   \begin{flushright}
     \@classlabel\\
     {\cyr\CYREREV\cyrk\cyrz.~\textnumero\,\@copynum}

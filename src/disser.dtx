@@ -183,9 +183,11 @@
 \ProvidesClass{disser}[2009/11/20 1.1.4 Document class for dissertations]
 
 %    \end{macrocode}
-% Расширение файлов, включаемых в |disser.cls|.
+% Подключение пакета \pkg{kvoptions} для обработки опций в формате
+% <<ключ = значение>>.
+% \DescribePackage{kvoptions}\index{Пакеты!\verb*+kvoptions+}
 %    \begin{macrocode}
-\def\substyle@ext{.rtx}
+\RequirePackage{kvoptions}
 
 %    \end{macrocode}
 % Определение операторов условного выполнения.
@@ -254,13 +256,6 @@
 %
 % \subsection{Опции класса}
 %
-% Подключение пакета \pkg{kvoptions} для обработки опций в формате
-% <<ключ = значение>>.
-% \DescribePackage{kvoptions}\index{Пакеты!\verb*+kvoptions+}
-%    \begin{macrocode}
-\RequirePackage{kvoptions}[2006/08/17]
-
-%    \end{macrocode}
 % Подключение пакета \pkg{hyperref} и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{href}{\Dis@hreftrue}
@@ -284,27 +279,7 @@
 % Не подключать пакеты \pkg{amsmath}, \pkg{amsfonts}, \pkg{amssymb}.
 %    \begin{macrocode}
 \DeclareOption{noams}{\Dis@amsfalse}
-
 %    \end{macrocode}
-% Настройка опций.
-%    \begin{macrocode}
-\SetupKeyvalOptions{
-  family=Dis,
-  prefix=Dis@
-}
-
-%    \end{macrocode}
-% Исправление знаков интегралов и пределов интегрирования на более
-% привычные.
-%    \begin{macrocode}
-\DeclareBoolOption[true]{fixint}
-%    \end{macrocode}
-% Создание цветных ссылок.
-%    \begin{macrocode}
-\DeclareBoolOption[false]{colorlinks}
-
-%    \end{macrocode}
-%
 % Размеры листов.
 %    \begin{macrocode}
 \DeclareOption{a4paper}{%
@@ -446,6 +421,22 @@
   \Dis@autoreftrue
 }
 
+\SetupKeyvalOptions{
+  family=Dis,
+  prefix=Dis@
+}
+
+%    \end{macrocode}
+% Исправление знаков интегралов и пределов интегрирования на более
+% привычные.
+%    \begin{macrocode}
+\DeclareBoolOption[true]{fixint}
+%    \end{macrocode}
+% Создание цветных ссылок.
+%    \begin{macrocode}
+\DeclareBoolOption[false]{colorlinks}
+\DeclareStringOption{titlepagefile}
+
 %    \end{macrocode}
 % Выполнение опций по умолчанию.
 %    \begin{macrocode}
@@ -457,7 +448,18 @@
 \ProcessOptions
 
 %    \end{macrocode}
-% Команды изменения регистра. Им самое место в ядре.
+% Файл с описанием разметки титульного листа по умолчанию.
+%    \begin{macrocode}
+\ifx\Dis@titlepagefile\@empty
+  \ifDis@bachelor \renewcommand*{\Dis@titlepagefile}{bachelor.rtx}\fi
+  \ifDis@master   \renewcommand*{\Dis@titlepagefile}{master.rtx}\fi
+  \ifDis@candidate\renewcommand*{\Dis@titlepagefile}{candidate.rtx}\fi
+  \ifDis@doctor   \renewcommand*{\Dis@titlepagefile}{doctor.rtx}\fi
+  \ifDis@autoref  \renewcommand*{\Dis@titlepagefile}{autoref.rtx}\fi
+\fi
+
+%    \end{macrocode}
+% Команды изменения регистра.
 % \DescribeMacro{\MakeTextUppercase}\index{Макросы!\verb*+\MakeTextUppercase+}
 %    \begin{macrocode}
 \DeclareRobustCommand\MakeTextUppercase{%
@@ -482,6 +484,7 @@
   \DeclareFontShape{#1}{#2}{#3}{#4}%
   {<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74>%
   <24.88><29.86><35.83><42.99><51.59>genb*#5}{}}
+
 \EC@family{T1}{cmr}{m}{n}{ecrm}
 \EC@family{T1}{cmr}{m}{sl}{ecsl}
 \EC@family{T1}{cmr}{m}{it}{ecti}
@@ -492,45 +495,49 @@
 \EC@family{T1}{cmr}{bx}{sl}{ecbl}
 \EC@family{T1}{cmr}{bx}{sc}{ecxc}
 \EC@family{T1}{cmr}{m}{ui}{ecui}
-\DeclareFontShape{OT1}{cmr}{m}{n}%
-     {<5><6><7><8><9><10><12>gen*cmr%
-      <10.95>cmr10%
-      <14.4>cmr12%
-      <17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmr17}{}
-\DeclareFontShape{OT1}{cmr}{m}{sl}%
-     {<5><6><7>cmsl8%
-      <8><9>gen*cmsl%
-      <10><10.95>cmsl10%
-      <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmsl12%
-      }{}
-\DeclareFontShape{OT1}{cmr}{m}{it}%
-     {<5><6><7>cmti7%
-      <8>cmti8%
-      <9>cmti9%
-      <10><10.95>cmti10%
-      <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmti12%
-      }{}
-\DeclareFontShape{OT1}{cmr}{m}{sc}%
-     {<5><6><7><8><9><10><10.95><12>%
-      <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmcsc10%
-      }{}
-\DeclareFontShape{OT1}{cmr}{m}{ui}{
+
+\DeclareFontShape{OT1}{cmr}{m}{n}{%
+  <5><6><7><8><9><10><12>gen*cmr%
+  <10.95>cmr10%
+  <14.4>cmr12%
+  <17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmr17%
+}{}
+\DeclareFontShape{OT1}{cmr}{m}{sl}{%
+  <5><6><7>cmsl8%
+  <8><9>gen*cmsl%
+  <10><10.95>cmsl10%
+  <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmsl12%
+}{}
+\DeclareFontShape{OT1}{cmr}{m}{it}{%
+  <5><6><7>cmti7%
+  <8>cmti8%
+  <9>cmti9%
+  <10><10.95>cmti10%
+  <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmti12%
+}{}
+\DeclareFontShape{OT1}{cmr}{m}{sc}{%
+  <5><6><7><8><9><10><10.95><12>%
+  <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmcsc10%
+}{}
+\DeclareFontShape{OT1}{cmr}{m}{ui}{%
   <5><6><7><8><9><10><10.95><12>%
   <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmu10%
 }{}
-\DeclareFontShape{OT1}{cmr}{b}{n}{
+\DeclareFontShape{OT1}{cmr}{b}{n}{%
   <5><6><7><8><9><10><10.95><12>%
   <14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmb10%
 }{}
-\DeclareFontShape{OT1}{cmr}{bx}{n}{
+\DeclareFontShape{OT1}{cmr}{bx}{n}{%
   <5><6><7><8><9>gen*cmbx%
   <10><10.95>cmbx10%
   <12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmbx12%
 }{}
-\DeclareFontShape{OT1}{cmr}{bx}{sl}{<5><6><7><8><9>%
+\DeclareFontShape{OT1}{cmr}{bx}{sl}{%
+  <5><6><7><8><9>%
   <10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmbxsl10%
 }{}
-\DeclareFontShape{OT1}{cmr}{bx}{it}{<5><6><7><8><9>%
+\DeclareFontShape{OT1}{cmr}{bx}{it}{%
+  <5><6><7><8><9>%
   <10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83><42.99><51.59>cmbxti10%
 }{}
 \input{size\@ptsize.clo}

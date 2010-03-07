@@ -159,8 +159,8 @@
 %    \end{macrocode}
 % \subsubsection{Плавающие объекты}
 %
-% \DescribePackage{wrapfig}\index{Пакеты!\verb*+wrapfig+}
 % Плавающие рисунки <<в оборку>>.
+% \DescribePackage{wrapfig}\index{Пакеты!\verb*+wrapfig+}
 %    \begin{macrocode}
 \usepackage{wrapfig}
 %    \end{macrocode}
@@ -178,7 +178,6 @@
 %    \end{macrocode}
 % Формат ссылки через |\ref|.
 % \DescribeMacro{\thefigsubsep}\index{Макросы!\verb*+\thefigsubsep+}
-% Разделитель между номером и буквой.
 %    \begin{macrocode}
   \providecommand\thefigsubsep{,~}
   \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
@@ -244,10 +243,10 @@
 \fi
 
 %    \end{macrocode}
-% \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
 % Команда, создающая цель для гиперссылок над заголовками ненумеруемых разделов.
+% \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
 %    \begin{macrocode}
-\def\metaphantom#1{%
+\providecommand\metaphantom[1]{%
   \ifDis@href
     \Hy@GlobalStepCount\Hy@linkcounter
     \xdef\@currentHref{#1*.\the\Hy@linkcounter}%
