@@ -49,20 +49,20 @@
 \providecommand\chapterfont{\Large\bfseries}
 \providecommand\beforechapter{}
 \providecommand\afterchapter{\par\nobreak\vskip 20\p@}
-\providecommand\chapterindent{0pt}
+\providecommand\chapterindent{0\p@}
 
 %    \end{macrocode}
 %
 % \subsubsection{Низкоуровневые команды}
 %
-% \DescribeMacro{\chaptermark}\index{Макросы!\verb*+\chaptermark+}
 % Пустое определение колонтитула главы.
+% \DescribeMacro{\chaptermark}\index{Макросы!\verb*+\chaptermark+}
 %    \begin{macrocode}
 \newcommand*\chaptermark[1]{}
 
 %    \end{macrocode}
-% \DescribeMacro{\chapter}\index{Макросы!\verb*+"\chapter+}
 % Интерфейс.
+% \DescribeMacro{\chapter}\index{Макросы!\verb*+"\chapter+}
 %    \begin{macrocode}
 \newcommand\chapter{%
   \if@openright
@@ -77,9 +77,8 @@
 }
 
 %    \end{macrocode}
-%
-% \DescribeMacro{\@chapter}\index{Макросы!\verb+"\"@chapter+}
 % Команда, формирующая нумеруемый заголовок |\chapter|.
+% \DescribeMacro{\@chapter}\index{Макросы!\verb+"\"@chapter+}
 %    \begin{macrocode}
 \def\@chapter[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -98,10 +97,10 @@
     \@afterheading
   \fi
 }
+
 %    \end{macrocode}
-%
-% \DescribeMacro{\@makechapterhead}\index{Макросы!\verb+"\"@makechapterhead+}
 % Формат нумеруемого заголовка.
+% \DescribeMacro{\@makechapterhead}\index{Макросы!\verb+"\"@makechapterhead+}
 %    \begin{macrocode}
 \def\@makechapterhead#1{{%
   \parindent\z@
@@ -114,9 +113,8 @@
 }}
 
 %    \end{macrocode}
-%
-% \DescribeMacro{\@schapter}\index{Макросы!\verb+"\"@schapter+}
 % Команда, формирующая ненумеруемый заголовок |\chapter*|.
+% \DescribeMacro{\@schapter}\index{Макросы!\verb+"\"@schapter+}
 %    \begin{macrocode}
 \def\@schapter#1{
   \if@twocolumn
@@ -138,6 +136,7 @@
   \interlinepenalty\@M
   \chapteralign\chapterfont\beforechapter #1\afterchapter
 }}
+
 %    \end{macrocode}
 %
 % \DescribeMacro{\l@chapter}\index{Макросы!\verb+"\l"@chapter+}
@@ -206,13 +205,13 @@
 \providecommand\appendixfont{\Large\bfseries}
 \providecommand\beforeappendix{}
 \providecommand\afterappendix{\par\nobreak\vskip 20\p@}
-\providecommand\appendixindent{0pt}
+\providecommand\appendixindent{0\p@}
 %    \end{macrocode}
 %
-% \DescribeMacro{\appendix}\index{Макросы!\verb*+\appendix+}
 % Команда для создания глав приложений. Сохранение и восстановление
 % значений параметров формата глав делаются для случая, когда
 % приложения идут до списка литературы.
+% \DescribeMacro{\appendix}\index{Макросы!\verb*+\appendix+}
 %    \begin{macrocode}
 \newcommand\appendix{
   \setcounter{chapter}{0}
@@ -267,8 +266,8 @@
 }
 
 %    \end{macrocode}
-% \DescribeMacro{\noappendix}\index{Макросы!\verb*+\noappendix+}
 % Восстановление исходных параметров формата заголовков глав.
+% \DescribeMacro{\noappendix}\index{Макросы!\verb*+\noappendix+}
 %    \begin{macrocode}
 \newcommand\noappendix{
   \let\tocprethechapter=\oldtocprethechapter

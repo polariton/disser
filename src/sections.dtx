@@ -345,13 +345,13 @@
         \ifnum #2>\c@secnumdepth \else
           \protect\numberline{\@tocseccntformat{#1}}%
         \fi
-        #7}}%
+        #7}%
+    }%
   \fi
   \@xsect{#5}%
 }
 
 %    \end{macrocode}
-%
 % \DescribeMacro{\@tocline}\index{Макросы!\verb*+"\"@tocline+}
 % Обобщенная версия стандартной команды, добавляющей запись в оглавление.
 %    \begin{macrocode}
@@ -376,7 +376,6 @@
 }
 
 %    \end{macrocode}
-%
 % Команды, создающие заголовки секций в тексте и записи в оглавлении.
 % \DescribeMacro{\section}\index{Макросы!\verb*+\section+}
 % \DescribeMacro{\l@section}\index{Макросы!\verb*+"\l"@section+}

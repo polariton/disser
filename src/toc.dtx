@@ -48,11 +48,11 @@
 \newcommand\tocsection{\chapter*{\contentsname}}
 
 %    \end{macrocode}
-%
 % \DescribeMacro{\tableofcontents}\index{Макросы!\verb*+\tableofcontents+}
 %    \begin{macrocode}
 \newcommand\tableofcontents{%
-  \if@twocolumn\@restonecoltrue\onecolumn%
+  \if@twocolumn%
+    \@restonecoltrue\onecolumn%
   \else\@restonecolfalse\fi%
   \tocsection%
   \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
@@ -69,7 +69,6 @@
 \newcommand\lofsection{\nchapter{\listfigurename}}
 
 %    \end{macrocode}
-%
 % \DescribeMacro{\listoffigures}\index{Макросы!\verb*+\listoffigures+}
 %    \begin{macrocode}
 \newcommand\listoffigures{%
