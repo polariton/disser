@@ -1,6 +1,5 @@
-\documentclass[candidate,subf,href
+\documentclass[candidate,subf,href,colorlinks=true
 %,fixint=false
-%,colorlinks=true
 %,times
 %,facsimile
 %,classified
@@ -18,7 +17,7 @@
 % Номера страниц сверху и по центру
 %\def\headfont{\small}
 %\pagestyle{headcenter}
-%\chapterpagestyle{headcenter}
+%\chapterpagestyle{empty}
 
 % Ссылки на работы соискателя включаются в общий список литературы
 \let\citemy=\cite
@@ -44,17 +43,17 @@
 кандидата физико-математических наук}
 
 \maketitle
-% ----------------------------------------------------------------
+
 \tableofcontents
-% ----------------------------------------------------------------
+
 \input{intro}
 \input{review}
 \input{1}
 \input{concl}
-% ----------------------------------------------------------------
+
 \bibliography{thesis}
 \bibliographystyle{gost705}
-% ----------------------------------------------------------------
+
 \appendix
 \input{app-a}
 \end{document}

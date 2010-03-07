@@ -1,6 +1,5 @@
-\documentclass[bachelor,subf,href
+\documentclass[bachelor,subf,href,colorlinks=true
 %,fixint=false
-%,colorlinks=true
 %,times
 ]{disser}
 
@@ -16,7 +15,7 @@
 % Номера страниц сверху и по центру
 %\def\headfont{\small}
 %\pagestyle{headcenter}
-%\chapterpagestyle{headcenter}
+%\chapterpagestyle{empty}
 
 % Использовать полужирное начертание для векторов
 \let\vec=\mathbf
@@ -25,16 +24,16 @@
 \setcounter{tocdepth}{2}
 
 \graphicspath{{fig/}}
-% ----------------------------------------------------------------
+
 \begin{document}
-% Название организации
-\institution{%
-Название организации
-}
+
+\institution{Название организации}
+
 % Имя лица, допускающего к защите (зав. кафедрой)
 \apname{ФИО зав. кафедрой}
+
 \title{ВЫПУСКНАЯ РАБОТА\\БАКАЛАВРА}
-% Тема
+
 \topic{Тема работы}
 
 % Автор
@@ -52,14 +51,11 @@
 \date{\number\year}
 
 \maketitle
-% ----------------------------------------------------------------
 \tableofcontents
-% ----------------------------------------------------------------
 \input{intro}
 \input{1}
 \input{concl}
-% ----------------------------------------------------------------
+
 \bibliography{thesis}
 \bibliographystyle{gost705}
 \end{document}
-% ----------------------------------------------------------------

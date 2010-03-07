@@ -1,6 +1,5 @@
-\documentclass[master,subf,href
+\documentclass[master,subf,href,colorlinks=true
 %,fixint=false
-%,colorlinks=true
 %,times
 ]{disser}
 
@@ -16,22 +15,25 @@
 % Номера страниц сверху и по центру
 %\def\headfont{\small}
 %\pagestyle{headcenter}
-%\chapterpagestyle{headcenter}
+%\chapterpagestyle{empty}
 
 % Использовать полужирное начертание для векторов
 \let\vec=\mathbf
 
+% Включать подсекции в оглавление
+\setcounter{tocdepth}{2}
+
 \graphicspath{{fig/}}
-% --------------------------------------------------------------------------
+
 \begin{document}
-% Название организации
-\institution{%
-Название организации
-}
+
+\institution{Название организации}
+
 % Имя лица, допускающего к защите (зав. кафедрой)
 \apname{ФИО зав. кафедрой}
+
 \title{ДИССЕРТАЦИЯ\\[-14pt]на соискание ученой степени\\МАГИСТРА}
-% Тема
+
 \topic{Тема диссертации}
 
 % Автор
@@ -60,15 +62,15 @@
 \date{\number\year}
 
 \maketitle
-%---------------------------------------------------------------------------
+
 \tableofcontents
-%---------------------------------------------------------------------------
+
 \input{intro}
 \input{1}
 \input{concl}
 \appendix
 \input{app-a}
-%---------------------------------------------------------------------------
+
 \bibliography{thesis}
 \bibliographystyle{gost705}
 \end{document}
