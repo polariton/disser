@@ -1,6 +1,21 @@
 disser changelog
-Copyright (C) 2004-2009 Stanislav Kruchinin
+Copyright (C) 2004-2010 Stanislav Kruchinin
 -------------------------------------------
+
+Summary of changes in version 1.1.5 (2010-03-23):
+
+Classes and styles:
++ Add support for classified dissertations.
++ Add support for ISBN and DOI to gost705 style.
++ Add "colorlinks" option.
++ Add scientific consultant field.
+* Fix compatibility with latest versions of "hyperref" and "oberdiek"
+  packages.
+
+Templates:
++ Enable "colorlinks" option by default.
++ Add examples of "isbn" and "doi" fields.
+
 
 Summary of changes in version 1.1.4 (2009-11-20):
 
