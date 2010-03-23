@@ -10,8 +10,8 @@
 
 Для корректной сборки документов в вашем дистрибутиве LaTeX должны быть 
 установлены следующие пакеты:
-amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib,
-oberdiek, hyperref, hypernat, subfig, wrapfig, а также пакеты для поддержки 
+amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, kvoptions,
+natbib, hyperref, subfig, wrapfig, а также пакеты для поддержки 
 русского языка.
 
 Для использования шрифта Times в текстовом режиме следует установить 
@@ -54,25 +54,38 @@ ZIP-архив с готовыми файлами и документацией, которые размещены в
 
 1. Из исходных текстов
 
-В Unix-like ОС:
+Для установки необходимо перейти в каталог с распакованными исходными
+текстами и выполнить следующие команды
+
+в Unix-подобных окружениях:
   env DESTDIR=/путь/к/texmf make install
 
-В Windows:
+в Windows:
   set DESTDIR=диск:\путь\к\texmf
   nomake install
 
-Здесь /путь/к/texmf -- путь к дереву каталогов TeX.
-
+Здесь /путь/к/texmf и диск:\путь\к\texmf -- пути к дереву каталогов TeX.
 После установки следует обновить базу имен файлов с помощью команды
+  mktexlsr
+
+Пример команд для дистрибутива MiKTeX версии 2.8:
+  set DESTDIR=%ALLUSERSPROFILE%\Application Data\MiKTeX\2.8
+  nomake install
   mktexlsr
 
 2. Из ZIP-архива со скомпилированными файлами
 
-Файл disser.tds.zip содержит собранные файлы классов и документации,
-поэтому его можно просто распаковать в каталог TeX.
+Файл disser-<version>.tds.zip содержит собранные файлы классов и
+документации, поэтому его можно просто распаковать в каталог TeX.
 
+Пример для Unix-подобных окружений:
   cd /путь/к/texmf
-  unzip /путь/к/файлу/disser.tds.zip
+  unzip /путь/к/файлу/disser-<version>.tds.zip
+  mktexlsr
+
+Пример для Windows:
+  cd диск:\путь\к\texmf
+  unzip диск:\путь\к\файлу\disser-<version>.tds.zip
   mktexlsr
 
 

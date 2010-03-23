@@ -3,20 +3,22 @@ Overview
 
 The "disser" package provides LaTeX classes, bibliography styles and document
 templates for typesetting dissertations and author's abstracts that would
-satisfy requirements of dissertation councils and High Certification
+satisfy the requirements of a dissertation councils and High Certification
 Commission of Russian Federation.
 
 
-Recommended packages and programs
----------------------------------
+Required packages and programs
+------------------------------
 
-It is recommended to install the following third party LaTeX packages:
-amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, natbib,
-oberdiek, hyperref, hypernat, subfig, wrapfig, and packages for russian
-language support in LaTeX.
+For installation and working with documents you will need the following
+third-party packages:
+amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, kvoptions, natbib,
+hyperref, hypernat, subfig, wrapfig, and packages for russian language support
+in LaTeX.
 
-For typesetting documents using Times font family you should install
-pscyr or cyrtimes (text fonts), txfonts or mtpro (math fonts).
+For typesetting documents using Times font family you should install the
+following packages: pscyr or cyrtimes (text fonts), txfonts or mtpro (math
+fonts).
 
 For automated processing of figures you should install the following programs:
 Ghostscript, epstool and sam2p.
@@ -55,17 +57,24 @@ Installation
 
 1. Installation from sources
 
-In Unix-like environment:
+Enter the following commands in the command prompt
+
+in a Unix-like environment:
   env DESTDIR=/path/to/texmf make install
 
-In Windows:
+in Windows:
   set DESTDIR=disk:\path\to\texmf
   nomake install
 
-Here /path/to/texmf is the path to TeX directory tree.
-
+Here /path/to/texmf and disk:\path\to\texmf are the paths to TeX directory tree.
 After installation you should update the filename database with the command
   mktexlsr
+
+Example of commands for MiKTeX version 2.8:
+  set DESTDIR=C:\Documents and Settings\All Users\Application Data\MiKTeX\2.8
+  nomake install
+  mktexlsr
+
 
 2. Installation from ZIP archive in TDS format
 
