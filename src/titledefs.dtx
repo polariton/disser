@@ -104,6 +104,14 @@
 \cyrr\cyru\cyrk\cyro\cyrv\cyro\cyrd\cyri\cyrt\cyre\cyrl\cyrsftsn}
 \def\salabel{\saname}
 %    \end{macrocode}
+% \DescribeMacro{\scname}\index{Макросы!\verb+\scname+}
+% \DescribeMacro{\sclabel}\index{Макросы!\verb+\sclabel+}
+% Научный консультант
+%    \begin{macrocode}
+\def\sconname{\cyr\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt\ %
+\cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
+\def\sconlabel{\sconname}
+%    \end{macrocode}
 % \DescribeMacro{\revname}\index{Макросы!\verb+\revname+}
 % \DescribeMacro{\revlabel}\index{Макросы!\verb+\revlabel+}
 % Рецензент
@@ -252,6 +260,18 @@
 % Учёное звание
 %    \begin{macrocode}
 \def\sastatus#1{\gdef\@sastatus{#1}}\sastatus{}
+%    \end{macrocode}
+%
+% \subsubsection{Научный консультант}
+% \DescribeMacro{\scon}\index{Макросы!\verb*+\scon+}
+% ФИО
+%    \begin{macrocode}
+\def\scon#1{\gdef\@scon{#1}}\scon{}
+%    \end{macrocode}
+% \DescribeMacro{\sconstatus}\index{Макросы!\verb*+\sconstatus+}
+% Учёное звание
+%    \begin{macrocode}
+\def\sconstatus#1{\gdef\@sconstatus{#1}}\sconstatus{}
 %    \end{macrocode}
 %
 % \subsubsection{Рецензент}

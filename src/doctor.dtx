@@ -26,12 +26,10 @@
 \deflength\sixthskip{0cm}
 
 %    \end{macrocode}
-% Горизонтальный отступ перед описанием научного консультанта.
+% Горизонтальный отступ перед описанием научного руководителя и консультанта.
 % \DescribeMacro{\@sahshift}\index{Расстояния!\verb*+"\"@sahshift+}
 %    \begin{macrocode}
 \deflength\@sahshift{8cm}
-\def\saname{\cyr\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt\ %
-\cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -99,12 +97,12 @@
 %    \end{macrocode}
 % Научный консультант
 %    \begin{macrocode}
-\ifx\@sa\empty\else
+\ifx\@scon\empty\else
   \vskip\sixthskip\normalfont
   \begin{tabbing}
-    \hspace{\@sahshift}\={\saname}\\
-    \>\@sastatus\\
-    \>\@sa
+    \hspace{\@sahshift}\={\sconname}\\
+    \>\@sconstatus\\
+    \>\@scon
   \end{tabbing}
 \fi
 %    \end{macrocode}

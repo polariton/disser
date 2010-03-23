@@ -25,9 +25,10 @@
 \deflength\fourthskip{1cm}
 \deflength\fifthskip{1cm}
 \deflength\sixthskip{0cm}
+\deflength\seventhskip{0cm}
 
 %    \end{macrocode}
-% Горизонтальный отступ перед описанием научного руководителя.
+% Горизонтальный отступ перед описанием научного руководителя и консультанта.
 % \DescribeMacro{\@sahshift}\index{Расстояния!\verb*+"\"@sahshift+}
 %    \begin{macrocode}
 \deflength\@sahshift{8cm}
@@ -105,6 +106,17 @@
   \>\@sastatus\\
   \>\@sa
 \end{tabbing}
+%    \end{macrocode}
+% Научный консультант
+%    \begin{macrocode}
+\ifx\@scon\empty\else
+  \vskip\seventhskip\normalfont
+  \begin{tabbing}
+    \hspace{\@sahshift}\={\sconname}\\
+    \>\@sconstatus\\
+    \>\@scon
+  \end{tabbing}
+\fi
 %    \end{macrocode}
 % \paragraph{Город и год}
 %    \begin{macrocode}
