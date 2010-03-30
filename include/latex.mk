@@ -43,8 +43,7 @@ clean:
 	-rm -f $(CLFILES)
 
 .help:
-	@$(MAKE) -s -C fig help ;\
-	echo "  dvi          (default) build DVI" ;\
+	@echo "  dvi          (default) build DVI" ;\
 	echo "  figclean     clean output files in figures directory" ;\
 	echo "  html         convert DVI to HTML" ;\
 	echo "  pdf          build PDF" ;\
@@ -54,7 +53,8 @@ clean:
 	echo "  ps_2on1      build PS with two A5 pages on one A4 ordered by number" ;\
 	echo "  ps_book      build PS booklet (two A5 on A4)" ;\
 	echo "  rtf          convert DVI to RTF" ;\
-	echo "  srcdist      build source distribution"
+	echo "  srcdist      build source distribution" ;\
+	$(MAKE) -s -C fig help
 
 html: $(TARGET).dvi
 	$(L2H) $(L2HFLAGS) $(TARGET).tex

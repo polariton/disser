@@ -80,10 +80,8 @@ goto :eof
 goto :eof
 
 :help
-	call ..\..\include\latex.fig.nmk.cmd
 	echo   dvi          ^(default^) build DVI
 	echo   figclean     clean output files in figures directory
-	echo   help         show description of targets
 	echo   html         convert DVI to HTML
 	echo   pdf          build PDF
 	echo   pdf_2on1     build PDF with two A5 pages on one A4 ordered by number
@@ -93,6 +91,7 @@ goto :eof
 	echo   ps_book      build PS booklet ^(two A5 on A4^)
 	echo   rtf          convert DVI to RTF
 	echo   srcdist      build source distribution
+	call ..\..\include\latex.fig.nmk.cmd
 goto :eof
 
 :html

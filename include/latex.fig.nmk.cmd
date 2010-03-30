@@ -44,7 +44,7 @@ exit /b
 	echo   epstoeps     alias for optimize target
 	echo   epstopdf     convert EPS to PDF
 	echo   fixbb        fix BoundingBox of EPS files
-	echo   help         ^(default^) show description of targets
+	echo   help         show description of targets
 	echo   optimize     optimize EPS files ^(implies fixbb^)
 	echo   pdftopng256  convert PDF to PNG ^(256-color^)
 	echo   pdftotiffg4  convert PDF to TIFF ^(b/w CCITT Group 4^)
