@@ -56,7 +56,7 @@ goto :eof
 	cd templates & call nomake install & cd ..
 goto :eof
 
-:uninstall
+:reinstall
 	cd src & call nomake reinstall & cd ..
 	cd templates & call nomake reinstall & cd ..
 goto :eof
