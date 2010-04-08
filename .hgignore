@@ -1,5 +1,5 @@
 syntax: glob
-# manual backups
+# backups
 backup
 old
 *.orig
@@ -7,6 +7,7 @@ old
 *.old
 *.zip
 *~
+*.swp
 
 # (pdf)LaTeX output files
 *.out
