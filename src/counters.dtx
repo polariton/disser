@@ -94,10 +94,10 @@
 
 %    \end{macrocode}
 %
-% Схемы нумерации объектов для разных типов диссертаций.
-% \DescribeMacro{\bachelor@the}\index{Макросы!\verb*+\bachelor"@the+}
+% Схема нумерации объектов по умолчанию.
+% \DescribeMacro{\default@the}\index{Макросы!\verb*+\default"@the+}
 %    \begin{macrocode}
-\newcommand\bachelor@the{%
+\newcommand\default@the{%
 %    \end{macrocode}
 % Нумерация сносок и формул начинается заново в каждой главе.
 %    \begin{macrocode}
@@ -126,22 +126,5 @@
     \ifnum \c@chapter>\z@\thechapter.\fi%
     \@arabic\c@figure}
 }
-%    \end{macrocode}
-% По умолчанию у всех одинаковая схема нумерации.
-% \DescribeMacro{\master@the}\index{Макросы!\verb*+\master"@the+}
-% \DescribeMacro{\candidate@the}\index{Макросы!\verb*+\candidate"@the+}
-% \DescribeMacro{\doctor@the}\index{Макросы!\verb*+\doctor"@the+}
-% \DescribeMacro{\autoref@the}\index{Макросы!\verb*+\autoref"@the+}
-%    \begin{macrocode}
-\newcommand\master@the   \bachelor@the
-\newcommand\candidate@the\bachelor@the
-\newcommand\doctor@the   \candidate@the
-\newcommand\autoref@the  \candidate@the
-
-\ifDis@bachelor \bachelor@the  \fi
-\ifDis@master   \master@the    \fi
-\ifDis@candidate\candidate@the \fi
-\ifDis@doctor   \doctor@the    \fi
-\ifDis@autoref  \autoref@the   \fi
 %</counters>
 %    \end{macrocode}

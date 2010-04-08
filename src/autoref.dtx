@@ -4,9 +4,24 @@
 
 %<*autoref>
 %    \end{macrocode}
-% \subsubsection{Титульный лист автореферата}
+% \subsubsection{Стиль автореферата}
 %
+% Нумерация.
+%    \begin{macrocode}
+\newcommand\autoref@the{\default@the}
+\autoref@the
+
+%    \end{macrocode}
+% Титульный лист.
+%    \begin{macrocode}
+\newcommand\maketitle{
+%    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
+% \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Расстояния!\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Расстояния!\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Расстояния!\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
 %    \begin{macrocode}
 \deflength\firstskip{1cm}
 \deflength\secondskip{2cm}
@@ -77,5 +92,7 @@
   \vfill
   {\@city\cdsep\@date}
 \end{center}
+\normalfont\clearpage
+}
 %</autoref>
 %    \end{macrocode}

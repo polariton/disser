@@ -435,7 +435,7 @@
 % Создание цветных ссылок.
 %    \begin{macrocode}
 \DeclareBoolOption[false]{colorlinks}
-\DeclareStringOption{titlepagefile}
+\DeclareStringOption{substylefile}
 
 %    \end{macrocode}
 % Выполнение опций по умолчанию.
@@ -450,30 +450,25 @@
 %    \end{macrocode}
 % Файл с описанием разметки титульного листа по умолчанию.
 %    \begin{macrocode}
-\ifx\Dis@titlepagefile\@empty
-  \ifDis@bachelor \renewcommand*{\Dis@titlepagefile}{bachelor.rtx}\fi
-  \ifDis@master   \renewcommand*{\Dis@titlepagefile}{master.rtx}\fi
-  \ifDis@candidate\renewcommand*{\Dis@titlepagefile}{candidate.rtx}\fi
-  \ifDis@doctor   \renewcommand*{\Dis@titlepagefile}{doctor.rtx}\fi
-  \ifDis@autoref  \renewcommand*{\Dis@titlepagefile}{autoref.rtx}\fi
+\ifx\Dis@substylefile\@empty
+  \ifDis@bachelor \renewcommand*{\Dis@substylefile}{bachelor.rtx}\fi
+  \ifDis@master   \renewcommand*{\Dis@substylefile}{master.rtx}\fi
+  \ifDis@candidate\renewcommand*{\Dis@substylefile}{candidate.rtx}\fi
+  \ifDis@doctor   \renewcommand*{\Dis@substylefile}{doctor.rtx}\fi
+  \ifDis@autoref  \renewcommand*{\Dis@substylefile}{autoref.rtx}\fi
 \fi
 
 %    \end{macrocode}
-% Команды изменения регистра.
-% \DescribeMacro{\MakeTextUppercase}\index{Макросы!\verb*+\MakeTextUppercase+}
+% Подключение стиля документа.
 %    \begin{macrocode}
-\DeclareRobustCommand\MakeTextUppercase{%
-  \@uclcnotmath{\def\i{I}\def\j{J}}{##1##2}\uppercase}
-
-\protected@edef\MakeTextUppercase#1{\MakeTextUppercase{#1}}
+\AtEndOfClass{\input{\Dis@substylefile}}
 
 %    \end{macrocode}
-% \DescribeMacro{\MakeTextLowercase}\index{Макросы!\verb*+\MakeTextLowercase+}
+% Определение команд изменения регистра |\MakeTextUppercase|
+% и |\MakeTextLowercase|.
+% \DescribeMacro{textcase}\index{Пакеты!\verb*+textcase+}
 %    \begin{macrocode}
-\DeclareRobustCommand\MakeTextLowercase{%
-  \@uclcnotmath{}{##2##1}\lowercase}
-
-\protected@edef\MakeTextLowercase#1{\MakeTextLowercase{#1}}
+\RequirePackage[overload]{textcase}
 
 %    \end{macrocode}
 % \subsection{Настройка шрифтов}
@@ -640,6 +635,12 @@
 %    \begin{macrocode}
 \lccode`\-=`\-
 \defaulthyphenchar=127
+%    \end{macrocode}
+% Пустое определение макроса для вывода сегодняшней даты (переопределяется
+% в \pkg{babel}).
+% \DescribeMacro{\today}\index{Макросы!\verb*+\today+}
+%    \begin{macrocode}
+\newcommand\today{}
 
 %</disser>
 %    \end{macrocode}

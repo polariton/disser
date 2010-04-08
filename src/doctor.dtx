@@ -4,14 +4,26 @@
 
 %<*doctor>
 %    \end{macrocode}
-% \subsubsection{Титульный лист докторской диссертации}
+% \subsubsection{Стиль докторской диссертации}
 %
+% Нумерация.
+%    \begin{macrocode}
+\newcommand\doctor@the{\default@the}
+\doctor@the
+
+%    \end{macrocode}
+% Титульный лист.
+% \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
+%    \begin{macrocode}
+\if@titlepage\renewcommand\maketitle{
+%    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
 % \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
 % \DescribeMacro{\secondskip}\index{Расстояния!\verb*+\secondskip+}
 % \DescribeMacro{\thirdskip}\index{Расстояния!\verb*+\thirdskip+}
 % \DescribeMacro{\fourthskip}\index{Расстояния!\verb*+\fourthskip+}
 % \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
+% \DescribeMacro{\sixthskip}\index{Расстояния!\verb*+\sixthskip+}
 %    \begin{macrocode}
 \newlength\firstskip
 \ifDis@libcat
@@ -112,5 +124,7 @@
 \begin{center}
   {\@city\cdsep\@date}
 \end{center}
+\normalfont\clearpage
+}\fi
 %</doctor>
 %    \end{macrocode}

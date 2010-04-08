@@ -7,7 +7,7 @@
 
 %<*custom>
 %    \end{macrocode}
-% \subsection{Подключение и настройка часто используемых пакетов}
+% \subsection{Подключение и настройка сторонних пакетов}
 %
 % \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
 % \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
@@ -121,14 +121,15 @@
 \usepackage[square,comma,sort&compress,numbers]{natbib}
 
 %    \end{macrocode}
-% Переопределение |\bibsection| для включения ссылки на список литературы в оглавление.
+% Переопределение |\bibsection| для включения ссылки на список литературы в
+% оглавление.
 % \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
 %    \begin{macrocode}
 \renewcommand\bibsection{\nchapter{\bibname}}
 
 %    \end{macrocode}
-% Переопределение |thebibliography| для создания корректной PDF-закладки
-% (основано на варианте из |natbib|).
+% Переопределение \env{thebibliography} для создания корректной PDF-закладки
+% (основано на варианте из \pkg{natbib}).
 % \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
 %    \begin{macrocode}
 \renewenvironment{thebibliography}[1]{%
@@ -147,10 +148,6 @@
   \let\citeN\cite
   \let\shortcite\cite
   \let\citeasnoun\cite
-%    \end{macrocode}
-% Убираем вертикальный интервал между библиографическими ссылками для автореферата.
-%    \begin{macrocode}
-  \ifDis@autoref\setlength\bibsep{0pt}\fi
 }{%
   \def\@noitemerr{\PackageWarning{natbib}{Empty `thebibliography' environment}}
   \endlist\vskip-\lastskip%

@@ -4,8 +4,19 @@
 
 %<*bachelor>
 %    \end{macrocode}
-% \subsubsection{Титульный лист бакалаврской работы}
-%
+% \subsubsection{Стиль бакалаврской работы}
+% 
+% Нумерация.
+%    \begin{macrocode}
+\newcommand\bachelor@the{\default@the}
+\bachelor@the
+
+%    \end{macrocode}
+% Титульный лист.
+% \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
+%    \begin{macrocode}
+\if@titlepage\renewcommand\maketitle{
+%    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
 % \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
 % \DescribeMacro{\secondskip}\index{Расстояния!\verb*+\secondskip+}
@@ -84,5 +95,7 @@
 \begin{center}
   {\@city\cdsep\@date}
 \end{center}
+\normalfont\clearpage
+}\fi
 %</bachelor>
 %    \end{macrocode}

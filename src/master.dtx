@@ -4,8 +4,19 @@
 
 %<*master>
 %    \end{macrocode}
-% \subsubsection{Титульный лист магистерской диссертации}
+% \subsubsection{Стиль магистерской диссертации}
 %
+% Нумерация.
+%    \begin{macrocode}
+\newcommand\master@the{\default@the}
+\master@the
+
+%    \end{macrocode}
+% Титульный лист.
+% \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
+%    \begin{macrocode}
+\if@titlepage\renewcommand\maketitle{
+%    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
 % \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
 % \DescribeMacro{\secondskip}\index{Расстояния!\verb*+\secondskip+}
@@ -103,5 +114,7 @@
 \begin{center}
   {\@city\cdsep\@date}
 \end{center}
+\normalfont\clearpage
+}\fi
 %</master>
 %    \end{macrocode}

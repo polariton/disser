@@ -5,12 +5,6 @@
 %
 % \subsection{Титульный лист}
 %
-% Пустое определение макроса для вывода сегодняшней даты (переопределяется в |babel|).
-% \DescribeMacro{\today}\index{Макросы!\verb*+\today+}
-%    \begin{macrocode}
-\newcommand\today{}
-
-%    \end{macrocode}
 % Подключение констант и команд, используемых для верстки титульного листа.
 %    \begin{macrocode}
 \input{titledefs.rtx}
@@ -32,18 +26,9 @@
 % \DescribeMacro{\cdsep}\index{Макросы!\verb*+\cdsep+}
 %    \begin{macrocode}
   \newcommand\cdsep{~-- }
-
-%    \end{macrocode}
-% \subsubsection{Разметка титульного листа}
-% \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
-%    \begin{macrocode}
-  \newcommand\maketitle{
-    \makeatletter
-    \input{\Dis@titlepagefile}
-    \normalfont\clearpage
-  } % \newcommand\maketitle
+  \newcommand\maketitle{}
   \setcounter{footnote}{0}
-\else %\if@titlepage
+\else
 %    \end{macrocode}
 % Заголовок без отдельного титульного листа.
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
