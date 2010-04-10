@@ -160,8 +160,9 @@
   Включает вывод номера УДК на титульном листе.
 \\\hline
   substylefile = filename.rtx &
-  Имя файла с описанием стиля документа (нумерация, титульный лист).
-  По умолчанию подключается файл, имя которого совпадает с названием типа документа.
+  Имя файла с описанием стиля документа (нумерация, оформление титульного листа).
+  Опция предназначена для подключения собственных стилей документов, отличающихся от стандартных.
+  Если опции не присвоено значение, то по умолчанию подключается файл, имя которого совпадает с названием типа документа (\file{autoref.rtx}, \file{bachelor.rtx}, \file{master.rtx}, \file{candidate.rtx}, \file{doctor.rtx}).
 \\\hline
 \multicolumn{2}{c}{\textbf{Опции для подключения и настройки сторонних пакетов}}
 \\\hline
@@ -418,24 +419,25 @@ nomake <target1> <target2> ...
 Пример:
 \begin{verbatim}
 @BOOK{Anselm_1978,
-  author = {А. И. Ансельм},
-  title = {Введение в теорию полупроводников},
-  publisher = {Наука},
-  address = {Москва},
-  year = {1978},
-  language = {russian}
+  author       = {А. И. Ансельм},
+  title        = {Введение в теорию полупроводников},
+  publisher    = {Наука},
+  address      = {Москва},
+  year         = {1978},
+  language     = {russian},
 }
 \end{verbatim}
 Для указания даты обращения к Интернет-ресурсам следует использовать поле |urldate|. Пример:
 \begin{verbatim}
 @INCOLLECTION{InP,
-  title = {InP Basic Parameters at 300 K},
-  booktitle = {Electronic archive New Semiconductor Materials. Characteristics and Properties},
+  title        = {InP Basic Parameters at 300 K},
+  booktitle    = {Electronic archive New Semiconductor Materials. 
+                  Characteristics and Properties},
   organization = {Ioffe Physico-Technical Institute},
-  address = {St. Petersburg},
-  year = {2001},
-  url = {http://www.ioffe.rssi.ru/SVA/NSM/Semicond/InP/basic.html},
-  urldate = {01.11.2009}
+  address      = {St. Petersburg},
+  year         = {2001},
+  url          = {http://www.ioffe.rssi.ru/SVA/NSM/Semicond/InP/basic.html},
+  urldate      = {01.11.2009},
 }
 \end{verbatim}
 
