@@ -83,9 +83,9 @@
 \def\@chapter[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{chapter}%
-    {\def\\{ }\addcontentsline{toc}{chapter}{\@tocseccntformat{chapter} #1}}%
+    {\addcontentsline{toc}{chapter}{\@tocseccntformat{chapter} #1}}%
   \else
-    {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
+    {\addcontentsline{toc}{chapter}{#1}}%
   \fi
   \chaptermark{#1}%
   \addtocontents{lof}{\protect\addvspace{10\p@}}%

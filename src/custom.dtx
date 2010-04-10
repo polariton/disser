@@ -128,7 +128,7 @@
 \renewcommand\bibsection{\nchapter{\bibname}}
 
 %    \end{macrocode}
-% Переопределение окружения |thebibliography| для создания корректной 
+% Переопределение окружения |thebibliography| для создания корректной
 % PDF-закладки (основано на варианте из \pkg{natbib}).
 % \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
 %    \begin{macrocode}
@@ -234,9 +234,9 @@
 
 %    \end{macrocode}
 % Команда, создающая цель для гиперссылок над заголовками ненумеруемых разделов.
-% \DescribeMacro{\metaphantom}\index{Макросы!\verb*+\metaphantom+}
+% \DescribeMacro{\hrefphantom}\index{Макросы!\verb*+\hrefphantom+}
 %    \begin{macrocode}
-\providecommand\metaphantom[1]{%
+\providecommand\hrefphantom[1]{%
   \ifDis@href
     \Hy@GlobalStepCount\Hy@linkcounter
     \xdef\@currentHref{#1*.\the\Hy@linkcounter}%
@@ -260,23 +260,23 @@
   \fi
   \thispagestyle{\@chapterpagestyle}%
   \global\@topnum\z@
-  \metaphantom{chapter}
-  {\def\\{ }\addcontentsline{toc}{chapter}{#1}}%
+  \hrefphantom{chapter}
+  \addcontentsline{toc}{chapter}{#1}%
   \@afterindentfalse
   \@schapter{#1}
 }
 \newcommand\nsection[1]{%
-  \metaphantom{section}%
+  \hrefphantom{section}%
   \addcontentsline{toc}{section}{#1}
   \section*{#1}
 }
 \newcommand\nsubsection[1]{%
-  \metaphantom{subsection}%
+  \hrefphantom{subsection}%
   \addcontentsline{toc}{subsection}{#1}
   \subsection*{#1}
 }
 \newcommand\nsubsubsection[1]{%
-  \metaphantom{subsubsection}%
+  \hrefphantom{subsubsection}%
   \addcontentsline{toc}{subsubsection}{#1}
   \subsubsection*{#1}
 }
