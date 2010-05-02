@@ -1484,7 +1484,7 @@ FUNCTION {format.isbn}
 {
   isbn empty$
     { "" }
-    { "ISBN~" isbn * }
+    { "ISBN:~\href{http://isbndb.com/search-all.html?kw=" isbn * "}{" * isbn * "}" * }
   if$
 }
 
@@ -1925,6 +1925,7 @@ MACRO {irp} {"Infrared Phys."}
 MACRO {jap} {"J. Appl. Phys."}
 MACRO {jasa} {"J. Acoust. Soc. America"}
 MACRO {jcp} {"J. Comp. Phys."}
+MACRO {jchp} {"J. Chem. Phys."}
 MACRO {jetp} {"Sov. Phys.--JETP"}
 MACRO {jfe} {"J. Fusion Energy"}
 MACRO {jfm} {"J. Fluid Mech."}
@@ -2012,11 +2013,12 @@ MACRO {zphb} {"Z. f. Physik~B"}
 MACRO {zphd} {"Z. f. Physik~D"}
 
 %    \end{macrocode}
-% \subsubsection{Физика твердого тела}
+% \subsubsection{Физика конденсированного состояния}
 %    \begin{macrocode}
 MACRO {sse} {"Solid-State Electron."}
 MACRO {pss} {"Phys. Sol. State"}
 MACRO {sst} {"Semicond. Sci. Tech."}
+MACRO {nl} {"Nano Lett."}
 
 READ
 
