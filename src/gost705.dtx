@@ -805,11 +805,27 @@ FUNCTION {bbl.mthesis}
 FUNCTION {bbl.phdthesis}
 {
   curlanguage "english" =
-    { "Ph.D. thesis" }
+    { "Ph.\,D. thesis" }
     { curlanguage "russian" =
         { "{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\ "
           "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
-        { "language is not defined: " language  "Ph.D. thesis" * * warning$ "P." }
+        { "language is not defined: " language  "Ph.\,D. thesis" * * warning$ "P." }
+      if$
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.docdisser}
+%    \begin{macrocode}
+FUNCTION {bbl.docdisser}
+{
+  curlanguage "english" =
+    { "Dr.\,Sci. dissertation" }
+    { curlanguage "russian" =
+        { "{\cyr\CYRD\cyro\cyrk\cyrt\cyro\cyrr\cyrs\cyrk\cyra\cyrya\ "
+          "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
+        { "language is not defined: " language  "Dr.\,Sci. dissertation" * * warning$ "P." }
       if$
     }
   if$
@@ -1775,6 +1791,30 @@ FUNCTION {phdthesis}
   format.btitle add.doi "title" output.check
   new.column
   bbl.phdthesis format.thesis.type output.nonnull
+  new.slash
+  school "school" output.check
+  new.block
+  output.address.publisher.date
+  new.block
+  format.pages.page output
+  note output
+  new.sentence
+  output.url
+  format.annote output
+  fin.entry
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{docdisser}
+%    \begin{macrocode}
+FUNCTION {docdisser}
+{
+  output.bibitem
+  format.authors "author" output.check
+  new.sentence
+  format.btitle add.doi "title" output.check
+  new.column
+  bbl.docdisser format.thesis.type output.nonnull
   new.slash
   school "school" output.check
   new.block
