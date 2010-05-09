@@ -2247,6 +2247,8 @@ FUNCTION {begin.bib}
   write$ newline$
   "\ifx\undefined\BibEmph\def\BibEmph#1{#1}\else\fi"
   write$ newline$
+  "\ifx\undefined\href\def\href#1#2{#2}\else\fi"
+  write$ newline$
   "\ifx\undefined\url\def\url#1{\texttt{#1}}\else\fi"
   write$ newline$
   "\ifx\undefined\urlprefix\def\urlprefix{URL: }\else\fi"
