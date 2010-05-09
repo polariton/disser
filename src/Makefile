@@ -10,6 +10,7 @@ MANUAL := manual
 
 CLSFILES := *.cls *.rtx
 BSTFILES := gost705.bst gost705s.bst
+CSFFILES := *.csf
 DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
 TEXTFILES := ../README ../README.ru ../ChangeLog
 SRCFILES := *.dtx $(TARGET).ins $(TARGET).ist $(MANUAL).tex Makefile nomake.cmd
@@ -19,6 +20,7 @@ DESTDIR ?= $(TEXMF)
 CLSDIR ?= $(DESTDIR)/tex/latex/$(TARGET)
 DOCDIR ?= $(DESTDIR)/doc/latex/$(TARGET)
 BSTDIR ?= $(DESTDIR)/bibtex/bst/$(TARGET)
+CSFDIR ?= $(DESTDIR)/bibtex/csf/$(TARGET)
 SRCDIR ?= $(DESTDIR)/source/latex/$(TARGET)
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
@@ -50,10 +52,12 @@ clean:
 install: all
 	mkdir -p $(CLSDIR) ;\
 	mkdir -p $(BSTDIR) ;\
+	mkdir -p $(CSFDIR) ;\
 	mkdir -p $(DOCDIR) ;\
 	mkdir -p $(SRCDIR) ;\
 	cp $(CLSFILES)  $(CLSDIR) ;\
 	cp $(BSTFILES)  $(BSTDIR) ;\
+	cp $(CSFFILES)  $(CSFDIR) ;\
 	cp $(DOCFILES)  $(DOCDIR) ;\
 	cp $(TEXTFILES) $(DOCDIR) ;\
 	cp $(SRCFILES)  $(SRCDIR)
@@ -61,11 +65,13 @@ install: all
 uninstall:
 	-rm $(addprefix $(CLSDIR)/, $(CLSFILES))
 	-rm $(addprefix $(BSTDIR)/, $(BSTFILES))
+	-rm $(addprefix $(CSFDIR)/, $(CSFFILES))
 	-rm $(addprefix $(DOCDIR)/, $(DOCFILES))
 	-rm $(addprefix $(DOCDIR)/, $(notdir $(TEXTFILES)))
 	-rm $(addprefix $(SRCDIR)/, $(SRCFILES))
 	-rmdir $(CLSDIR)
 	-rmdir $(BSTDIR)
+	-rmdir $(CSFDIR)
 	-rmdir $(DOCDIR)
 	-rmdir $(SRCDIR)
 
