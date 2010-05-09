@@ -431,7 +431,7 @@ nomake <target1> <target2> ...
 \begin{verbatim}
 @INCOLLECTION{InP,
   title        = {InP Basic Parameters at 300 K},
-  booktitle    = {Electronic archive New Semiconductor Materials. 
+  booktitle    = {Electronic archive New Semiconductor Materials.
                   Characteristics and Properties},
   organization = {Ioffe Physico-Technical Institute},
   address      = {St. Petersburg},
@@ -450,14 +450,14 @@ bibtex8 -H -c <csf-file> <tex-file-basename>
 latex <tex-file>
 latex <tex-file>
 \end{verbatim}
-Здесь |<tex-file>| "--- файл документа, |<tex-file-basename>| "--- имя файла документа без расширения, |<csf-file>| "--- файл описания кодовой страницы.
+Здесь |<tex-file>| "--- файл документа, |<tex-file-basename>| "--- имя файла документа без расширения, |<csf-file>| "--- файл описания кодовой страницы и порядка сортировки.
 
 \section{Авторефераты кандидатских и докторских диссертаций}
 
 \subsection{Общий текст}
 
 В соответствии с требованиями, раздел <<Общая характеристика работы>> автореферата и глава <<Введение>> диссертации должны совпадать.
-Общие разделы создаются с помощью команды |\mkcommonsect| в файле |common.tex|, который подключается из |autoref.tex| и |thesis.tex|.
+Общие разделы создаются с помощью команды |\mkcommonsect| в файле \file{common.tex}, который подключается из \file{autoref.tex} и \file{thesis.tex}.
 
 Пример:
 \begin{verbatim}
@@ -483,17 +483,27 @@ bibtex8 -H -c cp1251 my
 latex autoref
 latex autoref
 \end{verbatim}
-Данные операции выполняются автоматически при использовании скриптов |Makefile| и |nomake.cmd|.
+Здесь \file{cp1251} "--- имя csf-файла, определяющего порядок сортировки библиографии (если используется стиль \pkg{gost705}).
+По умолчанию в начале списка литературы должны идти источники, названия которых набраны кириллицей, а затем иностранные, набранные латиницей.
+Другой порядок (сначала латиница, затем кириллица) можно получить, указав файл \file{cp1251lc}.
+
+Операция полной сборки документов реализована в скриптах \file{Makefile} и \file{nomake.cmd}.
 Сборка автореферата в Windows:
 \begin{verbatim}
 set target=autoref
 nomake
 \end{verbatim}
-В Unix-подобных окружениях:
+Для возврата к сборке диссертации следует однократно присвоить переменной |TARGET| значение |thesis|:
+\begin{verbatim}
+set target=thesis
+nomake
+\end{verbatim}
+
+Пример сборки автореферата в Unix-подобных окружениях:
 \begin{verbatim}
 env TARGET=autoref make
 \end{verbatim}
-Для возврата к сборке диссертации следует присвоить переменной |TARGET| значение |thesis|.
+
 
 \subsection{Подписи диссертанта и ученого секретаря}
 
