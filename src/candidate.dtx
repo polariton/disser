@@ -102,7 +102,10 @@
 % Шифр и наименование специальности
 %    \begin{macrocode}
   \vskip\fourthskip\normalfont
-  {\specfont\@specnum~--\ \@spec}
+  {\specfont\@specnum~--\ \@spec}\\[-6pt]
+  \ifx\@specsndnum\empty\else
+    {\specfont\@specsndnum~--\ \@specsnd}
+  \fi
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
 %    \begin{macrocode}
@@ -114,19 +117,35 @@
 %    \begin{macrocode}
 \vskip\sixthskip\normalfont
 \begin{tabbing}
-  \hspace{\@sahshift}\={\saname}\\
+  \hspace{\@sahshift}\={\salabel}\\
   \>\@sastatus\\
   \>\@sa
 \end{tabbing}
+\vskip\sixthskip\normalfont
+\ifx\@sasnd\empty\else
+  \begin{tabbing}
+    \hspace{\@sahshift}\={\salabel}\\
+    \>\@sasndstatus\\
+    \>\@sasnd
+  \end{tabbing}
+\fi
 %    \end{macrocode}
 % Научный консультант
 %    \begin{macrocode}
 \ifx\@scon\empty\else
   \vskip\seventhskip\normalfont
   \begin{tabbing}
-    \hspace{\@sahshift}\={\sconname}\\
+    \hspace{\@sahshift}\={\sconlabel}\\
     \>\@sconstatus\\
     \>\@scon
+  \end{tabbing}
+\fi
+\ifx\@sconsnd\empty\else
+  \vskip\seventhskip\normalfont
+  \begin{tabbing}
+    \hspace{\@sahshift}\={\sconsndlabel}\\
+    \>\@sconsndstatus\\
+    \>\@sconsnd
   \end{tabbing}
 \fi
 %    \end{macrocode}

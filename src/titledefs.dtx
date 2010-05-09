@@ -111,6 +111,9 @@
 \def\sconname{\cyr\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt\ %
 \cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
 \def\sconlabel{\sconname}
+
+\def\sconsndname{\sconname}
+\def\sconsndlabel{\sconsndname}
 %    \end{macrocode}
 % \DescribeMacro{\revname}\index{Макросы!\verb+\revname+}
 % \DescribeMacro{\revlabel}\index{Макросы!\verb+\revlabel+}
@@ -153,14 +156,20 @@
 %    \end{macrocode}
 %
 % \DescribeMacro{\spec}\index{Макросы!\verb*+\spec+}
+% \DescribeMacro{\specsnd}\index{Макросы!\verb*+\specsnd+}
 % Название специальности
 %    \begin{macrocode}
 \def\spec#1{\gdef\@spec{#1}}\spec{}
+\def\specsnd#1{\gdef\@specsnd{#1}}\specsnd{}
+
 %    \end{macrocode}
 % \DescribeMacro{\specnum}\index{Макросы!\verb*+\specnum+}
+% \DescribeMacro{\specsndnum}\index{Макросы!\verb*+\specsndnum+}
 % Номер специальности
 %    \begin{macrocode}
 \def\specnum#1{\gdef\@specnum{#1}}\specnum{}
+\def\specsndnum#1{\gdef\@specsndnum{#1}}\specsndnum{}
+
 %    \end{macrocode}
 % \DescribeMacro{\course}\index{Макросы!\verb*+\course+}
 % Название направления
@@ -252,28 +261,38 @@
 %
 % \subsubsection{Научный руководитель}
 % \DescribeMacro{\sa}\index{Макросы!\verb*+\sa+}
+% \DescribeMacro{\sasnd}\index{Макросы!\verb*+\sasnd+}
 % ФИО
 %    \begin{macrocode}
 \def\sa#1{\gdef\@sa{#1}}\sa{}
+\def\sasnd#1{\gdef\@sasnd{#1}}\sasnd{}
+
 %    \end{macrocode}
 % \DescribeMacro{\sastatus}\index{Макросы!\verb*+\sastatus+}
+% \DescribeMacro{\sasndstatus}\index{Макросы!\verb*+\sasndstatus+}
 % Учёное звание
 %    \begin{macrocode}
 \def\sastatus#1{\gdef\@sastatus{#1}}\sastatus{}
+\def\sasndstatus#1{\gdef\@sasndstatus{#1}}\sasndstatus{}
+
 %    \end{macrocode}
 %
-% \subsubsection{Научный консультант}
+% \subsubsection{Научный консультант (для докторских диссертаций)}
 % \DescribeMacro{\scon}\index{Макросы!\verb*+\scon+}
+% \DescribeMacro{\sconsnd}\index{Макросы!\verb*+\sconsnd+}
 % ФИО
 %    \begin{macrocode}
 \def\scon#1{\gdef\@scon{#1}}\scon{}
+\def\sconsnd#1{\gdef\@sconsnd{#1}}\sconsnd{}
 %    \end{macrocode}
 % \DescribeMacro{\sconstatus}\index{Макросы!\verb*+\sconstatus+}
+% \DescribeMacro{\sconsndstatus}\index{Макросы!\verb*+\sconsndstatus+}
 % Учёное звание
 %    \begin{macrocode}
 \def\sconstatus#1{\gdef\@sconstatus{#1}}\sconstatus{}
+\def\sconsndstatus#1{\gdef\@sconsndstatus{#1}}\sconsndstatus{}
+
 %    \end{macrocode}
-%
 % \subsubsection{Рецензент}
 % \DescribeMacro{\rev}\index{Макросы!\verb*+\rev+}
 % ФИО
@@ -281,12 +300,13 @@
 \def\rev#1{\gdef\@rev{#1}}\rev{}
 %    \end{macrocode}
 % \DescribeMacro{\revstatus}\index{Макросы!\verb*+\revstatus+}
-% учёное звание
+% Учёное звание
 %    \begin{macrocode}
 \def\revstatus#1{\gdef\@revstatus{#1}}\revstatus{}
+
 %    \end{macrocode}
 %
-% \subsubsection{Консультант}
+% \subsubsection{Консультант (для магистерских дипломов)}
 %
 % \DescribeMacro{\conspec}\index{Макросы!\verb*+\conspec+}
 % Специальность
@@ -311,7 +331,7 @@
 % \item Содержание
 % \DescribeMacro{\contentsname}\index{Макросы!\verb*+\contentsname+}
 %    \begin{macrocode}
-\AtBeginDocument{
+\AtBeginDocument{%
   \addto\captionsrussian{%
     \def\contentsname{\cyr\CYRS\cyro\cyrd\cyre\cyrr\cyrzh\cyra\cyrn\cyri\cyre}
   }
@@ -358,7 +378,8 @@
 % \subsubsection{Поля титульного листа}
 %
 % \DescribeMacro{\field}\index{Макросы!\verb*+\field+}
-% Формат записей для научного руководителя, рецензента и консультанта
+% Формат поля для подписи научного руководителя, рецензента и консультанта
+% на титульных листах бакалаврского и магистерского дипломов.
 %    \begin{macrocode}
 \providecommand\field[1]{%
   \csname #1label\endcsname,\\%
