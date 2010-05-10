@@ -26,7 +26,7 @@
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
-            left=5cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
+            left=5.5cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{ifpdf,indentfirst,color,makeidx}
 
 \definecolor{darkblue}{rgb}{0,0,.6}
@@ -825,7 +825,8 @@ FUNCTION {bbl.docdisser}
     { curlanguage "russian" =
         { "{\cyr\CYRD\cyro\cyrk\cyrt\cyro\cyrr\cyrs\cyrk\cyra\cyrya\ "
           "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
-        { "language is not defined: " language  "Dr.\,Sci. dissertation" * * warning$ "P." }
+        { "language is not defined: " language  "Dr.\,Sci. dissertation" * *
+          warning$ "P." }
       if$
     }
   if$
@@ -1500,7 +1501,9 @@ FUNCTION {format.isbn}
 {
   isbn empty$
     { "" }
-    { "ISBN:~\href{http://isbndb.com/search-all.html?kw=" isbn * "}{" * isbn * "}" * }
+    { "ISBN:~\href{http://isbndb.com/search-all.html?kw=" isbn *
+      "}{" * isbn * "}" *
+    }
   if$
 }
 
