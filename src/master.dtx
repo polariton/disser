@@ -29,6 +29,14 @@
 \deflength\thirdskip{1ex}
 \deflength\fourthskip{-1cm}
 \deflength\fifthskip{0ex}
+\deflength\sixthskip{1.5ex}
+
+%    \end{macrocode}
+% Горизонтальный отступ перед чертой в текстовым поле для имени, ученой
+% степени и звания научного руководителя и консультанта.
+% \DescribeMacro{\fieldhshift}\index{Расстояния!\verb*+\fieldhshift+}
+%    \begin{macrocode}
+\setlength\fieldhshift{8.5cm}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -86,26 +94,25 @@
 %
 % Выполнил студент гр. номер...
 %    \begin{macrocode}
-  \studentlabel\ \groupname\ \@group\hspace{2cm}\=
-  \makebox[8.5cm][l]{\hrulefill\ \@author}
-\\[9pt]
+  \studentlabel\=\makebox[\fieldhshift][l]{\hrulefill\ \@author}\\[\sixthskip]
 %    \end{macrocode}
 %
 % Научный руководитель
 %    \begin{macrocode}
-  \field{sa}
-\\[9pt]
+  \ifx\@sa\empty\else\diplomafield{sa}\\[\sixthskip]\fi
+  \ifx\@sasnd\empty\else\diplomafield{sasnd}\\[\sixthskip]\fi
 %    \end{macrocode}
 %
 % Рецензент
 %    \begin{macrocode}
-  \field{rev}
-\\[9pt]
+  \ifx\@rev\empty\else\diplomafield{rev}\\[\sixthskip]\fi
+  \ifx\@revsnd\empty\else\diplomafield{revsnd}\\[\sixthskip]\fi
 %    \end{macrocode}
 %
 % Консультант
 %    \begin{macrocode}
-  \ifdefined\@con\field{con}\fi
+  \ifx\@con\empty\else\diplomafield{con}\\[9pt]\fi
+  \ifx\@consnd\empty\else\diplomafield{consnd}\fi
 \end{tabbing}
 %    \end{macrocode}
 % \paragraph{Город и год}

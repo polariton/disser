@@ -5,7 +5,7 @@
 %<*bachelor>
 %    \end{macrocode}
 % \subsubsection{Стиль бакалаврской работы}
-% 
+%
 % Нумерация.
 %    \begin{macrocode}
 \newcommand\bachelor@the{\default@the}
@@ -29,6 +29,14 @@
 \deflength\thirdskip{1ex}
 \deflength\fourthskip{1ex}
 \deflength\fifthskip{2cm}
+\deflength\sixthskip{1.5ex}
+
+%    \end{macrocode}
+% Горизонтальный отступ перед чертой в текстовым поле для имени, ученой
+% степени и звания научного руководителя и консультанта.
+% \DescribeMacro{\fieldhshift}\index{Расстояния!\verb*+\fieldhshift+}
+%    \begin{macrocode}
+\setlength\fieldhshift{8.5cm}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -80,13 +88,12 @@
 %    \begin{macrocode}
 \vskip\fifthskip\normalfont
 \begin{tabbing}
-  \studentlabel\ \groupname\ \@group\hspace{2cm}\=
-  \makebox[8.5cm][l]{\hrulefill\ \@author}
-\\[9pt]
+  \studentlabel\=\makebox[\fieldhshift][l]{\hrulefill\ \@author}\\[\sixthskip]
 %    \end{macrocode}
 % Научный руководитель.
 %    \begin{macrocode}
-  \field{sa}
+  \ifx\@sa\empty\else\diplomafield{sa}\\[\sixthskip]\fi
+  \ifx\@sasnd\empty\else\diplomafield{sasnd}\\[\sixthskip]\fi
 \end{tabbing}
 %    \end{macrocode}
 % \paragraph{Город и год}

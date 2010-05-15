@@ -19,14 +19,12 @@
 \cyrl\cyri\cyrs\cyrt}
 %    \end{macrocode}
 % \DescribeMacro{\keywordsname}\index{Макросы!\verb+\keywordsname+}
-% \DescribeMacro{\keywordssep}\index{Макросы!\verb+\keywordssep+}
 % \DescribeMacro{\keywordslabel}\index{Макросы!\verb+\keywordslabel+}
 % Ключевые слова
 %    \begin{macrocode}
 \def\keywordsname{\cyr\CYRK\cyrk\cyryu\cyrch\cyre\cyrv\cyrery\cyre\ %
 \cyrs\cyrl\cyro\cyrv\cyra}
-\def\keywordssep{:}
-\def\keywordslabel{\keywordsname\keywordssep}
+\def\keywordslabel{\keywordsname:}
 %    \end{macrocode}
 % \DescribeMacro{\workname}\index{Макросы!\verb+\workname+}
 % Диссертация
@@ -50,32 +48,26 @@
 \def\groupname{\cyr\cyrg\cyrr.}
 %    \end{macrocode}
 % \DescribeMacro{\topicname}\index{Макросы!\verb+\topicname+}
-% \DescribeMacro{\topicsep}\index{Макросы!\verb+\topicsep+}
 % \DescribeMacro{\topiclabel}\index{Макросы!\verb+\topiclabel+}
 % Тема
 %    \begin{macrocode}
 \def\topicname{\cyr\CYRT\cyre\cyrm\cyra}
-\def\topicsep{:\ }
-\def\topiclabel{\topicname\topicsep}
+\def\topiclabel{\topicname:\ }
 %    \end{macrocode}
 % \DescribeMacro{\coursename}\index{Макросы!\verb+\coursename+}
-% \DescribeMacro{\coursesep}\index{Макросы!\verb+\coursesep+}
 % \DescribeMacro{\courselabel}\index{Макросы!\verb+\courselabel+}
 % Направление
 %    \begin{macrocode}
 \def\coursename{\cyr\CYRN\cyra\cyrp\cyrr\cyra\cyrv\cyrl\cyre\cyrn\cyri\cyre}
-\def\coursesep{:}
-\def\courselabel{\coursename\coursesep}
+\def\courselabel{\coursename:}
 %    \end{macrocode}
 % \DescribeMacro{\specname}\index{Макросы!\verb+\specname+}
-% \DescribeMacro{\specsep}\index{Макросы!\verb+\specsep+}
 % \DescribeMacro{\speclabel}\index{Макросы!\verb+\speclabel+}
 % Специальность
 %    \begin{macrocode}
 \def\specname{%
 \cyr\CYRS\cyrp\cyre\cyrc\cyri\cyra\cyrl\cyrsftsn\cyrn\cyro\cyrs\cyrt\cyrsftsn}
-\def\specsep{:}
-\def\speclabel{\specname\specsep}
+\def\speclabel{\specname:}
 %    \end{macrocode}
 % \DescribeMacro{\masterprogname}\index{Макросы!\verb+\masterprogname+}
 % \DescribeMacro{\masterprogsep}\index{Макросы!\verb+\masterprogsep+}
@@ -85,8 +77,7 @@
 \def\masterprogname{%
 \cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\ %
 \cyrp\cyrr\cyro\cyrg\cyrr\cyra\cyrm\cyrm\cyra}
-\def\masterprogsep{:}
-\def\masterproglabel{\masterprogname\masterprogsep}
+\def\masterproglabel{\masterprogname:}
 %    \end{macrocode}
 % \DescribeMacro{\studentname}\index{Макросы!\verb+\studentname+}
 % \DescribeMacro{\studentlabel}\index{Макросы!\verb+\studentlabel+}
@@ -94,7 +85,7 @@
 %    \begin{macrocode}
 \def\studentname{\cyr\CYRV\cyrery\cyrp\cyro\cyrl\cyrn\cyri\cyrl\ %
 \cyrs\cyrt\cyru\cyrd\cyre\cyrn\cyrt}
-\def\studentlabel{\studentname}
+\def\studentlabel{\studentname\ \groupname\ \@group\hspace{2cm}}
 %    \end{macrocode}
 % \DescribeMacro{\saname}\index{Макросы!\verb+\saname+}
 % \DescribeMacro{\salabel}\index{Макросы!\verb+\salabel+}
@@ -102,17 +93,18 @@
 %    \begin{macrocode}
 \def\saname{\cyr\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt\ %
 \cyrr\cyru\cyrk\cyro\cyrv\cyro\cyrd\cyri\cyrt\cyre\cyrl\cyrsftsn}
+\def\sasndname{\saname}
 \def\salabel{\saname}
+\def\sasndlabel{\saname}
 %    \end{macrocode}
 % \DescribeMacro{\scname}\index{Макросы!\verb+\scname+}
 % \DescribeMacro{\sclabel}\index{Макросы!\verb+\sclabel+}
-% Научный консультант
+% Научный консультант (для докторских диссертаций)
 %    \begin{macrocode}
 \def\sconname{\cyr\CYRN\cyra\cyru\cyrch\cyrn\cyrery\cyrishrt\ %
 \cyrk\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
-\def\sconlabel{\sconname}
-
 \def\sconsndname{\sconname}
+\def\sconlabel{\sconname}
 \def\sconsndlabel{\sconsndname}
 %    \end{macrocode}
 % \DescribeMacro{\revname}\index{Макросы!\verb+\revname+}
@@ -120,14 +112,18 @@
 % Рецензент
 %    \begin{macrocode}
 \def\revname{\cyr\CYRR\cyre\cyrc\cyre\cyrn\cyrz\cyre\cyrn\cyrt}
+\def\revsndname{\revname}
 \def\revlabel{\revname}
+\def\revsndlabel{\revsndname}
 %    \end{macrocode}
 % \DescribeMacro{\conname}\index{Макросы!\verb+\conname+}
 % \DescribeMacro{\conlabel}\index{Макросы!\verb+\conlabel+}
-% Консультант
+% Консультант (для магистерских дипломов)
 %    \begin{macrocode}
 \def\conname{\cyr\CYRK\cyro\cyrn\cyrs\cyru\cyrl\cyrsftsn\cyrt\cyra\cyrn\cyrt}
+\def\consndname{\conname}
 \def\conlabel{\conname\ \cyrp\cyro\ \@conspec}
+\def\consndlabel{\consndname\ \cyrp\cyro\ \@consndspec}
 %    \end{macrocode}
 % \DescribeMacro{\asmanuscript}\index{Макросы!\verb+\asmanuscript+}
 % На правах рукописи
@@ -259,7 +255,7 @@
 \def\postcommonsect{\ }
 %    \end{macrocode}
 %
-% \subsubsection{Научный руководитель}
+% \subsubsection{Научные руководители}
 % \DescribeMacro{\sa}\index{Макросы!\verb*+\sa+}
 % \DescribeMacro{\sasnd}\index{Макросы!\verb*+\sasnd+}
 % ФИО
@@ -277,7 +273,7 @@
 
 %    \end{macrocode}
 %
-% \subsubsection{Научный консультант (для докторских диссертаций)}
+% \subsubsection{Научные консультанты (для докторских диссертаций)}
 % \DescribeMacro{\scon}\index{Макросы!\verb*+\scon+}
 % \DescribeMacro{\sconsnd}\index{Макросы!\verb*+\sconsnd+}
 % ФИО
@@ -293,40 +289,48 @@
 \def\sconsndstatus#1{\gdef\@sconsndstatus{#1}}\sconsndstatus{}
 
 %    \end{macrocode}
-% \subsubsection{Рецензент}
+%
+% \subsubsection{Рецензенты}
 % \DescribeMacro{\rev}\index{Макросы!\verb*+\rev+}
+% \DescribeMacro{\revsnd}\index{Макросы!\verb*+\revsnd+}
 % ФИО
 %    \begin{macrocode}
 \def\rev#1{\gdef\@rev{#1}}\rev{}
+\def\revsnd#1{\gdef\@revsnd{#1}}\revsnd{}
 %    \end{macrocode}
 % \DescribeMacro{\revstatus}\index{Макросы!\verb*+\revstatus+}
+% \DescribeMacro{\revsndstatus}\index{Макросы!\verb*+\revsndstatus+}
 % Учёное звание
 %    \begin{macrocode}
 \def\revstatus#1{\gdef\@revstatus{#1}}\revstatus{}
+\def\revsndstatus#1{\gdef\@revsndstatus{#1}}\revsndstatus{}
 
 %    \end{macrocode}
 %
-% \subsubsection{Консультант (для магистерских дипломов)}
-%
-% \DescribeMacro{\conspec}\index{Макросы!\verb*+\conspec+}
-% Специальность
-%    \begin{macrocode}
-\def\conspec#1{\gdef\@conspec{#1}}
-%    \end{macrocode}
+% \subsubsection{Консультанты (для магистерских дипломов)}
 % \DescribeMacro{\con}\index{Макросы!\verb*+\con+}
 % ФИО
 %    \begin{macrocode}
-\def\con#1{\gdef\@con{#1}}
+\def\con#1{\gdef\@con{#1}}\con{}
+\def\consnd#1{\gdef\@consnd{#1}}\consnd{}
+%    \end{macrocode}
+% \DescribeMacro{\conspec}\index{Макросы!\verb*+\conspec+}
+% \DescribeMacro{\consndspec}\index{Макросы!\verb*+\consndspec+}
+% Специальность
+%    \begin{macrocode}
+\def\conspec#1{\gdef\@conspec{#1}}\conspec{}
+\def\consndspec#1{\gdef\@consndspec{#1}}\consndspec{}
 %    \end{macrocode}
 % \DescribeMacro{\constatus}\index{Макросы!\verb*+\constatus+}
+% \DescribeMacro{\consndstatus}\index{Макросы!\verb*+\consndstatus+}
 % Учёное звание и степень
 %    \begin{macrocode}
-\def\constatus#1{\gdef\@constatus{#1}}
+\def\constatus#1{\gdef\@constatus{#1}}\constatus{}
+\def\consndstatus#1{\gdef\@consndstatus{#1}}\consndstatus{}
 
 %    \end{macrocode}
 %
-% \subsubsection{Названия ненумеруемых глав}
-%
+% \subsubsection{Названия стандартных ненумеруемых глав}
 % \begin{itemize}
 % \item Содержание
 % \DescribeMacro{\contentsname}\index{Макросы!\verb*+\contentsname+}
@@ -375,17 +379,33 @@
 
 %    \end{macrocode}
 %
-% \subsubsection{Поля титульного листа}
+% \subsubsection{Элементы титульного листа}
 %
-% \DescribeMacro{\field}\index{Макросы!\verb*+\field+}
-% Формат поля для подписи научного руководителя, рецензента и консультанта
-% на титульных листах бакалаврского и магистерского дипломов.
 %    \begin{macrocode}
-\providecommand\field[1]{%
+\deflength\fieldhshift{8cm}
+
+%    \end{macrocode}
+% \DescribeMacro{\namefield}\index{Макросы!\verb*+\namefield+}
+% Формат поля для подписи, имени, ученого звания и степени научных
+% руководителей, рецензентов и консультанта для бакалаврского и магистерского
+% дипломов.
+%    \begin{macrocode}
+\providecommand\diplomafield[1]{%
   \csname #1label\endcsname,\\%
   \csname @#1status\endcsname\>
-  \makebox[8.5cm][l]{\hrulefill\ \csname @#1\endcsname}
+  \makebox[\fieldhshift][l]{\hrulefill\ \csname @#1\endcsname}
 }
+%    \end{macrocode}
+% Аналогичное поле для кандидатской и докторской диссертации.
+%    \begin{macrocode}
+\providecommand\disserfield[1]{%
+  \begin{tabbing}
+    \hspace{\fieldhshift}\={\csname #1label\endcsname}\\
+    \>\csname @#1status\endcsname\\
+    \>\csname @#1\endcsname
+  \end{tabbing}
+}
+
 %    \end{macrocode}
 %
 % \DescribeMacro{\@approved}\index{Макросы!\verb+"\"@approved+}
