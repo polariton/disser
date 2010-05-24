@@ -2,6 +2,23 @@ disser changelog
 Copyright (C) 2004-2010 Stanislav Kruchinin
 -------------------------------------------
 
+
+Summary of changes in version 1.1.6 (2010-05-22):
+
+Classes and styles:
++ Add support for second speciality, scientific adviser and consultant.
++ Add cp1251.csf and cp1251lc.csf files to avoid dependencies on the obsolete
+  "gost" package.
++ Add support for Dr.Sci. dissertations to gost705 style.
+* Rewrite code for titlepage fields.
+* Move document-specific code to the substyle files.
+
+Templates:
++ Add commented examples of new fields: second speciality, scientific adviser
+  and consultant.
++ Add examples of bibliographic entries for Ph.D. and Dr.Sci. dissertations.
+
+
 Summary of changes in version 1.1.5 (2010-03-23):
 
 Classes and styles:

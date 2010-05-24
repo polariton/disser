@@ -5,7 +5,7 @@
 
 TARGET := disser
 BST := gost705
-MAINDTX := disser gost732 $(BST)
+MAINDTX := $(TARGET) $(BST) gost732
 MANUAL := manual
 
 CLSFILES := *.cls *.rtx
@@ -13,7 +13,8 @@ BSTFILES := gost705.bst gost705s.bst
 CSFFILES := *.csf
 DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
 TEXTFILES := ../README ../README.ru ../ChangeLog
-SRCFILES := *.dtx $(TARGET).ins $(TARGET).ist $(MANUAL).tex Makefile nomake.cmd
+SRCFILES := *.dtx $(TARGET).ins $(TARGET).ist $(MANUAL).tex Makefile \
+  nomake.cmd
 
 TEXMF ?= /usr/share/texmf
 DESTDIR ?= $(TEXMF)
