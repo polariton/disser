@@ -1,7 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[a4paper,includehead,includefoot,mag=1000,
             left=3cm,right=2cm,top=1cm,bottom=2cm]{geometry}
-\usepackage{doc,ifpdf,indentfirst,tabularx,color}
+\usepackage{doc,ifpdf,indentfirst,ltxtable,color}
 \definecolor{darkblue}{rgb}{0,0,.6}
 
 \ifpdf
@@ -55,7 +55,7 @@
   \let\makelabel\deflabel}
 }{\end{list}}
 
-\def\fileversion{1.1.5}
+\def\fileversion{1.1.6}
 
 \begin{document}
 \sloppy
@@ -97,7 +97,7 @@
 \tabcolsep=6pt
 \arraycolsep=0pt
 \newcolumntype{L}{>{\raggedright}p{4.5cm}}
-\begin{tabularx}{\textwidth}{L|X}
+\begin{longtable}{L|p{10.5cm}}
 \hline\hline
 \multicolumn{2}{c}{\textbf{Стандартные опции}}\\
 \hline
@@ -159,9 +159,11 @@
   Включает вывод номера УДК на титульном листе.
 \\\hline
   substylefile = filename.rtx &
-  Имя файла с описанием стиля документа (нумерация, оформление титульного листа).
-  Опция предназначена для подключения собственных стилей документов, отличающихся от стандартных.
-  Если опции не присвоено значение, то по умолчанию подключается файл, имя которого совпадает с названием типа документа (\file{autoref.rtx}, \file{bachelor.rtx}, \file{master.rtx}, \file{candidate.rtx}, \file{doctor.rtx}).
+  Имя файла с описанием стиля документа (оформление титульного листа, нумерация формул, элементов списков и т.\,д.).
+  Опция предназначена для подключения собственных стилей документов, отличающихся от стандартных: \file{autoref.rtx},
+  \file{bachelor.rtx}, \file{master.rtx},
+  \file{candidate.rtx}, \file{doctor.rtx}.
+  Если данной опции не присвоено значение, то по умолчанию подключается файл, имя которого совпадает с названием типа документа.
 \\\hline
 \multicolumn{2}{c}{\textbf{Опции для подключения и настройки сторонних пакетов}}
 \\\hline
@@ -182,7 +184,7 @@
   Использование математических шрифтов MathTime Pro.
   При наличии опции \cmd{times} вместо пакета \pkg{txfonts} подключается пакет \pkg{mtpro}.
 \\\hline\hline
-\end{tabularx}
+\end{longtable}
 
 \section{Система сборки документов}
 
