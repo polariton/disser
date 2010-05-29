@@ -435,7 +435,8 @@
 %    \begin{macrocode}
 \providecommand\mkcommonsect[3]{%
   \@namedef{#1head}{#2}
-  \@namedef{#1section}{\commonsect{\expandafter\csname #1head\endcsname}\postcommonsect}
+  \@namedef{#1section}{\commonsect{\expandafter\csname #1head\endcsname}%
+    \postcommonsect}
   \@namedef{#1text}{#3}
 }
 \let\mkintrosect=\mkcommonsect
