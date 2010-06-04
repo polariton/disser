@@ -14,7 +14,7 @@
 %    \end{macrocode}
 % Титульный лист.
 %    \begin{macrocode}
-\newcommand\maketitle{
+\if@titlepage\renewcommand\maketitle{
 %    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
 % \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
@@ -93,6 +93,6 @@
   {\@city\cdsep\@date}
 \end{center}
 \normalfont\clearpage
-}
+}\fi
 %</autoref>
 %    \end{macrocode}
