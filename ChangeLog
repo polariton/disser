@@ -2,6 +2,10 @@ disser changelog
 Copyright (C) 2004-2010 Stanislav Kruchinin
 -------------------------------------------
 
+Summary of changes in version 1.1.7 (2010-06-13):
+* Fixed bug with \maketitle in titlepage of author's abstract.
+* Fixed bug with EOLNs in some files.
+
 
 Summary of changes in version 1.1.6 (2010-05-22):
 
