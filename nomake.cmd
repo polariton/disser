@@ -82,6 +82,11 @@ goto :eof
 	)
 	set destdir=..\%tdsdir%
 	call :install
+	cd %tdsdir%\bibtex\bst\disser
+	flip -ub *.bst
+	cd ..\..\..\tex\latex\disser
+	flip -ub *.cls *.rtx
+	cd ..\..\..\..\disser
 	7z a -t%archext% -mx=9 %tdsarchive% %tdsdir%\*
 goto :eof
 
