@@ -1,34 +1,166 @@
 % \iffalse meta-comment
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% This bibliography style attempts
-%% to format bibliography according to
-%% GOST 7.1-84 with some conventional modifications.
-%%
-%% Based on style gost71u.bst by Maksym Polyakov.
-%%
-%% For the Russian bibliographic entries
-%% you need to create field
-%% language = {russian}.
-%% Default language is English.
-%% Field numpages for books must contain number of pages.
-%% Optional field url will format url (using hyperref, if loaded).
-%%
-%% Requires 8-bit bibtex with switch -B and csf file
-%% supporting cyrillic.
-%%
-%% bibtex8 -B -c <encoding>.csf <your_document>
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This bibliography style attempts to format bibliography according to
+% GOST R 7.0.5-2008 with some conventional modifications.
+%
+% Based on style gost71u.bst by Maksym Polyakov.
+%
+% For the Russian bibliographic entries you need to create field
+%   language = {russian}.
+%
+% Default language is English.
+% Field numpages for books must contain number of pages.
+% Optional field url will format url (using hyperref, if loaded).
+%
+% Requires 8-bit bibtex with switch -H and csf file supporting cyrillic.
+%
+% bibtex8 -H -c <encoding>.csf <your_document>
+%
+% Copyright (C) 2004-2010 by
+%     Stanislav Kruchinin <stanislav.kruchinin at gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3c of this license or (at your option) any later
+% version. This version of this license is in
+%    http://www.latex-project.org/lppl/lppl-1-3c.txt
+% and the latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+%
+% Current Maintainer of this work is Stanislav Kruchinin.
+%
+% This work consists of the main source file gost705.dtx
+% and the derived files
+%    gost705.bst, gost705s.bst, gost705.pdf.
+%
+% Distribution:
+%    CTAN:macros/latex/contrib/disser/src/gost705.dtx
+%
+% Unpacking:
+%   (a) If disser.ins present:
+%         latex disser.ins
+%   (b) Without disser.ins:
+%         tex gost705.dtx
+%
+% Documentation:
+%    latex maik.dtx; ...
+%
+%    Programm calls to get the documentation (example):
+%       pdflatex gost705.dtx
+%       makeindex -r -s disser.ist gost705
+%       pdflatex gost705.dtx
+%       pdflatex gost705.dtx
+%
+% Installation:
+%    TDS:bibtex/bst/disser/
+%    TDS:doc/latex/disser/
+%    TDS:source/latex/disser/
+%
+%<*ignore>
+\begingroup
+  \catcode123=1 %
+  \catcode125=2 %
+  \def\x{LaTeX2e}%
+\expandafter\endgroup
+\ifcase 0\ifx\install y1\fi\expandafter
+         \ifx\csname processbatchFile\endcsname\relax\else1\fi
+         \ifx\fmtname\x\else 1\fi\relax
+\else\csname fi\endcsname
+%</ignore>
+%<*install>
+\input docstrip.tex
+\Msg{************************************************************************}
+\Msg{* Installation}
+\Msg{* gost705: Format bibliography according to GOST R 7.0.5-2008}
+\Msg{************************************************************************}
 
+\keepsilent
+\askforoverwritefalse
+
+\let\MetaPrefix\relax
+\preamble
+
+This is a generated file.
+
+This bibliography style attempts to format bibliography according to
+GOST R 7.0.5-2008 with some conventional modifications.
+
+Based on style gost71u.bst by Maksym Polyakov.
+
+For the Russian bibliographic entries you need to create field
+ language = {russian}.
+
+Default language is English.
+Field numpages for books must contain number of pages.
+Optional field url will format url (using hyperref, if loaded).
+
+Requires 8-bit bibtex with switch -H and csf file supporting cyrillic.
+
+bibtex8 -H -c <encoding>.csf <your_document>
+
+Copyright (C) 2004-2010 by
+   Stanislav Kruchinin <stanislav.kruchinin at gmail.com>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3c of this license or (at your option) any later
+version. This version of this license is in
+   http://www.latex-project.org/lppl/lppl-1-3c.txt
+and the latest version of this license is in
+   http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of
+LaTeX version 2005/12/01 or later.
+
+This work has the LPPL maintenance status "maintained".
+
+Current Maintainer of this work is Stanislav Kruchinin.
+
+This work consists of the main source file gost705.dtx
+and the derived files
+   gost705.bst gost705s.bst gost705.pdf.
+   
+\endpreamble
+\let\MetaPrefix\DoubleperCent
+
+\generate{%
+  \usedir{bibtex/bst/disser}%
+  \file{gost705.bst}{\from{gost705.dtx}{gost705}}%
+  \file{gost705s.bst}{\from{gost705.dtx}{gost705s}}%
+}
+
+\catcode32=13\relax% active space
+\let =\space%
+\Msg{************************************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* file into a directory searched by TeX:}
+\Msg{*}
+\Msg{*     gost705.bst gost705s.bst}
+\Msg{*}
+\Msg{* To produce the documentation run the file `gost705.dtx'}
+\Msg{* through LaTeX or pdfLaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{*}
+\Msg{************************************************************************}
+
+\endbatchfile
+%</install>
+%<*ignore>
+\fi
+%</ignore>
 %<*driver>
-\ProvidesFile{gost705.drv}[2010/06/13 1.1.7 Bibliography style for dissertations.]
+\ProvidesFile{gost705.drv}%
+  [2010/06/13 1.1.7 Bibliography style for GOST R 7.0.5-2008.]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
             left=5.5cm,right=1cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{ifpdf,indentfirst,color,makeidx}
-
 \definecolor{darkblue}{rgb}{0,0,.6}
 \ifpdf
   \usepackage[pdftex,hyperindex,unicode]{hyperref}
@@ -39,9 +171,9 @@
 
 \hypersetup{
   pdfusetitle,
-  pdftitle           = {Documented source code of disser package},
+  pdftitle           = {Documented source code of gost705 style},
   pdfauthor          = {Stanislav Kruchinin},
-  pdfsubject         = {disser},
+  pdfsubject         = {gost705},
   pdfstartview       = {FitH},
   pdfborder          = {0 0 0},
   bookmarksopen      = true,
@@ -107,7 +239,6 @@
 
 \makeindex
 
-\GetFileInfo{gost705.drv}
 \begin{document}
   \sloppy
   \DocInput{gost705.dtx}
@@ -117,7 +248,7 @@
 %</driver>
 % \fi
 %
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \GetFileInfo{gost705.drv}
 %
 % \title{\pkg{gost705} и \pkg{gost705s} "--- стили оформления библиографии
 % в соответствии с ГОСТ Р 7.0.5-2008}
