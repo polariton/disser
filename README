@@ -70,9 +70,22 @@ Here /path/to/texmf and disk:\path\to\texmf are the paths to TeX directory
 tree. After installation you should update the filename database with the
 command
   mktexlsr
+if you install the package to user's directory "%APPDATA%\MiKTeX\2.8"
+or
+  mktexlsr --admin
+if you install the package to one of the common directories, like
+"%programfiles%\MiKTeX 2.8" or "%ALLUSERSPROFILE%\Application
+Data\MiKTeX\2.8".
 
-Example of commands for MiKTeX version 2.8:
-  set DESTDIR=C:\Documents and Settings\All Users\Application Data\MiKTeX\2.8
+Examples of commands for MiKTeX 2.8.
+
+Installation for all users:
+  set DESTDIR=%ALLUSERSPROFILE%\Application Data\MiKTeX\2.8
+  nomake install
+  mktexlsr --admin
+
+Installation for current user only:
+  set DESTDIR=%APPDATA%\MiKTeX\2.8
   nomake install
   mktexlsr
 
