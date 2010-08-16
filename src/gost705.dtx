@@ -122,7 +122,7 @@ Current Maintainer of this work is Stanislav Kruchinin.
 This work consists of the main source file gost705.dtx
 and the derived files
    gost705.bst gost705s.bst gost705.pdf.
-   
+
 \endpreamble
 \let\MetaPrefix\DoubleperCent
 
@@ -303,6 +303,10 @@ ENTRY
     urldate
     isbn
     doi
+    archive
+    archivePrefix
+    primaryClass
+    eprint
   }
   {}
   { label }
@@ -1164,11 +1168,9 @@ FUNCTION {output.address.publisher.date}
 FUNCTION {output.bibitem}
 {
   newline$
-  "\bibitem[" write$
-  "\BibPrefix" write$
+  "\bibitem[\BibPrefix" write$
   label write$
-  "\BibPostfix" write$
-  "]{" write$
+  "\BibPostfix]{" write$
   cite$ write$
   "}" write$
   newline$
@@ -1576,6 +1578,20 @@ FUNCTION {editor.organization.after}
 }
 
 %    \end{macrocode}
+% \DescribeBSTFunction{format.annote}
+%    \begin{macrocode}
+FUNCTION {format.annote}
+{
+  annote empty$
+    { "" }
+    { after.sentence 'output.state :=
+      "\BibAnnote{" annote add.period$ * "}" *
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \subsection{Функции для создания гиперссылок}
 % \DescribeBSTFunction{format.url}
 %    \begin{macrocode}
 FUNCTION {format.url}
@@ -1613,19 +1629,6 @@ FUNCTION {output.url}
 }
 
 %    \end{macrocode}
-% \DescribeBSTFunction{format.annote}
-%    \begin{macrocode}
-FUNCTION {format.annote}
-{
-  annote empty$
-    { "" }
-    { after.sentence 'output.state :=
-      "\BibAnnote{" annote add.period$ * "}" *
-    }
-  if$
-}
-
-%    \end{macrocode}
 % \DescribeBSTFunction{format.isbn}
 %    \begin{macrocode}
 FUNCTION {format.isbn}
@@ -1653,6 +1656,30 @@ FUNCTION {add.doi}
 }
 
 %    \end{macrocode}
+% \DescribeBSTFunction{format.eprint}
+%    \begin{macrocode}
+FUNCTION {format.eprint}
+{ eprint empty$
+    { "" }
+    { primaryClass empty$
+    	  { " \href{http://arxiv.org/abs/" eprint * "}" *
+    		  "{" * eprint * "}" *
+        }
+        { archivePrefix empty$
+            { " \href{http://arxiv.org/abs/" eprint * "}" *
+      	 	    "{" * primaryClass * "/" * eprint * "}" *
+            }
+            { " \href{http://arxiv.org/abs/" eprint * "}" *
+      	 	    "{" * archivePrefix * ":" * primaryClass * "/" * eprint * "}" *
+            }
+          if$
+        }
+  		if$
+		}
+  if$
+}
+
+%    \end{macrocode}
 % \subsection{Описание типов библиографических ссылок}
 % \DescribeBSTFunction{article}
 %    \begin{macrocode}
@@ -1673,6 +1700,8 @@ FUNCTION {article}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1702,6 +1731,8 @@ FUNCTION {book}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1723,6 +1754,8 @@ FUNCTION {booklet}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1755,6 +1788,8 @@ FUNCTION {inbook}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1782,6 +1817,8 @@ FUNCTION {incollection}
   format.pages.page output
   new.block
   note output
+  new.block
+  format.eprint output
   new.block
   output.url
   format.annote output
@@ -1820,6 +1857,8 @@ FUNCTION {inproceedings}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1866,6 +1905,8 @@ FUNCTION {manual}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1888,6 +1929,8 @@ FUNCTION {mastersthesis}
   new.block
   note output
   new.block
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1909,6 +1952,8 @@ FUNCTION {misc}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1933,6 +1978,8 @@ FUNCTION {phdthesis}
   format.pages.page output
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1957,6 +2004,8 @@ FUNCTION {docdisser}
   format.pages.page output
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -1987,6 +2036,8 @@ FUNCTION {proceedings}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -2012,6 +2063,8 @@ FUNCTION {techreport}
   new.block
   note output
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
@@ -2029,6 +2082,8 @@ FUNCTION {unpublished}
   new.block
   note "note" output.check
   new.sentence
+  format.eprint output
+  new.block
   output.url
   format.annote output
   fin.entry
