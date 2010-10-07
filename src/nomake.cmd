@@ -22,7 +22,7 @@ set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
 set srcfiles=*.dtx %target%.ins %target%.ist %manual%.tex Makefile nomake.cmd
 
-if "!texmf!"==""   set texmf=%programfiles%\miktex
+if "!texmf!"==""   set texmf=%allusersprofile%\Application Data\MiKTeX\2.8
 if "!destdir!"=="" set destdir=!texmf!
 if "!clsdir!"==""  set clsdir=!destdir!\tex\latex\%target%
 if "!bstdir!"==""  set bstdir=!destdir!\bibtex\bst\%target%
