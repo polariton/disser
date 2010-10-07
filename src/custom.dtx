@@ -149,7 +149,9 @@
   \let\shortcite\cite
   \let\citeasnoun\cite
 }{%
-  \def\@noitemerr{\PackageWarning{natbib}{Empty `thebibliography' environment}}
+  \def\@noitemerr{%
+    \PackageWarning{natbib}{Empty `thebibliography' environment}%
+  }
   \endlist\vskip-\lastskip%
 }
 
@@ -233,7 +235,8 @@
 \fi
 
 %    \end{macrocode}
-% Команда, создающая цель для гиперссылок над заголовками ненумеруемых разделов.
+% Команда, создающая цель для гиперссылок над заголовками ненумеруемых
+% разделов.
 % \DescribeMacro{\hrefphantom}\index{Макросы!\verb*+\hrefphantom+}
 %    \begin{macrocode}
 \providecommand\hrefphantom[1]{%

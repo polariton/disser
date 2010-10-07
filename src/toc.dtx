@@ -8,7 +8,8 @@
 %<*toc>
 %    \end{macrocode}
 %
-% \subsection{Автоматически генерируемые списки (оглавление, предметный указатель и т.\,д.)}
+% \subsection{Автоматически генерируемые списки (оглавление, предметный
+% указатель и т.\,д.)}
 %
 % \subsubsection{Общие параметры}
 %
@@ -43,6 +44,7 @@
 %    \end{macrocode}
 % \subsubsection{Оглавление}
 %
+% Команда, создающая заголовок в тексте.
 % \DescribeMacro{\tocsection}\index{Макросы!\verb*+\tocsection+}
 %    \begin{macrocode}
 \newcommand\tocsection{\chapter*{\contentsname}}
@@ -64,6 +66,7 @@
 %
 % \subsubsection{Список иллюстраций}
 %
+% Команда, создающая заголовок в тексте.
 % \DescribeMacro{\lofsection}\index{Макросы!\verb*+\lofsection+}
 %    \begin{macrocode}
 \newcommand\lofsection{\nchapter{\listfigurename}}
@@ -89,6 +92,7 @@
 %
 % \subsubsection{Список таблиц}
 %
+% Команда, создающая заголовок в тексте.
 % \DescribeMacro{\lotsection}\index{Макросы!\verb*+\lotsection+}
 %    \begin{macrocode}
 \newcommand\lotsection{\nchapter{\listtablename}}
@@ -137,6 +141,7 @@
 %
 % \subsubsection{Предметный указатель}
 %
+% Команда, создающая заголовок в тексте.
 % \DescribeMacro{\indexsection}\index{Макросы!\verb*+\indexsection+}
 %    \begin{macrocode}
 \providecommand\indexsection{\twocolumn[\@makeschapterhead{\indexname}]}
