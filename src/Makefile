@@ -13,7 +13,7 @@ BSTFILES := gost705.bst gost705s.bst
 CSFFILES := *.csf
 DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
 TEXTFILES := ../README ../README.ru ../ChangeLog
-SRCFILES := *.dtx $(TARGET).ins $(TARGET).ist $(MANUAL).tex Makefile \
+SRCFILES := *.dtx $(TARGET).ins dtx.ist $(MANUAL).tex Makefile \
   nomake.cmd
 
 TEXMF ?= /usr/share/texmf
@@ -34,7 +34,7 @@ MI ?= makeindex
 
 LATEXFLAGS ?= --src-specials
 PDFLATEXFLAGS ?= --shell-escape
-MIFLAGS ?= -r -s disser.ist
+MIFLAGS ?= -r -s dtx.ist
 
 
 all: package doc

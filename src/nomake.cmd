@@ -20,7 +20,7 @@ set bstfiles=gost705.bst gost705s.bst
 set csffiles=*.csf
 set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
-set srcfiles=*.dtx %target%.ins %target%.ist %manual%.tex Makefile nomake.cmd
+set srcfiles=*.dtx %target%.ins dtx.ist %manual%.tex Makefile nomake.cmd
 
 if "!texmf!"==""   set texmf=%allusersprofile%\Application Data\MiKTeX\2.8
 if "!destdir!"=="" set destdir=!texmf!
@@ -40,7 +40,7 @@ if "!mi!"==""       set mi=makeindex
 
 if "!latexflags!"==""    set latexflags=--src-specials
 if "!pdflatexflags!"=="" set pdflatexflags=--shell-escape
-if "!miflags!"==""       set miflags=-r -s disser.ist
+if "!miflags!"==""       set miflags=-r -s dtx.ist
 
 
 if "%1"=="" (
