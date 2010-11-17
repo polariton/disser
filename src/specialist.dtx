@@ -1,24 +1,26 @@
 %    \begin{macrocode}
 
-%<bachelor>\ProvidesFile{bachelor.rtx}
+%<specialist>\ProvidesFile{specialist.rtx}
 
-%<*bachelor>
+%<*specialist>
 %    \end{macrocode}
-% \subsubsection{Стиль бакалаврской работы}
+% \subsubsection{Стиль работы специалиста}
 %
 % Нумерация.
 %    \begin{macrocode}
-\newcommand\bachelor@the{\default@the}
-\bachelor@the
+\newcommand\specialist@the{\default@the}
+\specialist@the
+
+\def\diplomafield#1{%
+  \csname #1label\endcsname\\%
+  \csname @#1status\endcsname\ \csname @#1\endcsname
+}
 
 %    \end{macrocode}
 % Титульный лист.
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
 \if@titlepage\renewcommand\maketitle[1][]{
-%    \end{macrocode}
-% Переопределения некоторых полей титульного листа для англоязычной версии.
-%    \begin{macrocode}
 \ifthenelse{\equal{#1}{en}}{\@titlepage@entrue}{\@titlepage@enfalse}
 \if@titlepage@en
   \def\appos{Head of Department}
@@ -31,10 +33,11 @@
   \def\sasndname{\saname}
   \def\salabel{\saname}
   \def\sasndlabel{\saname}
-  \def\topicname{Topic}
-  \def\coursename{Speciality}
-  \def\studentname{Student}
-  \def\studentlabel{\studentname\hspace{6cm}}
+\else
+  \def\appos{\CYRZ\cyra\cyrv\cyre\cyrd\cyru\cyryu\cyrshch\cyri\cyrishrt\ %
+    \cyrk\cyra\cyrf\cyre\cyrd\cyrr\cyro\cyrishrt}
+  \def\approved{<<\CYRD\cyro\cyrp\cyru\cyrs\cyrt\cyri\cyrt\cyrsftsn\ %
+    \cyrk\ \cyrz\cyra\cyrshch\cyri\cyrt\cyre>>}
 \fi
 
 %    \end{macrocode}
@@ -47,10 +50,11 @@
 %    \begin{macrocode}
 \ifundeflength\firstskip{1.5cm}
 \ifundeflength\secondskip{1.5cm}
-\ifundeflength\thirdskip{1ex}
+\ifundeflength\thirdskip{3ex}
 \ifundeflength\fourthskip{1ex}
-\ifundeflength\fifthskip{2cm}
-\ifundeflength\sixthskip{1.5ex}
+\ifundeflength\fifthskip{1ex}
+\ifundeflength\sixthskip{2cm}
+\ifundeflength\seventhskip{1ex}
 
 %    \end{macrocode}
 % Горизонтальный отступ перед чертой в текстовым поле для имени, ученой
@@ -81,41 +85,61 @@
 %    \end{macrocode}
 % \paragraph{Название организации}
 %    \begin{macrocode}
-\begin{center}%
+\begin{center}
   {\instfont\@institution}
 \end{center}
 
 %    \end{macrocode}
-% Диссертация допущена к защите
+% Работа
+% \DescribeMacro{\workname}\index{Макросы!\verb*+\topicfont+}
+%    \begin{macrocode}
+\def\@approved{
+\hfill
+\begin{minipage}{.5\linewidth}
+  {\approved}\hrulefill\\[9pt]%
+  \appos\\%
+  \@apname%
+\end{minipage}
+}
+
+%    \end{macrocode}
+% Допустить к защите
 %    \begin{macrocode}
 \vskip\firstskip
 {\@approved}
 \vskip\secondskip
-
 %    \end{macrocode}
-% Заголовок, тема.
+% Заголовок, тема, автор
 %    \begin{macrocode}
-\begin{center}%
-  {\titlefont\@title\par}%
-  \vskip\thirdskip%
-  {\topiclabelfont\topiclabel\ }%
+\begin{center}
+  {\titlefont\@title}
+  \vskip\thirdskip
+  {\@group}
+  \vskip\fourthskip
+  {\@author}
+  \vskip\fifthskip
   {\topicfont\@topic}
-  \vskip\fourthskip\normalfont%
-  \courselabel\ \@coursenum~--\ \@course%
 \end{center}
-
+\normalfont
 %    \end{macrocode}
-% Специальность, автор, руководитель.
+% Руководитель, рецензент
 %    \begin{macrocode}
-\vskip\fifthskip
-\begin{tabbing}
-  \studentlabel\=\makebox[\fieldhshift][l]{\hrulefill\ \@author}\\[\sixthskip]
-%    \end{macrocode}
-% Научный руководитель.
-%    \begin{macrocode}
-  \ifx\@sa\empty\else\diplomafield{sa}\\[\sixthskip]\fi
-  \ifx\@sasnd\empty\else\diplomafield{sasnd}\\[\sixthskip]\fi
-\end{tabbing}
+\vskip\sixthskip
+\hfill
+\begin{minipage}{.5\linewidth}
+  \ifx\@sa\empty\else
+    \vskip\seventhskip\diplomafield{sa}
+  \fi
+  \ifx\@sasnd\empty\else
+    \vskip\seventhskip\diplomafield{sasnd}
+  \fi
+  \ifx\@rev\empty\else
+    \vskip\seventhskip\diplomafield{rev}
+  \fi
+  \ifx\@revsnd\empty\else
+    \vskip\seventhskip\diplomafield{revsnd}
+  \fi
+\end{minipage}
 %    \end{macrocode}
 % \paragraph{Город и год}
 %    \begin{macrocode}
@@ -125,5 +149,5 @@
 \end{center}
 \normalfont\clearpage
 }\fi
-%</bachelor>
+%</specialist>
 %    \end{macrocode}

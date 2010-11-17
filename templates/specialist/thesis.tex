@@ -1,21 +1,16 @@
-\documentclass[bachelor,subf,href,colorlinks=true
+\documentclass[specialist,subf,href,colorlinks=true
 %,fixint=false
 %,times
 ]{disser}
 
 \usepackage[
   a4paper, mag=1000, includefoot,
-  left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm
+  left=3cm, right=1.5cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm
 ]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
-
-% Номера страниц сверху и по центру
-%\def\headfont{\small}
-%\pagestyle{headcenter}
-%\chapterpagestyle{empty}
 
 % Использовать полужирное начертание для векторов
 \let\vec=\mathbf
@@ -25,26 +20,36 @@
 
 \graphicspath{{fig/}}
 
+%----------------------------------------------------------------
 \begin{document}
 
+%
+% Титульный лист на русском языке
+%
+
+% Название организации
 \institution{Название организации}
 
 % Имя лица, допускающего к защите (зав. кафедрой)
-\apname{ФИО зав. кафедрой}
+\apname{д.\,ф.-м.\,н., профессор С.\,C.~Сидоров}
 
-\title{ВЫПУСКНАЯ РАБОТА\\БАКАЛАВРА}
+\title{Дипломная работа}
 
-\topic{Тема работы}
+% Тема
+\topic{<<Тема работы>>}
 
+% Группа
+\group{Студента группы}
 % Автор
-\author{ФИО студента} % ФИО
-\group{1111/1} % Группа
-\coursenum{111111} % Номер специальности
-\course{Физика} % Название специальности
+\author{ФИО автора}
 
 % Научный руководитель
-\sa      {ФИО руководителя}
-\sastatus{д.~ф.-м.~н., ст.~н.~с.}
+\sa       {И.\,И.~Иванов}
+\sastatus {д.\,ф.-м.\,н., профессор}
+
+% Рецензент
+\rev      {П.\,П.~Петров}
+\revstatus{к.\,ф.-м.\,н., доцент}
 
 % Город и год
 \city{Санкт-Петербург}
@@ -56,20 +61,20 @@
 %% Titlepage in English
 %%
 %
+%\setlength\thirdskip{0pt}
+%
 %\institution{Name of Organization}
 %
 %% Approved by
 %\apname{Professor S.\,S.~Sidorov}
 %
-%\title{Bachelor's Thesis}
+%\title{Diploma Thesis}
 %
 %% Topic
 %\topic{Dummy Title}
 %
 %% Author
 %\author{Author's Name} % Full Name
-%\course{Physics} % Название специальности
-%
 %\group{} % Study Group
 %
 %% Scientific Advisor
@@ -87,6 +92,7 @@
 %\maketitle[en]
 
 \tableofcontents
+
 \input{intro}
 \input{1}
 \input{concl}
@@ -94,3 +100,4 @@
 \bibliography{thesis}
 \bibliographystyle{gost705}
 \end{document}
+

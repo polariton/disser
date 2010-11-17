@@ -15,7 +15,18 @@
 % Титульный лист.
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
-\if@titlepage\renewcommand\maketitle{
+\if@titlepage\renewcommand\maketitle[1][]{
+\ifthenelse{\equal{#1}{en}}{\@titlepage@entrue}{\@titlepage@enfalse}
+\if@titlepage@en
+  \def\appos{Head of Department}
+  \def\sconname{Scientific Consultant}
+  \def\sconlabel{\sconname}
+  \def\sconsndname{\sconname}
+  \def\sconsndlabel{\sconname}
+  \def\topicname{Topic}
+  \def\asmanuscript{As Manuscript}
+\fi
+
 %    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
 % \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
@@ -25,17 +36,19 @@
 % \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
 % \DescribeMacro{\sixthskip}\index{Расстояния!\verb*+\sixthskip+}
 %    \begin{macrocode}
-\newlength\firstskip
-\ifDis@libcat
-  \setlength\firstskip{1ex}
-\else
-  \setlength\firstskip{4ex}
+\ifx\firstskip\undefined
+  \newlength\firstskip
+  \ifDis@libcat
+    \setlength\firstskip{1ex}
+  \else
+    \setlength\firstskip{4ex}
+  \fi
 \fi
-\deflength\secondskip{3cm}
-\deflength\thirdskip{1cm}
-\deflength\fourthskip{1cm}
-\deflength\fifthskip{1cm}
-\deflength\sixthskip{0cm}
+\ifundeflength\secondskip{3cm}
+\ifundeflength\thirdskip{1cm}
+\ifundeflength\fourthskip{1cm}
+\ifundeflength\fifthskip{1cm}
+\ifundeflength\sixthskip{0cm}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.

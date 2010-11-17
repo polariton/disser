@@ -124,6 +124,7 @@
   \DocInput{titledefs.dtx}
   \DocInput{titlepage.dtx}
   \DocInput{bachelor.dtx}
+  \DocInput{specialist.dtx}
   \DocInput{master.dtx}
   \DocInput{candidate.dtx}
   \DocInput{doctor.dtx}
@@ -197,6 +198,14 @@
 %    \begin{macrocode}
 \RequirePackage{ifpdf}
 
+% \item подключение пакета \pkg{ifthen} для построчных сравнений.
+% \DescribePackage{ifthen}\index{Пакеты!\verb*+ifthen+}
+\RequirePackage{ifthen}
+
+%    \end{macrocode}
+% \item Англоязычная версия титульного листа.
+%    \begin{macrocode}
+\newif\if@titlepage@en\@titlepage@enfalse
 %    \end{macrocode}
 % \item Разрешено оставлять одну колонку при двухколонном наборе.
 %    \begin{macrocode}
@@ -213,6 +222,7 @@
 % \item Типы документов (по умолчанию candidate).
 %    \begin{macrocode}
 \newif\ifDis@bachelor\Dis@bachelorfalse
+\newif\ifDis@specialist\Dis@specialistfalse
 \newif\ifDis@master\Dis@masterfalse
 \newif\ifDis@candidate\Dis@candidatetrue
 \newif\ifDis@doctor\Dis@doctorfalse
@@ -387,6 +397,15 @@
 %    \begin{macrocode}
 \DeclareOption{bachelor}{%
   \Dis@bachelortrue
+  \Dis@specialistfalse
+  \Dis@masterfalse
+  \Dis@candidatefalse
+  \Dis@doctorfalse
+  \Dis@autoreffalse
+}
+\DeclareOption{specialist}{%
+  \Dis@bachelorfalse
+  \Dis@specialisttrue
   \Dis@masterfalse
   \Dis@candidatefalse
   \Dis@doctorfalse
@@ -394,6 +413,7 @@
 }
 \DeclareOption{master}{%
   \Dis@bachelorfalse
+  \Dis@specialistfalse
   \Dis@mastertrue
   \Dis@candidatefalse
   \Dis@doctorfalse
@@ -451,11 +471,12 @@
 % Файл с описанием разметки титульного листа по умолчанию.
 %    \begin{macrocode}
 \ifx\Dis@substylefile\@empty
-  \ifDis@bachelor \renewcommand*{\Dis@substylefile}{bachelor.rtx}\fi
-  \ifDis@master   \renewcommand*{\Dis@substylefile}{master.rtx}\fi
-  \ifDis@candidate\renewcommand*{\Dis@substylefile}{candidate.rtx}\fi
-  \ifDis@doctor   \renewcommand*{\Dis@substylefile}{doctor.rtx}\fi
-  \ifDis@autoref  \renewcommand*{\Dis@substylefile}{autoref.rtx}\fi
+  \ifDis@bachelor   \renewcommand*{\Dis@substylefile}{bachelor.rtx}\fi
+  \ifDis@specialist \renewcommand*{\Dis@substylefile}{specialist.rtx}\fi
+  \ifDis@master     \renewcommand*{\Dis@substylefile}{master.rtx}\fi
+  \ifDis@candidate  \renewcommand*{\Dis@substylefile}{candidate.rtx}\fi
+  \ifDis@doctor     \renewcommand*{\Dis@substylefile}{doctor.rtx}\fi
+  \ifDis@autoref    \renewcommand*{\Dis@substylefile}{autoref.rtx}\fi
 \fi
 
 %    \end{macrocode}
@@ -564,6 +585,9 @@
 % \DescribeMacro{\deflength}\index{Макросы!\verb*+\deflength+}
 %    \begin{macrocode}
 \providecommand\deflength[2]{\newlength{#1}\setlength{#1}{#2}}
+\providecommand\ifundeflength[2]{%
+\ifx#1\undefined \newlength{#1}\setlength{#1}{#2} \else \relax \fi
+}
 
 %    \end{macrocode}
 %
