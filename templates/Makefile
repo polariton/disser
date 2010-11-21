@@ -10,6 +10,7 @@ DOCDIR ?= $(DESTDIR)/doc/latex/disser
 
 dvi clean figclean bmtoeps epstopdf fixbb pdftopng256 pdftotiffg4 ps ps_2on1 pdf pdf_2on1 html srcdist all allpdf:
 	@$(MAKE) -i -C bachelor $@
+	@$(MAKE) -i -C specialist $@
 	@$(MAKE) -i -C master $@
 	@$(MAKE) -i -C candidate $@
 	@$(MAKE) -i -C doctor $@
