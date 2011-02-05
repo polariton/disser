@@ -80,10 +80,10 @@ $(TARGET).dvi: *.tex *.bib
 	@$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	if [ -f $(BIBFILE) ] ; then \
 		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f; done ;\
-		$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
 	fi ;\
+	$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	$(LATEX) $(TEXFLAGS) $(TARGET).tex
 
 $(TARGET).ps: $(TARGET).dvi
@@ -100,10 +100,10 @@ $(TARGET).pdf: *.tex *.bib
 	@$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	if [ -f $(BIBFILE) ] ; then \
 		for f in *.aux ; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
-		$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	else \
 		echo "Warning: Bibliography file does not exist" ;\
 	fi ;\
+	$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex
 
 $(TARGET)_2on1.pdf: $(TARGET)_2on1.ps

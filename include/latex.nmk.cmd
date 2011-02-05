@@ -72,10 +72,10 @@ goto :eof
 	%latex% %latexflags% %target%.tex
 	if exist %bibfile% (
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
-		%latex% %texflags% %target%.tex
 	) else (
 		echo Warning: Bibliography file does not exist
 	)
+	%latex% %latexflags% %target%.tex
 	%latex% %latexflags% %target%.tex
 goto :eof
 
@@ -113,10 +113,10 @@ goto :eof
 	%pdflatex% %pdflatexflags% %target%.tex
 	if exist %bibfile% (
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
-		%pdflatex% %pdflatexflags% %target%.tex
 	) else (
 		echo Warning: Bibliography file does not exist
 	)
+	%pdflatex% %pdflatexflags% %target%.tex
 	%pdflatex% %pdflatexflags% %target%.tex
 goto :eof
 
