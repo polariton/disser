@@ -1,8 +1,9 @@
 \documentclass[candidate,subf,href,colorlinks=true
-%,fixint=false
-%,times
-%,facsimile
-%,classified
+%,times        % шрифт Times как основной
+%,fixint=false % отключить прямые знаки интегралов
+%,classified   % секретно
+%,libcat       % номер УДК
+%,facsimile    % факсимиле диссертанта
 ]{disser}
 
 \usepackage[
@@ -13,6 +14,7 @@
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
+\renewcommand{\thechapter}{\Roman{chapter}}
 
 % Номера страниц сверху и по центру
 %\def\headfont{\small}
@@ -37,6 +39,9 @@
 %\copynum{1}
 % класс доступа
 %\classlabel{Для служебного пользования}
+
+% номер УДК
+%\libcatnum{12345}
 
 \title{ДИССЕРТАЦИЯ\\
 на соискание ученой степени\\
