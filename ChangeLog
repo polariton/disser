@@ -1,6 +1,12 @@
 disser changelog
-Copyright (C) 2004-2010 Stanislav Kruchinin
+Copyright (C) 2004-2012 Stanislav Kruchinin
 -------------------------------------------
+
+Summary of changes in version 1.1.8 (2010-09-11):
+* Remove bibliography prefix support to solve the problem with citation compression.
++ Add compatibility with MathTime Professional II fonts.
+* Miscellaneous small fixes.
+
 
 Summary of changes in version 1.1.7 (2010-11-21):
 + Add specialist titlepage and template.

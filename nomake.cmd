@@ -12,7 +12,7 @@ setlocal enabledelayedexpansion
 
 set target=disser
 
-if "!ver!"=="" set ver=1.1.7
+if "!ver!"=="" set ver=1.1.8
 set hg=hg
 set archext=zip
 set archive=%target%-!ver!.%archext%
