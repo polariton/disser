@@ -27,7 +27,7 @@ Ghostscript, epstool and sam2p.
 3. Downloads and updates
 ------------------------
 
-'disser' is available on CTAN:
+Disser is available on CTAN:
   http://www.ctan.org/tex-archive/macros/latex/contrib/disser/
 
 Project page at Sourceforge:
@@ -66,26 +66,25 @@ in Windows:
   set DESTDIR=disk:\path\to\texmf
   nomake install
 
-Here /path/to/texmf and disk:\path\to\texmf are the paths to TeX directory
+Here /path/to/texmf and disk:\path\to\texmf are paths to TeX directory
 tree. After installation you should update the filename database with the
 command
   mktexlsr
-if you install the package to user's directory "%APPDATA%\MiKTeX\2.8"
+if you install the package to user's directory "%APPDATA%\MiKTeX\2.9"
 or
   mktexlsr --admin
 if you install the package to one of the common directories, like
-"%programfiles%\MiKTeX 2.8" or "%ALLUSERSPROFILE%\Application
-Data\MiKTeX\2.8".
+"%programfiles%\MiKTeX 2.9" or "%ALLUSERSPROFILE%\MiKTeX\2.9".
 
-Examples of commands for MiKTeX 2.8.
+Examples of commands for MiKTeX 2.9.
 
 Installation for all users:
-  set DESTDIR=%ALLUSERSPROFILE%\Application Data\MiKTeX\2.8
+  set DESTDIR=%ALLUSERSPROFILE%\MiKTeX\2.9
   nomake install
   mktexlsr --admin
 
 Installation for current user only:
-  set DESTDIR=%APPDATA%\MiKTeX\2.8
+  set DESTDIR=%APPDATA%\MiKTeX\2.9
   nomake install
   mktexlsr
 
@@ -105,7 +104,7 @@ Example:
 5. License
 ----------
 
-Copyright (c) 2004-2010 Stanislav Kruchinin
+Copyright (c) 2004-2012 Stanislav Kruchinin
 
 It may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
