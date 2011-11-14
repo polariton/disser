@@ -130,6 +130,33 @@
 % \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
 %    \begin{macrocode}
 \renewcommand\bibsection{\nchapter{\bibname}}
+\@ifundefined{chapter}{%
+  \renewcommand\bibsection{%
+   \nsection{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
+  }%
+}{%
+  \@ifxundefined\NAT@sectionbib{%
+    \renewcommand\bibsection{%
+      \nchapter{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
+    }%
+  }{%
+    \renewcommand\bibsection{%
+      \nsection{\bibname\ifx\@mkboth\@gobbletwo\else\markright{\MakeUppercase{\bibname}}\fi}%
+    }%
+  }%
+}%
+
+%    \end{macrocode}
+% Преамбула окружения |thebibliography|.
+% \DescribeMacro{\bibpreamble}\index{Макросы!\verb*+\bibpreamble+}
+%    \begin{macrocode}
+\renewcommand\bibpreamble{%
+%    \end{macrocode}
+% Формат номера в списке литературы.
+% \DescribeMacro{\@biblabel}\index{Макросы!\verb*+"\"@biblabel+}
+%    \begin{macrocode}
+  \renewcommand\@biblabel[1]{##1.}%
+}
 
 %    \end{macrocode}
 % Переопределение окружения |thebibliography| для создания корректной
