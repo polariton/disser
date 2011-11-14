@@ -2517,8 +2517,6 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
-  "\makeatletter\renewcommand{\@biblabel}[1]{#1.}\makeatother"
-  write$ newline$
   "\ifx\undefined\BibEmph\def\BibEmph#1{#1}\else\fi"
   write$ newline$
   "\ifx\undefined\href\def\href#1#2{#2}\else\fi"
