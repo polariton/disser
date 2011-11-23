@@ -217,7 +217,7 @@ and the derived files
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{gost732}[2011/09/11 1.1.8 GOST 7.32-2001 implementation]
+\ProvidesClass{gost732}[2011/11/14 1.1.9 GOST 7.32-2001 implementation]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{disser}}
 \ProcessOptions\relax
@@ -339,6 +339,12 @@ and the derived files
 \captionsetup{format=plain,justification=centering,labelsep=endash}
 \captionsetup[longtable]{justification=raggedright,singlelinecheck=false}
 \captionsetup[table]{justification=raggedright,singlelinecheck=false}
+
+%    \end{macrocode}
+% \subsection{÷итирование}
+% “очка с зап€той в качестве разделител€ номеров цитируемой литературы.
+%    \begin{macrocode}
+\setcitestyle{semicolon}
 
 %    \end{macrocode}
 %
