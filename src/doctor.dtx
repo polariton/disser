@@ -72,7 +72,7 @@
 \begin{center}
   \instfont\@institution\par
 \end{center}
-\vskip\firstskip\normalfont
+\vskip\firstskip
 \begin{flushright}
 %    \end{macrocode}
 % Гриф секретности
@@ -95,17 +95,17 @@
 %    \end{macrocode}
 % Автор
 %    \begin{macrocode}
-  \vskip\secondskip\normalfont
+  \vskip\secondskip
   {\authorfont\@author}
 %    \end{macrocode}
 % Название диссертации
 %    \begin{macrocode}
-  \vskip\thirdskip\normalfont
+  \vskip\thirdskip
   {\topicfont\@topic\par}
 %    \end{macrocode}
 % Шифр и наименование специальности
 %    \begin{macrocode}
-  \vskip\fourthskip\normalfont
+  \vskip\fourthskip
   {\specfont\@specnum~--\ \@spec}\\[-6pt]
   \ifx\@specsndnum\empty\else
     {\specfont\@specsndnum~--\ \@specsnd}
@@ -113,18 +113,18 @@
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
 %    \begin{macrocode}
-  \vskip\fifthskip\normalfont
+  \vskip\fifthskip
   {\titlefont\@title}
 \end{center}
 %    \end{macrocode}
 % Научный консультант
 %    \begin{macrocode}
 \ifx\@scon\empty\else
-  \vskip\sixthskip\normalfont
+  \vskip\sixthskip
   \disserfield{scon}
 \fi
 \ifx\@sconsnd\empty\else
-  \vskip\sixthskip\normalfont
+  \vskip\sixthskip
   \disserfield{sconsnd}
 \fi
 %    \end{macrocode}

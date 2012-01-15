@@ -16,6 +16,9 @@
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
 \if@titlepage\renewcommand\maketitle[1][]{
+%    \end{macrocode}
+% Переопределения некоторых полей титульного листа для англоязычной версии.
+%    \begin{macrocode}
 \ifthenelse{\equal{#1}{en}}{\@titlepage@entrue}{\@titlepage@enfalse}
 \if@titlepage@en
   \def\appos{Head of Department}
@@ -115,8 +118,7 @@
 %    \begin{macrocode}
   \studentlabel\=\makebox[\fieldhshift][l]{\hrulefill\ \@author}\\[\sixthskip]
 %    \end{macrocode}
-%
-% Научный руководитель
+% Научный руководитель.
 %    \begin{macrocode}
   \ifx\@sa\empty\else\diplomafield{sa}\\[\sixthskip]\fi
   \ifx\@sasnd\empty\else\diplomafield{sasnd}\\[\sixthskip]\fi

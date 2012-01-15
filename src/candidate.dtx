@@ -39,7 +39,6 @@
 % \DescribeMacro{\fourthskip}\index{Расстояния!\verb*+\fourthskip+}
 % \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
 % \DescribeMacro{\sixthskip}\index{Расстояния!\verb*+\sixthskip+}
-% \DescribeMacro{\seventhskip}\index{Расстояния!\verb*+\seventhskip+}
 %    \begin{macrocode}
 \ifx\firstskip\undefined
   \newlength\firstskip
@@ -77,7 +76,6 @@
 \begin{center}
   \instfont\@institution\par
 \end{center}
-
 \vskip\firstskip
 \begin{flushright}
 %    \end{macrocode}
@@ -135,10 +133,12 @@
 % Научный консультант
 %    \begin{macrocode}
 \ifx\@scon\empty\else
-  \vskip\sixthskip\disserfield{scon}
+  \vskip\sixthskip
+  \disserfield{scon}
 \fi
 \ifx\@sconsnd\empty\else
-  \vskip\sixthskip\disserfield{sconsnd}
+  \vskip\sixthskip
+  \disserfield{sconsnd}
 \fi
 %    \end{macrocode}
 % \paragraph{Город и год}
