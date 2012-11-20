@@ -29,10 +29,10 @@ LATEXFLAGS ?= --src-specials
 PS2PDFFLAGS ?= -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -g4960x7016 -r600 \
   -dCompatibilityLevel=1.2
 PSNUPFLAGS ?= -2 -pA4
-PDFLATEXFLAGS ?= --shell-escape
+PDFLATEXFLAGS ?= --shell-escape --synctex=1
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
-  *.bbl *.blg *.bak *.dvi *.ps *.pdf
+  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz
 CLFILES ?= $(CLEXT) $(ARCHIVE)
 SRCFILES ?= *
 

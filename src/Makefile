@@ -25,7 +25,7 @@ CSFDIR ?= $(DESTDIR)/bibtex/csf/$(TARGET)
 SRCDIR ?= $(DESTDIR)/source/latex/$(TARGET)
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
-  *.bbl *.blg *.bak *.dvi *.ps *.pdf
+  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz
 CLFILES ?= $(CLEXT) $(CLSFILES) $(BSTFILES)
 
 LATEX ?= latex
@@ -33,7 +33,7 @@ PDFLATEX ?= pdflatex
 MI ?= makeindex
 
 LATEXFLAGS ?= --src-specials
-PDFLATEXFLAGS ?= --shell-escape
+PDFLATEXFLAGS ?= --shell-escape --synctex=1
 MIFLAGS ?= -r -s dtx.ist
 
 

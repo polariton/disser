@@ -41,10 +41,10 @@ if "%ps2pdfflags%"=="" (
 		-dCompatibilityLevel#1.2
 )
 if "%psnupflags%"==""    set psnupflags=-2 -pA4
-if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape
+if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape --synctex=1
 
 if "%clext%"==""    set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log ^
-	*.dvi *.tmp *.pdf *.ps
+	*.dvi *.tmp *.ps *.pdf *.synctex *.synctex.gz
 if "%clfiles%"==""  set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
 if "%prereq%"=="" set prereq=*.tex *.bib

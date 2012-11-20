@@ -52,4 +52,3 @@ goto :eof
 	call :uninstall
 	call :install
 goto :eof
-

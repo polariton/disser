@@ -31,7 +31,7 @@ if "!docdir!"==""  set docdir=!destdir!\doc\latex\%target%
 if "!srcdir!"==""  set srcdir=!destdir!\source\latex\%target%
 
 if "!clext!"=="" set clext=*.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof ^
-*.lot *.lol *.bbl *.blg *.bak *.dvi *.ps *.pdf
+*.lot *.lol *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz
 if "!clfiles!"=="" set clfiles=!clext! %clsfiles% %bstfiles%
 
 if "!latex!"==""    set latex=latex
@@ -39,7 +39,7 @@ if "!pdflatex!"=="" set pdflatex=pdflatex
 if "!mi!"==""       set mi=makeindex
 
 if "!latexflags!"==""    set latexflags=--src-specials
-if "!pdflatexflags!"=="" set pdflatexflags=--shell-escape
+if "!pdflatexflags!"=="" set pdflatexflags=--shell-escape --synctex=1
 if "!miflags!"==""       set miflags=-r -s dtx.ist
 
 

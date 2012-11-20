@@ -40,8 +40,10 @@ old
 *.xls
 
 # LaTeX frontend files
+auto
 *.bak
 *.backup
 *.sav
 *.prj
-auto
+*.synctex
+*.synctex.gz
