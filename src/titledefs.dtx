@@ -238,7 +238,7 @@
 %    \begin{macrocode}
 \def\masterprog#1{\gdef\@masterprog{#1}}\masterprog{}
 %    \end{macrocode}
-% Значение |\data| по умолчанию
+% Значение |\date| по умолчанию
 %    \begin{macrocode}
 \date{\number\year}
 
@@ -358,27 +358,34 @@
 }
 \providecommand*\conclusion{\nchapter{\conclusionname}}
 %    \end{macrocode}
-% \item Список используемых обозначений
+% \item Список сокращений и условных обозначений
 % \DescribeMacro{\defsname}\index{Макросы!\verb*+\defsname+}
 % \DescribeMacro{\defs}\index{Макросы!\verb*+\defs+}
-% \end{itemize}
 %    \begin{macrocode}
 \providecommand*\defsname{%
 {\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
-\cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyru\cyre\cyrm\cyrery\cyrh\ %
+\cyrs\cyro\cyrk\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrishrt\ \cyri\ %
+\cyru\cyrs\cyrl\cyro\cyrv\cyrn\cyrery\cyrh\ %
 \cyro\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrishrt}
 }
 \providecommand*\defs{\nchapter{\defsname}}
-
 %    \end{macrocode}
-% Обзор литературы
+% \item Обзор литературы
 % \DescribeMacro{\reviewname}\index{Макросы!\verb*+\reviewname+}
 %    \begin{macrocode}
 \providecommand*\reviewname{\cyr\CYRO\cyrb\cyrz\cyro\cyrr\ %
 \cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
 \providecommand*\review{\nchapter{\reviewname}}
+%    \end{macrocode}
+% \item Словарь терминов
+% \DescribeMacro{\dictname}\index{Макросы!\verb*+\dictname+}
+%    \begin{macrocode}
+\providecommand*\dictname{\cyr\CYRS\cyrl\cyro\cyrv\cyra\cyrr\cyrsftsn\ %
+\cyrt\cyre\cyrr\cyrm\cyri\cyrn\cyro\cyrv}
+\providecommand*\dict{\nchapter{\dictname}}
 
 %    \end{macrocode}
+% \end{itemize}
 %
 % \subsubsection{Элементы титульного листа}
 %

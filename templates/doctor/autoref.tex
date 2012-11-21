@@ -1,16 +1,30 @@
-\documentclass[autoref,subf,href,facsimile,colorlinks=true
-%,fixint=false
-%,times
-%,classified
+\documentclass[%
+autoref,        % тип документа
+subf,           % подключить и настроить пакет subfig для вложенной нумерации рисунков
+href,           % подключить и настроить пакет hyperref
+facsimile,      % отображать факсимиле диссертанта и ученого секретаря
+colorlinks=true % цветные гиперссылки
+%,fixint=false  % отключить прямые знаки интегралов
+%,times         % шрифт Times как основной
+%,classified    % гриф секретности
 ]{disser}
 
-\usepackage[a4paper,nohead,includefoot,mag=1000,
-            margin=2cm,footskip=1cm]{geometry}
+\usepackage[
+  a4paper, mag=1000,
+  left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
+]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{tabularx}
 \ifpdf\usepackage{epstopdf}\fi
+
+% Номера страниц снизу и по центру
+%\pagestyle{footcenter}
+%\chapterpagestyle{footcenter}
+
+% Точка с запятой в качестве разделителя между номерами цитирований
+%\setcitestyle{semicolon}
 
 % Поддержка нескольких списков литературы в одном документе
 \usepackage{multibib}
@@ -38,6 +52,8 @@
 \maketitle
 
 % Внутренняя сторона обложки
+\thispagestyle{empty}
+\vspace*{-2cm}
 \noindent
 \begin{center}
 Работа выполнена в \emph{название организации}.
@@ -95,7 +111,11 @@
 \actualitysection
 \actualitytext
 
-% Цель диссертационной работы
+% Степень разработанности темы исследования
+\developmentsection
+\developmenttext
+
+% Цели и задачи диссертационной работы
 \objectivesection
 \objectivetext
 
@@ -103,15 +123,19 @@
 \noveltysection
 \noveltytext
 
-% Практическая значимость
+% Теоретическая и практическая значимость
 \valuesection
 \valuetext
 
-% Результаты и положения, выносимые на защиту
+% Методология и методы исследования
+\methodssection
+\methodstext
+
+% Положения, выносимые на защиту
 \resultssection
 \resultstext
 
-% Апробация работы
+% Степень достоверности и апробация результатов
 \approbationsection
 \approbationtext
 
@@ -168,5 +192,29 @@
 \bibliographystyle{gost705}
 \bibliography{thesis}
 % ----------------------------------------------------------------
+% Выходные данные
+\clearpage
+\thispagestyle{empty}
+\normalfont\selectfont
+\vspace*{2cm}
+\begin{center}
+\textit{Научное издание}\\
+\vskip 2cm
+\makeatletter
+\@author
+\vskip 1.5cm
+\@title{} на тему:\\
+\@topic\\
+\makeatother
+\end{center}
+\vfill
+Подписано в печать~25.01.2011.
+Формат~$60 \times 90$~1/16.
+Тираж~100~экз.
+Заказ~256.\\[2ex]
+\noindent
+Санкт-Петербургская издательская фирма <<Наука>> РАН.
+199034, Санкт-Петербург, Менделеевская линия, 1,
+\href{http://www.naukaspb.spb.ru}{http://www.naukaspb.spb.ru}
 
 \end{document}

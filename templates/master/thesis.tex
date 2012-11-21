@@ -1,21 +1,24 @@
-\documentclass[master,subf,href,colorlinks=true
-%,times        % шрифт Times как основной
-%,fixint=false % отключить прямые знаки интегралов
+\documentclass[%
+master,         % тип документа
+subf,           % подключить и настроить пакет subfig для вложенной нумерации рисунков
+href,           % подключить и настроить пакет hyperref
+colorlinks=true % цветные гиперссылки
+%,times         % шрифт Times как основной
+%,fixint=false  % отключить прямые знаки интегралов
 ]{disser}
 
 \usepackage[
-  a4paper, mag=1000, includefoot,
-  left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm
+  a4paper, mag=1000,
+  left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
 ]{geometry}
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
 
-% Номера страниц сверху и по центру
-%\def\headfont{\small}
-%\pagestyle{headcenter}
-%\chapterpagestyle{empty}
+% Номера страниц снизу и по центру
+%\pagestyle{footcenter}
+%\chapterpagestyle{footcenter}
 
 % Точка с запятой в качестве разделителя между номерами цитирований
 %\setcitestyle{semicolon}
@@ -116,15 +119,23 @@
 %
 %\maketitle[en]
 
+% Содержание
 \tableofcontents
-
+% Введение
 \input{intro}
+% Глава 1
 \input{1}
+% Глава 2
+%\input{2}
+
+% Заключение
 \input{concl}
 
+% Список литературы
 \bibliography{thesis}
 \bibliographystyle{gost705}
 
+% Приложения
 \appendix
 \input{app-a}
 

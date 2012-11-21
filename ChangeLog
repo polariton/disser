@@ -1,26 +1,40 @@
 disser changelog
-Copyright (C) 2004-2012 Stanislav Kruchinin
+Copyright (C) 2004-2013 Stanislav Kruchinin
 -------------------------------------------
+
+
+Summary of changes in version 1.2.0 (2012-11-21):
+
+Classes and styles:
++ Compatibility with GOST 7.0.11-2011.
++ Add support for SyncTeX in the compiled PDF-files.
+
+Templates:
++ New default margin sizes and options for "geometry" package.
++ New predefined section titles.
+* By default, page numbers are on top of the page, as required by the standard.
+* Miscellaneous small fixes.
+
 
 Summary of changes in version 1.1.9 (2011-11-29):
 + Add support for German language in gost705 style. Thanks to Alexander Petrov!
 * gost705: display bbl.iiss before "series" field.
-* Move \@biblabel redefinition to class.
+* Move \@biblabel redefinition to the class.
 * Miscellaneous small fixes.
 
 
 Summary of changes in version 1.1.8 (2011-09-11):
-* Remove bibliography prefix support to solve the problem with citation compression.
-+ Add compatibility with MathTime Professional II fonts.
+* Remove the bibliography prefix support to solve the problem with citation compression.
++ Compatibility with MathTime Professional II fonts.
 * Miscellaneous small fixes.
 
 
 Summary of changes in version 1.1.7 (2010-11-21):
 + Add specialist titlepage and template.
 + Add support for titlepages in English to all templates.
-* Fixed bug with \maketitle in titlepage of author's abstract.
-* Fixed bug with end-of-line (EOL) characters in some files.
-+ Add automatic fix of EOL characters to "tds" target of nomake.cmd script.
+* Fixed a bug with \maketitle in titlepage of author's abstract.
+* Fixed a bug with end-of-line (EOL) characters in some files.
++ Add an automatic fix of EOL characters to "tds" target of nomake.cmd script.
 
 
 Summary of changes in version 1.1.6 (2010-05-22):
