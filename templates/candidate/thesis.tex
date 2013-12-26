@@ -17,6 +17,7 @@ colorlinks=true % цветные гиперссылки
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
+%\usepackage{tabularx,longtable}
 \ifpdf\usepackage{epstopdf}\fi
 
 % Номера страниц снизу и по центру
@@ -36,6 +37,11 @@ colorlinks=true % цветные гиперссылки
 \graphicspath{{fig/}}
 
 \begin{document}
+
+% Переопределение стандартных заголовков
+%\def\contentsname{Содержание}
+%\def\conclusionname{Выводы}
+%\def\bibname{Литература}
 
 % Включение файла с общим текстом диссертации и автореферата
 % (текст титульного листа и характеристика работы).
@@ -97,7 +103,7 @@ colorlinks=true % цветные гиперссылки
 \input{intro}
 
 % Обзор литературы
-\input{review}
+%\input{review}
 
 % Основная часть
 %% Глава 1
@@ -109,20 +115,20 @@ colorlinks=true % цветные гиперссылки
 \input{concl}
 
 % Список сокращений и условных обозначений
-%\defs
+%\input{defs}
 
 % Словарь терминов
-%\dict
+%\input{dict}
 
 % Список литературы
 \bibliography{thesis}
 \bibliographystyle{gost705}
 
-% Список иллюстраций
+% Список иллюстративного материала
 %\listoffigures
 
 % Приложения
-\appendix
-\input{app-a}
+%\appendix
+%\input{app-a}
 
 \end{document}
