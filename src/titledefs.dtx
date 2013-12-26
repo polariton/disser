@@ -96,7 +96,7 @@
 \cyrr\cyru\cyrk\cyro\cyrv\cyro\cyrd\cyri\cyrt\cyre\cyrl\cyrsftsn}
 \def\sasndname{\saname}
 \def\salabel{\saname}
-\def\sasndlabel{\saname}
+\def\sasndlabel{\sasndname}
 %    \end{macrocode}
 % \DescribeMacro{\scname}\index{Макросы!\verb+\scname+}
 % \DescribeMacro{\sclabel}\index{Макросы!\verb+\sclabel+}
@@ -338,7 +338,7 @@
 %    \begin{macrocode}
 \AtBeginDocument{%
   \addto\captionsrussian{%
-    \def\contentsname{\cyr\CYRS\cyro\cyrd\cyre\cyrr\cyrzh\cyra\cyrn\cyri\cyre}
+    \def\contentsname{\cyr\CYRO\cyrg\cyrl\cyra\cyrv\cyrl\cyre\cyrn\cyri\cyre}
   }
 }
 
@@ -349,14 +349,25 @@
 %    \begin{macrocode}
 \providecommand*\introname{\cyr\CYRV\cyrv\cyre\cyrd\cyre\cyrn\cyri\cyre}
 \providecommand*\intro{\nchapter{\introname}}
+
+%    \end{macrocode}
+% \item Обзор литературы
+% \DescribeMacro{\reviewname}\index{Макросы!\verb*+\reviewname+}
+%    \begin{macrocode}
+\providecommand*\reviewname{\cyr\CYRO\cyrb\cyrz\cyro\cyrr\ %
+\cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
+\providecommand*\review{\nchapter{\reviewname}}
+
 %    \end{macrocode}
 % \item Заключение
 % \DescribeMacro{\conclusionname}\index{Макросы!\verb*+\conclusionname+}
+% \DescribeMacro{\conclusion}\index{Макросы!\verb*+\conclusion+}
 %    \begin{macrocode}
 \providecommand*\conclusionname{%
 \cyr\CYRZ\cyra\cyrk\cyrl\cyryu\cyrch\cyre\cyrn\cyri\cyre
 }
 \providecommand*\conclusion{\nchapter{\conclusionname}}
+
 %    \end{macrocode}
 % \item Список сокращений и условных обозначений
 % \DescribeMacro{\defsname}\index{Макросы!\verb*+\defsname+}
@@ -369,20 +380,30 @@
 \cyro\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrishrt}
 }
 \providecommand*\defs{\nchapter{\defsname}}
-%    \end{macrocode}
-% \item Обзор литературы
-% \DescribeMacro{\reviewname}\index{Макросы!\verb*+\reviewname+}
-%    \begin{macrocode}
-\providecommand*\reviewname{\cyr\CYRO\cyrb\cyrz\cyro\cyrr\ %
-\cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
-\providecommand*\review{\nchapter{\reviewname}}
+
 %    \end{macrocode}
 % \item Словарь терминов
 % \DescribeMacro{\dictname}\index{Макросы!\verb*+\dictname+}
+% \DescribeMacro{\dict}\index{Макросы!\verb*+\dict+}
 %    \begin{macrocode}
-\providecommand*\dictname{\cyr\CYRS\cyrl\cyro\cyrv\cyra\cyrr\cyrsftsn\ %
-\cyrt\cyre\cyrr\cyrm\cyri\cyrn\cyro\cyrv}
+\providecommand*\dictname{%
+{\cyr\CYRS\cyrl\cyro\cyrv\cyra\cyrr\cyrsftsn\ %
+\cyrs\cyro\cyrk\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrishrt\ \cyri\ %
+\cyru\cyrs\cyrl\cyro\cyrv\cyrn\cyrery\cyrh\ %
+\cyro\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrishrt}
+}
 \providecommand*\dict{\nchapter{\dictname}}
+
+%    \end{macrocode}
+% \item Список литературы
+% \DescribeMacro{\bibname}\index{Макросы!\verb*+\contentsname+}
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \addto\captionsrussian{%
+    \def\bibname{\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
+    \cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
+  }
+}
 
 %    \end{macrocode}
 % \end{itemize}
