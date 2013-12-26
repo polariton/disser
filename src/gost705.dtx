@@ -156,7 +156,7 @@ and the derived files
 %</ignore>
 %<*driver>
 \ProvidesFile{gost705.drv}%
-  [2013/12/30 1.3.0 Bibliography style for GOST R 7.0.5-2008]
+  [2013/12/25 1.3.0 Bibliography style for GOST R 7.0.5-2008]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -307,6 +307,20 @@ ENTRY
     archivePrefix
     primaryClass
     eprint
+    authortype
+    media
+    location
+    ipc
+    holder
+    credits
+    reqnumber
+    reqdate
+    pubdate
+    publication
+    prdate
+    prnumber
+    prcountry
+    pagetotal
   }
   {}
   { label }
@@ -315,7 +329,7 @@ ENTRY
 % \subsection{ќбъ€вление и инициализаци€ переменных и констант}
 %    \begin{macrocode}
 INTEGERS { output.state before.all mid.sentence after.sentence after.block
-after.dblslash after.slash after.colon after.semicolon }
+after.dblslash after.slash after.colon after.semicolon after.dash }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{init.state.consts}
@@ -330,6 +344,7 @@ FUNCTION {init.state.consts}
   #5 'after.slash :=
   #6 'after.colon :=
   #7 'after.semicolon :=
+  #8 'after.dash :=
 }
 
 STRINGS { s t }
@@ -376,7 +391,11 @@ FUNCTION {output.nonnull}
                         { ": " * write$ }
                         { output.state after.semicolon =
                             { "; " * write$ }
-                            { add.period$ " " * write$ }
+                            { output.state after.dash =
+                                { "~--- " * write$ }
+                                { add.period$ " " * write$ }
+                              if$
+                            }
                           if$
                         }
                       if$
@@ -479,6 +498,17 @@ FUNCTION {new.semicolon}
   output.state before.all =
     'skip$
     { after.semicolon 'output.state := }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{new.dash}
+%    \begin{macrocode}
+FUNCTION {new.dash}
+{
+  output.state before.all =
+    'skip$
+    { after.dash 'output.state := }
   if$
 }
 
@@ -1010,7 +1040,7 @@ FUNCTION {bbl.mthesis}
       { curlanguage "russian" =
         { "{\cyr\CYRM\cyra\cyrg\cyri\cyrs\cyrt\cyre\cyrr\cyrs\cyrk\cyra\cyrya\ "
           "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
-         { "language is not defined: " language * warning$ "In" }
+         { "language is not defined: " language * warning$ "Master thesis" }
       if$
       }
     if$
@@ -1030,7 +1060,7 @@ FUNCTION {bbl.phdthesis}
       { curlanguage "russian" =
         { "{\cyr\CYRK\cyra\cyrn\cyrd\cyri\cyrd\cyra\cyrt\cyrs\cyrk\cyra\cyrya\ "
           "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
-        { "language is not defined: " language * warning$ "In" }
+        { "language is not defined: " language * warning$ "PhD thesis" }
       if$
       }
     if$
@@ -1050,6 +1080,63 @@ FUNCTION {bbl.docdisser}
       { curlanguage "russian" =
         { "{\cyr\CYRD\cyro\cyrk\cyrt\cyro\cyrr\cyrs\cyrk\cyra\cyrya\ "
           "\cyrd\cyri\cyrs\cyrs\cyre\cyrr\cyrt\cyra\cyrc\cyri\cyrya}" * }
+        { "language is not defined: " language * warning$ "Dr. Sci. dissertation" }
+      if$
+      }
+    if$
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.req}
+%    \begin{macrocode}
+FUNCTION {bbl.req}
+{
+  curlanguage "english" =
+    { "req." }
+    { curlanguage "german" =
+      { "ang." }
+      { curlanguage "russian" =
+        { "{\cyr\cyrz\cyra\cyrya\cyrv\cyrl.}" }
+        { "language is not defined: " language * warning$ "req" }
+      if$
+      }
+    if$
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.publ}
+%    \begin{macrocode}
+FUNCTION {bbl.publ}
+{
+  curlanguage "english" =
+    { "publ." }
+    { curlanguage "german" =
+      { "ausg." }
+      { curlanguage "russian" =
+        { "{\cyr\cyro\cyrp\cyru\cyrb\cyrl.}" }
+        { "language is not defined: " language * warning$ "In" }
+      if$
+      }
+    if$
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{bbl.prio}
+%    \begin{macrocode}
+FUNCTION {bbl.prio}
+{
+  curlanguage "english" =
+    { "priority" }
+    { curlanguage "german" =
+      { "Prioritat" }
+      { curlanguage "russian" =
+        { "{\cyr\cyrp\cyrr\cyri\cyro\cyrr\cyri\cyrt\cyre\cyrt}" }
         { "language is not defined: " language * warning$ "In" }
       if$
       }
@@ -1532,8 +1619,7 @@ FUNCTION {format.volume}
 % \DescribeBSTFunction{format.number}
 %    \begin{macrocode}
 FUNCTION {format.number}
-{
-  number empty$
+{ number empty$
     { "" }
     { bbl.nr number tie.or.space.connect }
   if$
@@ -1763,12 +1849,90 @@ FUNCTION {format.eprint}
       	 	    "{" * primaryClass * "/" * eprint * "}" *
             }
             { " \href{http://arxiv.org/abs/" eprint * "}" *
-      	 	    "{" * archivePrefix * ":" * primaryClass * "/" * eprint * "}" *
+      	 	  "{" * archivePrefix * ":" * primaryClass * "/" * eprint * "}" *
             }
           if$
         }
-  		if$
-	  }
+  	  if$
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{add.number}
+%    \begin{macrocode}
+FUNCTION {add.number}
+{ duplicate$ empty$
+    { "" }
+    { bbl.nr swap$ tie.or.space.connect }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{in.square.brackets}
+%    \begin{macrocode}
+FUNCTION {in.square.brackets}
+{
+  duplicate$ empty$
+    { pop$ "" }
+    { "[" swap$ * "]" * }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{in.round.brackets}
+%    \begin{macrocode}
+FUNCTION {in.round.brackets}
+{
+  duplicate$ empty$
+    { pop$ "" }
+    { "(" swap$ * ")" * }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{format.type.number}
+%    \begin{macrocode}
+FUNCTION {format.type.number}
+{
+  type empty$
+    { "" }
+    {
+      number empty$
+      { "" }
+      { type number tie.or.space.connect }
+    if$
+    }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{format.reqdate}
+%    \begin{macrocode}
+FUNCTION {format.reqdate}
+{ reqdate empty$
+    { "" }
+    { bbl.req reqdate tie.or.space.connect }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{format.pubdate}
+%    \begin{macrocode}
+FUNCTION {format.pubdate}
+{ pubdate empty$
+    { "" }
+    { bbl.publ pubdate tie.or.space.connect }
+  if$
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{format.prdate}
+%    \begin{macrocode}
+FUNCTION {format.prdate}
+{ prdate empty$
+    { "" }
+    { bbl.prio prdate tie.or.space.connect }
   if$
 }
 
@@ -2161,6 +2325,50 @@ FUNCTION {techreport}
   new.block
   output.url
   format.annote output
+  fin.entry
+}
+
+%    \end{macrocode}
+% \DescribeBSTFunction{patent}
+%    \begin{macrocode}
+FUNCTION {patent}
+{
+  output.bibitem
+  title output.nonnull
+  add.blank
+  media in.square.brackets output
+  new.colon
+  format.type.number output
+  add.blank
+  location output
+  new.colon
+  ipc output
+  new.slash
+  format.authors.after "author" output.check
+  add.blank
+  authortype in.round.brackets output.nonnull
+  new.semicolon
+  holder output.nonnull
+  new.semicolon
+  credits output.nonnull
+  new.dash
+  reqnumber add.number output
+  new.semicolon
+  format.reqdate output
+  new.semicolon
+  format.pubdate output
+  publication output
+  new.semicolon
+  format.prdate output
+  prnumber output
+  prcountry in.round.brackets output
+  new.block
+  note output
+  new.sentence
+  output.url
+  format.annote output
+  new.block
+  pagetotal output
   fin.entry
 }
 
