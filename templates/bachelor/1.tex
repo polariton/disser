@@ -5,7 +5,7 @@
 Внутритекстовая формула в стиле выделенной $\dfrac{1}{\epsilon_\infty}$.
 Ссылки на литературу~\cite{Yoffe_1993_AP_42_173,Efros_1982_FTP_16_7_1209,%
 Anselm_1978,Segall_1968,Agranovich_1983,InP,Mishchenko_1996,Skvortsov_2008,%
-Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:Coulomb}
+Perelman_2003_math:0307245,Nielsen_2010_1006.2735,patent1,patent2}. Ссылка на формулу~\eqref{e:Coulomb}
 \begin{equation}\label{e:Coulomb}
   \frac{1}{|\vec r_1 - \vec r_2|} =
   4\pi \int \frac{d^3 q}{(2\pi)^3}\,
@@ -14,11 +14,11 @@ Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:C
 
 Ссылка на рис.~\ref{f:fig}
 \begin{figure}[!ht]
-\centering
-\includegraphics[width=4cm]{fig}
-\caption{\label{f:fig}%
-Подпись к рисунку.
-}
+  \centering
+  \includegraphics[width=4cm]{fig}
+  \caption{\label{f:fig}%
+  Подпись к рисунку.
+  }
 \end{figure}
 
 \begin{wrapfigure}{r}{0.35\textwidth}
@@ -49,7 +49,7 @@ Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:C
 \end{table}
 
 \begin{figure}[!ht]
-\centering
+  \centering
   \begin{minipage}{5cm}
     \centering
     \includegraphics[width=4cm]{fig}
@@ -70,7 +70,7 @@ Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:C
 \end{figure}
 
 \begin{figure}[!ht]
-\centering
+  \centering
   \begin{minipage}{5cm}
     \centering
     \includegraphics[width=4cm]{fig}
@@ -86,16 +86,16 @@ Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:C
 Ссылка на внутренний рисунок (рис.~\ref{f:sub1})
 
 \begin{figure}[!ht]
-\centering
+  \centering
   \subfloat[][]{\label{f:sub1}\includegraphics[width=4cm]{fig}}\quad
   \subfloat[][]{\label{f:sub2}\includegraphics[width=4cm]{fig}}\quad
   \subfloat[][]{\label{f:sub3}\includegraphics[width=4cm]{fig}}
-\caption[]{%
-Рисунки с единым названием и подчиненной нумерацией:
-  \subref{f:sub1} ссылка 1,
-  \subref{f:sub2} ссылка 2,
-  \subref{f:sub3} ссылка 3.
-}
+  \caption[]{%
+  Рисунки с единым названием и подчиненной нумерацией:
+    \subref{f:sub1} ссылка 1,
+    \subref{f:sub2} ссылка 2,
+    \subref{f:sub3} ссылка 3.
+  }
 \end{figure}
 
 \subsection{Название подсекции}
@@ -109,16 +109,18 @@ Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:C
 
 Демонстрация полностью настраиваемых окружений типа <<теорема>>.
 
-\newtheorem{lemm}{Лемма}[chapter]
+\newtheorem{theorem}{Теорема}[chapter]
+\def\theoremstyle{}
+\def\postthetheorem{:}
 
+\newtheorem{lemm}{Лемма}[chapter]
 \def\thelemmstyle{\bfseries}
-\def\oparglemmstyle{\slshape}
+\def\oparglemmstyle{}
 \def\lemmstyle{}
 \def\preoparglemm{(}
-\def\postoparglemm{)}
+\def\postoparglemm{):}
 
 \newtheorem{remark}{Примечание}[chapter]
-
 \def\remarkstyle{\itshape}
 \def\theremarkstyle{}
 \def\posttheremark{:}
@@ -126,6 +128,10 @@ Perelman_2003_math:0307245,Nielsen_2010_1006.2735}. Ссылка на формулу~\eqref{e:C
 \begin{lemm}[Шура]
 Квадратная матрица, коммутирующая со всеми матрицами неприводимого представления, кратна единичной.
 \end{lemm}
+
+\begin{theorem}
+Гомоморфный образ группы изоморфен фактор-группе по ядру гомоморфизма.
+\end{theorem}
 
 \begin{remark}
 Текст примечания.

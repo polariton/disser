@@ -16,6 +16,9 @@ colorlinks=true % цветные гиперссылки
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
 
+% Плавающие рисунки "в оборку".
+\usepackage{wrapfig}
+
 % Номера страниц снизу и по центру
 %\pagestyle{footcenter}
 %\chapterpagestyle{footcenter}
@@ -32,6 +35,11 @@ colorlinks=true % цветные гиперссылки
 \graphicspath{{fig/}}
 
 \begin{document}
+
+% Переопределение стандартных заголовков
+%\def\contentsname{Содержание}
+%\def\conclusionname{Выводы}
+%\def\bibname{Литература}
 
 \institution{Название организации}
 
