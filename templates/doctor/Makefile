@@ -9,8 +9,8 @@ TARGET?=thesis
 include ../../include/latex.mk
 
 all:
-	@env TARGET=thesis $(MAKE) dvi ;\
-	 env TARGET=autoref $(MAKE) dvi ;\
+	@env TARGET=thesis $(MAKE) ;\
+	 env TARGET=autoref $(MAKE) ;\
 	 eval unset TARGET
 
 allpdf:
