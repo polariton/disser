@@ -388,20 +388,31 @@
 %    \begin{macrocode}
 \providecommand*\dictname{%
 {\cyr\CYRS\cyrl\cyro\cyrv\cyra\cyrr\cyrsftsn\ %
-\cyrs\cyro\cyrk\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrishrt\ \cyri\ %
-\cyru\cyrs\cyrl\cyro\cyrv\cyrn\cyrery\cyrh\ %
-\cyro\cyrb\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyri\cyrishrt}
+\cyrt\cyre\cyrr\cyrm\cyri\cyrn\cyro\cyrv}
 }
 \providecommand*\dict{\nchapter{\dictname}}
 
 %    \end{macrocode}
 % \item Список литературы
-% \DescribeMacro{\bibname}\index{Макросы!\verb*+\contentsname+}
+% \DescribeMacro{\contentsname}\index{Макросы!\verb*+\contentsname+}
 %    \begin{macrocode}
 \AtBeginDocument{%
   \addto\captionsrussian{%
     \def\bibname{\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
     \cyrl\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyrery}
+  }
+}
+
+%    \end{macrocode}
+% \item Список иллюстративного материала
+% \DescribeMacro{\listfigurename}\index{Макросы!\verb*+\listfigurename+}
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \addto\captionsrussian{%
+    \def\listfigurename{\cyr\CYRS\cyrp\cyri\cyrs\cyro\cyrk\ %
+    \cyri\cyrl\cyrl\cyryu\cyrs\cyrt\cyrr\cyra\cyrt\cyri\cyrv\cyrn\cyro%
+    \cyrg\cyro %
+    \cyrm\cyra\cyrt\cyre\cyrr\cyri\cyra\cyrl\cyra}
   }
 }
 

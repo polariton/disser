@@ -3,7 +3,7 @@
 %%
 %% disser -- LaTeX document class for dissertations.
 %%
-%% Copyright (c) 2004-2012 Stanislav Kruchinin
+%% Copyright (c) 2004-2014 Stanislav Kruchinin
 %%
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -19,7 +19,8 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*driver>
-\ProvidesFile{disser.drv}[2012/11/21 1.2.0 Document class for dissertations]
+\ProvidesFile{disser.drv}[2013/12/30 1.3.0 %
+  Document class for dissertations]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -64,6 +65,7 @@
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
+\usepackage{microtype}
 
 \MakeShortVerb{\|}
 
@@ -180,7 +182,8 @@
 
 %<*disser>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{disser}[2012/11/29 1.2.0 Document class for dissertations]
+\ProvidesClass{disser}[2013/12/30 1.3.0 %
+  Document class for dissertations]
 
 %    \end{macrocode}
 % Подключение пакета \pkg{kvoptions} для обработки опций в формате
@@ -190,7 +193,7 @@
 \RequirePackage{kvoptions}
 
 %    \end{macrocode}
-% Определение операторов условного выполнения.
+% Определение операторов условного выполнения:
 % \begin{itemize}
 % \item подключение пакета \pkg{ifpdf}, определяющего команду |\ifpdf|.
 % \DescribePackage{ifpdf}\index{Пакеты!\verb*+ifpdf+}
