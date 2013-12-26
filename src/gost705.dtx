@@ -16,7 +16,7 @@
 %
 % bibtex8 -H -c <encoding>.csf <your_document>
 %
-% Copyright (C) 2004-2012 by
+% Copyright (C) 2004-2014 by
 %     Stanislav Kruchinin <stanislav.kruchinin at gmail.com>
 %
 % This work may be distributed and/or modified under the
@@ -127,6 +127,7 @@ and the derived files
 \let\MetaPrefix\DoubleperCent
 
 \generate{%
+  \nopostamble
   \usedir{bibtex/bst/disser}%
   \file{gost705.bst}{\from{gost705.dtx}{gost705}}%
   \file{gost705s.bst}{\from{gost705.dtx}{gost705s}}%
@@ -155,7 +156,7 @@ and the derived files
 %</ignore>
 %<*driver>
 \ProvidesFile{gost705.drv}%
-  [2012/11/21 1.2.0 Bibliography style for GOST R 7.0.5-2008]
+  [2013/12/30 1.3.0 Bibliography style for GOST R 7.0.5-2008]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -314,7 +315,7 @@ ENTRY
 % \subsection{ќбъ€вление и инициализаци€ переменных и констант}
 %    \begin{macrocode}
 INTEGERS { output.state before.all mid.sentence after.sentence after.block
-after.dblslash after.slash after.column after.semicolumn }
+after.dblslash after.slash after.colon after.semicolon }
 
 %    \end{macrocode}
 % \DescribeBSTFunction{init.state.consts}
@@ -327,8 +328,8 @@ FUNCTION {init.state.consts}
   #3 'after.block :=
   #4 'after.dblslash :=
   #5 'after.slash :=
-  #6 'after.column :=
-  #7 'after.semicolumn :=
+  #6 'after.colon :=
+  #7 'after.semicolon :=
 }
 
 STRINGS { s t }
@@ -371,9 +372,9 @@ FUNCTION {output.nonnull}
                 { "~//" * change.language * " " * write$ }
                 { output.state after.slash =
                     { "~/ " * write$ }
-                    { output.state after.column =
+                    { output.state after.colon =
                         { ": " * write$ }
-                        { output.state after.semicolumn =
+                        { output.state after.semicolon =
                             { "; " * write$ }
                             { add.period$ " " * write$ }
                           if$
@@ -460,24 +461,24 @@ FUNCTION {new.slash}
 }
 
 %    \end{macrocode}
-% \DescribeBSTFunction{new.column}
+% \DescribeBSTFunction{new.colon}
 %    \begin{macrocode}
-FUNCTION {new.column}
+FUNCTION {new.colon}
 {
   output.state before.all =
     'skip$
-    { after.column 'output.state := }
+    { after.colon 'output.state := }
   if$
 }
 
 %    \end{macrocode}
-% \DescribeBSTFunction{new.semicolumn}
+% \DescribeBSTFunction{new.semicolon}
 %    \begin{macrocode}
-FUNCTION {new.semicolumn}
+FUNCTION {new.semicolon}
 {
   output.state before.all =
     'skip$
-    { after.semicolumn 'output.state := }
+    { after.semicolon 'output.state := }
   if$
 }
 
@@ -623,14 +624,14 @@ FUNCTION {bbl.edby} % { "\bbledby{}" }
 {
   curlanguage "english" =
   { "Ed. by " }
-   { curlanguage "german" =
-     { "ed. " }
-       { curlanguage "russian" =
-         { "{\cyr\CYRP\cyro\cyrd\ \cyrr\cyre\cyrd.\ }" }
-         { "language is not defined: " language  "edited by" * *
+    { curlanguage "german" =
+      { "ed. " }
+        { curlanguage "russian" =
+          { "{\cyr\CYRP\cyro\cyrd\ \cyrr\cyre\cyrd.\ }" }
+          { "language is not defined: " language  "edited by" * *
            warning$ "edited by" }
-     if$
-     }
+      if$
+      }
     if$
     }
   if$
@@ -643,15 +644,15 @@ FUNCTION {bbl.cmplr}
 {
   curlanguage "english" =
   { "Compiler " }
-   { curlanguage "german" =
-    { "Hrsg. " }
-     { curlanguage "russian" =
-      { "{\cyr\CYRS\cyro\cyrs\cyrt.\ }" }
-      { "language is not defined: " language  "compiler" * * warning$ "compiler" }
+    { curlanguage "german" =
+      { "Hrsg. " }
+        { curlanguage "russian" =
+        { "{\cyr\CYRS\cyro\cyrs\cyrt.\ }" }
+        { "language is not defined: " language  "compiler" * * warning$ "compiler" }
+      if$
+      }
     if$
-     }
-   if$
-   }
+    }
   if$
 }
 
@@ -1244,7 +1245,7 @@ FUNCTION {output.address.publisher.date}
     { address output
       publisher empty$
         'skip$
-        { new.column }
+        { new.colon }
       if$
     }
   if$
@@ -1615,7 +1616,7 @@ FUNCTION {author.after}
     'skip$
     { author num.names$ #3 >
       { format.authors.after output
-        new.semicolumn
+        new.semicolon
       }
       'skip$
     if$
@@ -1632,7 +1633,7 @@ FUNCTION {bookauthor.after}
     'skip$
     { bookauthor num.names$ #3 >
       { format.bookauthors.after output
-        new.semicolumn
+        new.semicolon
       }
       'skip$
     if$
@@ -1648,19 +1649,19 @@ FUNCTION {editor.organization.after}
   compiler empty$
     'skip$
     { format.compiler.after output
-      new.semicolumn
+      new.semicolon
     }
   if$
   editor empty$
     'skip$
     { format.editors.after output
-      new.semicolumn
+      new.semicolon
     }
   if$
   organization empty$
     'skip$
     { organization output
-      new.semicolumn
+      new.semicolon
     }
   if$
 }
@@ -1730,14 +1731,18 @@ FUNCTION {format.isbn}
 }
 
 %    \end{macrocode}
-% \DescribeBSTFunction{add.doi}
+% \DescribeBSTFunction{add.doi.url}
 %    \begin{macrocode}
-FUNCTION {add.doi}
+FUNCTION {add.doi.url}
 { duplicate$ empty$
     'skip$
     { doi empty$
-        'skip$
-        { "\href{http://dx.doi.org/" doi * "}{" * swap$ * "}" * }
+      { url empty$
+          'skip$
+          { "\href{" url * "}{" * swap$ * "}" * }
+        if$
+      }
+      { "\href{http://dx.doi.org/" doi * "}{" * swap$ * "}" * }
       if$
     }
   if$
@@ -1763,7 +1768,7 @@ FUNCTION {format.eprint}
           if$
         }
   		if$
-		}
+	  }
   if$
 }
 
@@ -1777,7 +1782,7 @@ FUNCTION {article}
   author.before
   format.title "title" output.check
   new.dblslash
-  journal emphasize add.doi "journal" output.check
+  journal emphasize add.doi.url "journal" output.check
   new.block
   format.date output
   new.block
@@ -1802,7 +1807,7 @@ FUNCTION {book}
 {
   output.bibitem
   author.before
-  format.btitle add.doi "title" output.check
+  format.btitle add.doi.url "title" output.check
   new.slash
   editor.organization.after
   new.sentence
@@ -1857,7 +1862,7 @@ FUNCTION {inbook}
 {
   output.bibitem
   author.before
-  format.btitle add.doi "title" output.check
+  format.btitle add.doi.url "title" output.check
   new.dblslash
   bookauthor.before
   booktitle "booktitle" output.check
@@ -1892,7 +1897,7 @@ FUNCTION {incollection}
   output.bibitem
   author.before
   new.sentence
-  format.title add.doi "title" output.check
+  format.title add.doi.url "title" output.check
   new.dblslash
   booktitle "booktitle" output.check
   new.slash
@@ -1922,7 +1927,7 @@ FUNCTION {inproceedings}
   output.bibitem
   author.before
   new.sentence
-  format.title add.doi "title" output.check
+  format.title add.doi.url "title" output.check
   new.dblslash
   booktitle "booktitle" output.check
   new.slash
@@ -1936,7 +1941,7 @@ FUNCTION {inproceedings}
       format.date "year" output.check
     }
     { address output.nonnull
-      new.column
+      new.colon
       publisher output
       format.date "year" output.check
     }
@@ -2009,7 +2014,7 @@ FUNCTION {mastersthesis}
   output.bibitem
   format.authors "author" output.check
   new.block
-  format.btitle add.doi "title" output.check
+  format.btitle add.doi.url "title" output.check
   new.block
   bbl.mthesis format.thesis.type output.nonnull
   school "school" output.check
@@ -2056,8 +2061,8 @@ FUNCTION {phdthesis}
   output.bibitem
   format.authors "author" output.check
   new.sentence
-  format.btitle add.doi "title" output.check
-  new.column
+  format.btitle add.doi.url "title" output.check
+  new.colon
   bbl.phdthesis format.thesis.type output.nonnull
   new.slash
   school "school" output.check
@@ -2082,8 +2087,8 @@ FUNCTION {docdisser}
   output.bibitem
   format.authors "author" output.check
   new.sentence
-  format.btitle add.doi "title" output.check
-  new.column
+  format.btitle add.doi.url "title" output.check
+  new.colon
   bbl.docdisser format.thesis.type output.nonnull
   new.slash
   school "school" output.check
@@ -2106,7 +2111,7 @@ FUNCTION {docdisser}
 FUNCTION {proceedings}
 {
   output.bibitem
-  format.btitle add.doi "title" output.check
+  format.btitle add.doi.url "title" output.check
   new.slash
   editor.organization.after
   new.block
@@ -2140,13 +2145,13 @@ FUNCTION {techreport}
   output.bibitem
   author.before
   new.sentence
-  format.title add.doi "title" output.check
-  new.column
+  format.title add.doi.url "title" output.check
+  new.colon
   format.tr.number output.nonnull
   editor.organization.after
   new.block
   address output
-  new.column
+  new.colon
   institution "institution" output.check
   format.date "year" output.check
   new.block
@@ -2166,7 +2171,7 @@ FUNCTION {unpublished}
 {
   output.bibitem
   author.before
-  format.btitle "title" output.check
+  format.btitle add.doi.url "title" output.check
   editor.organization.after
   new.block
   note "note" output.check
