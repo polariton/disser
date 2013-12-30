@@ -1,6 +1,20 @@
 disser changelog
-Copyright (C) 2004-2013 Stanislav Kruchinin
+Copyright (C) 2004-2014 Stanislav Kruchinin
 -------------------------------------------
+
+Summary of changes in version 1.3.0 (2013-12-30):
+
+Classes and styles:
++ Improve compatibility with GOST 7.0.11-2011.
++ Add support for "patent" entry in BibTeX style gost705.
+- Stop using "wrapfig" package by default.
+* Miscellaneous small fixes.
+
+Templates:
++ Add examples of changing the standard titles directly from the document.
++ Add examples for "patent" bibliography entry.
++ Add templates for list of symbols and dictionary.
+* Miscellaneous small fixes.
 
 
 Summary of changes in version 1.2.0 (2012-11-21):
