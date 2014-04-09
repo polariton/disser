@@ -122,70 +122,72 @@
 % \subsubsection{Библиографические ссылки}
 % \DescribePackage{natbib}\index{Пакеты!\verb*+natbib+}
 %    \begin{macrocode}
-\usepackage[square,comma,sort&compress,numbers]{natbib}
+\ifDis@natbib
+  \usepackage[square,comma,sort&compress,numbers]{natbib}
 
 %    \end{macrocode}
 % Переопределение |\bibsection| для включения ссылки на список литературы в
 % оглавление.
 % \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
 %    \begin{macrocode}
-\renewcommand\bibsection{\nchapter{\bibname}}
-\@ifundefined{chapter}{%
-  \renewcommand\bibsection{%
-   \nsection{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
-  }%
-}{%
-  \@ifxundefined\NAT@sectionbib{%
+  \renewcommand\bibsection{\nchapter{\bibname}}
+  \@ifundefined{chapter}{%
     \renewcommand\bibsection{%
-      \nchapter{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
+     \nsection{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
     }%
   }{%
-    \renewcommand\bibsection{%
-      \nsection{\bibname\ifx\@mkboth\@gobbletwo\else\markright{\MakeUppercase{\bibname}}\fi}%
+    \@ifxundefined\NAT@sectionbib{%
+      \renewcommand\bibsection{%
+        \nchapter{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
+      }%
+    }{%
+      \renewcommand\bibsection{%
+        \nsection{\bibname\ifx\@mkboth\@gobbletwo\else\markright{\MakeUppercase{\bibname}}\fi}%
+      }%
     }%
   }%
-}%
 
 %    \end{macrocode}
 % Преамбула окружения |thebibliography|.
 % \DescribeMacro{\bibpreamble}\index{Макросы!\verb*+\bibpreamble+}
 %    \begin{macrocode}
-\renewcommand\bibpreamble{%
+  \renewcommand\bibpreamble{%
 %    \end{macrocode}
 % Формат номера в списке литературы.
 % \DescribeMacro{\@biblabel}\index{Макросы!\verb*+"\"@biblabel+}
 %    \begin{macrocode}
-  \renewcommand\@biblabel[1]{##1.}%
-}
+    \renewcommand\@biblabel[1]{##1.}%
+  }
 
 %    \end{macrocode}
 % Переопределение окружения |thebibliography| для создания корректной
 % PDF-закладки (основано на варианте из \pkg{natbib}).
 % \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
 %    \begin{macrocode}
-\renewenvironment{thebibliography}[1]{%
-  \setlength\bibsep{0pt}
-  \bibsection
-  \parindent \z@
-  \bibpreamble\bibfont
-  \list{\@biblabel{\arabic{NAT@ctr}}}%
-  {\@bibsetup{#1}\setcounter{NAT@ctr}{0}}%
-  \ifNAT@openbib
-    \renewcommand\newblock{\par}
-  \else
-    \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
-  \fi
-  \sloppy\clubpenalty4000\widowpenalty4000
-  \sfcode`\.=1000\relax
-  \let\citeN\cite
-  \let\shortcite\cite
-  \let\citeasnoun\cite
-}{%
-  \def\@noitemerr{%
-    \PackageWarning{natbib}{Empty `thebibliography' environment}%
+  \renewenvironment{thebibliography}[1]{%
+    \setlength\bibsep{0pt}
+    \bibsection
+    \parindent \z@
+    \bibpreamble\bibfont
+    \list{\@biblabel{\arabic{NAT@ctr}}}%
+    {\@bibsetup{#1}\setcounter{NAT@ctr}{0}}%
+    \ifNAT@openbib
+      \renewcommand\newblock{\par}
+    \else
+      \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
+    \fi
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax
+    \let\citeN\cite
+    \let\shortcite\cite
+    \let\citeasnoun\cite
+  }{%
+    \def\@noitemerr{%
+      \PackageWarning{natbib}{Empty `thebibliography' environment}%
+    }
+    \endlist\vskip-\lastskip%
   }
-  \endlist\vskip-\lastskip%
-}
+\fi
 
 %    \end{macrocode}
 % \subsubsection{Плавающие объекты}
@@ -200,6 +202,27 @@
 %    \end{macrocode}
 % Формат счетчика.
 %    \begin{macrocode}
+  \def\thesubfigure{\textit{\asbuk{subfigure}}}
+%    \end{macrocode}
+% Формат ссылки через |\ref|.
+% \DescribeMacro{\thefigsubsep}\index{Макросы!\verb*+\thefigsubsep+}
+%    \begin{macrocode}
+  \providecommand\thefigsubsep{,~}
+  \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
+\fi
+
+%    \end{macrocode}
+%
+% Пакет \pkg{subcaption} для вложенной нумерации плавающих
+% объектов.
+% \DescribePackage{subcaption}\index{Пакеты!\verb*+subcaption+}
+%    \begin{macrocode}
+\ifDis@subcap
+  \usepackage[list=true]{subcaption}
+%    \end{macrocode}
+% Формат счетчика.
+%    \begin{macrocode}
+  \DeclareCaptionSubType[asbuk]{figure}
   \def\thesubfigure{\textit{\asbuk{subfigure}}}
 %    \end{macrocode}
 % Формат ссылки через |\ref|.

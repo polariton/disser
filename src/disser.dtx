@@ -65,6 +65,7 @@
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
+
 \usepackage{microtype}
 
 \MakeShortVerb{\|}
@@ -255,6 +256,10 @@
 %    \begin{macrocode}
 \newif\ifDis@subf\Dis@subffalse
 %    \end{macrocode}
+% \item Подключение \pkg{subcaption} (отключено).
+%    \begin{macrocode}
+\newif\ifDis@subcap\Dis@subcapfalse
+%    \end{macrocode}
 % \item Шрифт Times как основной (отключено).
 %    \begin{macrocode}
 \newif\ifDis@times\Dis@timesfalse
@@ -262,7 +267,10 @@
 % \item Поддержка математических шрифтов MathTime Pro (отключено).
 %    \begin{macrocode}
 \newif\ifDis@mtpro\Dis@mtprofalse
-
+%    \end{macrocode}
+% \item Подключение \pkg{natbib} (отключено).
+%    \begin{macrocode}
+\newif\ifDis@natbib\Dis@natbibfalse
 %    \end{macrocode}
 % \end{itemize}
 %
@@ -275,6 +283,10 @@
 % Подключение пакета \pkg{subfig} и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{subf}{\Dis@subftrue}
+%    \end{macrocode}
+% Подключение пакета \pkg{subcaption} и необходимых настроек.
+%    \begin{macrocode}
+\DeclareOption{subcap}{\Dis@subcaptrue}
 %    \end{macrocode}
 % Отображение УДК на титульном листе.
 %    \begin{macrocode}
@@ -294,6 +306,10 @@
 %    \end{macrocode}
 % Размеры листов.
 %    \begin{macrocode}
+% Подключение пакета \pkg{natbib} и необходимых настроек.
+%    \begin{macrocode}
+\DeclareOption{natbib}{\Dis@natbibtrue}
+%    \end{macrocode}
 \DeclareOption{a4paper}{%
   \setlength\paperheight{297mm}
   \setlength\paperwidth {210mm}
@@ -584,9 +600,9 @@
 
 %    \end{macrocode}
 % Команда, объединяющая |\newlength| и |\setlength|.
-% \DescribeMacro{\deflength}\index{Макросы!\verb*+\deflength+}
+% \DescribeMacro{\disser@deflength}\index{Макросы!\verb*+\disser@deflength+}
 %    \begin{macrocode}
-\providecommand\deflength[2]{\newlength{#1}\setlength{#1}{#2}}
+\providecommand\disser@deflength[2]{\newlength{#1}\setlength{#1}{#2}}
 \providecommand\ifundeflength[2]{%
 \ifx#1\undefined \newlength{#1}\setlength{#1}{#2} \else \relax \fi
 }
