@@ -31,6 +31,10 @@ old
 *.blg
 *.bst
 
+# BibLaTeX output files
+*.bcf
+*.run.xml
+
 # bitmap sources for EPS figures
 *.tif
 *.png
