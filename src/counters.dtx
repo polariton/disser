@@ -60,27 +60,18 @@
 % \DescribeMacro{\theparagraph}\index{Макросы!\verb*+\theparagraph+}
 % \DescribeMacro{\thesubparagraph}\index{Макросы!\verb*+\thesubparagraph+}
 %    \begin{macrocode}
-\ifdefined\@Asbuk
-  \def\disser@Asbuk#1{\@Asbuk#1}
-\else%
-  \def\disser@Asbuk#1{\russian@Alph#1}
-\fi
-\ifdefined\@asbuk
-  \def\disser@asbuk#1{\@asbuk#1}
-\else%
-  \def\disser@asbuk#1{\russian@alph#1}
-\fi
-\renewcommand\thepart{\@Roman\c@part}
-\renewcommand\thechapter{\@arabic\c@chapter}
+
+\renewcommand\thepart{\Roman{part}}
+\renewcommand\thechapter{\arabic{chapter}}
 \newcommand\theappendix{\Asbuk{chapter}}
 \renewcommand\thesection{%
 \ifnum\c@chapter > \z@
-  \thechapter.\@arabic\c@section%
-\else\@arabic\c@section\fi}
-\renewcommand\thesubsection{\thesection.\@arabic\c@subsection}
-\renewcommand\thesubsubsection{\thesubsection.\@arabic\c@subsubsection}
-\renewcommand\theparagraph{\@arabic\c@paragraph}
-\renewcommand\thesubparagraph{\theparagraph.\@arabic\c@subparagraph}
+  \thechapter.\arabic{section}%
+\else\arabic{section}\fi}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+\renewcommand\theparagraph{\arabic{paragraph}}
+\renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
 %    \end{macrocode}
 % Формат нумерации разделов документа в оглавлении.

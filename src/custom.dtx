@@ -124,13 +124,42 @@
 %    \begin{macrocode}
 \ifDis@natbib
   \usepackage[square,comma,sort&compress,numbers]{natbib}
+\else
+%    \end{macrocode}
+% Пустые определения команд из пакета |natbib|.
+% \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
+% \DescribeMacro{\bibpreamble}\index{Макросы!\verb*+\bibpreamble+}
+% \DescribeMacro{\bibpostamble}\index{Макросы!\verb*+\bibpostamble+}
+% \DescribeMacro{\bibfont}\index{Макросы!\verb*+\bibfont+}
+% \DescribeMacro{\bibsep}\index{Макросы!\verb*+\bibsep+}
+%    \begin{macrocode}
+  \newcommand\bibsection{}
+  \newcommand\bibpreamble{}
+  \newcommand\bibpostamble{}
+  \newcommand\bibfont{\normalfont\selectfont}
+  \newlength\bibsep
+\fi
 
 %    \end{macrocode}
-% Переопределение |\bibsection| для включения ссылки на список литературы в
-% оглавление.
+% Команда, создающая заголовок библиографии.
 % \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
 %    \begin{macrocode}
-  \renewcommand\bibsection{\nchapter{\bibname}}
+\renewcommand\bibsection{\nchapter{\bibname}}
+
+%    \end{macrocode}
+% Преамбула окружения |thebibliography|.
+% \DescribeMacro{\bibpreamble}\index{Макросы!\verb*+\bibpreamble+}
+%    \begin{macrocode}
+\renewcommand\bibpreamble{%
+%    \end{macrocode}
+% Формат номера в списке литературы.
+% \DescribeMacro{\@biblabel}\index{Макросы!\verb*+"\"@biblabel+}
+%    \begin{macrocode}
+  \renewcommand\@biblabel[1]{##1.}%
+  \setlength\bibsep{0pt}
+}
+
+\@ifpackageloaded{natbib}{
   \@ifundefined{chapter}{%
     \renewcommand\bibsection{%
      \nsection{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
@@ -146,79 +175,49 @@
       }%
     }%
   }%
-
+}{%
+  \@ifundefined{chapter}{%
+    \renewcommand\bibsection{%
+     \nsection{\bibname\@mkboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}%
+    }%
+  }{}
 %    \end{macrocode}
-% Преамбула окружения |thebibliography|.
-% \DescribeMacro{\bibpreamble}\index{Макросы!\verb*+\bibpreamble+}
-%    \begin{macrocode}
-  \renewcommand\bibpreamble{%
-%    \end{macrocode}
-% Формат номера в списке литературы.
-% \DescribeMacro{\@biblabel}\index{Макросы!\verb*+"\"@biblabel+}
-%    \begin{macrocode}
-    \renewcommand\@biblabel[1]{##1.}%
-  }
-
-%    \end{macrocode}
-% Переопределение окружения |thebibliography| для создания корректной
-% PDF-закладки (основано на варианте из \pkg{natbib}).
 % \DescribeEnv{thebibliography}\index{Окружения!\verb*+thebibliography+}
 %    \begin{macrocode}
-  \renewenvironment{thebibliography}[1]{%
-    \setlength\bibsep{0pt}
+  \renewenvironment{thebibliography}[1]{
     \bibsection
-    \parindent \z@
+    \parindent\z@
     \bibpreamble\bibfont
-    \list{\@biblabel{\arabic{NAT@ctr}}}%
-    {\@bibsetup{#1}\setcounter{NAT@ctr}{0}}%
-    \ifNAT@openbib
-      \renewcommand\newblock{\par}
-    \else
-      \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
-    \fi
+    \list{\@biblabel{\@arabic\c@enumiv}}{\settowidth\labelwidth{\@biblabel{#1}}%
+    \setlength{\itemsep}{\bibsep}
+    \setlength{\parsep}{\bibsep}
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \@openbib@code
+    \usecounter{enumiv}%
+    \let\p@enumiv\@empty
+    \renewcommand\theenumiv{\@arabic\c@enumiv}}%
     \sloppy\clubpenalty4000\widowpenalty4000
-    \sfcode`\.=1000\relax
-    \let\citeN\cite
-    \let\shortcite\cite
-    \let\citeasnoun\cite
+    \sfcode`\.\@m
   }{%
-    \def\@noitemerr{%
-      \PackageWarning{natbib}{Empty `thebibliography' environment}%
-    }
-    \endlist\vskip-\lastskip%
+    \bibpostamble
+    \def\@noitemerr
+    {\@latex@warning{Empty `thebibliography' environment}}%
+    \endlist
   }
-\fi
+}
 
 %    \end{macrocode}
 % \subsubsection{Плавающие объекты}
 %
-% Пакеты \pkg{caption} и \pkg{subfig} для вложенной нумерации плавающих
+% Пакеты \pkg{caption} и \pkg{subcaption} для вложенной нумерации плавающих
 % объектов.
 % \DescribePackage{caption}\index{Пакеты!\verb*+caption+}
-% \DescribePackage{subfig}\index{Пакеты!\verb*+subfig+}
-%    \begin{macrocode}
-\ifDis@subf
-  \usepackage[config,font=small,labelsep=period]{caption,subfig}
-%    \end{macrocode}
-% Формат счетчика.
-%    \begin{macrocode}
-  \def\thesubfigure{\textit{\asbuk{subfigure}}}
-%    \end{macrocode}
-% Формат ссылки через |\ref|.
-% \DescribeMacro{\thefigsubsep}\index{Макросы!\verb*+\thefigsubsep+}
-%    \begin{macrocode}
-  \providecommand\thefigsubsep{,~}
-  \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
-\fi
-
-%    \end{macrocode}
-%
-% Пакет \pkg{subcaption} для вложенной нумерации плавающих
-% объектов.
 % \DescribePackage{subcaption}\index{Пакеты!\verb*+subcaption+}
 %    \begin{macrocode}
-\ifDis@subcap
-  \usepackage[list=true]{subcaption}
+\ifDis@subf
+  \usepackage[config,font=small,labelsep=period]{caption}
+  \usepackage[list=true,subrefformat=parens]{subcaption}
 %    \end{macrocode}
 % Формат счетчика.
 %    \begin{macrocode}

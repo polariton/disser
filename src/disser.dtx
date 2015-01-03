@@ -252,13 +252,9 @@
 %    \begin{macrocode}
 \newif\ifDis@href\Dis@hreffalse
 %    \end{macrocode}
-% \item Подключение \pkg{subfig} (отключено).
-%    \begin{macrocode}
-\newif\ifDis@subf\Dis@subffalse
-%    \end{macrocode}
 % \item Подключение \pkg{subcaption} (отключено).
 %    \begin{macrocode}
-\newif\ifDis@subcap\Dis@subcapfalse
+\newif\ifDis@subf\Dis@subffalse
 %    \end{macrocode}
 % \item Шрифт Times как основной (отключено).
 %    \begin{macrocode}
@@ -280,13 +276,9 @@
 %    \begin{macrocode}
 \DeclareOption{href}{\Dis@hreftrue}
 %    \end{macrocode}
-% Подключение пакета \pkg{subfig} и необходимых настроек.
-%    \begin{macrocode}
-\DeclareOption{subf}{\Dis@subftrue}
-%    \end{macrocode}
 % Подключение пакета \pkg{subcaption} и необходимых настроек.
 %    \begin{macrocode}
-\DeclareOption{subcap}{\Dis@subcaptrue}
+\DeclareOption{subf}{\Dis@subftrue}
 %    \end{macrocode}
 % Отображение УДК на титульном листе.
 %    \begin{macrocode}
@@ -304,12 +296,12 @@
 %    \begin{macrocode}
 \DeclareOption{noams}{\Dis@amsfalse}
 %    \end{macrocode}
-% Размеры листов.
-%    \begin{macrocode}
 % Подключение пакета \pkg{natbib} и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{natbib}{\Dis@natbibtrue}
 %    \end{macrocode}
+% Размеры листов.
+%    \begin{macrocode}
 \DeclareOption{a4paper}{%
   \setlength\paperheight{297mm}
   \setlength\paperwidth {210mm}
