@@ -1,10 +1,11 @@
 \documentclass[%
 specialist,     % тип документа
-subf,           % подключить и настроить пакет subfig для вложенной нумерации рисунков
-href,           % подключить и настроить пакет hyperref
+natbib,         % использовать пакет natbib для "сжатия" цитирований
+subf,           % использовать пакет subcaption для вложенной нумерации рисунков
+href,           % использовать пакет hyperref для создания гиперссылок
 colorlinks=true % цветные гиперссылки
-%,times         % шрифт Times как основной
 %,fixint=false  % отключить прямые знаки интегралов
+%,times         % шрифт Times как основной
 ]{disser}
 
 \usepackage[
@@ -14,6 +15,7 @@ colorlinks=true % цветные гиперссылки
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
+%\usepackage{tabularx,longtable}
 \ifpdf\usepackage{epstopdf}\fi
 
 % Номера страниц снизу и по центру
