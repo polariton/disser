@@ -1,6 +1,12 @@
 disser changelog
-Copyright (C) 2015 Stanislav Kruchinin
+Copyright (C) Stanislav Kruchinin
 -------------------------------------------
+
+Summary of changes in version 1.3.2 (2015-07-23):
+
+Classes and styles:
+* Resolve conflict with 'setspace' package.
+
 
 Summary of changes in version 1.3.1 (2015-01-03):
 
