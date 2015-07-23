@@ -9,7 +9,7 @@
 Для корректной сборки документов в вашем дистрибутиве LaTeX должны быть
 установлены следующие пакеты:
 amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, kvoptions,
-natbib, hyperref, subfig, wrapfig, а также пакеты для поддержки
+natbib, hyperref, subcaption, wrapfig, а также пакеты для поддержки
 русского языка.
 
 Для использования шрифта Times в текстовом режиме следует установить
