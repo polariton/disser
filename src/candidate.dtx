@@ -39,6 +39,8 @@
 % \DescribeMacro{\fourthskip}\index{Расстояния!\verb*+\fourthskip+}
 % \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
 % \DescribeMacro{\sixthskip}\index{Расстояния!\verb*+\sixthskip+}
+% \DescribeMacro{\saskip}\index{Расстояния!\verb*+\saskip+}
+% \DescribeMacro{\specskip}\index{Расстояния!\verb*+\specskip+}
 %    \begin{macrocode}
 \ifx\firstskip\undefined
   \newlength\firstskip
@@ -53,6 +55,8 @@
 \ifundeflength\fourthskip{1cm}
 \ifundeflength\fifthskip{1cm}
 \ifundeflength\sixthskip{0cm}
+\ifundeflength\specskip{-6pt}
+\ifundeflength\saskip{0pt}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -109,9 +113,10 @@
 % Шифр и наименование специальности
 %    \begin{macrocode}
   \vskip\fourthskip
-  {\specfont\@specnum~--\ \@spec}\\[-6pt]
+  {\specfont\@specnum~--\ \@spec}
   \ifx\@specsndnum\empty\else
-    {\specfont\@specsndnum~--\ \@specsnd}
+    \vskip\specskip
+	{\specfont\@specsndnum~--\ \@specsnd}
   \fi
 %    \end{macrocode}
 % Диссертация на соискание ученой степени...
@@ -126,17 +131,17 @@
   \vskip\sixthskip\disserfield{sa}
 \fi
 \ifx\@sasnd\empty\else
-  \vskip\sixthskip\disserfield{sasnd}
+  \vskip\saskip\disserfield{sasnd}
 \fi
 %    \end{macrocode}
 % Научный консультант
 %    \begin{macrocode}
 \ifx\@scon\empty\else
-  \vskip\sixthskip
+  \vskip\saskip
   \disserfield{scon}
 \fi
 \ifx\@sconsnd\empty\else
-  \vskip\sixthskip
+  \vskip\saskip
   \disserfield{sconsnd}
 \fi
 %    \end{macrocode}
