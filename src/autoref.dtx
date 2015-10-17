@@ -18,17 +18,17 @@
 \if@titlepage\renewcommand\maketitle{
 %    \end{macrocode}
 % Вертикальные интервалы между элементами титульного листа.
-% \DescribeMacro{\firstskip}\index{Расстояния!\verb*+\firstskip+}
-% \DescribeMacro{\secondskip}\index{Расстояния!\verb*+\secondskip+}
-% \DescribeMacro{\thirdskip}\index{Расстояния!\verb*+\thirdskip+}
-% \DescribeMacro{\fourthskip}\index{Расстояния!\verb*+\fourthskip+}
-% \DescribeMacro{\fifthskip}\index{Расстояния!\verb*+\fifthskip+}
+% \DescribeMacro{\firstskip}\index{Интервалы !\verb*+\firstskip+}
+% \DescribeMacro{\secondskip}\index{Интервалы !\verb*+\secondskip+}
+% \DescribeMacro{\thirdskip}\index{Интервалы !\verb*+\thirdskip+}
+% \DescribeMacro{\fourthskip}\index{Интервалы !\verb*+\fourthskip+}
+% \DescribeMacro{\fifthskip}\index{Интервалы !\verb*+\fifthskip+}
 %    \begin{macrocode}
-\disser@deflength\firstskip{1cm}
-\disser@deflength\secondskip{2cm}
-\disser@deflength\thirdskip{1cm}
-\disser@deflength\fourthskip{1cm}
-\disser@deflength\fifthskip{1cm}
+\ifundeflength\firstskip{1cm}
+\ifundeflength\secondskip{3cm}
+\ifundeflength\thirdskip{1cm}
+\ifundeflength\fourthskip{1cm}
+\ifundeflength\fifthskip{1cm}
 
 %    \end{macrocode}
 % Шрифты элементов титульного листа.
@@ -45,15 +45,6 @@
 \thispagestyle{empty}
 \enlargethispage{1cm}
 \vspace*{-2cm}
-%    \end{macrocode}
-% \paragraph{Название организации}
-%    \begin{macrocode}
-\begin{center}
-\instfont\@institution\par
-\end{center}
-
-\vskip\firstskip
-\normalfont
 
 \begin{flushright}
 %    \end{macrocode}
@@ -63,7 +54,8 @@
 %    \end{macrocode}
 % На правах рукописи
 %    \begin{macrocode}
-  \asmanuscript
+  \vskip\firstskip
+  {\normalfont\asmanuscript}
   \ifDis@facsimile\facsimile\fi
 \end{flushright}
 \begin{center}

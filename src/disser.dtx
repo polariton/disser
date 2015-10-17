@@ -592,9 +592,9 @@
 
 %    \end{macrocode}
 % Команда, объединяющая |\newlength| и |\setlength|.
-% \DescribeMacro{\disser@deflength}\index{Макросы!\verb*+\disser@deflength+}
+% \DescribeMacro{\Dis@deflength}\index{Макросы!\verb*+\Dis@deflength+}
 %    \begin{macrocode}
-\providecommand\disser@deflength[2]{\newlength{#1}\setlength{#1}{#2}}
+\providecommand\Dis@deflength[2]{\newlength{#1}\setlength{#1}{#2}}
 \providecommand\ifundeflength[2]{%
 \ifx#1\undefined \newlength{#1}\setlength{#1}{#2} \else \relax \fi
 }
@@ -603,8 +603,8 @@
 %
 % \subsection{Параметры текста}
 %
-% \DescribeMacro{\lineskip}\index{Расстояния!\verb*+\lineskip+}
-% \DescribeMacro{\normallineskip}\index{Расстояния!\verb*+\normallineskip+}
+% \DescribeMacro{\lineskip}\index{Интервалы!\verb*+\lineskip+}
+% \DescribeMacro{\normallineskip}\index{Интервалы!\verb*+\normallineskip+}
 % Вертикальный интервал между строками. Упоминаемый здесь и далее макрос
 % |\p@| определяет стандартную единицу длины. По умолчанию она равна
 % английскому пункту (pt).
@@ -613,42 +613,42 @@
 \setlength\normallineskip{1\p@}
 
 %    \end{macrocode}
-% \DescribeMacro{\disser@singlespacing} \index{Макросы!\verb*+\disser@singlespacing+}
-% \DescribeMacro{\disser@onehalfspacing}\index{Макросы!\verb*+\disser@onehalfspacing+}
-% \DescribeMacro{\disser@doublespacing} \index{Макросы!\verb*+\disser@doublespacing+}
+% \DescribeMacro{\Dis@singlespacing} \index{Макросы!\verb*+\Dis@singlespacing+}
+% \DescribeMacro{\Dis@onehalfspacing}\index{Макросы!\verb*+\Dis@onehalfspacing+}
+% \DescribeMacro{\Dis@doublespacing} \index{Макросы!\verb*+\Dis@doublespacing+}
 % Характерные величины межстрочнах интервалов.
 %    \begin{macrocode}
-\newcommand\disser@singlespacing {\renewcommand\baselinestretch{1}\normalsize}
-\newcommand\disser@onehalfspacing{\renewcommand\baselinestretch{1.5}\normalsize}
-\newcommand\disser@doublespacing {\renewcommand\baselinestretch{2}\normalsize}
+\newcommand\Dis@singlespacing {\renewcommand\baselinestretch{1}\normalsize}
+\newcommand\Dis@onehalfspacing{\renewcommand\baselinestretch{1.5}\normalsize}
+\newcommand\Dis@doublespacing {\renewcommand\baselinestretch{2}\normalsize}
 %    \end{macrocode}
 % Межстрочный интервал по умолчанию.
 %    \begin{macrocode}
-\disser@onehalfspacing
+\Dis@onehalfspacing
 
 %    \end{macrocode}
-% \DescribeMacro{\parindent}\index{Расстояния!\verb*+\parindent+}
+% \DescribeMacro{\parindent}\index{Интервалы!\verb*+\parindent+}
 % Абзацный отступ.
 %    \begin{macrocode}
 \setlength\parindent{5ex}
 
 %    \end{macrocode}
 % Интервал между абзацами (добавляется к межстрочному).
-% \DescribeMacro{\parskip}\index{Расстояния!\verb*+\parskip+}
+% \DescribeMacro{\parskip}\index{Интервалы!\verb*+\parskip+}
 %    \begin{macrocode}
 \setlength\parskip{0\p@ \@plus \p@}
 
 %    \end{macrocode}
 %
 % Интервал между колонками текста.
-% \DescribeMacro{\columnsep}\index{Расстояния!\verb*+\columnsep+}
+% \DescribeMacro{\columnsep}\index{Интервалы!\verb*+\columnsep+}
 %    \begin{macrocode}
 \setlength\columnsep{10\p@}
 
 %    \end{macrocode}
 %
 % Ширина разделителя (линии) между колонками текста (по умолчанию его нет).
-% \DescribeMacro{\columnseprule}\index{Расстояния!\verb*+\columnseprule+}
+% \DescribeMacro{\columnseprule}\index{Интервалы!\verb*+\columnseprule+}
 %    \begin{macrocode}
 \setlength\columnseprule{0\p@}
 
