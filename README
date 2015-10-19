@@ -2,7 +2,7 @@
 ---------------
 
 This package provides LaTeX classes, bibliography styles and document
-templates for typesetting dissertations and author's abstracts which satisfy
+templates for typesetting dissertations and author's abstracts that satisfy
 the requirements of dissertation councils and High Certification Commission of
 Russian Federation.
 
@@ -100,7 +100,7 @@ Installation for current user only:
 5. License
 ----------
 
-Copyright (c) 2004-2015 Stanislav Kruchinin
+Copyright (c) Stanislav Kruchinin
 
 It may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
