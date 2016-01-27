@@ -125,7 +125,7 @@ and the derived files
 \fi
 %</ignore>
 %<*driver>
-\ProvidesFile{gost732.drv}[2013/12/30 1.3.0 GOST 7.32-2001 implementation]
+\ProvidesFile{gost732.drv}[2016/01/27 1.3.4 GOST 7.32-2001 implementation]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -288,10 +288,10 @@ and the derived files
 %
 % Формат счетчиков.
 %    \begin{macrocode}
-\renewcommand\theenumi  {\Dis@asbuk\c@enumi}
-\renewcommand\theenumii {\@arabic\c@enumii}
-\renewcommand\theenumiii{\@roman\c@enumiii}
-\renewcommand\theenumiv {\Dis@Asbuk\c@enumiv}
+\renewcommand\theenumi  {\asbuk{enumi}}
+\renewcommand\theenumii {\arabic{enumii}}
+\renewcommand\theenumiii{\roman{enumiii}}
+\renewcommand\theenumiv {\Asbuk{enumiv}}
 
 %    \end{macrocode}
 %
