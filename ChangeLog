@@ -2,6 +2,16 @@ disser changelog
 Copyright (C) Stanislav Kruchinin
 -------------------------------------------
 
+Summary of changes in version 1.3.4 (2016-01-27):
+
+Classes and styles:
+* Fix bug with the second level of enumerated lists.
+
+Templates:
++ bachelor: add test for nested enumerated lists.
+* doctor: update the opponents list.
+ 
+
 Summary of changes in version 1.3.3 (2015-10-18):
 
 Classes and styles:
