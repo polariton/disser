@@ -1,0 +1,130 @@
+\documentclass[
+bachelor,       % тип документа
+subf,           % использовать пакет subcaption для вложенной нумерации рисунков
+href,           % использовать пакет hyperref для создания гиперссылок
+colorlinks=true % цветные гиперссылки
+%,fixint=false  % отключить прямые знаки интегралов
+%,times         % шрифт Times как основной
+]{disser}
+
+\usepackage[
+  a4paper, mag=1000,
+  left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
+]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\ifpdf\usepackage{epstopdf}\fi
+
+\usepackage[style=gost-numeric,
+  backend=biber,
+  language=auto,
+  hyperref=auto,
+  autolang=other,
+  sorting=none
+]{biblatex}
+
+\addbibresource{thesis.bib}
+
+% Плавающие рисунки "в оборку".
+\usepackage{wrapfig}
+
+% Номера страниц снизу и по центру
+%\pagestyle{footcenter}
+%\chapterpagestyle{footcenter}
+
+% Точка с запятой в качестве разделителя между номерами цитирований
+%\setcitestyle{semicolon}
+
+% Использовать полужирное начертание для векторов
+\let\vec=\mathbf
+
+% Включать подсекции в оглавление
+\setcounter{tocdepth}{2}
+
+\graphicspath{{fig/}}
+
+\begin{document}
+
+% Переопределение стандартных заголовков
+%\def\contentsname{Содержание}
+%\def\conclusionname{Выводы}
+%\def\bibname{Литература}
+
+\institution{Название организации}
+
+% Имя лица, допускающего к защите (зав. кафедрой)
+\apname{ФИО зав. кафедрой}
+
+\title{ВЫПУСКНАЯ РАБОТА\\БАКАЛАВРА}
+
+\topic{Тема работы}
+
+% Автор
+\author{ФИО студента} % ФИО
+\group{1111/1} % Группа
+\coursenum{111111} % Номер специальности
+\course{Физика} % Название специальности
+
+% Научный руководитель
+\sa      {ФИО руководителя}
+\sastatus{д.~ф.-м.~н., ст.~н.~с.}
+
+% Город и год
+\city{Санкт-Петербург}
+\date{\number\year}
+
+\maketitle
+
+%%
+%% Titlepage in English
+%%
+%
+%\institution{Name of Organization}
+%
+%% Approved by
+%\apname{Professor S.\,S.~Sidorov}
+%
+%\title{Bachelor's Thesis}
+%
+%% Topic
+%\topic{Dummy Title}
+%
+%% Author
+%\author{Author's Name} % Full Name
+%\course{Physics} % Название специальности
+%
+%\group{} % Study Group
+%
+%% Scientific Advisor
+%\sa       {I.\,I.~Ivanov}
+%\sastatus {Professor}
+%
+%% Reviewer
+%\rev      {P.\,P.~Petrov}
+%\revstatus{Associate Professor}
+%
+%% City & Year
+%\city{Saint Petersburg}
+%\date{\number\year}
+%
+%\maketitle[en]
+
+% Содержание
+\tableofcontents
+
+% Введение
+\input{intro}
+
+% Глава 1
+\input{1}
+% Глава 2
+%\input{2}
+
+% Заключение
+\input{concl}
+
+% Список литературы
+\printbibliography[heading=bibintoc]
+
+\end{document}

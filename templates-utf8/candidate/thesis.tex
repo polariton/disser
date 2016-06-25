@@ -1,0 +1,142 @@
+\documentclass[%
+candidate,      % тип документа
+subf,           % использовать пакет subcaption для вложенной нумерации рисунков
+href,           % использовать пакет hyperref для создания гиперссылок
+colorlinks=true % цветные гиперссылки
+%,times         % шрифт Times как основной
+%,fixint=false  % отключить прямые знаки интегралов
+%,classified    % гриф секретности
+%,libcat        % номер УДК
+%,facsimile     % отображать факсимиле диссертанта
+]{disser}
+
+\usepackage[
+  a4paper, mag=1000,
+  left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
+]{geometry}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\ifpdf\usepackage{epstopdf}\fi
+
+\usepackage[style=gost-numeric,
+  backend=biber,
+  language=auto,
+  hyperref=auto,
+  autolang=other,
+  sorting=none
+]{biblatex}
+
+\addbibresource{thesis.bib}
+
+% Номера страниц снизу и по центру
+%\pagestyle{footcenter}
+%\chapterpagestyle{footcenter}
+
+% Точка с запятой в качестве разделителя между номерами цитирований
+%\setcitestyle{semicolon}
+
+% Ссылки на работы соискателя включаются в общий список литературы
+\let\citemy=\cite
+
+% Использовать полужирное начертание для векторов
+\let\vec=\mathbf
+
+% Путь к файлам с иллюстрациями
+\graphicspath{{fig/}}
+
+\begin{document}
+
+% Переопределение стандартных заголовков
+%\def\contentsname{Содержание}
+%\def\conclusionname{Выводы}
+%\def\bibname{Литература}
+
+% Включение файла с общим текстом диссертации и автореферата
+% (текст титульного листа и характеристика работы).
+\input{common}
+
+% номер копии для грифа секретности
+%\copynum{1}
+% класс доступа
+%\classlabel{Для служебного пользования}
+
+% номер УДК
+%\libcatnum{12345}
+
+\title{ДИССЕРТАЦИЯ\\
+на соискание ученой степени\\
+кандидата физико-математических наук}
+
+\maketitle
+
+%%
+%% Titlepage in English
+%%
+%
+%\institution{Name of Organization}
+%
+%\title{PhD Thesis}
+%
+%% Topic
+%\topic{Dummy Title}
+%
+%% Author
+%\author{Author's Name}
+%
+%\specnum{01.04.05}
+%\spec{Optics}
+%
+%%\specsndnum{01.04.07}
+%%\specsnd{Condensed matter physics}
+%
+%\sa{I.\,I.~Ivanov}
+%\sastatus{Professor}
+%%\sasnd{P.\,P.~Petrov}
+%%\sasndstatus{Professor}
+%
+%% Scientific consultant
+%%\scon{B.\,B.~Baranov}
+%%\sconstatus{Professor}
+%
+%% City & Year
+%\city{Saint Petersburg}
+%\date{\number\year}
+%
+%\maketitle[en]
+
+% Содержание
+\tableofcontents
+
+% Введение
+\input{intro}
+
+% Обзор литературы
+%\input{review}
+
+% Основная часть
+%% Глава 1
+\input{1}
+%% Глава 2
+%\input{2}
+
+% Заключение
+\input{concl}
+
+% Список сокращений и условных обозначений
+%\input{defs}
+
+% Словарь терминов
+%\input{dict}
+
+% Список литературы
+\printbibliography[heading=bibintoc]
+
+% Список иллюстративного материала
+%\listoffigures
+
+% Приложения
+%\appendix
+%\input{app-a}
+
+\end{document}
