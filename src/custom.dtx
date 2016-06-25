@@ -130,13 +130,11 @@
 % \DescribeMacro{\bibsection}\index{Макросы!\verb*+\bibsection+}
 % \DescribeMacro{\bibpreamble}\index{Макросы!\verb*+\bibpreamble+}
 % \DescribeMacro{\bibpostamble}\index{Макросы!\verb*+\bibpostamble+}
-% \DescribeMacro{\bibfont}\index{Макросы!\verb*+\bibfont+}
 % \DescribeMacro{\bibsep}\index{Макросы!\verb*+\bibsep+}
 %    \begin{macrocode}
-  \newcommand\bibsection{}
-  \newcommand\bibpreamble{}
-  \newcommand\bibpostamble{}
-  \newcommand\bibfont{\normalfont\selectfont}
+  \providecommand*\bibsection{}
+  \providecommand*\bibpreamble{}
+  \providecommand*\bibpostamble{}
   \newlength\bibsep
 \fi
 
@@ -187,7 +185,7 @@
   \renewenvironment{thebibliography}[1]{
     \bibsection
     \parindent\z@
-    \bibpreamble\bibfont
+    \bibpreamble\normalfont\selectfont
     \list{\@biblabel{\@arabic\c@enumiv}}{\settowidth\labelwidth{\@biblabel{#1}}%
     \setlength{\itemsep}{\bibsep}
     \setlength{\parsep}{\bibsep}
