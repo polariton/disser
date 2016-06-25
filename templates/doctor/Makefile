@@ -3,8 +3,9 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 #
 
-TARGET?=thesis
-
+TARGET ?= thesis
+BIBTEX ?= bibtex8
+BIBTEXFLAGS ?= -H -c cp1251
 
 include ../../include/latex.mk
 
