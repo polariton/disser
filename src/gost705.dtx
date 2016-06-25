@@ -155,7 +155,7 @@ and the derived files
 %</ignore>
 %<*driver>
 \ProvidesFile{gost705.drv}%
-  [2013/12/25 1.3.0 Bibliography style for GOST R 7.0.5-2008]
+  [2016/06/18 1.4 Bibliography style for GOST R 7.0.5-2008]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -376,7 +376,8 @@ FUNCTION {output.nonnull}
   output.state mid.sentence =
     { ", " * write$ }
     { output.state after.block =
-        { add.period$ " " * write$
+        { add.period$ write$
+          " \BibDash " write$
           newline$
           "\newblock " write$
         }
@@ -2729,32 +2730,20 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
-  "\ifx\undefined\BibEmph\def\BibEmph#1{#1}\else\fi"
-  write$ newline$
-  "\ifx\undefined\href\def\href#1#2{#2}\else\fi"
-  write$ newline$
-  "\ifx\undefined\url\def\url#1{\texttt{#1}}\else\fi"
-  write$ newline$
-  "\ifx\undefined\urlprefix\def\urlprefix{URL: }\else\fi"
-  write$ newline$
-  "\ifx\undefined\BibUrl\def\BibUrl#1{\urlprefix\url{#1}}\else\fi"
-  write$ newline$
-  "\ifx\undefined\BibUrlDate\long\def\BibUrlDate#1{({%"
-  write$ newline$
-  "\cyr\cyrd\cyra\cyrt\cyra\ %"
-  write$ newline$
-  "\cyro\cyrb\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrya}: #1)}\else\fi"
-  write$ newline$
-  "\ifx\undefined\BibAnnote\long\def\BibAnnote#1{#1}\else\fi"
-  write$ newline$
-  "\begin{thebibliography}{" longest.label  * "}" *
-  write$ newline$
-  "\def\selectlanguageifdefined#1{"
-  write$ newline$
-  "\expandafter\ifx\csname date#1\endcsname\relax"
-  write$ newline$
-  "\else\language\csname l@#1\endcsname\fi}"
-  write$ newline$
+  "\providecommand*\BibEmph[1]{#1}" write$ newline$
+  "\providecommand*\BibDash{}" write$ newline$
+  "\providecommand*\href[2]{#2}" write$ newline$
+  "\providecommand*\url[1]{\texttt{#1}}" write$ newline$
+  "\providecommand*\urlprefix{URL: }" write$ newline$
+  "\providecommand*\BibUrl[1]{\urlprefix\url{#1}}" write$ newline$
+  "\providecommand*\BibUrlDate[1]{({%" write$ newline$
+    "\cyr\cyrd\cyra\cyrt\cyra\ %" write$ newline$
+    "\cyro\cyrb\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrya}: #1)}" write$ newline$
+  "\providecommand*\BibAnnote[1]{#1}" write$ newline$
+  "\begin{thebibliography}{" longest.label  * "}" * write$ newline$
+  "\def\selectlanguageifdefined#1{" write$ newline$
+    "\expandafter\ifx\csname date#1\endcsname\relax" write$ newline$
+    "\else\language\csname l@#1\endcsname\fi}" write$ newline$
 }
 
 %    \end{macrocode}
