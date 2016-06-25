@@ -44,7 +44,7 @@ if "%psnupflags%"==""    set psnupflags=-2 -pA4
 if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape --synctex=1
 
 if "%clext%"=="" set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log ^
-	*.dvi *.tmp *.ps *.pdf *.synctex *.synctex.gz
+	*.dvi *.tmp *.ps *.pdf *.synctex *.synctex.gz *.run.xml *.bcf
 if "%clfiles%"=="" set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
 if "%prereq%"=="" set prereq=*.tex *.bib
@@ -112,7 +112,7 @@ goto :eof
 	)
 	%pdflatex% %pdflatexflags% %target%.tex
 	if exist %bibfile% (
-		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
+		for %%f in (*.aux) do %bibtex% %bibtexflags% %%~nf
 	) else (
 		echo Warning: Bibliography file does not exist
 	)

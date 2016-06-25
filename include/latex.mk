@@ -32,7 +32,7 @@ PSNUPFLAGS ?= -2 -pA4
 PDFLATEXFLAGS ?= --shell-escape --synctex=1
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
-  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz
+  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz *.run.xml *.bcf
 CLFILES ?= $(CLEXT) $(ARCHIVE)
 SRCFILES ?= *
 
@@ -79,7 +79,7 @@ srcdist: clean figclean
 $(TARGET).dvi: *.tex *.bib
 	@$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	if [ -f $(BIBFILE) ] ; then \
-		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $$f; done ;\
+		for f in *.aux; do $(BIBTEX) $(BIBTEXFLAGS) $${f%.*} ; done ;\
 	else \
 		echo Warning: Bibliography file does not exist ;\
 	fi ;\
@@ -99,7 +99,7 @@ $(TARGET)_book.ps: $(TARGET).ps
 $(TARGET).pdf: *.tex *.bib
 	@$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	if [ -f $(BIBFILE) ] ; then \
-		for f in *.aux ; do $(BIBTEX) $(BIBTEXFLAGS) $$f ; done ;\
+		for f in *.aux ; do $(BIBTEX) $(BIBTEXFLAGS) $${f%.*} ; done ;\
 	else \
 		echo "Warning: Bibliography file does not exist" ;\
 	fi ;\
