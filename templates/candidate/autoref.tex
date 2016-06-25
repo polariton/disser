@@ -182,12 +182,18 @@ colorlinks=true % цветные гиперссылки
 % ----------------------------------------------------------------
 \renewcommand\bibsection{\nsection{Список публикаций}}
 
-\bibliographystylemy{gost705}
+% Добавлять длинное тире в качестве разделителя.
+%\newcommand\BibDash{--- }
+% Включить выделение курсивом.
+%\newcommand\BibEmph[1]{\emph{#1}}
+\bibliographystylemy{gost705} 
 \bibliographymy{thesis}
 
 \renewcommand\bibsection{\nsection{Цитированная литература}}
 
-\bibliographystyle{gost705}
+% Не добавлять длинное тире в качестве разделителя.
+%\newcommand\BibDash{}
+\bibliographystyle{gost2008}
 \bibliography{thesis}
 % ----------------------------------------------------------------
 % Выходные данные
