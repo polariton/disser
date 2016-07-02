@@ -12,25 +12,25 @@
 %
 % Максимальный уровень вложенности секций, помещаемых в оглавление
 % (по умолчанию вносятся |\part|, |\chapter| и |\section|).
-% \DescribeMacro{tocdepth}\index{Счетчики!\verb*+tocdepth+}
+% \DescribeCounter{tocdepth}
 %    \begin{macrocode}
 \setcounter{tocdepth}{1}
 %    \end{macrocode}
 % Максимальный уровень вложенности нумеруемых секций
 % (по умолчанию нумеруются |\part|, |\chapter|, |\section| и |\subsection|).
-% \DescribeMacro{secnumdepth}\index{Счетчики!\verb*+secnumdepth+}
+% \DescribeCounter{secnumdepth}
 %    \begin{macrocode}
 \setcounter{secnumdepth}{2}
 
 %    \end{macrocode}
 %
-% \DescribeMacro{part}\index{Счетчики!\verb*+part+}
-% \DescribeMacro{chapter}\index{Счетчики!\verb*+chapter+}
-% \DescribeMacro{section}\index{Счетчики!\verb*+section+}
-% \DescribeMacro{subsection}\index{Счетчики!\verb*+subsection+}
-% \DescribeMacro{subsubsection}\index{Счетчики!\verb*+subsubsection+}
-% \DescribeMacro{paragraph}\index{Счетчики!\verb*+paragraph+}
-% \DescribeMacro{subparagraph}\index{Счетчики!\verb*+subparagraph+}
+% \DescribeCounter{part}
+% \DescribeCounter{chapter}
+% \DescribeCounter{section}
+% \DescribeCounter{subsection}
+% \DescribeCounter{subsubsection}
+% \DescribeCounter{paragraph}
+% \DescribeCounter{subparagraph}
 %    \begin{macrocode}
 \newcounter{part}
 \newcounter{chapter}
@@ -42,8 +42,8 @@
 
 %    \end{macrocode}
 %
-% \DescribeMacro{figure}\index{Счетчики!\verb*+figure+}
-% \DescribeMacro{table}\index{Счетчики!\verb*+table+}
+% \DescribeCounter{figure}
+% \DescribeCounter{table}
 %    \begin{macrocode}
 \newcounter{figure}[chapter]
 \newcounter{table}[chapter]
@@ -84,14 +84,14 @@
 % \DescribeMacro{\toctheparagraph}\index{Макросы!\verb*+\toctheparagraph+}
 % \DescribeMacro{\tocthesubparagraph}\index{Макросы!\verb*+\tocthesubparagraph+}
 %    \begin{macrocode}
-\newcommand\tocthepart{\thepart}
-\newcommand\tocthechapter{\thechapter}
-\newcommand\toctheappendix{\theappendix}
-\newcommand\tocthesection{\thesection}
-\newcommand\tocthesubsection{\thesubsection}
-\newcommand\tocthesubsubsection{\thesubsubsection}
-\newcommand\toctheparagraph{\theparagraph}
-\newcommand\tocthesubparagraph{\thesubparagraph}
+\providecommand\tocthepart{\thepart}
+\providecommand\tocthechapter{\thechapter}
+\providecommand\toctheappendix{\theappendix}
+\providecommand\tocthesection{\thesection}
+\providecommand\tocthesubsection{\thesubsection}
+\providecommand\tocthesubsubsection{\thesubsubsection}
+\providecommand\toctheparagraph{\theparagraph}
+\providecommand\tocthesubparagraph{\thesubparagraph}
 
 %    \end{macrocode}
 %
