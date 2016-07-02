@@ -41,6 +41,7 @@ goto :eof
 :install
 	if not exist "!docdir!" mkdir "!docdir!"
 	xcopy /y /e /i /f ..\templates "!docdir!\templates"
+	xcopy /y /e /i /f ..\templates-utf8 "!docdir!\templates-utf8"
 	xcopy /y /e /i /f ..\include "!docdir!\include"
 goto :eof
 

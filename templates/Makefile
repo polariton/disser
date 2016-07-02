@@ -23,11 +23,10 @@ help:
 
 install:
 	cp -rf ../templates $(DOCDIR) ;\
+	cp -rf ../templates-utf8 $(DOCDIR) ;\
 	cp -rf ../include $(DOCDIR)
 
 uninstall:
-	-rm -rf $(DOCDIR)/templates
-	-rm -rf $(DOCDIR)/include
-	-rmdir $(DOCDIR)
+	-rm -rf $(DOCDIR)
 
 reinstall: uninstall install
