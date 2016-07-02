@@ -51,7 +51,7 @@ if "%prereq%"=="" set prereq=*.tex *.bib
 
 
 if "%1"=="" (
-	call :dvi
+	call :pdf
 ) else (
 	for %%f in (%*) do call :%%f
 )
@@ -71,7 +71,7 @@ goto :eof
 	)
 	%latex% %latexflags% %target%.tex
 	if exist %bibfile% (
-		for %%f in (*.aux) do %bibtex% %bibtexflags% %%f
+		for %%f in (*.aux) do %bibtex% %bibtexflags% %%~nf
 	) else (
 		echo Warning: Bibliography file does not exist
 	)
