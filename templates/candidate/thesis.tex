@@ -5,7 +5,7 @@ subf,           % использовать пакет subcaption для вложенной нумерации рисунков
 href,           % использовать пакет hyperref для создания гиперссылок
 colorlinks=true % цветные гиперссылки
 %,times         % шрифт Times как основной
-%,fixint=false  % отключить прямые знаки интегралов
+%,fixint=true   % включить прямые знаки интегралов
 %,classified    % гриф секретности
 %,libcat        % номер УДК
 %,facsimile     % отображать факсимиле диссертанта
@@ -122,7 +122,9 @@ colorlinks=true % цветные гиперссылки
 
 % Не добавлять длинное тире в качестве разделителя.
 %\newcommand\BibDash{}
-\bibliographystyle{gost2008}
+% Выделять курсивом.
+%\let\BibEmph=\emph
+\bibliographystyle{gost705}
 
 % Список литературы
 \bibliography{thesis}

@@ -4,8 +4,8 @@ natbib,         % использовать пакет natbib для "сжатия" цитирований
 subf,           % использовать пакет subcaption для вложенной нумерации рисунков
 href,           % использовать пакет hyperref для создания гиперссылок
 colorlinks=true % цветные гиперссылки
-%,fixint=false  % отключить прямые знаки интегралов
 %,times         % шрифт Times как основной
+%,fixint=true   % отключить прямые знаки интегралов
 ]{disser}
 
 \usepackage[
@@ -15,7 +15,6 @@ colorlinks=true % цветные гиперссылки
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
-%\usepackage{tabularx,longtable}
 \ifpdf\usepackage{epstopdf}\fi
 
 % Номера страниц снизу и по центру
@@ -123,8 +122,13 @@ colorlinks=true % цветные гиперссылки
 % Заключение
 \input{concl}
 
+% Не добавлять длинное тире в качестве разделителя.
+%\newcommand\BibDash{}
+% Выделять курсивом.
+%\let\BibEmph=\emph
+\bibliographystyle{gost705}
+
 % Список литературы
 \bibliography{thesis}
-\bibliographystyle{gost705}
 
 \end{document}
