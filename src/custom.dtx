@@ -9,9 +9,9 @@
 %    \end{macrocode}
 % \subsection{Подключение и настройка сторонних пакетов}
 %
-% \DescribePackage{amsmath}\index{Пакеты!\verb*+amsmath+}
-% \DescribePackage{amssymb}\index{Пакеты!\verb*+amssymb+}
-% \DescribePackage{amsfonts}\index{Пакеты!\verb*+amsfonts+}
+% \DescribePackage{amsmath}
+% \DescribePackage{amssymb}
+% \DescribePackage{amsfonts}
 %    \begin{macrocode}
 \ifDis@ams
   \usepackage[intlimits]{amsmath}
@@ -38,26 +38,27 @@
   \ifDis@mtpro
     \AtBeginDocument{%
 %    \end{macrocode}
-% \DescribePackage{mtpro}\index{Пакеты!\verb*+mtpro+}
+% \DescribePackage{mtpro2}
 %    \begin{macrocode}
       \IfFileExists{mtpro2.sty}{
         \usepackage[subscriptcorrection,nofontinfo]{mtpro2}
       }{
+% \DescribePackage{mtpro}
         \IfFileExists{mtpro.sty}{
           \usepackage[subscriptcorrection,nofontinfo,boldalphabet]{mtpro}
         }{
           \PackageWarning{disser}%
-            {Unable to find mtpro package. Font is unchanged.}
+            {Unable to find mtpro2 or mtpro package. Math font is unchanged.}
         }
       }
     }
   \else
 %    \end{macrocode}
-% \DescribePackage{txfonts}\index{Пакеты!\verb*+txfonts+}
+% \DescribePackage{newtxmath}
 %    \begin{macrocode}
   \AtEndOfPackage{%
-    \IfFileExists{txfonts.sty}{
-      \usepackage{txfonts}
+    \IfFileExists{newtxmath.sty}{
+      \usepackage[varg,cmbraces,cmintegrals]{newtxmath}
     }{
       \PackageWarning{disser}%
         {Unable to find txfonts package. Font is unchanged.}
@@ -67,7 +68,7 @@
   \AtEndOfPackage{%
     \IfFileExists{pscyr.sty}{
 %    \end{macrocode}
-% \DescribePackage{pscyr}\index{Пакеты!\verb*+pscyr+}
+% \DescribePackage{pscyr}
 % Установка Times как шрифта по умолчанию, выбор стандартного моноширинного
 % шрифта.
 %    \begin{macrocode}
@@ -77,7 +78,7 @@
     }{
       \IfFileExists{cyrtimes.sty}{
 %    \end{macrocode}
-% \DescribePackage{cyrtimes}\index{Пакеты!\verb*+cyrtimes+}
+% \DescribePackage{cyrtimes}
 % Вместо \pkg{pscyr} может быть использован пакет \pkg{cyrtimes}, входящий в
 % состав дистрибутива \TeX Live.
 %    \begin{macrocode}
@@ -120,7 +121,7 @@
 
 %    \end{macrocode}
 % \subsubsection{Библиографические ссылки}
-% \DescribePackage{natbib}\index{Пакеты!\verb*+natbib+}
+% \DescribePackage{natbib}
 %    \begin{macrocode}
 \ifDis@natbib
   \usepackage[square,comma,sort&compress,numbers]{natbib}
@@ -210,8 +211,8 @@
 %
 % Пакеты \pkg{caption} и \pkg{subcaption} для вложенной нумерации плавающих
 % объектов.
-% \DescribePackage{caption}\index{Пакеты!\verb*+caption+}
-% \DescribePackage{subcaption}\index{Пакеты!\verb*+subcaption+}
+% \DescribePackage{caption}
+% \DescribePackage{subcaption}
 %    \begin{macrocode}
 \ifDis@subf
   \usepackage[config,font=small,labelsep=period]{caption}
@@ -235,7 +236,7 @@
 \ifpdf
   \ifDis@href
 %    \end{macrocode}
-% \DescribePackage{hyperref}\index{Пакеты!\verb*+hyperref+}
+% \DescribePackage{hyperref}
 %    \begin{macrocode}
     \usepackage[pdftex,unicode]{hyperref}
     \hypersetup{
@@ -249,20 +250,20 @@
     \pdfcompresslevel = 9
   \fi
 %    \end{macrocode}
-% \DescribePackage{graphicx}\index{Пакеты!\verb*+graphicx+}
-% \DescribePackage{cmap}\index{Пакеты!\verb*+cmap+}
+% \DescribePackage{graphicx}
+% \DescribePackage{cmap}
 %    \begin{macrocode}
   \usepackage[pdftex]{graphicx}
   \usepackage{cmap}
 \else
   \ifDis@href
 %    \end{macrocode}
-% \DescribePackage{hyperref}\index{Пакеты!\verb*+hyperref+}
+% \DescribePackage{hyperref}
 %    \begin{macrocode}
     \usepackage[hypertex,colorlinks=false]{hyperref}
   \fi
 %    \end{macrocode}
-% \DescribePackage{graphicx}\index{Пакеты!\verb*+graphicx+}
+% \DescribePackage{graphicx}
 %    \begin{macrocode}
   \usepackage{graphicx}
 \fi
