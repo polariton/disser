@@ -80,10 +80,10 @@ goto :eof
 goto :eof
 
 :help
-	echo   dvi          ^(default^) build DVI
+	echo   dvi          build DVI
 	echo   figclean     clean output files in figures directory
 	echo   html         convert DVI to HTML
-	echo   pdf          build PDF
+	echo   pdf          ^(default^) build PDF
 	echo   pdf_2on1     build PDF with two A5 pages on one A4 ordered by number
 	echo   pdf_book     build PDF booklet ^(two A5 on A4^)
 	echo   ps           build PS
