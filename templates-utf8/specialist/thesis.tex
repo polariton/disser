@@ -1,10 +1,10 @@
 \documentclass[%
-specialist,     % тип документа
-subf,           % использовать пакет subcaption для вложенной нумерации рисунков
-href,           % использовать пакет hyperref для создания гиперссылок
-colorlinks=true % цветные гиперссылки
-%,times         % шрифт Times как основной
-%,fixint=true   % включить прямые знаки интегралов
+specialist,  % тип документа
+subf,        % использовать пакет subcaption для вложенной нумерации рисунков
+href,        % использовать пакет hyperref для создания гиперссылок
+colorlinks,  % цветные гиперссылки
+%times,      % шрифт Times как основной
+%fixint,     % включить прямые знаки интегралов
 ]{disser}
 
 \usepackage[
@@ -24,6 +24,8 @@ colorlinks=true % цветные гиперссылки
   sorting=none
 ]{biblatex}
 
+\addbibresource{thesis.bib}
+
 % Номера страниц снизу и по центру
 %\pagestyle{footcenter}
 %\chapterpagestyle{footcenter}
@@ -39,7 +41,6 @@ colorlinks=true % цветные гиперссылки
 
 \graphicspath{{fig/}}
 
-%----------------------------------------------------------------
 \begin{document}
 
 % Переопределение стандартных заголовков
