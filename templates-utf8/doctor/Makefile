@@ -3,9 +3,9 @@
 # Author: Stanislav Kruchinin <stanislav.kruchinin@gmail.com>
 #
 
-TARGET?=thesis
-BIBTEX:=biber
-BIBTEXFLAGS:= 
+TARGET ?= thesis
+BIBTEX := biber
+BIBTEXFLAGS := 
 
 include ../../include/latex.mk
 
@@ -19,7 +19,12 @@ allpdf:
 	 env TARGET=autoref $(MAKE) pdf ;\
 	 eval unset TARGET
 
-help: .help
-	@echo "  all          build DVI of autoref and thesis" ;\
-	 echo "  allpdf       build PDF of autoref and thesis" ;\
+alldvi:
+	@env TARGET=thesis $(MAKE) dvi ;\
+	 env TARGET=autoref $(MAKE) dvi ;\
+	 eval unset TARGET
 
+help: .help
+	@echo "  all          build PDF of autoref and thesis" ;\
+	 echo "  allpdf       build PDF of autoref and thesis" ;\
+	 echo "  alldvi       build DVI of autoref and thesis" ;\

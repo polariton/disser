@@ -14,8 +14,10 @@ if "%1"=="" (
 	for %%f in (%*) do if "%%f"=="help" (
 		call :%%f
 	) else if "%%f"=="all" (
-		call :%%f
+		call :allpdf
 	) else if "%%f"=="allpdf" (
+		call :%%f
+	) else if "%%f"=="alldvi" (
 		call :%%f
 	) else (
 		%latexnmk% %%f
@@ -25,19 +27,20 @@ if "%1"=="" (
 exit /b
 
 :help
-	echo   all          build DVI of autoref and thesis
-	echo   allpdf       build PDF of autoref and thesis
+	echo   all           build PDF of autoref and thesis
+	echo   allpdf        build PDF of autoref and thesis
+	echo   alldvi        build DVI of autoref and thesis
 	%latexnmk% help
-goto :eof
-
-:all
-	set target=thesis & %latexnmk% dvi
-	set target=autoref & %latexnmk% dvi
-	set target=
 goto :eof
 
 :allpdf
 	set target=thesis & %latexnmk% pdf
 	set target=autoref & %latexnmk% pdf
+	set target=
+goto :eof
+
+:alldvi
+	set target=thesis & %latexnmk% dvi
+	set target=autoref & %latexnmk% dvi
 	set target=
 goto :eof

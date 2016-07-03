@@ -9,11 +9,13 @@ BIBTEXFLAGS ?= -H -c cp1251
 
 include ../../include/latex.mk
 
-all: dvi
+all: pdf
 
 allpdf: pdf
 
-help: .help
-	@echo "  all          alias for dvi target" ;\
-	 echo "  allpdf       alias for pdf target" ;\
+alldvi: dvi
 
+help: .help
+	@echo "  all          alias for pdf target" ;\
+	 echo "  allpdf       alias for pdf target" ;\
+	 echo "  alldvi       alias for dvi target" ;\

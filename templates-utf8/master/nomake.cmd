@@ -14,9 +14,11 @@ if "%1"=="" (
 	for %%f in (%*) do if "%%f"=="help" (
 		call :%%f
 	) else if "%%f"=="all" (
-		%latexnmk% dvi
+		%latexnmk% pdf
 	) else if "%%f"=="allpdf" (
 		%latexnmk% pdf
+	) else if "%%f"=="alldvi" (
+		%latexnmk% dvi
 	) else (
 		%latexnmk% %%f
 	)
@@ -25,8 +27,8 @@ if "%1"=="" (
 exit /b
 
 :help
-	echo   all          alias for dvi target
+	echo   all          alias for pdf target
 	echo   allpdf       alias for pdf target
+	echo   alldvi       alias for dvi target
 	%latexnmk% help
 goto :eof
-
