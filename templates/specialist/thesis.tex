@@ -121,10 +121,10 @@ colorlinks,  % цветные гиперссылки
 % Заключение
 \input{concl}
 
-% Не добавлять длинное тире в качестве разделителя.
-%\newcommand\BibDash{}
-% Выделять курсивом.
-%\let\BibEmph=\emph
+% Добавлять длинное тире в качестве разделителя
+\newcommand\BibDash{"---}
+% Выделять курсивом
+\let\BibEmph=\emph
 \bibliographystyle{gost705}
 
 % Список литературы
