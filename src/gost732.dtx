@@ -74,8 +74,7 @@ This is a generated file.
 This document class attempts to format LaTeX document according to
 GOST 7.32-2001.
 
-Copyright (C) 2004-2012 by
-   Stanislav Kruchinin <stanislav.kruchinin at gmail.com>
+Copyright (C) Stanislav Kruchinin
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either
@@ -125,7 +124,7 @@ and the derived files
 \fi
 %</ignore>
 %<*driver>
-\ProvidesFile{gost732.drv}[2016/01/27 1.3.4 GOST 7.32-2001 implementation]
+\ProvidesFile{gost732.drv}[2016/06/26 1.4.0 GOST 7.32-2001 implementation]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -154,16 +153,6 @@ and the derived files
   menucolor  = darkblue, urlcolor   = darkblue
 }
 
-\IfFileExists{pscyr.sty}{%
-  \usepackage{pscyr}
-  \renewcommand\ttdefault{cmtt}
-  \renewcommand\rmdefault{ftm}
-}{
-  \IfFileExists{cyrtimes.sty}{%
-    \renewcommand\ttdefault{cmtt}
-    \renewcommand\rmdefault{ftm}
-  }{}
-}
 \IfFileExists{url.sty}{\RequirePackage{url}}{\newcommand\url{\texttt}}
 
 \usepackage[T2A]{fontenc}
@@ -205,7 +194,7 @@ and the derived files
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{gost732}[2013/12/30 1.3.0 GOST 7.32-2001 implementation]
+\ProvidesClass{gost732}[2016/07/03 1.4.0 GOST 7.32-2001 implementation]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{disser}}
 \ProcessOptions\relax
