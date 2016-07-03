@@ -19,7 +19,7 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*driver>
-\ProvidesFile{disser.drv}[2016/01/27 1.3.4 Document class for dissertations]
+\ProvidesFile{disser.drv}[2016/06/26 1.4.0 Document class for dissertations]
 
 \documentclass{ltxdoc}
 \usepackage[a4paper,includeheadfoot,nohead,mag=1000,
@@ -49,16 +49,6 @@
   menucolor  = darkblue, urlcolor   = darkblue
 }
 
-\IfFileExists{pscyr.sty}{%
-  \usepackage{pscyr}
-  \renewcommand\ttdefault{cmtt}
-  \renewcommand\rmdefault{ftm}
-}{
-  \IfFileExists{cyrtimes.sty}{%
-    \renewcommand\ttdefault{cmtt}
-    \renewcommand\rmdefault{ftm}
-  }{}
-}
 \IfFileExists{url.sty}{\usepackage{url}}{\newcommand\url{\texttt}}
 
 \usepackage[T2A]{fontenc}
@@ -82,7 +72,17 @@
   \let\makelabel\deflabel}
 }{\end{list}}
 
-\let\DescribePackage=\DescribeEnv
+\newcommand\DescribePackage[1]{%
+  \DescribeEnv{#1}\index{Пакеты!\texttt{#1}}
+}
+
+\newcommand\DescribeCounter[1]{%
+  \DescribeMacro{#1}\index{Счетчики!\texttt{#1}}
+}
+
+\newcommand\DescribeOption[1]{
+  \DescribeMacro{#1}\index{Опции!\texttt{#1}}
+}
 
 \makeatletter
   \def\IndexParms{%
@@ -111,6 +111,7 @@
 \makeindex
 
 \GetFileInfo{disser.drv}
+
 \begin{document}
   \sloppy
   \DocInput{disser.dtx}
@@ -182,8 +183,7 @@
 
 %<*disser>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{disser}[2015/07/25 1.3.2 %
-  Document class for dissertations]
+\ProvidesClass{disser}[2016/06/26 1.4.0 Document class for dissertations]
 
 %    \end{macrocode}
 % Подключение пакета \pkg{kvoptions} для обработки опций в формате
@@ -200,8 +200,10 @@
 %    \begin{macrocode}
 \RequirePackage{ifpdf}
 
+%    \end{macrocode}
 % \item подключение пакета \pkg{ifthen} для построчных сравнений.
 % \DescribePackage{ifthen}\index{Пакеты!\verb*+ifthen+}
+%    \begin{macrocode}
 \RequirePackage{ifthen}
 
 %    \end{macrocode}
@@ -267,6 +269,14 @@
 %    \begin{macrocode}
 \newif\ifDis@natbib\Dis@natbibfalse
 %    \end{macrocode}
+% \item Использовать цветные ссылки (отключено).
+%    \begin{macrocode}
+\newif\ifDis@colorlinks\Dis@colorlinksfalse
+%    \end{macrocode}
+% \item Исправление знаков интегралов на более привычные (отключено).
+%    \begin{macrocode}
+\newif\ifDis@fixint\Dis@fixintfalse
+%    \end{macrocode}
 % \end{itemize}
 %
 % \subsection{Опции класса}
@@ -298,6 +308,14 @@
 % Подключение пакета \pkg{natbib} и необходимых настроек.
 %    \begin{macrocode}
 \DeclareOption{natbib}{\Dis@natbibtrue}
+%    \end{macrocode}
+% Исправление знаков интегралов на более привычные.
+%    \begin{macrocode}
+\DeclareOption{fixint}{\Dis@fixinttrue}
+%    \end{macrocode}
+% Создание цветных ссылок.
+%    \begin{macrocode}
+\DeclareOption{colorlinks}{\Dis@colorlinkstrue}
 %    \end{macrocode}
 % Размеры листов.
 %    \begin{macrocode}
@@ -386,8 +404,8 @@
 %    \begin{macrocode}
 \DeclareOption{mtpro}{\Dis@mtprotrue}
 %    \end{macrocode}
-% Если указана эта опция, то блоки текста в списке литературы будут
-% печататься на новых строках и с отступом.
+% Если указана эта опция, то блоки текста в списке литературы будут печататься
+% на новых строках и с отступом.
 %    \begin{macrocode}
 \DeclareOption{openbib}{%
   \AtEndOfPackage{%
@@ -450,20 +468,14 @@
   \Dis@autoreftrue
 }
 
+%    \end{macrocode}
+% Обработка опций в формате <<ключ-значение>>.
+%    \begin{macrocode}
 \SetupKeyvalOptions{
   family=Dis,
   prefix=Dis@
 }
 
-%    \end{macrocode}
-% Исправление знаков интегралов и пределов интегрирования на более
-% привычные.
-%    \begin{macrocode}
-\DeclareBoolOption[true]{fixint}
-%    \end{macrocode}
-% Создание цветных ссылок.
-%    \begin{macrocode}
-\DeclareBoolOption[false]{colorlinks}
 \DeclareStringOption{substylefile}
 
 %    \end{macrocode}
@@ -591,7 +603,7 @@
 
 %    \end{macrocode}
 % Команда, объединяющая |\newlength| и |\setlength|.
-% \DescribeMacro{\Dis@deflength}\index{Макросы!\verb*+\Dis@deflength+}
+% \DescribeMacro{\Dis@deflength}\index{Макросы!\verb*+\Dis"@deflength+}
 %    \begin{macrocode}
 \providecommand\Dis@deflength[2]{\newlength{#1}\setlength{#1}{#2}}
 \providecommand\ifundeflength[2]{%
@@ -612,9 +624,9 @@
 \setlength\normallineskip{1\p@}
 
 %    \end{macrocode}
-% \DescribeMacro{\Dis@singlespacing} \index{Макросы!\verb*+\Dis@singlespacing+}
-% \DescribeMacro{\Dis@onehalfspacing}\index{Макросы!\verb*+\Dis@onehalfspacing+}
-% \DescribeMacro{\Dis@doublespacing} \index{Макросы!\verb*+\Dis@doublespacing+}
+% \DescribeMacro{\Dis@singlespacing} \index{Макросы!\verb*+\Dis"@singlespacing+}
+% \DescribeMacro{\Dis@onehalfspacing}\index{Макросы!\verb*+\Dis"@onehalfspacing+}
+% \DescribeMacro{\Dis@doublespacing} \index{Макросы!\verb*+\Dis"@doublespacing+}
 % Характерные величины межстрочнах интервалов.
 %    \begin{macrocode}
 \newcommand\Dis@singlespacing {\renewcommand\baselinestretch{1}\normalsize}
