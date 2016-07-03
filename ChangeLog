@@ -2,6 +2,23 @@ disser changelog
 Copyright (C) Stanislav Kruchinin
 -------------------------------------------
 
+Summary of changes in version 1.4.0 (2016-07-03):
+
+Classes and styles:
+* Fix compatibility issues with biblatex.
+* Fix index entries in documentation.
+* Improve compatibility with 'gost' styles.
+
+Templates:
++ Add new templates with UTF-8 encoding and biblatex support.
++ Add citations to master and specialist templates.
+* Use 'biblatex-gost' style in UTF-8 templates.
+* Synchronize the bib-files in all templates.
+
+Makefiles:
++ Add Biber support.
+
+
 Summary of changes in version 1.3.4 (2016-01-27):
 
 Classes and styles:
@@ -10,7 +27,7 @@ Classes and styles:
 Templates:
 + bachelor: add test for nested enumerated lists.
 * doctor: update the opponents list.
- 
+
 
 Summary of changes in version 1.3.3 (2015-10-18):
 
@@ -33,7 +50,7 @@ Summary of changes in version 1.3.1 (2015-01-03):
 Classes and styles:
 * Fix bug due to undefined \@Asbuk in recent 'babel' package.
 + Package 'natbib' is now optional.
-* Use more recent package 'subcaption' for subfigure captions and 
+* Use more recent package 'subcaption' for subfigure captions and
   references instead of the obsolete 'subfig'.
 
 Templates:
