@@ -12,7 +12,7 @@ setlocal enabledelayedexpansion
 
 set target=disser
 
-if "!ver!"=="" set ver=1.3.4
+if "!ver!"=="" set ver=1.4.0
 set hg=hg
 set archext=zip
 set archive=%target%-!ver!.%archext%
@@ -31,6 +31,7 @@ exit /b
 
 :templates
 	cd templates & call nomake & cd ..
+	cd templates-utf8 & call nomake & cd ..
 goto :eof
 
 :all
@@ -49,21 +50,25 @@ goto :eof
 :clean
 	cd src & call nomake clean & cd ..
 	cd templates & call nomake clean & cd ..
+	cd templates-utf8 & call nomake clean & cd ..
 goto :eof
 
 :install
 	cd src & call nomake install & cd ..
 	cd templates & call nomake install & cd ..
+	cd templates-utf8 & call nomake install & cd ..
 goto :eof
 
 :reinstall
 	cd src & call nomake reinstall & cd ..
 	cd templates & call nomake reinstall & cd ..
+	cd templates-utf8 & call nomake reinstall & cd ..
 goto :eof
 
 :uninstall
 	cd src & call nomake uninstall & cd ..
 	cd templates & call nomake uninstall & cd ..
+	cd templates-utf8 & call nomake uninstall & cd ..
 goto :eof
 
 :srcdist

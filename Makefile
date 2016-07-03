@@ -5,7 +5,7 @@
 
 TARGET := disser
 
-VER ?= 1.3.4
+VER ?= 1.4.0
 HG ?= hg
 ARCHEXT ?= zip
 ARCHIVE := $(TARGET)-$(VER).$(ARCHEXT)
@@ -18,12 +18,14 @@ package doc:
 
 templates:
 	@$(MAKE) -i -C templates
+	@$(MAKE) -i -C templates-utf8
 
 all: package templates
 
 clean install uninstall reinstall:
 	@$(MAKE) -i -C src $@
 	@$(MAKE) -i -C templates $@
+	@$(MAKE) -i -C templates-utf8 $@
 
 srcdist:
 	@[ -f $(ARCHIVE) ] && rm -f $(ARCHIVE) ;\
@@ -37,6 +39,7 @@ tds:
 	mkdir -p $(TDSDIR) ;\
 	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C src install ;\
 	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C templates install ;\
+	env DESTDIR=../$(TDSDIR) $(MAKE) -i -C templates-utf8 install ;\
 	7z a -t$(ARCHEXT) -mx=9 $(TDSARCHIVE) $(TDSDIR)/*
 
 help:
