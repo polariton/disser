@@ -4,7 +4,7 @@
 
 %<*bachelor>
 %    \end{macrocode}
-% \subsubsection{Стиль бакалаврской работы}
+% \subsubsection{Стиль работы бакалавра}
 %
 % Нумерация.
 %    \begin{macrocode}
@@ -81,27 +81,29 @@
 %    \end{macrocode}
 % \paragraph{Название организации}
 %    \begin{macrocode}
-\begin{center}%
+\begin{center}
   {\instfont\@institution}
 \end{center}
 
 %    \end{macrocode}
-% Диссертация допущена к защите
+% Работа допущена к защите
 %    \begin{macrocode}
 \vskip\firstskip
 {\@approved}
 \vskip\secondskip
-
 %    \end{macrocode}
-% Заголовок, тема.
+% Заголовок
 %    \begin{macrocode}
-\begin{center}%
-  {\titlefont\@title\par}%
-  \vskip\thirdskip%
-  {\topiclabelfont\topiclabel\ }%
+\begin{center}
+  {\titlefont\@title}
+  \vskip\thirdskip
+%    \end{macrocode}
+% Тема
+%    \begin{macrocode}
+  {\topiclabelfont\topiclabel\ }
   {\topicfont\@topic}
-  \vskip\fourthskip\normalfont%
-  \courselabel\ \@coursenum~--\ \@course%
+  \vskip\fourthskip\normalfont
+  {\courselabel\ \@coursenum~--\ \@course}
 \end{center}
 
 %    \end{macrocode}
@@ -109,6 +111,10 @@
 %    \begin{macrocode}
 \vskip\fifthskip
 \begin{tabbing}
+%    \end{macrocode}
+%
+% Выполнил студент гр. номер...
+%    \begin{macrocode}
   \studentlabel\=\makebox[\fieldhshift][l]{\hrulefill\ \@author}\\[\sixthskip]
 %    \end{macrocode}
 % Научный руководитель.

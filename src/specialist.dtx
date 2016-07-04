@@ -21,6 +21,9 @@
 % \DescribeMacro{\maketitle}\index{Макросы!\verb*+\maketitle+}
 %    \begin{macrocode}
 \if@titlepage\renewcommand\maketitle[1][]{
+%    \end{macrocode}
+% Переопределения некоторых полей титульного листа для англоязычной версии.
+%    \begin{macrocode}
 \ifthenelse{\equal{#1}{en}}{\@titlepage@entrue}{\@titlepage@enfalse}
 \if@titlepage@en
   \def\appos{Head of Department}
@@ -90,8 +93,7 @@
 \end{center}
 
 %    \end{macrocode}
-% Работа
-% \DescribeMacro{\workname}\index{Макросы!\verb*+\topicfont+}
+% \DescribeMacro{\@approved}\index{Макросы!\verb*+\"@approved+}
 %    \begin{macrocode}
 \def\@approved{
 \hfill
@@ -109,7 +111,7 @@
 {\@approved}
 \vskip\secondskip
 %    \end{macrocode}
-% Заголовок, тема, автор
+% Заголовок, автор, тема
 %    \begin{macrocode}
 \begin{center}
   {\titlefont\@title}

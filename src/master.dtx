@@ -4,7 +4,7 @@
 
 %<*master>
 %    \end{macrocode}
-% \subsubsection{Стиль магистерской диссертации}
+% \subsubsection{Стиль работы магистера}
 %
 % Нумерация.
 %    \begin{macrocode}
@@ -77,28 +77,29 @@
 % \paragraph{Название организации}
 %    \begin{macrocode}
 \begin{center}
-\instfont\@institution\par
+  {\instfont\@institution}
 \end{center}
 
 %    \end{macrocode}
 % Диссертация допущена к защите
 %    \begin{macrocode}
 \vskip\firstskip
-\@approved
+{\@approved}
 \vskip\secondskip
-\begin{center}
 %    \end{macrocode}
-% Заголовок.
+% Заголовок
 %    \begin{macrocode}
+\begin{center}
   {\titlefont\@title}
   \vskip\thirdskip
 %    \end{macrocode}
 % Тема
 %    \begin{macrocode}
-  {\topiclabelfont\topiclabel}
+  {\topiclabelfont\topiclabel\ }
   {\topicfont\@topic}
+  \vskip\fourthskip\normalfont
 \end{center}
-\vskip\fourthskip
+
 \begin{tabbing}
   \phantom{\masterproglabel}\=\\
 %    \end{macrocode}
