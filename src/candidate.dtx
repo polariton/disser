@@ -44,10 +44,10 @@
 %    \begin{macrocode}
 \ifx\firstskip\undefined
   \newlength\firstskip
-  \ifDis@libcat
-    \setlength\firstskip{2ex}
-  \else
+  \ifx\@libcatnum\empty
     \setlength\firstskip{4ex}
+  \else
+    \setlength\firstskip{2ex}
   \fi
 \fi
 \ifundeflength\secondskip{2cm}
@@ -55,6 +55,7 @@
 \ifundeflength\fourthskip{1cm}
 \ifundeflength\fifthskip{1cm}
 \ifundeflength\sixthskip{0cm}
+\ifundeflength\libcatskip{0cm}
 \ifundeflength\specskip{-6pt}
 \ifundeflength\saskip{0pt}
 
@@ -96,7 +97,10 @@
 %    \end{macrocode}
 % Номер УДК
 %    \begin{macrocode}
-  \ifDis@libcat\libcatname\ \@libcatnum\fi
+  \ifx\@libcatnum\empty\else
+    \vskip\libcatskip
+    \libcatname\ \@libcatnum
+  \fi
 \end{flushright}
 \begin{center}
 %    \end{macrocode}
