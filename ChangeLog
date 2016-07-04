@@ -8,12 +8,15 @@ Classes and styles:
 * Fix compatibility issues with biblatex.
 * Fix index entries in documentation.
 * Improve compatibility with 'gost' styles.
++ Add check of non-empty \libcatnum.
+- Remove the deprecated 'libcat' option.
 
 Templates:
 + Add new templates with UTF-8 encoding and biblatex support.
 + Add citations to master and specialist templates.
 * Use 'biblatex-gost' style in UTF-8 templates.
 * Synchronize the bib-files in all templates.
+* Enable \libcatnum by default.
 
 Makefiles:
 + Add Biber support.
