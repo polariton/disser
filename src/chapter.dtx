@@ -10,7 +10,7 @@
 %
 % \subsection{Глава}
 %
-% \subsubsection{Параметры формата записи в оглавлении}
+% \subsubsection{Параметры формата главы в оглавлении}
 %
 % \DescribeMacro{\tocprethechapter}\index{Макросы!\verb*+\tocprethechapter+}
 % \DescribeMacro{\tocpostthechapter}\index{Макросы!\verb*+\tocpostthechapter+}
@@ -29,7 +29,7 @@
 \providecommand\tocchapternumfont{\normalfont}
 
 %    \end{macrocode}
-% \subsubsection{Параметры формата в тексте}
+% \subsubsection{Параметры формата нумеруемой главы в тексте}
 % \DescribeMacro{\thechapteralign}\index{Макросы!\verb*+\thechapteralign+}
 % \DescribeMacro{\thechapterfont}\index{Макросы!\verb*+\thechapterfont+}
 % \DescribeMacro{\prethechapter}\index{Макросы!\verb*+\prethechapter+}
@@ -51,6 +51,20 @@
 \providecommand\afterchapter{\par\nobreak\vskip 20\p@}
 \newlength{\chapterindent}
 \setlength{\chapterindent}{0\p@}
+
+%    \end{macrocode}
+% \subsubsection{Параметры формата ненумеруемой главы в тексте}
+% \DescribeMacro{\schapteralign}\index{Макросы!\verb*+\schapteralign+}
+% \DescribeMacro{\schapterfont}\index{Макросы!\verb*+\schapterfont+}
+% \DescribeMacro{\beforeschapter}\index{Макросы!\verb*+\beforeschapter+}
+% \DescribeMacro{\afterschapter}\index{Макросы!\verb*+\afterschapter+}
+%    \begin{macrocode}
+\providecommand\schapteralign{\chapteralign}
+\providecommand\schapterfont{\chapterfont}
+\providecommand\beforeschapter{\beforechapter}
+\providecommand\afterschapter{\afterchapter}
+\newlength{\schapterindent}
+\setlength{\schapterindent}{0\p@}
 
 %    \end{macrocode}
 %
@@ -133,9 +147,9 @@
 %    \begin{macrocode}
 \def\@makeschapterhead#1{{%
   \parindent\z@
-  \normalfont\hskip\chapterindent%
+  \normalfont\hskip\schapterindent%
   \interlinepenalty\@M
-  \chapteralign\chapterfont\beforechapter #1\afterchapter
+  \schapteralign\schapterfont\beforeschapter #1\afterschapter
 }}
 
 %    \end{macrocode}
