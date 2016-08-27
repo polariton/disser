@@ -12,11 +12,11 @@ Russian Federation.
 For installation from sources and compilation of the documents you will need
 the following third-party packages:
 amsfonts, amsmath, amssymb, caption, cmap, graphicx, ifpdf, kvoptions, natbib,
-hyperref, hypernat, subcaption, wrapfig, and packages for russian language support
-in LaTeX.
+hyperref, hypernat, subcaption, wrapfig, and packages for russian language
+support in LaTeX.
 
 For typesetting documents using Times font family you should install the
-following packages: pscyr or cyrtimes (text fonts), txfonts or mtpro (math
+following packages: pscyr or cyrtimes (text fonts), newtxmath or mtpro (math
 fonts).
 
 For automated processing of figures you should install the following programs:
