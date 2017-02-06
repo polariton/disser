@@ -381,6 +381,10 @@
 }
 \providecommand*\defs{\nchapter{\defsname}}
 
+\AtBeginDocument{%
+  \addto\captionsrussian{\def\nomname{\defsname}}
+}
+
 %    \end{macrocode}
 % \item Словарь терминов
 % \DescribeMacro{\dictname}\index{Макросы!\verb*+\dictname+}
