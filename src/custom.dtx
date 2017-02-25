@@ -215,8 +215,9 @@
 % \DescribePackage{subcaption}
 %    \begin{macrocode}
 \ifDis@subf
-  \usepackage[config,font=small,labelsep=period]{caption}
+  \usepackage[font=small,labelsep=period]{caption}
   \usepackage[list=true,subrefformat=parens]{subcaption}
+  \captionsetup{compatibility=false}
 %    \end{macrocode}
 % Формат счетчика.
 %    \begin{macrocode}
