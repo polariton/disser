@@ -36,14 +36,8 @@ ZIP-архив с готовыми файлами и документацией, которые размещены в
   http://sourceforge.net/projects/disser/
 
 Публичные репозитории исходных текстов проекта:
-  http://mercurial.intuxication.org/hg/disser/
-  http://bitbucket.org/sky/disser/
-  http://disser.hg.sourceforge.net/hgweb/disser/
-
-Наиболее свежую версию исходных текстов пакета можно получить, скачав
-автоматически генерируемый архив с одного из репозиториев:
-  http://mercurial.intuxication.org/hg/disser/archive/tip.zip
-  http://bitbucket.org/sky/disser/get/tip.zip
+  http://github.org/polariton/disser/
+  https://sourceforge.net/p/disser/disser.git
 
 
 4. Установка
