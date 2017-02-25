@@ -58,10 +58,11 @@
 %    \begin{macrocode}
   \AtEndOfPackage{%
     \IfFileExists{newtxmath.sty}{
+      \usepackage{newtxtext}
       \usepackage[varg,cmbraces,cmintegrals]{newtxmath}
     }{
       \PackageWarning{disser}%
-        {Unable to find txfonts package. Font is unchanged.}
+        {Unable to find newtx package. Font is unchanged.}
     }
   }
   \fi
