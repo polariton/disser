@@ -12,10 +12,24 @@ colorlinks,  % цветные гиперссылки
   a4paper, mag=1000,
   left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
 ]{geometry}
+
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb,amsfonts}
+
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
+
+% Шрифт Times в тексте как основной
+%\usepackage{tempora}
+% альтернативный пакет из дистрибутива TeX Live
+%\usepackage{cyrtimes}
+
+% Шрифт Times в формулах как основной
+%\usepackage[varg,cmbraces,cmintegrals]{newtxmath}
+% альтернативный пакет
+%\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
 
 % Плавающие рисунки "в оборку".
 \usepackage{wrapfig}
@@ -119,7 +133,7 @@ colorlinks,  % цветные гиперссылки
 %\newcommand\BibDash{}
 % Выделять курсивом
 \let\BibEmph=\emph
-\bibliographystyle{gost2008}
+\bibliographystyle{gost705}
 
 % Список литературы
 \bibliography{thesis}

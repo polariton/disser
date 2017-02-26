@@ -3,7 +3,6 @@ specialist,  % тип документа
 subf,        % использовать пакет subcaption для вложенной нумерации рисунков
 href,        % использовать пакет hyperref для создания гиперссылок
 colorlinks,  % цветные гиперссылки
-%times,      % шрифт Times как основной
 %fixint,     % включить прямые знаки интегралов
 ]{disser}
 
@@ -11,10 +10,25 @@ colorlinks,  % цветные гиперссылки
   a4paper, mag=1000,
   left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
 ]{geometry}
+
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb,amsfonts}
+\usepackage[autostyle]{csquotes}
+
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
+
+% Шрифт Times в тексте как основной
+%\usepackage{tempora}
+% альтернативный пакет (из дистрибутива TeX Live)
+%\usepackage{cyrtimes}
+
+% Шрифт Times в формулах как основной
+%\usepackage[varg,cmbraces,cmintegrals]{newtxmath}
+% альтернативный пакет
+%\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
 
 \usepackage[style=gost-numeric,
   backend=biber,
