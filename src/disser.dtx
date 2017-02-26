@@ -183,7 +183,7 @@
 
 %<*disser>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{disser}[2016/07/31 1.4.1 Document class for dissertations]
+\ProvidesClass{disser}[2017/02/27 1.4.1 Document class for dissertations]
 
 %    \end{macrocode}
 % Подключение пакета \pkg{kvoptions} для обработки опций в формате
@@ -244,11 +244,6 @@
 %    \begin{macrocode}
 \newif\ifDis@facsimile\Dis@facsimilefalse
 %    \end{macrocode}
-% \item Подключение пакетов \pkg{amsmath}, \pkg{amsfonts}, \pkg{amssymb}
-% (включено).
-%    \begin{macrocode}
-\newif\ifDis@ams\Dis@amstrue
-%    \end{macrocode}
 % \item Подключение \pkg{hyperref} (отключено).
 %    \begin{macrocode}
 \newif\ifDis@href\Dis@hreffalse
@@ -300,10 +295,6 @@
 % Отображение подписей диссертанта и ученого секретаря.
 %    \begin{macrocode}
 \DeclareOption{facsimile}{\Dis@facsimiletrue}
-%    \end{macrocode}
-% Не подключать пакеты \pkg{amsmath}, \pkg{amsfonts}, \pkg{amssymb}.
-%    \begin{macrocode}
-\DeclareOption{noams}{\Dis@amsfalse}
 %    \end{macrocode}
 % Подключение пакета \pkg{natbib} и необходимых настроек.
 %    \begin{macrocode}
@@ -395,15 +386,6 @@
 %    \begin{macrocode}
 \DeclareOption{fleqn}{\input{fleqn.clo}}
 %    \end{macrocode}
-% Использовать в тексте и формулах шрифт Times вместо Computer Modern
-% Roman.
-%    \begin{macrocode}
-\DeclareOption{times}{\Dis@timestrue}
-%    \end{macrocode}
-% Использовать математические шрифты MathTime Pro.
-%    \begin{macrocode}
-\DeclareOption{mtpro}{\Dis@mtprotrue}
-%    \end{macrocode}
 % Если указана эта опция, то блоки текста в списке литературы будут печататься
 % на новых строках и с отступом.
 %    \begin{macrocode}
@@ -448,6 +430,7 @@
 }
 \DeclareOption{candidate}{%
   \Dis@bachelorfalse
+  \Dis@specialistfalse
   \Dis@masterfalse
   \Dis@candidatetrue
   \Dis@doctorfalse
@@ -455,6 +438,7 @@
 }
 \DeclareOption{doctor}{%
   \Dis@bachelorfalse
+  \Dis@specialistfalse
   \Dis@masterfalse
   \Dis@candidatefalse
   \Dis@doctortrue
@@ -462,6 +446,7 @@
 }
 \DeclareOption{autoref}{%
   \Dis@bachelorfalse
+  \Dis@specialistfalse
   \Dis@masterfalse
   \Dis@candidatefalse
   \Dis@doctorfalse
