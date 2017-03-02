@@ -5,7 +5,7 @@
 
 TARGET := disser
 
-VER ?= 1.4.0
+VER ?= 1.5.0
 HG ?= hg
 ARCHEXT ?= zip
 ARCHIVE := $(TARGET)-$(VER).$(ARCHEXT)
