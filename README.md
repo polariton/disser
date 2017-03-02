@@ -16,7 +16,7 @@ For automated processing of figures you should install the following programs: `
 - Project at Sourceforge: http://sourceforge.net/projects/disser/
 - Public source code repositories of this project:
   - https://github.org/polariton/disser/
-  - https://bitbucket.org/sky/disser
+  - https://bitbucket.org/sky/disser/
   - https://sourceforge.net/p/disser/disser.git
 
 ZIP file with sources can be downloaded from http://www.ctan.org/get/macros/latex/contrib/disser.zip
