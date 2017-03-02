@@ -1,18 +1,22 @@
 \documentclass[%
-autoref,        % тип документа
-natbib,         % использовать пакет natbib для "сжатия" цитирований
-href,           % использовать пакет hyperref для создания гиперссылок
-facsimile,      % отображать факсимиле диссертанта и ученого секретаря
-colorlinks=true % цветные гиперссылки
-%,fixint=false  % отключить прямые знаки интегралов
-%,times         % шрифт Times как основной
-%,classified    % гриф секретности
+autoref,     % тип документа
+natbib,      % использовать пакет natbib для "сжатия" цитирований
+href,        % использовать пакет hyperref для создания гиперссылок
+colorlinks,  % цветные гиперссылки
+%times,      % шрифт Times как основной
+%fixint,     % включить прямые знаки интегралов
+%classified, % гриф секретности
+facsimile,   % отображать факсимиле диссертанта и ученого секретаря
 ]{disser}
 
 \usepackage[
   a4paper, mag=1000,
   left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
 ]{geometry}
+
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb,amsfonts}
+
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
@@ -29,8 +33,8 @@ colorlinks=true % цветные гиперссылки
 % Поддержка нескольких списков литературы в одном документе
 \usepackage{multibib}
 % Создание команд для цитирования собственных работ диссертанта
-% в отдельном разделе. В данном случае ссылка будет иметь вид \citemy{...}.
-\newcites{my}{Список публикаций}
+% в отдельном разделе. В данном случае ссылка будет иметь вид \citeown{...}.
+\newcites{own}{Список публикаций}
 
 % Путь к файлам с иллюстрациями
 \graphicspath{{fig/}}
@@ -54,6 +58,7 @@ colorlinks=true % цветные гиперссылки
 % Внутренняя сторона обложки
 \thispagestyle{empty}
 \vspace*{-2cm}
+\noindent
 \begin{center}
 Работа выполнена в \emph{название организации}.
 \end{center}
@@ -69,6 +74,7 @@ colorlinks=true % цветные гиперссылки
   & ученая степень, ученое звание\\[6pt]
   \textbf{Ведущая организация:} & название организации
 \end{tabularx}
+
 \vskip2ex\noindent
 Защита состоится \datefield{} в \rule[0pt]{1cm}{0.5pt} часов
 на заседании диссертационного совета \emph{шифр совета} при \emph{название
@@ -158,19 +164,19 @@ colorlinks=true % цветные гиперссылки
 
 Содержание первой главы.
 
-Результаты первой главы опубликованы в работе~\citemy{Ivanov_1999_Journal_17_173}.
+Результаты первой главы опубликованы в работе~\citeown{Ivanov_1999_Journal_17_173}.
 
 \textbf{Во второй главе} ...
 
 Содержание второй главы.
 
-Результаты второй главы опубликованы в работе~\citemy{Petrov_2001_Journal_23_12321}.
+Результаты второй главы опубликованы в работе~\citeown{Petrov_2001_Journal_23_12321}.
 
 \textbf{В третьей главе} ...
 
 Содержание третьей главы.
 
-Результаты третьей главы опубликованы в работе~\citemy{Sidorov_2002_Journal_32_1531}.
+Результаты третьей главы опубликованы в работе~\citeown{Sidorov_2002_Journal_32_1531}.
 
 \textbf{В Заключении}
 
@@ -179,8 +185,8 @@ colorlinks=true % цветные гиперссылки
 
 % Не добавлять длинное тире в качестве разделителя.
 %\newcommand\BibDash{}
-\bibliographystylemy{gost2008}
-\bibliographymy{thesis}
+\bibliographystyleown{gost2008}
+\bibliographyown{thesis}
 
 \renewcommand\bibsection{\nsection{Цитированная литература}}
 

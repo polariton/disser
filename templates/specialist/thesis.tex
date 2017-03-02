@@ -4,7 +4,6 @@ natbib,      % использовать пакет natbib для "сжатия" цитирований
 subf,        % использовать пакет subcaption для вложенной нумерации рисунков
 href,        % использовать пакет hyperref для создания гиперссылок
 colorlinks,  % цветные гиперссылки
-%times,      % шрифт Times как основной
 %fixint,     % включить прямые знаки интегралов
 ]{disser}
 
@@ -30,6 +29,9 @@ colorlinks,  % цветные гиперссылки
 %\usepackage[varg,cmbraces,cmintegrals]{newtxmath}
 % альтернативный пакет
 %\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
+
+% Плавающие рисунки "в оборку".
+\usepackage{wrapfig}
 
 % Номера страниц снизу и по центру
 %\pagestyle{footcenter}
@@ -57,25 +59,23 @@ colorlinks,  % цветные гиперссылки
 % Титульный лист на русском языке
 %
 
-% Название организации
 \institution{Название организации}
 
 % Имя лица, допускающего к защите (зав. кафедрой)
-\apname{д.\,ф.-м.\,н., профессор С.\,C.~Сидоров}
+\apname{ФИО зав. кафедрой}
 
 \title{Дипломная работа}
 
-% Тема
 \topic{<<Тема работы>>}
 
-% Группа
-\group{Студента группы}
 % Автор
 \author{ФИО автора}
+% Группа
+\group{Студента группы}
 
 % Научный руководитель
-\sa       {И.\,И.~Иванов}
-\sastatus {д.\,ф.-м.\,н., профессор}
+\sa      {ФИО руководителя}
+\sastatus{д.~ф.-м.~н., ст.~н.~с.}
 
 % Рецензент
 \rev      {П.\,П.~Петров}
@@ -115,6 +115,11 @@ colorlinks,  % цветные гиперссылки
 %\rev      {P.\,P.~Petrov}
 %\revstatus{Associate Professor}
 %
+%% Consultant
+%\con{}
+%\conspec{}
+%\constatus{}
+%
 %% City & Year
 %\city{Saint Petersburg}
 %\date{\number\year}
@@ -143,5 +148,9 @@ colorlinks,  % цветные гиперссылки
 
 % Список литературы
 \bibliography{thesis}
+
+% Приложения
+%\appendix
+%\input{a}
 
 \end{document}

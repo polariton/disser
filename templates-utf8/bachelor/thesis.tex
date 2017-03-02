@@ -1,5 +1,6 @@
 \documentclass[%
 bachelor,    % тип документа
+%natbib,      % использовать пакет natbib для "сжатия" цитирований
 subf,        % использовать пакет subcaption для вложенной нумерации рисунков
 href,        % использовать пакет hyperref для создания гиперссылок
 colorlinks,  % цветные гиперссылки
@@ -22,7 +23,7 @@ colorlinks,  % цветные гиперссылки
 
 % Шрифт Times в тексте как основной
 %\usepackage{tempora}
-% альтернативный пакет (из дистрибутива TeX Live)
+% альтернативный пакет из дистрибутива TeX Live
 %\usepackage{cyrtimes}
 
 % Шрифт Times в формулах как основной
@@ -66,6 +67,10 @@ colorlinks,  % цветные гиперссылки
 %\def\conclusionname{Выводы}
 %\def\bibname{Литература}
 
+%
+% Титульный лист на русском языке
+%
+
 \institution{Название организации}
 
 % Имя лица, допускающего к защите (зав. кафедрой)
@@ -76,10 +81,13 @@ colorlinks,  % цветные гиперссылки
 \topic{Тема работы}
 
 % Автор
-\author{ФИО студента} % ФИО
-\group{1111/1} % Группа
-\coursenum{111111} % Номер специальности
-\course{Физика} % Название специальности
+\author{ФИО автора}
+% Группа
+\group{1111/1}
+% Номер специальности
+\coursenum{111111}
+% Название специальности
+\course{Физика}
 
 % Научный руководитель
 \sa      {ФИО руководителя}
@@ -107,7 +115,7 @@ colorlinks,  % цветные гиперссылки
 %
 %% Author
 %\author{Author's Name} % Full Name
-%\course{Physics} % Название специальности
+%\course{Physics} % Specialization
 %
 %\group{} % Study Group
 %
@@ -118,6 +126,11 @@ colorlinks,  % цветные гиперссылки
 %% Reviewer
 %\rev      {P.\,P.~Petrov}
 %\revstatus{Associate Professor}
+%
+%% Consultant
+%\con{}
+%\conspec{}
+%\constatus{}
 %
 %% City & Year
 %\city{Saint Petersburg}
@@ -141,5 +154,9 @@ colorlinks,  % цветные гиперссылки
 
 % Список литературы
 \printbibliography[heading=bibintoc]
+
+% Приложения
+\appendix
+\input{a}
 
 \end{document}

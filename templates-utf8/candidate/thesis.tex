@@ -1,9 +1,9 @@
 \documentclass[%
 candidate,   % тип документа
+%natbib,      % использовать пакет natbib для "сжатия" цитирований
 subf,        % использовать пакет subcaption для вложенной нумерации рисунков
 href,        % использовать пакет hyperref для создания гиперссылок
 colorlinks,  % цветные гиперссылки
-%times,      % шрифт Times как основной
 %fixint,     % включить прямые знаки интегралов
 %classified, % гриф секретности
 %facsimile,  % отображать факсимиле диссертанта
@@ -25,7 +25,7 @@ colorlinks,  % цветные гиперссылки
 
 % Шрифт Times в тексте как основной
 %\usepackage{tempora}
-% альтернативный пакет (из дистрибутива TeX Live)
+% альтернативный пакет из дистрибутива TeX Live
 %\usepackage{cyrtimes}
 
 % Шрифт Times в формулах как основной
@@ -51,7 +51,7 @@ colorlinks,  % цветные гиперссылки
 %\setcitestyle{semicolon}
 
 % Ссылки на работы соискателя включаются в общий список литературы
-\let\citemy=\cite
+\let\citeown=\cite
 
 % Использовать полужирное начертание для векторов
 \let\vec=\mathbf
@@ -151,6 +151,6 @@ colorlinks,  % цветные гиперссылки
 
 % Приложения
 %\appendix
-%\input{app-a}
+%\input{a}
 
 \end{document}

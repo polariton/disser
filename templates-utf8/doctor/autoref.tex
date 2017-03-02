@@ -1,17 +1,23 @@
 \documentclass[%
 autoref,     % тип документа
+%natbib,      % использовать пакет natbib для "сжатия" цитирований
 href,        % использовать пакет hyperref для создания гиперссылок
-facsimile,   % отображать факсимиле диссертанта и ученого секретаря
 colorlinks,  % цветные гиперссылки
-%fixint,     % отключить прямые знаки интегралов
 %times,      % шрифт Times как основной
+%fixint,     % включить прямые знаки интегралов
 %classified, % гриф секретности
+facsimile,   % отображать факсимиле диссертанта и ученого секретаря
 ]{disser}
 
 \usepackage[
   a4paper, mag=1000,
   left=2.5cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
 ]{geometry}
+
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb,amsfonts}
+\usepackage[autostyle]{csquotes}
+
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}

@@ -19,7 +19,7 @@ allpdf:
 	 env TARGET=autoref $(MAKE) pdf ;\
 	 eval unset TARGET
 
-alldvi
+alldvi:
 	@env TARGET=thesis $(MAKE) dvi ;\
 	 env TARGET=autoref $(MAKE) dvi ;\
 	 eval unset TARGET
