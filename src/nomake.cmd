@@ -12,12 +12,9 @@ setlocal enabledelayedexpansion
 
 set target=disser
 set subclass=gost732
-set bst=gost705
 set manual=manual
 
 set clsfiles=*.cls *.rtx
-set bstfiles=gost705.bst gost705s.bst
-set csffiles=*.csf
 set docfiles=%target%.pdf %subclass%.pdf %bst%.pdf %manual%.pdf
 set textfiles=..\README ..\README.ru ..\ChangeLog
 set srcfiles=*.dtx %target%.ins dtx.ist %manual%.tex Makefile nomake.cmd
@@ -25,14 +22,12 @@ set srcfiles=*.dtx %target%.ins dtx.ist %manual%.tex Makefile nomake.cmd
 if "!texmf!"==""   set texmf=%allusersprofile%\Application Data\MiKTeX\2.9
 if "!destdir!"=="" set destdir=!texmf!
 if "!clsdir!"==""  set clsdir=!destdir!\tex\latex\%target%
-if "!bstdir!"==""  set bstdir=!destdir!\bibtex\bst\%target%
-if "!csfdir!"==""  set csfdir=!destdir!\bibtex\csf\%target%
 if "!docdir!"==""  set docdir=!destdir!\doc\latex\%target%
 if "!srcdir!"==""  set srcdir=!destdir!\source\latex\%target%
 
 if "!clext!"=="" set clext=*.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof ^
 *.lot *.lol *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz
-if "!clfiles!"=="" set clfiles=!clext! %clsfiles% %bstfiles%
+if "!clfiles!"=="" set clfiles=!clext! %clsfiles%
 
 if "!latex!"==""    set latex=latex
 if "!pdflatex!"=="" set pdflatex=pdflatex
@@ -98,13 +93,9 @@ goto :eof
 :install
 	if not exist %target%.cls call :all
 	if not exist "!clsdir!" mkdir "!clsdir!"
-	if not exist "!bstdir!" mkdir "!bstdir!"
-	if not exist "!csfdir!" mkdir "!csfdir!"
 	if not exist "!docdir!" mkdir "!docdir!"
 	if not exist "!srcdir!" mkdir "!srcdir!"
 	for %%f in (%clsfiles%)  do xcopy /y /i /f %%f "!clsdir!"
-	for %%f in (%bstfiles%)  do xcopy /y /i /f %%f "!bstdir!"
-	for %%f in (%csffiles%)  do xcopy /y /i /f %%f "!csfdir!"
 	for %%f in (%docfiles%)  do xcopy /y /i /f %%f "!docdir!"
 	for %%f in (%textfiles%) do xcopy /y /i /f %%f "!docdir!"
 	for %%f in (%srcfiles%)  do xcopy /y /i /f %%f "!srcdir!"
@@ -123,11 +114,6 @@ goto :eof
 	!pdflatex! !pdflatexflags! %subclass%.dtx
 	!pdflatex! !pdflatexflags! %subclass%.dtx
 
-	!pdflatex! !pdflatexflags! %bst%.dtx
-	!mi! !miflags! %bst%
-	!pdflatex! !pdflatexflags! %bst%.dtx
-	!pdflatex! !pdflatexflags! %bst%.dtx
-
 	!pdflatex! !pdflatexflags! %manual%.tex
 	!pdflatex! !pdflatexflags! %manual%.tex
 goto :eof
@@ -139,8 +125,6 @@ goto :eof
 
 :uninstall
 	rmdir /s /q "!clsdir!"
-	rmdir /s /q "!bstdir!"
-	rmdir /s /q "!csfdir!"
 	rmdir /s /q "!docdir!"
 	rmdir /s /q "!srcdir!"
 goto :eof

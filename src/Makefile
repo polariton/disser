@@ -4,14 +4,11 @@
 #
 
 TARGET := disser
-BST := gost705
-MAINDTX := $(TARGET) $(BST) gost732
+DTXFILES := $(TARGET) gost732
 MANUAL := manual
 
 CLSFILES := *.cls *.rtx
-BSTFILES := gost705.bst gost705s.bst
-CSFFILES := *.csf
-DOCFILES := $(addsuffix .pdf, $(MAINDTX) $(MANUAL))
+DOCFILES := $(addsuffix .pdf, $(DTXFILES) $(MANUAL))
 TEXTFILES := ../README ../README.ru ../ChangeLog
 SRCFILES := *.dtx $(TARGET).ins dtx.ist $(MANUAL).tex Makefile \
   nomake.cmd
@@ -20,8 +17,6 @@ TEXMF ?= /usr/share/texmf
 DESTDIR ?= $(TEXMF)
 CLSDIR ?= $(DESTDIR)/tex/latex/$(TARGET)
 DOCDIR ?= $(DESTDIR)/doc/latex/$(TARGET)
-BSTDIR ?= $(DESTDIR)/bibtex/bst/$(TARGET)
-CSFDIR ?= $(DESTDIR)/bibtex/csf/$(TARGET)
 SRCDIR ?= $(DESTDIR)/source/latex/$(TARGET)
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
@@ -36,6 +31,7 @@ LATEXFLAGS ?= --src-specials
 PDFLATEXFLAGS ?= --shell-escape --synctex=1
 MIFLAGS ?= -r -s dtx.ist
 
+.PHONY: all package doc dvi pdf clean install uninstall reinstall help
 
 all: package doc
 
@@ -43,7 +39,7 @@ package: $(TARGET).cls
 
 doc: pdf
 
-dvi: $(addsuffix .dvi, $(MAINDTX) $(MANUAL))
+dvi: $(addsuffix .dvi, $(DTXFILES) $(MANUAL))
 
 pdf: $(DOCFILES)
 
@@ -57,22 +53,16 @@ install: all
 	mkdir -p $(DOCDIR) ;\
 	mkdir -p $(SRCDIR) ;\
 	cp $(CLSFILES)  $(CLSDIR) ;\
-	cp $(BSTFILES)  $(BSTDIR) ;\
-	cp $(CSFFILES)  $(CSFDIR) ;\
 	cp $(DOCFILES)  $(DOCDIR) ;\
 	cp $(TEXTFILES) $(DOCDIR) ;\
 	cp $(SRCFILES)  $(SRCDIR)
 
 uninstall:
 	-rm $(addprefix $(CLSDIR)/, $(CLSFILES))
-	-rm $(addprefix $(BSTDIR)/, $(BSTFILES))
-	-rm $(addprefix $(CSFDIR)/, $(CSFFILES))
 	-rm $(addprefix $(DOCDIR)/, $(DOCFILES))
 	-rm $(addprefix $(DOCDIR)/, $(notdir $(TEXTFILES)))
 	-rm $(addprefix $(SRCDIR)/, $(SRCFILES))
 	-rmdir $(CLSDIR)
-	-rmdir $(BSTDIR)
-	-rmdir $(CSFDIR)
 	-rmdir $(DOCDIR)
 	-rmdir $(SRCDIR)
 
@@ -87,18 +77,6 @@ $(TARGET).dvi: $(TARGET).dtx
 $(TARGET).pdf: $(TARGET).dtx
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 	$(MI) $(MIFLAGS) $(TARGET)
-	$(PDFLATEX) $(PDFLATEXFLAGS) $<
-	$(PDFLATEX) $(PDFLATEXFLAGS) $<
-
-$(BST).dvi: $(BST).dtx
-	$(LATEX) $(LATEXFLAGS) $<
-	$(MI) $(MIFLAGS) $(BST)
-	$(LATEX) $(LATEXFLAGS) $<
-	$(LATEX) $(LATEXFLAGS) $<
-
-$(BST).pdf: $(BST).dtx
-	$(PDFLATEX) $(PDFLATEXFLAGS) $<
-	$(MI) $(MIFLAGS) $(BST)
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 	$(PDFLATEX) $(PDFLATEXFLAGS) $<
 
