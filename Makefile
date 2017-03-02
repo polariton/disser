@@ -12,6 +12,7 @@ ARCHIVE := $(TARGET)-$(VER).$(ARCHEXT)
 TDSDIR ?= ../$(TARGET)-tds
 TDSARCHIVE := $(TARGET)-$(VER).tds.$(ARCHEXT)
 
+.PHONY: package doc templates all clean install uninstall reinstall srcdist tds help
 
 package doc:
 	@$(MAKE) -i -C src $@
