@@ -69,6 +69,7 @@ $ set DESTDIR=%APPDATA%\MiKTeX\2.9
 $ nomake install
 $ mktexlsr
 ```
+
 # 5. License
 
 Copyright (c) Stanislav Kruchinin

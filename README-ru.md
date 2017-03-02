@@ -60,7 +60,7 @@ $ mktexlsr
 $ env DESTDIR=/путь/к/texmf make install
 ```
 
-в Windows:
+- в Windows:
 ```sh
 $ set DESTDIR=диск:\путь\к\texmf
 $ nomake install
@@ -74,15 +74,15 @@ $ mktexlsr
 
 ѕримеры команд дл€ дистрибутива MiKTeX версии 2.9 и Windows 7.
 
-”становка дл€ всех пользователей:
+- ”становка дл€ всех пользователей:
 ```sh
 $ set DESTDIR=%ALLUSERSPROFILE%\MiKTeX\2.9
 $ nomake install
 $ mktexlsr --admin
 ```
 
+- ”становка только дл€ текущего пользовател€:
 ```sh
-”становка только дл€ текущего пользовател€:
 $ set DESTDIR=%APPDATA%\MiKTeX\2.9
 $ nomake install
 $ mktexlsr
