@@ -5,18 +5,20 @@ Copyright (C) Stanislav Kruchinin
 Summary of changes in version 1.5.0 (2017-03-03):
 
 Classes and styles:
-- Remove bibliography style gost705 and csf-files.
-- Remove obsolete class options: noams, times, mtpro.
 + Add compatibility with nomencl package.
+- Remove gost705 from package.
+- Remove obsolete class options: noams, times, mtpro.
 
 Templates:
 + Use AMS packages by default.
 + Packages for Times font (disabled by default).
-+ Use gost2008 bibliography style instead of gost705.
++ Automated generation of nomenclature with nomencl package.
+* Use gost2008 bibliography style instead of gost705.
 * Update bibliography examples.
 
 Makefiles:
-- Remove support for gost705 and csf-files.
++ Add compatibility with nomencl package.
+- Remove installation of gost705 and csf-files.
 
 
 Summary of changes in version 1.4.0 (2016-07-03):

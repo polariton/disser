@@ -24,6 +24,8 @@ old
 *.ind
 *.ilg
 *.idx
+*.nlo
+*.nls
 
 # BibTeX output files
 *.bbl

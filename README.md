@@ -15,9 +15,9 @@ For automated processing of figures you should install the following programs: `
 - CTAN directory: http://www.ctan.org/tex-archive/macros/latex/contrib/disser/
 - Project at Sourceforge: http://sourceforge.net/projects/disser/
 - Public source code repositories of this project:
-  - https://github.org/polariton/disser/
-  - https://bitbucket.org/sky/disser/
-  - https://sourceforge.net/p/disser/disser.git
+	- https://github.org/polariton/disser/
+	- https://bitbucket.org/sky/disser/
+	- https://sourceforge.net/p/disser/disser.git
 
 ZIP file with sources can be downloaded from http://www.ctan.org/get/macros/latex/contrib/disser.zip
 ZIP file with compiled sources and documentation sorted in a TDS (TeX Directory Structure) tree is available on Sourceforge (see `disser-<version>.tds.zip` file in Downloads section).
