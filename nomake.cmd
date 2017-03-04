@@ -13,9 +13,10 @@ setlocal enabledelayedexpansion
 set target=disser
 
 if "!ver!"=="" set ver=1.5.0
-set hg=hg
+set git=git
 set archext=zip
 set archive=%target%-!ver!.%archext%
+set excludefiles=.gitignore
 set tdsdir=..\%target%-tds
 set tdsarchive=%target%-!ver!.tds.%archext%
 
@@ -73,9 +74,8 @@ goto :eof
 
 :srcdist
 	if exist %archive% del /q %archive%
-	%hg% archive -X .hgignore -X .hg_archival.txt -X .hgtags -t %archext% ^
-	  %archive%
-	if exist %target%.%archext% move %target%.%archext% %archive%
+	%git% archive --format=%archext% --output=%archive% -9 HEAD
+	7z d %archive% %excludefiles%
 goto :eof
 
 :tds

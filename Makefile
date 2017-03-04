@@ -6,9 +6,10 @@
 TARGET := disser
 
 VER ?= 1.5.0
-HG ?= hg
+GIT ?= git
 ARCHEXT ?= zip
 ARCHIVE := $(TARGET)-$(VER).$(ARCHEXT)
+EXCLUDEFILES := .gitignore
 TDSDIR ?= ../$(TARGET)-tds
 TDSARCHIVE := $(TARGET)-$(VER).tds.$(ARCHEXT)
 
@@ -30,9 +31,8 @@ clean install uninstall reinstall:
 
 srcdist:
 	@[ -f $(ARCHIVE) ] && rm -f $(ARCHIVE) ;\
-	$(HG) archive -X .hgignore -X .hg_archival.txt -X .hgtags -t $(ARCHEXT) \
-		$(TARGET).$(ARCHEXT) ;\
-	[ -f $(TARGET).$(ARCHEXT) ] && mv $(TARGET).$(ARCHEXT) $(ARCHIVE)
+	$(GIT) archive --format=$(ARCHEXT) --output=$(ARCHIVE) -9 HEAD ;\
+	7z d $(ARCHIVE) $(EXCLUDEFILES)
 
 tds:
 	@[ -f $(TDSARCHIVE) ] && rm -f $(TDSARCHIVE) ;\
