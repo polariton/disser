@@ -20,6 +20,14 @@ colorlinks,  % цветные гиперссылки
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
 
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
+
 % Шрифт Times в тексте как основной
 %\usepackage{tempora}
 % альтернативный пакет из дистрибутива TeX Live
@@ -43,10 +51,11 @@ colorlinks,  % цветные гиперссылки
 % Использовать полужирное начертание для векторов
 \let\vec=\mathbf
 
+% Путь к файлам с иллюстрациями
+\graphicspath{{fig/}}
+
 % Включать подсекции в оглавление
 \setcounter{tocdepth}{2}
-
-\graphicspath{{fig/}}
 
 \begin{document}
 
@@ -154,13 +163,17 @@ colorlinks,  % цветные гиперссылки
 % Введение
 \input{intro}
 
-% Глава 1
+% Основная часть
+%% Глава 1
 \input{1}
-% Глава 2
+%% Глава 2
 %\input{2}
 
 % Заключение
 \input{concl}
+
+% Список сокращений и условных обозначений
+\printnomenclature
 
 % Не добавлять длинное тире в качестве разделителя
 %\newcommand\BibDash{}
@@ -172,7 +185,7 @@ colorlinks,  % цветные гиперссылки
 \bibliography{thesis}
 
 % Приложения
-\appendix
-\input{a}
+%\appendix
+%\input{a}
 
 \end{document}

@@ -16,6 +16,7 @@ PDFLATEX ?= pdflatex
 PS2PDF ?= gs
 PSBOOK ?= psbook
 PSNUP ?= psnup
+MAKEINDEX ?= makeindex
 
 ARCHEXT ?= zip
 ARCHFLAGS ?= a -t$(ARCHEXT)
@@ -32,7 +33,7 @@ PSNUPFLAGS ?= -2 -pA4
 PDFLATEXFLAGS ?= --shell-escape --synctex=1
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
-  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz *.run.xml *.bcf
+  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz *.run.xml *.bcf *.nlo *.nls
 CLFILES ?= $(CLEXT) $(ARCHIVE)
 SRCFILES ?= *
 
@@ -83,6 +84,9 @@ $(TARGET).dvi: *.tex *.bib
 	else \
 		echo Warning: Bibliography file does not exist ;\
 	fi ;\
+	if [ -f $(TARGET).nlo ] ; then \
+		$(MAKEINDEX) $(TARGET).nlo -s nomencl.ist -o $(TARGET).nls
+	fi ;\
 	$(LATEX) $(TEXFLAGS) $(TARGET).tex ;\
 	$(LATEX) $(TEXFLAGS) $(TARGET).tex
 
@@ -103,6 +107,9 @@ $(TARGET).pdf: *.tex *.bib
 	else \
 		echo "Warning: Bibliography file does not exist" ;\
 	fi ;\
+	if [ -f $(TARGET).nlo ] ; then \
+		$(MAKEINDEX) $(TARGET).nlo -s nomencl.ist -o $(TARGET).nls ;\
+	fi ;\
 	$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex ;\
 	$(PDFLATEX) $(PDFLATEXFLAGS) $(TARGET).tex
 
@@ -115,9 +122,11 @@ $(TARGET)_book.pdf: $(TARGET)_book.ps
 $(TARGET).rtf: $(TARGET).dvi
 	$(L2RTF) $(L2RTFFLAGS) -a $(TARGET).aux -b $(TARGET).bbl $(TARGET).tex
 
+%.nls: %.nlo
+	$(MAKEINDEX) $< -s nomencl.ist -o $@
+
 bmtoeps epstoeps epstopdf fixbb optimize pdftopng256 pdftotiffg4:
 	@$(MAKE) -C fig $@
 
 figclean:
 	@$(MAKE) -C fig clean
-

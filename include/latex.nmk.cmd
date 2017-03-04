@@ -13,17 +13,18 @@ setlocal enabledelayedexpansion
 if "%target%"==""  set target=thesis
 if "%bibfile%"=="" set bibfile=thesis.bib
 
-if "%arch%"==""     set arch=7z
-if "%bibtex%"==""   set bibtex=bibtex8
-if "%dvips%"==""    set dvips=dvips
-if "%l2h%"==""      set l2h=latex2html
-if "%l2rtf%"==""    set l2rtf=latex2rtf
-if "%latex%"==""    set latex=latex
-if "%mktexlsr%"=="" set mktexlsr=mktexlsr
-if "%pdflatex%"=="" set pdflatex=pdflatex
-if "%ps2pdf%"==""   set ps2pdf=gswin32c
-if "%psbook%"==""   set psbook=psbook
-if "%psnup%"==""    set psnup=psnup
+if "%arch%"==""      set arch=7z
+if "%bibtex%"==""    set bibtex=bibtex8
+if "%dvips%"==""     set dvips=dvips
+if "%l2h%"==""       set l2h=latex2html
+if "%l2rtf%"==""     set l2rtf=latex2rtf
+if "%latex%"==""     set latex=latex
+if "%mktexlsr%"==""  set mktexlsr=mktexlsr
+if "%pdflatex%"==""  set pdflatex=pdflatex
+if "%ps2pdf%"==""    set ps2pdf=gswin32c
+if "%psbook%"==""    set psbook=psbook
+if "%psnup%"==""     set psnup=psnup
+if "%makeindex%"=="" set makeindex=makeindex
 
 if "%archext%"==""     set archext=zip
 if "%archflags%"==""   set archflags=a -t%archext%
@@ -43,8 +44,8 @@ if "%ps2pdfflags%"=="" (
 if "%psnupflags%"==""    set psnupflags=-2 -pA4
 if "%pdflatexflags%"=="" set pdflatexflags=--shell-escape --synctex=1
 
-if "%clext%"=="" set clext=*.bbl *.bak *.aux *.blg *.out *.toc *.log ^
-	*.dvi *.tmp *.ps *.pdf *.synctex *.synctex.gz *.run.xml *.bcf
+if "%clext%"=="" set clext=*.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol ^
+  *.bbl *.blg *.bak *.dvi *.ps *.pdf *.synctex *.synctex.gz *.run.xml *.bcf *.nlo *.nls
 if "%clfiles%"=="" set clfiles=!clext! %archive%
 if "%srcfiles%"=="" set srcfiles=*
 if "%prereq%"=="" set prereq=*.tex *.bib
@@ -74,6 +75,9 @@ goto :eof
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%~nf
 	) else (
 		echo Warning: Bibliography file does not exist
+	)
+	if exist %target%.nlo (
+		%makeindex% %target%.nlo -s nomencl.ist -o %target%.nls
 	)
 	%latex% %latexflags% %target%.tex
 	%latex% %latexflags% %target%.tex
@@ -115,6 +119,9 @@ goto :eof
 		for %%f in (*.aux) do %bibtex% %bibtexflags% %%~nf
 	) else (
 		echo Warning: Bibliography file does not exist
+	)
+	if exist %target%.nlo (
+		%makeindex% %target%.nlo -s nomencl.ist -o %target%.nls
 	)
 	%pdflatex% %pdflatexflags% %target%.tex
 	%pdflatex% %pdflatexflags% %target%.tex

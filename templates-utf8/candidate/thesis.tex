@@ -23,6 +23,14 @@ colorlinks,  % цветные гиперссылки
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
 
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
+
 % Шрифт Times в тексте как основной
 %\usepackage{tempora}
 % альтернативный пакет из дистрибутива TeX Live
@@ -32,6 +40,9 @@ colorlinks,  % цветные гиперссылки
 %\usepackage[varg,cmbraces,cmintegrals]{newtxmath}
 % альтернативный пакет
 %\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
+
+% Плавающие рисунки "в оборку".
+\usepackage{wrapfig}
 
 \usepackage[style=gost-numeric,
   backend=biber,
@@ -138,7 +149,7 @@ colorlinks,  % цветные гиперссылки
 \input{concl}
 
 % Список сокращений и условных обозначений
-%\input{defs}
+\printnomenclature
 
 % Словарь терминов
 %\input{dict}

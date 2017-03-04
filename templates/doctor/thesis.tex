@@ -16,11 +16,20 @@ colorlinks,  % цветные гиперссылки
 
 \usepackage[intlimits]{amsmath}
 \usepackage{amssymb,amsfonts}
+\usepackage[autostyle]{csquotes}
 
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
 \usepackage[english,russian]{babel}
 \ifpdf\usepackage{epstopdf}\fi
+
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
 
 % Шрифт Times в тексте как основной
 %\usepackage{tempora}
@@ -124,7 +133,7 @@ colorlinks,  % цветные гиперссылки
 \input{concl}
 
 % Список сокращений и условных обозначений
-%\input{defs}
+\printnomenclature
 
 % Словарь терминов
 %\input{dict}
