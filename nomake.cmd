@@ -15,8 +15,8 @@ set target=disser
 if "!ver!"=="" set ver=1.5.0
 set git=git
 set archext=zip
-set archive=%target%-!ver!.%archext%
-set excludefiles=.gitignore
+set archname=%target%-!ver!
+set archive=%archname%.%archext%
 set tdsdir=..\%target%-tds
 set tdsarchive=%target%-!ver!.tds.%archext%
 
@@ -74,8 +74,9 @@ goto :eof
 
 :srcdist
 	if exist %archive% del /q %archive%
-	%git% archive --format=%archext% --output=%archive% -9 HEAD
-	7z d %archive% %excludefiles%
+	%git% archive --format=%archext% --prefix=%archname%/ ^
+		--output=%archive% -9 HEAD
+	7z d %archive% %archname%/.gitignore
 goto :eof
 
 :tds

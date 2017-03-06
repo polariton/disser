@@ -7,8 +7,9 @@ TARGET := disser
 
 VER ?= 1.5.0
 GIT ?= git
+ARCHNAME ?= $(TARGET)-$(VER)
 ARCHEXT ?= zip
-ARCHIVE := $(TARGET)-$(VER).$(ARCHEXT)
+ARCHIVE := $(ARCHNAME).$(ARCHEXT)
 EXCLUDEFILES := .gitignore
 TDSDIR ?= ../$(TARGET)-tds
 TDSARCHIVE := $(TARGET)-$(VER).tds.$(ARCHEXT)
@@ -31,8 +32,9 @@ clean install uninstall reinstall:
 
 srcdist:
 	@[ -f $(ARCHIVE) ] && rm -f $(ARCHIVE) ;\
-	$(GIT) archive --format=$(ARCHEXT) --output=$(ARCHIVE) -9 HEAD ;\
-	7z d $(ARCHIVE) $(EXCLUDEFILES)
+	$(GIT) archive --format=$(ARCHEXT) --prefix=$(ARCHNAME)/ \
+		--output=$(ARCHIVE) -9 HEAD ;\
+	7z d $(ARCHIVE) $(ARCHNAME)/.gitignore
 
 tds:
 	@[ -f $(TDSARCHIVE) ] && rm -f $(TDSARCHIVE) ;\
