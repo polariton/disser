@@ -22,7 +22,7 @@ nomake.cmd следует установить программы Ghostscript, epstool и sam2p.
 - Пакет disser доступен на CTAN: http://www.ctan.org/tex-archive/macros/latex/contrib/disser/
 - Страница проекта на Sourceforge: http://sourceforge.net/projects/disser/
 - Публичные репозитории исходных текстов проекта:
-  - https://github.org/polariton/disser/
+  - https://github.com/polariton/disser/
   - https://bitbucket.org/sky/disser/
   - https://sourceforge.net/p/disser/disser.git
 
