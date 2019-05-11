@@ -19,6 +19,7 @@ old
 *.toc
 *.pdf
 *.ps
+*.lof
 
 # makeindex
 *.ind
