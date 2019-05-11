@@ -44,7 +44,8 @@ colorlinks,  % цветные гиперссылки
 % Плавающие рисунки "в оборку".
 \usepackage{wrapfig}
 
-\usepackage[style=gost-numeric,
+\usepackage[%
+  style=gost-numeric,
   backend=biber,
   language=auto,
   hyperref=auto,
@@ -52,14 +53,14 @@ colorlinks,  % цветные гиперссылки
   sorting=none
 ]{biblatex}
 
+% biblatex: запятая в качестве разделителя между номерами цитирований
+\renewcommand*{\multicitedelim}{,\space}
+
 \addbibresource{thesis.bib}
 
 % Номера страниц снизу и по центру
 %\pagestyle{footcenter}
 %\chapterpagestyle{footcenter}
-
-% Точка с запятой в качестве разделителя между номерами цитирований
-%\setcitestyle{semicolon}
 
 % Ссылки на работы соискателя включаются в общий список литературы
 \let\citeown=\cite
@@ -76,6 +77,7 @@ colorlinks,  % цветные гиперссылки
 %\def\contentsname{Содержание}
 %\def\conclusionname{Выводы}
 %\def\bibname{Литература}
+%\def\listfigurename{Список иллюстраций}
 
 % Включение файла с общим текстом диссертации и автореферата
 % (текст титульного листа и характеристика работы).
@@ -157,7 +159,7 @@ colorlinks,  % цветные гиперссылки
 % Список литературы
 \printbibliography[heading=bibintoc]
 
-% Список иллюстративного материала
+% Список иллюстраций
 %\listoffigures
 
 % Приложения
