@@ -21,7 +21,7 @@ if "%l2rtf%"==""     set l2rtf=latex2rtf
 if "%latex%"==""     set latex=latex
 if "%mktexlsr%"==""  set mktexlsr=mktexlsr
 if "%pdflatex%"==""  set pdflatex=pdflatex
-if "%ps2pdf%"==""    set ps2pdf=gswin32c
+if "%ps2pdf%"==""    set ps2pdf=gswin64c
 if "%psbook%"==""    set psbook=psbook
 if "%psnup%"==""     set psnup=psnup
 if "%makeindex%"=="" set makeindex=makeindex
@@ -176,7 +176,9 @@ goto :eof
 		goto :eof
 	)
 	call :ps
-	%psbook% %target%.ps | %psnup% -2 > %target%_book.ps
+	%psbook% %target%.ps %target%_book_tmp.ps
+	%psnup% -2 %target%_book_tmp.ps %target%_book.ps
+	del /s %target%_book_tmp.ps 2> nul
 goto :eof
 
 :rtf
