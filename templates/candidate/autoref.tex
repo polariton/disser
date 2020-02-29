@@ -16,10 +16,10 @@ facsimile,   % отображать факсимиле диссертанта и ученого секретар€
 
 \usepackage[intlimits]{amsmath}
 \usepackage{amssymb,amsfonts}
-\usepackage[autostyle]{csquotes}
 
 \usepackage[T2A]{fontenc}
 \usepackage[cp1251]{inputenc}
+\usepackage[autostyle]{csquotes}
 \usepackage[english,russian]{babel}
 \usepackage{tabularx}
 \ifpdf\usepackage{epstopdf}\fi
@@ -36,6 +36,7 @@ facsimile,   % отображать факсимиле диссертанта и ученого секретар€
 % —оздание команд дл€ цитировани€ собственных работ диссертанта
 % в отдельном разделе. ¬ данном случае ссылка будет иметь вид \citeown{...}.
 \newcites{own}{—писок публикаций}
+\let\citeown=\cite
 
 % ѕуть к файлам с иллюстраци€ми
 \graphicspath{{fig/}}

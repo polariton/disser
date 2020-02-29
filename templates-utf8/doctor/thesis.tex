@@ -53,8 +53,13 @@ colorlinks,  % цветные гиперссылки
   sorting=none
 ]{biblatex}
 
-% biblatex: запятая в качестве разделителя между номерами цитирований
+% Настройки biblatex
+%% символ номера
+\DefineBibliographyStrings{russian}{number={\textnumero}}
+%% запятая между номерами цитирований
 \renewcommand*{\multicitedelim}{,\space}
+%% короткое тире в диапазоне цитирований
+\DefineBibliographyExtras{russian}{\renewcommand*{\bibrangedash}{--}}
 
 \addbibresource{thesis.bib}
 

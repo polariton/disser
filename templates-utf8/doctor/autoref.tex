@@ -16,15 +16,26 @@ facsimile,   % отображать факсимиле диссертанта и
 
 \usepackage[intlimits]{amsmath}
 \usepackage{amssymb,amsfonts}
-\usepackage[autostyle]{csquotes}
 
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
-\usepackage{tabularx}
 \ifpdf\usepackage{epstopdf}\fi
+\usepackage[autostyle]{csquotes}
+\usepackage{tabularx}
 
-\usepackage[style=gost-numeric,
+% Шрифт Times в тексте как основной
+%\usepackage{tempora}
+% альтернативный пакет из дистрибутива TeX Live
+%\usepackage{cyrtimes}
+
+% Шрифт Times в формулах как основной
+%\usepackage[varg,cmbraces,cmintegrals]{newtxmath}
+% альтернативный пакет
+%\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
+
+\usepackage[%
+  style=gost-numeric,
   backend=biber,
   language=auto,
   hyperref=auto,
@@ -32,6 +43,14 @@ facsimile,   % отображать факсимиле диссертанта и
   defernumbers,
   sorting=none
 ]{biblatex}
+
+% Настройки biblatex
+%% символ номера
+\DefineBibliographyStrings{russian}{number={\textnumero}}
+%% запятая между номерами цитирований
+\renewcommand*{\multicitedelim}{,\space}
+%% короткое тире в диапазоне цитирований
+\DefineBibliographyExtras{russian}{\renewcommand*{\bibrangedash}{--}}
 
 \addbibresource{thesis.bib}
 

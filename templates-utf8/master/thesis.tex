@@ -30,13 +30,33 @@ colorlinks,  % цветные гиперссылки
 % альтернативный пакет
 %\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
 
-\usepackage[style=gost-numeric,
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
+
+% Плавающие рисунки "в оборку".
+\usepackage{wrapfig}
+
+\usepackage[%
+  style=gost-numeric,
   backend=biber,
   language=auto,
   hyperref=auto,
   autolang=other,
   sorting=none
 ]{biblatex}
+
+% Настройки biblatex
+%% символ номера
+\DefineBibliographyStrings{russian}{number={\textnumero}}
+%% запятая между номерами цитирований
+\renewcommand*{\multicitedelim}{,\space}
+%% короткое тире в диапазоне цитирований
+\DefineBibliographyExtras{russian}{\renewcommand*{\bibrangedash}{--}}
 
 \addbibresource{thesis.bib}
 
@@ -61,6 +81,10 @@ colorlinks,  % цветные гиперссылки
 %\def\contentsname{Содержание}
 %\def\conclusionname{Выводы}
 %\def\bibname{Литература}
+
+%
+% Титульный лист на русском языке
+%
 
 \institution{Название организации}
 
@@ -164,6 +188,9 @@ colorlinks,  % цветные гиперссылки
 
 % Заключение
 \input{concl}
+
+% Список сокращений и условных обозначений
+\printnomenclature
 
 % Список литературы
 \printbibliography[heading=bibintoc]

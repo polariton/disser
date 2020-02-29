@@ -31,6 +31,14 @@ colorlinks,  % цветные гиперссылки
 % альтернативный пакет
 %\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
 
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
+
 % Плавающие рисунки "в оборку".
 \usepackage{wrapfig}
 
@@ -141,6 +149,9 @@ colorlinks,  % цветные гиперссылки
 % Заключение
 \input{concl}
 
+% Список сокращений и условных обозначений
+\printnomenclature
+
 % Не добавлять длинное тире в качестве разделителя
 %\newcommand\BibDash{}
 % Выделять курсивом
@@ -151,7 +162,7 @@ colorlinks,  % цветные гиперссылки
 \bibliography{thesis}
 
 % Приложения
-%\appendix
-%\input{a}
+\appendix
+\input{a}
 
 \end{document}

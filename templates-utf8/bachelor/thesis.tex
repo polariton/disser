@@ -31,6 +31,14 @@ colorlinks,  % цветные гиперссылки
 % альтернативный пакет
 %\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
 
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
+
 \usepackage[%
   style=gost-numeric,
   backend=biber,
@@ -39,6 +47,14 @@ colorlinks,  % цветные гиперссылки
   autolang=other,
   sorting=none
 ]{biblatex}
+
+% Настройки biblatex
+%% символ номера
+\DefineBibliographyStrings{russian}{number={\textnumero}}
+%% запятая между номерами цитирований
+\renewcommand*{\multicitedelim}{,\space}
+%% короткое тире в диапазоне цитирований
+\DefineBibliographyExtras{russian}{\renewcommand*{\bibrangedash}{--}}
 
 \addbibresource{thesis.bib}
 
@@ -151,6 +167,9 @@ colorlinks,  % цветные гиперссылки
 
 % Заключение
 \input{concl}
+
+% Список сокращений и условных обозначений
+\printnomenclature
 
 % Список литературы
 \printbibliography[heading=bibintoc]

@@ -21,14 +21,6 @@ colorlinks,  % цветные гиперссылки
 \ifpdf\usepackage{epstopdf}\fi
 \usepackage[autostyle]{csquotes}
 
-% Список сокращений и условных обозначений
-\usepackage[intoc,nocfg,russian]{nomencl}
-\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
-\setlength{\nomlabelwidth}{3em}
-\setlength{\nomitemsep}{-\parsep}
-\renewcommand{\nomlabel}[1]{#1 ---}
-\makenomenclature
-
 % Шрифт Times в тексте как основной
 %\usepackage{tempora}
 % альтернативный пакет из дистрибутива TeX Live
@@ -38,6 +30,14 @@ colorlinks,  % цветные гиперссылки
 %\usepackage[varg,cmbraces,cmintegrals]{newtxmath}
 % альтернативный пакет
 %\usepackage[subscriptcorrection,nofontinfo]{mtpro2}
+
+% Список сокращений и условных обозначений
+\usepackage[intoc,nocfg,russian]{nomencl}
+\newcommand{\nomencl}[2]{#1 --- #2\nomenclature{#1}{#2}}
+\setlength{\nomlabelwidth}{3em}
+\setlength{\nomitemsep}{-\parsep}
+\renewcommand{\nomlabel}[1]{#1 ---}
+\makenomenclature
 
 % Плавающие рисунки "в оборку".
 \usepackage{wrapfig}
@@ -52,11 +52,10 @@ colorlinks,  % цветные гиперссылки
 % Использовать полужирное начертание для векторов
 \let\vec=\mathbf
 
-% Путь к файлам с иллюстрациями
-\graphicspath{{fig/}}
-
 % Включать подсекции в оглавление
 \setcounter{tocdepth}{2}
+
+\graphicspath{{fig/}}
 
 \begin{document}
 
@@ -164,10 +163,9 @@ colorlinks,  % цветные гиперссылки
 % Введение
 \input{intro}
 
-% Основная часть
-%% Глава 1
+% Глава 1
 \input{1}
-%% Глава 2
+% Глава 2
 %\input{2}
 
 % Заключение
@@ -186,7 +184,7 @@ colorlinks,  % цветные гиперссылки
 \bibliography{thesis}
 
 % Приложения
-%\appendix
-%\input{a}
+\appendix
+\input{a}
 
 \end{document}
